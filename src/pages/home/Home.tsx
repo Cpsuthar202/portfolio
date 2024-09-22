@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/store/store";
 import { mColor } from "@color";
 import { ChatBgImg } from "@image";
 import { chekedIcon } from "@svg";
+import Image from "@/components/image/Image";
 const Home = () => {
   const dispatch = useAppDispatch();
 
@@ -17,7 +18,7 @@ const Home = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{ overflow: "auto" }}>
       <Typography sx={{ color: mColor.secondaryLight }}>oiuytrewsdfyuio</Typography>
       Home
       <TextField
@@ -31,29 +32,9 @@ const Home = () => {
         onChange={(e) => setTitleData(e.target.value)}
       />
       <Button onClick={send}>ok</Button>
+      <Image src={ChatBgImg} alt="Chat background" sx={{ border: 4 }} />
+      <Image src={chekedIcon} alt="Chat background" sx={{ border: 4 }} />
       <CommonTable data={homeTableData} />
-      <Box
-        component="img"
-        src={ChatBgImg}
-        alt="Example Image"
-        sx={{
-          width: 300, // width of the image
-          height: 200, // height of the image
-          borderRadius: "8px", // optional: add border radius
-          boxShadow: 3, // optional: add box shadow
-        }}
-      />
-      <Box
-        component="img"
-        src={chekedIcon}
-        alt="Example Image"
-        sx={{
-          width: 300, // width of the image
-          height: 200, // height of the image
-          borderRadius: "8px", // optional: add border radius
-          boxShadow: 3, // optional: add box shadow
-        }}
-      />
     </Box>
   );
 };

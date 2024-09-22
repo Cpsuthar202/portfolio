@@ -1,10 +1,12 @@
 import React from "react";
-import { Box, Button, TextField, Typography, Link, Divider, IconButton } from "@mui/material";
+import { Box, Button, TextField, Typography, Divider, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useLogin } from "./Login.hook";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -82,9 +84,10 @@ const Login = () => {
 
         <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           {/* Forgot Password Link */}
-          <Link href="#" variant="body2">
-            Forgot your password?
-          </Link>
+
+          <Typography variant="body2" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/registration")}>
+            Forgot password
+          </Typography>
         </Box>
 
         {/* Log In Button */}
@@ -106,11 +109,11 @@ const Login = () => {
       </Button>
 
       {/* Register Link */}
-      <Typography variant="body2">
+      <Typography variant="body2" sx={{ mt: 2, display: "flex", gap: 1 }}>
         Don’t have an account?
-        <Link href="/user/auth/registration" variant="body2" sx={{ ml: "5px" }}>
+        <Typography variant="body2" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/registration")}>
           Register here
-        </Link>
+        </Typography>
       </Typography>
     </Box>
   );

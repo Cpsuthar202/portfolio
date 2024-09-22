@@ -24,7 +24,7 @@ const AuthWrapper = () => {
 
   return (
     <>
-      <Box sx={{ display: "grid", placeItems: "center", width: "100vw", height: "100vh" }}>
+      <Box sx={{ display: "grid", placeItems: "center", width: "100vw", height: "90vh" }}>
         {!isLoggedIn && (
           <Box sx={{ borderRadius: "10px", padding: "20px", boxShadow: 2, m: 1, width: "370px" }}>
             <Outlet />

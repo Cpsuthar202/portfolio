@@ -1,10 +1,12 @@
-import { Box, Typography, TextField, Button, IconButton, FormControlLabel, Checkbox, Link, Divider } from "@mui/material";
+import { Box, Typography, TextField, Button, IconButton, FormControlLabel, Checkbox, Divider } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useState } from "react";
 import { mColor } from "@/theme/utils/color";
 import { UseRegistration } from "./Registration.hook";
+import { useNavigate } from "react-router-dom";
 const Registration = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -119,11 +121,11 @@ const Registration = () => {
       </Button>
 
       {/* Login Link */}
-      <Typography variant="body2">
+      <Typography variant="body2" sx={{ mt: 2, display: "flex", gap: 1 }}>
         Already have an account?
-        <Link href="/user/auth/login" variant="body2" sx={{ ml: "5px" }}>
+        <Typography variant="body2" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/login")}>
           Log in here
-        </Link>
+        </Typography>
       </Typography>
     </Box>
   );

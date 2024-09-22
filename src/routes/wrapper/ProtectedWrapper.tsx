@@ -23,7 +23,7 @@ const ProtectedWrapper = () => {
   }, [navigate]);
 
   return (
-    <Box sx={{ display: "flex", alignItems: "flex-start", height: "100vh", width: "100vw" }}>
+    <Box sx={{ display: "flex", alignItems: "flex-start", width: "100vw" }}>
       {isLoggedIn && (
         <>
           <SideBar />
