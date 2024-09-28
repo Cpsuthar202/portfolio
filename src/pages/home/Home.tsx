@@ -8,6 +8,7 @@ import { mColor } from "@color";
 import { ChatBgImg } from "@image";
 import { chekedIcon } from "@svg";
 import Image from "@/components/image/Image";
+import { getInitialTheme } from "@/utils/localStorage";
 const Home = () => {
   const dispatch = useAppDispatch();
 
@@ -16,6 +17,8 @@ const Home = () => {
     dispatch(setTitle(titleData));
     setTitleData("");
   };
+
+  const backgroundImage = getInitialTheme() ? ChatBgImg : chekedIcon;
 
   return (
     <Box sx={{ overflow: "auto" }}>
@@ -32,8 +35,7 @@ const Home = () => {
         onChange={(e) => setTitleData(e.target.value)}
       />
       <Button onClick={send}>ok</Button>
-      <Image src={ChatBgImg} alt="Chat background" sx={{ border: 4 }} />
-      <Image src={chekedIcon} alt="Chat background" sx={{ border: 4 }} />
+      <Image src={backgroundImage} alt="Chat background" sx={{ border: 4 }} />
       <CommonTable data={homeTableData} />
     </Box>
   );

@@ -29,11 +29,14 @@ import UnprotectedRoutes from "./routes/UnprotectedRoutes";
 import TopBar from "./components/topBar/TopBar";
 import { Box } from "@mui/material";
 
-const App = () => {
+interface AppProps {
+  toggleTheme: () => void;
+}
+const App: React.FC<AppProps> = ({ toggleTheme }) => {
   return (
     <>
       <Box sx={{ overflow: "auto", height: "100vh" }}>
-        <TopBar />
+        <TopBar toggleTheme={toggleTheme} />
         <Routes>
           <Route path="/*" element={<UnprotectedRoutes />} />
           <Route path="/user/auth/*" element={<AuthRoutes />} />

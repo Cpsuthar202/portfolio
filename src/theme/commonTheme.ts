@@ -1,7 +1,8 @@
-// src/theme.ts
-import { createTheme } from "@mui/material/styles";
-import { mColor } from "./utils/color";
-export const theme = createTheme({
+// src/theme/commonTheme.ts
+import { mColor } from "@color";
+import { ThemeOptions } from "@mui/material/styles";
+
+export const commonTheme: ThemeOptions = {
   palette: {
     primary: {
       // The primary color palette
@@ -45,22 +46,12 @@ export const theme = createTheme({
       dark: mColor.successDark, // Darker shade of the success color
       contrastText: mColor.while, // Text color when used on a success background
     },
-    background: {
-      default: mColor.backgroundDefault, // Default background color for the application
-      // paper: mColor.while, // Background color for paper-like components (e.g., cards)
-      paper: mColor.errorDark, // Background color for paper-like components (e.g., cards)
-    },
-    text: {
-      // Text colors
-      primary: mColor.black, // Primary text color
-      secondary: mColor.while, // (Optional) Secondary text color, commented out
-      disabled: mColor.textDisabled, // Text color for disabled elements
-    },
   },
   typography: {
     fontFamily: "cursive",
     h1: {
       fontSize: "3rem",
+      color: "#ff0033",
       fontWeight: 300,
       letterSpacing: "-0.01562em",
       lineHeight: 1.167,
@@ -140,6 +131,7 @@ export const theme = createTheme({
       textTransform: "uppercase",
     },
   },
+
   components: {
     MuiButton: {
       styleOverrides: {
@@ -360,15 +352,16 @@ export const theme = createTheme({
 
           // Standard variant customization
           "& .MuiInput-underline": {
-            color: "#dc004e",
+            color: mColor.errorMain,
+
             "&:before": {
-              borderBottomColor: "#1976d2", // Border color before focus for standard
+              borderBottomColor: mColor.errorMain, // Border color before focus for standard
             },
             "&:hover:not(.Mui-disabled):before": {
-              borderBottomColor: "#dc004e", // Border color on hover for standard
+              borderBottomColor: mColor.errorLight, // Border color on hover for standard
             },
             "&:after": {
-              borderBottomColor: "#f44336", // Border color when focused for standard
+              borderBottomColor: mColor.errorDark, // Border color when focused for standard
             },
           },
 
@@ -402,4 +395,4 @@ export const theme = createTheme({
       },
     },
   },
-});
+};

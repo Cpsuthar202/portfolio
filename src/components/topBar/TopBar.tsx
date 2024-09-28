@@ -2,7 +2,10 @@ import { useAppSelector } from "@/store/store";
 import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const TopBar = () => {
+interface TopBarProps {
+  toggleTheme: () => void;
+}
+const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
   const navigate = useNavigate();
   const handleLogOut = () => {
     localStorage.clear();
@@ -19,6 +22,9 @@ const TopBar = () => {
         <Button onClick={() => navigate("/user")}>Dashboard</Button>
         <Button onClick={handleLogOut}>Logout</Button>
         <span>{title}</span>
+        <Button variant="contained" onClick={toggleTheme}>
+          Toggle Theme
+        </Button>
       </Box>
       {/* <Box sx={{ height: "54px" }} /> */}
     </>

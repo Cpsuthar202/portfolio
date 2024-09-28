@@ -12,3 +12,14 @@ export const setLocalAuth = (data: ILoginResponse) => {
 //   localStorage.clear();
 //   navigate("/auth/login", { replace: true });
 // };
+
+// Utility function to retrieve the initial theme from localStorage
+export const getInitialTheme = (): boolean => {
+  const savedTheme = localStorage.getItem("isDarkMode");
+  return savedTheme ? JSON.parse(savedTheme) : false;
+};
+
+// Utility function to set the theme in localStorage
+export const setInitialTheme = (newMode: boolean): void => {
+  localStorage.setItem("isDarkMode", JSON.stringify(newMode));
+};
