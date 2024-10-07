@@ -9,6 +9,7 @@ import { ChatBgImg } from "@image";
 import { chekedIcon } from "@svg";
 import Image from "@/components/image/Image";
 import { getInitialTheme } from "@/utils/localStorage";
+import { ViewCard } from "@/components/Container";
 const Home = () => {
   const dispatch = useAppDispatch();
 
@@ -22,18 +23,16 @@ const Home = () => {
 
   return (
     <Box sx={{ overflow: "auto" }}>
+      <ViewCard button={true}>
+        <h1>sdfghjkl;</h1>
+        <TextField margin="normal" fullWidth id="email" label="Title" autoFocus value={titleData} onChange={(e) => setTitleData(e.target.value)} />
+      </ViewCard>
+      <ViewCard button={false}>
+        <h1>sdfghjkl;</h1>
+        <TextField margin="normal" fullWidth id="email" label="Title" autoFocus value={titleData} onChange={(e) => setTitleData(e.target.value)} />
+      </ViewCard>
       <Typography sx={{ color: mColor.secondaryLight }}>oiuytrewsdfyuio</Typography>
       Home
-      <TextField
-        margin="normal"
-        // required
-        fullWidth
-        id="email"
-        label="Title"
-        autoFocus
-        value={titleData}
-        onChange={(e) => setTitleData(e.target.value)}
-      />
       <Button onClick={send}>ok</Button>
       <Image src={backgroundImage} alt="Chat background" sx={{ border: 4 }} />
       <CommonTable data={homeTableData} />
