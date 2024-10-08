@@ -7,7 +7,8 @@ const ProtectedRoutes = () => {
     <Routes>
       <Route path="/" element={<ProtectedWrapper />}>
         <Route index element={<Dashboard />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* <Route path="/*" element={<NotFound />} /> */}
+        <Route path="*" element={<Navigate to="/user" replace />} />
       </Route>
     </Routes>
   );
