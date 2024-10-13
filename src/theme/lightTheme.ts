@@ -9,8 +9,8 @@ export const lightTheme = createTheme({
     ...commonTheme.palette,
     mode: "light",
     background: {
-      default: mColor.backgroundDefault, // Default background color for the application
-      paper: mColor.while, // Background color for paper-like components (e.g., cards)
+      default: mColor.while, // Default background color for the application
+      paper: mColor.black, // Background color for paper-like components (e.g., cards)
     },
     text: {
       // Text colors

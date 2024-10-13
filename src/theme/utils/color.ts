@@ -2,12 +2,19 @@ export const mColor = {
   while: "#ffffff",
   black: "#000000",
 
+  primaryMain: "#DB4444",
+  secondaryMain: "#F5F5F5",
+  infoMain: "#00FF66",
+  warningMain: "#FFAD33",
+
+  // b
+
   primaryLight: "#63a4ff",
-  primaryMain: "#1976d2",
+  // primaryMain: "#1976d2",
   primaryDark: "#004ba0",
 
   secondaryLight: "#ff5c8d",
-  secondaryMain: "#dc004e",
+  // secondaryMain: "#dc004e",
   secondaryDark: "#9a0036",
 
   errorLight: "#e57373",
@@ -15,11 +22,11 @@ export const mColor = {
   errorDark: "#d32f2f",
 
   warningLight: "#ffb74d",
-  warningMain: "#ff9800",
+  // warningMain: "#ff9800",
   warningDark: "#f57c00",
 
   infoLight: "#64b5f6",
-  infoMain: "#2196f3",
+  // infoMain: "#2196f3",
   infoDark: "#1976d2",
 
   successLight: "#81c784",
