@@ -14,7 +14,7 @@ export const darkTheme = createTheme({
     },
     text: {
       // Text colors
-      primary: mColor.while, // Primary text color
+      primary: mColor.white, // Primary text color
       secondary: mColor.infoMain, // (Optional) Secondary text color, commented out
       disabled: mColor.textDisabled, // Text color for disabled elements
     },

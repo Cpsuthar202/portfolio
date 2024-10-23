@@ -1,15 +1,18 @@
 export const mColor = {
-  while: "#ffffff",
+  white: "#ffffff",
   black: "#000000",
 
   primaryMain: "#DB4444",
+
   secondaryMain: "#F5F5F5",
+
   infoMain: "#00FF66",
+
   warningMain: "#FFAD33",
 
   // b
 
-  primaryLight: "#63a4ff",
+  primaryLight: "#DB4444",
   // primaryMain: "#1976d2",
   primaryDark: "#004ba0",
 

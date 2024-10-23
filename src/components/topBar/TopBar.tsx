@@ -1,45 +1,56 @@
 import { heroLine } from "@/data/heroLine";
-import { Box, Button, Checkbox, Grid, IconButton, InputBase, Link, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { useState } from "react";
-import Image from "../image/Image";
-import { moonIcon, sunIcon } from "@svg";
-// import { useAppSelector } from "@/store/store";
-// import { useNavigate } from "react-router-dom";
+import { Box, Button, Grid, IconButton, InputBase, Typography, Menu, MenuItem } from "@mui/material";
+import { ShoppingCart, FavoriteBorder, Search, AccountCircle, Login, Logout } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { getLocalAuth } from "@/utils/localStorage";
+import { useState, useEffect } from "react";
 
 interface TopBarProps {
   toggleTheme: () => void;
 }
 const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
   // const navigate = useNavigate();
-  // const handleLogOut = () => {
-  //   localStorage.clear();
-  //   navigate("/user/auth/login", { replace: true });
-  // };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/", { replace: true });
+    // navigate("/user/auth/login", { replace: true });
+  };
 
   // const title = useAppSelector((state) => state.topbar.title);
 
   const tegLine = heroLine.find((e) => e.slug == "top-bar");
   console.log("tegLine", tegLine);
 
-  const [checked, setChecked] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = event.target.checked;
-    setChecked(isChecked);
-    console.log("event.target", event.target.checked);
-
-    if (isChecked) {
-      toggleTheme();
-    } else {
-      toggleTheme();
-    }
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogin = () => {
+    setAnchorEl(null);
+    navigate("/user/auth/login");
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkUserToken = () => {
+      const userToken = getLocalAuth();
+      if (!userToken || !userToken.token) {
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+    };
+
+    checkUserToken();
+  }, [navigate]);
 
   return (
     <>
@@ -52,65 +63,78 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
             </Button>
           </Typography>
         </Box>
+        <Grid container sx={{ p: 1 }}>
+          <Grid item md={4} sm={6} xs={6} sx={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
+            <IconButton>{/* <Menu /> */}</IconButton>
+            <Typography variant="h5">Exclusive</Typography>
+          </Grid>
 
-        {/* <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}> */}
-        <Grid container>
-          <Grid md={4} sm={12} sx={{ border: 1, display: "flex", justifyContent: "center" }}>
-            <Typography variant="h5" sx={{ border: 1 }}>
-              Exclusive
-            </Typography>
-          </Grid>
-          <Grid md={4} sm={12} sx={{ border: 1, display: "flex", justifyContent: "center" }}>
-            <Box sx={{ display: "flex", gap: 2, width: "fit-content" }}>
-              <Link href="#" underline="hover" color="inherit">
-                Home
-              </Link>
-              <Link href="#" underline="hover" color="inherit">
-                Contact
-              </Link>
-              <Link href="#" underline="hover" color="inherit">
-                About
-              </Link>
-              <Link href="#" underline="hover" color="inherit">
-                Sign Up
-              </Link>
-            </Box>
-          </Grid>
-          <Grid md={4} sm={12} sx={{ border: 1, display: "flex", justifyContent: "center" }}>
+          <Grid item md={4} sm={12} xs={12} order={{ xs: 3, sm: 3, md: 2 }} sx={{ display: "grid", placeItems: "center" }}>
             {/* Search Bar */}
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                bgcolor: "grey.100",
+                bgcolor: "secondary.main",
                 borderRadius: 1,
                 px: 2,
+                width: "95%",
               }}
             >
-              <InputBase placeholder="What are you looking for?" sx={{ width: 250 }} />
-              <IconButton type="submit" sx={{ p: "10px" }}>
-                <SearchIcon />
+              <InputBase placeholder="What are you looking for?" sx={{ width: "100%" }} />
+
+              <IconButton type="submit">
+                <Search />
               </IconButton>
             </Box>
+          </Grid>
 
+          <Grid item md={4} sm={6} xs={6} order={{ xs: 2, sm: 2, md: 3 }} sx={{ display: "flex", justifyContent: "end", alignItems: "center" }}>
             {/* Icons */}
-            <IconButton aria-label="favorites" color="inherit">
-              <FavoriteBorderIcon />
-            </IconButton>
-            <IconButton aria-label="cart" color="inherit">
-              <ShoppingCartIcon />
-            </IconButton>
-            <Button variant="contained" onClick={toggleTheme}>
-              Toggle Theme
-            </Button>
-
-            <Checkbox checked={checked} onChange={handleChange} color="primary" icon={<Image src={sunIcon} alt="lighe" />} checkedIcon={<Image src={moonIcon} alt="dark" />} />
+            <Box sx={{}}>
+              <IconButton onClick={() => navigate("/user/wishlist")}>
+                <FavoriteBorder />
+              </IconButton>
+              <IconButton>
+                <ShoppingCart />
+              </IconButton>
+              <IconButton edge="end" aria-label="account of current user" aria-controls="user-menu" aria-haspopup="true" onClick={handleMenuOpen} color="inherit">
+                {isLoggedIn ? <Login /> : <Logout />}
+              </IconButton>
+              <IconButton onClick={() => toggleTheme()}>
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="user-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+                sx={{
+                  "& .MuiPaper-root": {
+                    backgroundColor: "#f0f0f0", // Change to your desired color
+                  },
+                }}
+              >
+                {isLoggedIn ? (
+                  <>
+                    <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleLogout();
+                        handleMenuClose();
+                      }}
+                    >
+                      Logout
+                    </MenuItem>
+                  </>
+                ) : (
+                  <MenuItem onClick={handleLogin}>Login</MenuItem>
+                )}
+              </Menu>
+            </Box>
           </Grid>
         </Grid>
-        {/* 
-        <Button variant="contained" onClick={toggleTheme}>
-          Toggle Theme
-        </Button> */}
       </Box>
     </>
   );

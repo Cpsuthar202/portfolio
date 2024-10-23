@@ -9,21 +9,21 @@ export const commonTheme: ThemeOptions = {
       light: mColor.primaryLight, // Lighter shade of the primary color
       main: mColor.primaryMain, // Main primary color used across components
       dark: mColor.primaryDark, // Darker shade of the primary color
-      contrastText: mColor.while, // Text color when used on a primary background
+      contrastText: mColor.white, // Text color when used on a primary background
     },
     secondary: {
       // The secondary color palette
       light: mColor.secondaryLight, // Lighter shade of the secondary color
       main: mColor.secondaryMain, // Main secondary color used across components
       dark: mColor.secondaryDark, // Darker shade of the secondary color
-      contrastText: mColor.while, // Text color when used on a secondary background
+      contrastText: mColor.white, // Text color when used on a secondary background
     },
     error: {
       // The error color palette
       light: mColor.errorLight, // Lighter shade of the error color
       main: mColor.errorMain, // Main error color used for error states
       dark: mColor.errorDark, // Darker shade of the error color
-      contrastText: mColor.while, // Text color when used on an error background
+      contrastText: mColor.white, // Text color when used on an error background
     },
     warning: {
       // The warning color palette
@@ -37,14 +37,14 @@ export const commonTheme: ThemeOptions = {
       light: mColor.infoLight, // Lighter shade of the info color
       main: mColor.infoMain, // Main info color used for informational messages
       dark: mColor.infoDark, // Darker shade of the info color
-      contrastText: mColor.while, // Text color when used on an info background
+      contrastText: mColor.white, // Text color when used on an info background
     },
     success: {
       // The success color palette
       light: mColor.successLight, // Lighter shade of the success color
       main: mColor.successMain, // Main success color used for successful actions
       dark: mColor.successDark, // Darker shade of the success color
-      contrastText: mColor.while, // Text color when used on a success background
+      contrastText: mColor.white, // Text color when used on a success background
     },
   },
   typography: {
@@ -69,7 +69,7 @@ export const commonTheme: ThemeOptions = {
       // lineHeight: 1.167,
     },
     h4: {
-      fontSize: "32",
+      fontSize: "32px",
       // fontWeight: 400,
       // letterSpacing: "0.00735em",
       // lineHeight: 1.235,
@@ -81,7 +81,7 @@ export const commonTheme: ThemeOptions = {
       // lineHeight: 1.334,
     },
     h6: {
-      fontSize: "20",
+      fontSize: "20px",
       // fontWeight: 500,
       // letterSpacing: "0.0075em",
       // lineHeight: 1.6,
@@ -104,12 +104,12 @@ export const commonTheme: ThemeOptions = {
       // letterSpacing: "0.03125em",
       // lineHeight: 1.5,
     },
-    // body2: {
-    //   fontSize: "0.875rem",
-    //   fontWeight: 400,
-    //   letterSpacing: "0.01786em",
-    //   lineHeight: 1.43,
-    // },
+    body2: {
+      fontSize: "10px",
+      // fontWeight: 400,
+      // letterSpacing: "0.01786em",
+      // lineHeight: 1.43,
+    },
     // button: {
     //   fontSize: "0.875rem",
     //   fontWeight: 500,
@@ -141,14 +141,14 @@ export const commonTheme: ThemeOptions = {
           // Prevents automatic text capitalization
           textTransform: "none",
           // Sets the default text color to white
-          color: mColor.while,
+          color: mColor.white,
         },
         containedPrimary: {
           // Sets the primary button background color
           backgroundColor: mColor.primaryMain,
           "&:hover": {
             // Changes the primary button background on hover
-            backgroundColor: mColor.primaryLight,
+            backgroundColor: mColor.primaryMain,
           },
         },
         containedSecondary: {
@@ -156,7 +156,7 @@ export const commonTheme: ThemeOptions = {
           backgroundColor: mColor.secondaryMain,
           "&:hover": {
             // Changes the secondary button background on hover
-            backgroundColor: mColor.secondaryLight,
+            backgroundColor: mColor.secondaryMain,
           },
         },
         containedSuccess: {
@@ -164,7 +164,7 @@ export const commonTheme: ThemeOptions = {
           backgroundColor: mColor.successMain,
           "&:hover": {
             // Changes the success button background on hover
-            backgroundColor: mColor.successLight,
+            backgroundColor: mColor.successMain,
           },
         },
         containedError: {
@@ -172,7 +172,7 @@ export const commonTheme: ThemeOptions = {
           backgroundColor: mColor.errorMain,
           "&:hover": {
             // Changes the error button background on hover
-            backgroundColor: mColor.errorLight,
+            backgroundColor: mColor.errorMain,
           },
         },
         containedWarning: {
@@ -180,7 +180,7 @@ export const commonTheme: ThemeOptions = {
           backgroundColor: mColor.warningMain,
           "&:hover": {
             // Changes the warning button background on hover
-            backgroundColor: mColor.warningLight,
+            backgroundColor: mColor.warningMain,
           },
         },
         containedInfo: {
@@ -188,7 +188,7 @@ export const commonTheme: ThemeOptions = {
           backgroundColor: mColor.infoMain,
           "&:hover": {
             // Changes the info button background on hover
-            backgroundColor: mColor.infoLight,
+            backgroundColor: mColor.infoMain,
           },
         },
         outlinedPrimary: {

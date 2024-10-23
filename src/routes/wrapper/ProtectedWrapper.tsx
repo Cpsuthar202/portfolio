@@ -1,4 +1,4 @@
-import SideBar from "@/components/sideBar/SideBar";
+// import SideBar from "@/components/sideBar/SideBar";
 import { getLocalAuth } from "@/utils/localStorage";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -23,11 +23,12 @@ const ProtectedWrapper = () => {
   }, [navigate]);
 
   return (
-    <Box sx={{ display: "flex", alignItems: "flex-start", width: "100vw" }}>
+    // <Box sx={{ display: "flex", alignItems: "flex-start", width: "100vw" }}>
+    <Box sx={{ p: 2 }}>
       {isLoggedIn && (
         <>
-          <SideBar />
-          <Box sx={{ p: 1, width: "100%", height: "100%" }}>
+          {/* <SideBar /> */}
+          <Box sx={{ width: "100%", height: "100%" }}>
             <Outlet />
           </Box>
         </>

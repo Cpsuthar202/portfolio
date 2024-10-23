@@ -36,7 +36,6 @@ const Registration = () => {
         alt="Logo"
       />
 
-      {/* Welcome Text */}
       <Typography variant="h5" fontWeight="bold" color="primary.dark">
         Create an account
       </Typography>
@@ -44,10 +43,6 @@ const Registration = () => {
         Enter your details to register.
       </Typography>
       <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-        {/* Full Name Input */}
-        {/* <TextField margin="normal" required fullWidth id="fullName" label="Full Name" name="fullName" autoComplete="name" autoFocus /> */}
-
-        {/* name Input */}
         <TextField
           margin="normal"
           // required

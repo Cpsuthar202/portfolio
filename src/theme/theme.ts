@@ -8,21 +8,21 @@ export const theme = createTheme({
       light: mColor.primaryLight, // Lighter shade of the primary color
       main: mColor.primaryMain, // Main primary color used across components
       dark: mColor.primaryDark, // Darker shade of the primary color
-      contrastText: mColor.while, // Text color when used on a primary background
+      contrastText: mColor.white, // Text color when used on a primary background
     },
     secondary: {
       // The secondary color palette
       light: mColor.secondaryLight, // Lighter shade of the secondary color
       main: mColor.secondaryMain, // Main secondary color used across components
       dark: mColor.secondaryDark, // Darker shade of the secondary color
-      contrastText: mColor.while, // Text color when used on a secondary background
+      contrastText: mColor.white, // Text color when used on a secondary background
     },
     error: {
       // The error color palette
       light: mColor.errorLight, // Lighter shade of the error color
       main: mColor.errorMain, // Main error color used for error states
       dark: mColor.errorDark, // Darker shade of the error color
-      contrastText: mColor.while, // Text color when used on an error background
+      contrastText: mColor.white, // Text color when used on an error background
     },
     warning: {
       // The warning color palette
@@ -36,14 +36,14 @@ export const theme = createTheme({
       light: mColor.infoLight, // Lighter shade of the info color
       main: mColor.infoMain, // Main info color used for informational messages
       dark: mColor.infoDark, // Darker shade of the info color
-      contrastText: mColor.while, // Text color when used on an info background
+      contrastText: mColor.white, // Text color when used on an info background
     },
     success: {
       // The success color palette
       light: mColor.successLight, // Lighter shade of the success color
       main: mColor.successMain, // Main success color used for successful actions
       dark: mColor.successDark, // Darker shade of the success color
-      contrastText: mColor.while, // Text color when used on a success background
+      contrastText: mColor.white, // Text color when used on a success background
     },
     background: {
       default: mColor.backgroundDefault, // Default background color for the application
@@ -53,7 +53,7 @@ export const theme = createTheme({
     text: {
       // Text colors
       primary: mColor.black, // Primary text color
-      secondary: mColor.while, // (Optional) Secondary text color, commented out
+      secondary: mColor.white, // (Optional) Secondary text color, commented out
       disabled: mColor.textDisabled, // Text color for disabled elements
     },
   },
@@ -149,7 +149,7 @@ export const theme = createTheme({
           // Prevents automatic text capitalization
           textTransform: "none",
           // Sets the default text color to white
-          color: mColor.while,
+          color: mColor.white,
         },
         containedPrimary: {
           // Sets the primary button background color
