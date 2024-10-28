@@ -1,14 +1,14 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
-import { categoriesData } from "@/data/categories";
-import ScrollableSection from "./utils/ScrollableSection";
+import { categoriesData, Icategories } from "@/data/categories";
 import { Iproduct, productData } from "@/data/product";
-import { brands } from "@/data/brands";
+import { brands, Ibrands } from "@/data/brands";
 // import { title } from "process";
-import { useNavigate } from "react-router-dom";
-import { ProductCard } from "@/components/Container";
+import { ProductCard } from "@/components/card";
+import Sliderview from "../../components/Container/Sliderview";
+import CategoryCard from "@/components/card/CategoryCard";
+import { IshopsData, shopsData } from "@/data/shops";
 const Home = () => {
-  const navigate = useNavigate();
   // const dispatch = useAppDispatch();
 
   // const [titleData, setTitleData] = useState<string>("");
@@ -20,34 +20,38 @@ const Home = () => {
   // const backgroundImage = getInitialTheme() ? ChatBgImg : chekedIcon;
 
   return (
-    <Box sx={{ overflow: "auto", border: 1 }}>
-      <ScrollableSection title="Shop By Categories" items={categoriesData.map((c) => ({ src: c.image, label: c.label }))} navigateTo="/display/categories" />;
-      <ScrollableSection title="Shop By Brands" items={brands.map((c) => ({ src: c.logo, label: c.label }))} navigateTo="/display/brands" />;
-      <Box>
-        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-          <Typography variant="h5" color="primary">
-            Products
-          </Typography>
-          <Button variant="text" color="primary" onClick={() => navigate("/product")}>
-            View All
-          </Button>
-        </Box>
-        <Box
-          // ref={scrollRef}
-          sx={{
-            display: "flex",
-            overflowX: "auto",
-            "&::-webkit-scrollbar": { height: "3px" },
-            width: "100%",
-          }}
-        >
-          {productData.map((p: Iproduct, index: number) => (
-            <Box key={index} sx={{ width: "300px" }}>
-              <ProductCard data={p} />
-            </Box>
-          ))}
-        </Box>
-      </Box>
+    <Box>
+      <Sliderview title="Categories" scrollnumber={200} navigateTo="/display/categories">
+        {categoriesData.map((item: Icategories, index) => (
+          <Box key={index}>
+            <CategoryCard src={item.image} label={item.label} />
+          </Box>
+        ))}
+      </Sliderview>
+
+      <Sliderview title="Brands" scrollnumber={200} navigateTo="/display/brands">
+        {brands.map((item: Ibrands, index) => (
+          <Box key={index}>
+            <CategoryCard src={item.logo} label={item.label} />
+          </Box>
+        ))}
+      </Sliderview>
+
+      <Sliderview title="Shops" scrollnumber={200} navigateTo="/display/shop">
+        {shopsData.map((item: IshopsData, index) => (
+          <Box key={index}>
+            <CategoryCard src={item.logo ? item.logo : item.image} label={item.shop_name} />
+          </Box>
+        ))}
+      </Sliderview>
+
+      <Sliderview title="Products" scrollnumber={250} navigateTo={"/product"}>
+        {productData.map((p: Iproduct, index: number) => (
+          <Box key={index} sx={{ minWidth: "200px", mx: 1 }}>
+            <ProductCard data={p} />
+          </Box>
+        ))}
+      </Sliderview>
     </Box>
   );
 };

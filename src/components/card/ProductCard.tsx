@@ -44,7 +44,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
       {/* Product Details */}
       <Box sx={{ p: 2, bgcolor: "secondary.main", cursor: "pointer" }} onClick={() => navigate(`/Product_details/${data.id}`)}>
         <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
-          {trimTextToWordLimit(data.title, 40)}
+          {trimTextToWordLimit(data.title, 30)}
         </Typography>
 
         {/* Ratings */}
@@ -69,7 +69,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
         </Stack>
 
         {/* Colors */}
-        {data.colors && (
+        {/* {data.colors && (
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
             <Typography variant="body2">Colors:</Typography>
             {data.colors.map((color) => (
@@ -85,7 +85,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
               />
             ))}
           </Stack>
-        )}
+        )} */}
       </Box>
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Grid, Typography, Button, IconButton, Box, Stack } from "@mui/material";
+import { Grid, Typography, Button, IconButton, Box, Stack, useMediaQuery, useTheme } from "@mui/material";
 import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import Image from "@/components/image/Image";
 import { useProduct } from "./Product.hook";
@@ -6,7 +6,9 @@ import Ratings from "@/components/ratings/Ratings";
 
 const ProductDetails = () => {
   // Check if the screen width is below 600px (mobile view)
-  // const isMobile = useMediaQuery("(max-width:600px)");
+  const theme = useTheme();
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Destructure variables and methods from the useProduct hook
   const {
@@ -20,15 +22,17 @@ const ProductDetails = () => {
         {/* Left Section: Image Gallery */}
         <Grid item xs={12} md={6} sx={{ display: "grid", placeItems: "center" }}>
           {/* Main Product Image */}
-          <Box sx={{ width: "50%", display: "grid", placeItems: "center" }}>
-            <Image src={stectImage} alt="image" style={{ width: "350px", borderRadius: 10 }} />
+          <Box sx={{ width: isSmallScreen ? "100%" : "70%", display: "grid", placeItems: "center" }}>
+            <Image src={stectImage} alt="image" style={{ width: "100%", borderRadius: 10 }} />
 
             {/* Thumbnail Images */}
-            <Box sx={{ display: "flex", overflowX: "auto", width: "100%" }}>
-              {product?.images.map((i) => (
-                <Image key={i} src={i} alt="image" style={{ height: 100, margin: 8, borderRadius: 10 }} onClick={() => setStectImage(i)} />
-              ))}
-            </Box>
+            {product?.images && product.images.length >= 2 && (
+              <Box sx={{ display: "flex", overflowX: "auto", width: "100%" }}>
+                {product.images.map((i) => (
+                  <Image key={i} src={i} alt="image" style={{ height: isSmallScreen ? 50 : 100, margin: 8, borderRadius: 10 }} onClick={() => setStectImage(i)} />
+                ))}
+              </Box>
+            )}
           </Box>
         </Grid>
 
@@ -144,7 +148,7 @@ const ProductDetails = () => {
             {/* Delivery and Return Information */}
             <Box>
               <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                Delivery Charge{" "}
+                Delivery Charge
               </Typography>
               <Typography variant="body1">₹{product?.delivery_charges} Delivery Charge</Typography>
             </Box>
@@ -164,9 +168,10 @@ const ProductDetails = () => {
           Features
         </Typography>
         {product?.features.map((f) => (
-          <Typography variant="subtitle1">- {f}</Typography>
+          <Typography variant="subtitle1">- {f} </Typography>
         ))}
       </Box>
+      <Box>{product?.hero_images && product?.hero_images.map((i) => <Image key={i} src={i} alt="image" style={{ width: "100%" }} />)}</Box>
     </Box>
   );
 };

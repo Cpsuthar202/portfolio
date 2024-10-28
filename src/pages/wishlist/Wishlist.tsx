@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { Iproduct, productData } from "@/data/product";
-import { ProductCard } from "@/components/Container";
+import { ProductCard } from "@/components/card";
 
 const Wishlist = () => {
   return (

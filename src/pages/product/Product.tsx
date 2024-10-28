@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ProductCard } from "@/components/Container/index";
+import { ProductCard } from "@/components/card/index";
 import { Iproduct, productData } from "@/data/product";
 import { Box, Grid, TextField, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";

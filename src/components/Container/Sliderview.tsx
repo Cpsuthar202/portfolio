@@ -1,23 +1,17 @@
+import { ReactNode } from "react";
 import React, { useRef } from "react";
 import { Box, Typography, IconButton, Button } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import CategoryCard from "@/components/Container/CategoryCard";
+// import CategoryCard from "@/components/Container/CategoryCard";
 
-// Define the type for the items array prop
-interface Item {
-  src: string;
-  label: string;
-}
-
-// Define the props for the ScrollableSection component
-interface ScrollableSectionProps {
+interface ViewSliderview {
+  children: ReactNode; // Define the type for children
   title: string;
-  items: Item[];
   navigateTo: string;
+  scrollnumber: number;
 }
-
-const ScrollableSection: React.FC<ScrollableSectionProps> = ({ title, items, navigateTo }) => {
+const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigateTo, scrollnumber }) => {
   const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable box
 
@@ -27,26 +21,20 @@ const ScrollableSection: React.FC<ScrollableSectionProps> = ({ title, items, nav
       scrollRef.current.scrollLeft += scrollOffset;
     }
   };
-
   return (
-    <Box sx={{ p: 2 }}>
-      {/* Header */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+    <Box sx={{ my: 1 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <Typography variant="h5" color="primary">
           {title}
         </Typography>
         <Button variant="text" color="primary" onClick={() => navigate(navigateTo)}>
           View All
         </Button>
-        {/* <IconButton onClick={() => navigate(navigateTo)}>
-          <East />
-        </IconButton> */}
       </Box>
-
       {/* Scrollable Section */}
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         {/* Left Arrow Button */}
-        <IconButton onClick={() => scroll(-150)}>
+        <IconButton onClick={() => scroll(-scrollnumber)}>
           <ArrowBackIos />
         </IconButton>
 
@@ -60,15 +48,11 @@ const ScrollableSection: React.FC<ScrollableSectionProps> = ({ title, items, nav
             width: "100%",
           }}
         >
-          {items.map((item, index) => (
-            <Box key={index}>
-              <CategoryCard src={item.src} label={item.label} />
-            </Box>
-          ))}
+          {children}
         </Box>
 
         {/* Right Arrow Button */}
-        <IconButton onClick={() => scroll(150)}>
+        <IconButton onClick={() => scroll(scrollnumber)}>
           <ArrowForwardIos />
         </IconButton>
       </Box>
@@ -76,4 +60,4 @@ const ScrollableSection: React.FC<ScrollableSectionProps> = ({ title, items, nav
   );
 };
 
-export default ScrollableSection;
+export default Sliderview;
