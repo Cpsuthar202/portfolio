@@ -1,64 +1,58 @@
-import { useState, useEffect } from "react";
-import { ProductCard } from "@/components/card/index";
+import { ProductCard } from "@/components/card";
 import { Iproduct, productData } from "@/data/product";
-import { Box, Grid, TextField, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useAppSelector } from "@/store/store";
+import { Box, Grid, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Product = () => {
-  const location = useLocation();
-  const { label = [] } = location.state || {};
-
-  // State to capture search input
-  const [searchQuery, setSearchQuery] = useState("");
+  const { label, id } = useParams();
   const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
+  // const [searchTerm, setSearchTerm] = useState("");
 
-  // Convert label to lowercase and trim spaces for consistent matching
-  const labelLowerCaseTrimmed = label.map((l: string) => l.trim().toLowerCase());
+  const searchTitle = useAppSelector((state) => state.topbar.searchTitle);
 
-  // Filter products based on label and searchQuery
+  console.log("title", searchTitle);
+
   useEffect(() => {
-    const filteredList =
-      labelLowerCaseTrimmed.length > 0
-        ? productData.filter((product) => product.teg.some((tag) => labelLowerCaseTrimmed.some((l: any) => tag.trim().toLowerCase().includes(l) || l.includes(tag.trim().toLowerCase()))))
-        : productData;
+    let FilteredProducts = productData;
 
-    // Filter based on the searchQuery if it's not empty
-    const finalFilteredProducts = filteredList.filter(
-      (product) =>
-        // product.title.toLowerCase().includes(searchQuery.toLowerCase()) || // Matching by product name
-        product.teg.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())) // Matching by tags
-    );
+    if (label === "categorie") {
+      FilteredProducts = productData.filter((product) => product.categories.id === id);
+    } else if (label === "brand") {
+      FilteredProducts = productData.filter((product) => product.brands.id === id);
+    } else if (label === "store") {
+      FilteredProducts = productData.filter((product) => product.store.id === id);
+    }
 
-    setFilteredProducts(finalFilteredProducts);
-  }, [labelLowerCaseTrimmed, searchQuery]);
+    // Apply search filter
+    if (searchTitle) {
+      FilteredProducts = FilteredProducts.filter((product) => product.teg.some((tag) => tag.toLowerCase().includes(searchTitle.toLowerCase())));
+    }
 
-  // Check if productlist is empty
-  if (filteredProducts.length === 0) {
-    return (
-      <Box sx={{ textAlign: "center", marginTop: 4 }}>
-        <Typography variant="h6">Product Not Found</Typography>
-      </Box>
-    );
-  }
+    setFilteredProducts(FilteredProducts);
+  }, [label, id, searchTitle]);
+
+  // Check if filtered products list is empty
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       {/* Search Input */}
-      <TextField
-        label="Search Products"
-        variant="outlined"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)} // Update searchQuery state
-        sx={{ width: "300px", mb: 2 }}
-      />
+      {/* <TextField label="Search Products" variant="outlined" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ marginBottom: 2 }} /> */}
 
-      {/* Displaying products */}
+      {/* Displaying filtered products */}
       <Grid container>
-        {filteredProducts.map((p: Iproduct, index: number) => (
-          <Grid item key={index} lg={2} md={4} sm={6} xs={6} sx={{ p: 1 }}>
-            <ProductCard data={p} />
-          </Grid>
-        ))}
+        {filteredProducts.length != 0 ? (
+          filteredProducts.map((p: Iproduct, index: number) => (
+            <Grid item key={index} lg={2} md={4} sm={6} xs={6} sx={{ p: 1 }}>
+              <ProductCard data={p} />
+            </Grid>
+          ))
+        ) : (
+          <Typography variant="h6" sx={{ width: "100%", textAlign: "center" }}>
+            Product Not Found
+          </Typography>
+        )}
       </Grid>
     </Box>
   );

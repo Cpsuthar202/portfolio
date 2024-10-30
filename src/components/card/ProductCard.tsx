@@ -6,6 +6,7 @@ import Image from "../image/Image";
 import { trimTextToWordLimit } from "../utils/textUtils";
 import { useNavigate } from "react-router-dom";
 import Ratings from "../ratings/Ratings";
+import { WebShare } from "../Container";
 
 interface IProductCard {
   data: Iproduct;
@@ -29,27 +30,28 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
       {/* Product Image */}
       <Box sx={{ position: "relative", p: 1 }}>
         <Image src={data.images[0]} alt={data.title} style={{ width: "100%", height: "200px", borderRadius: 2 }} />
-        <Box sx={{ position: "absolute", top: 10, right: 10 }}>
+        <Box sx={{ position: "absolute", display: "flex", flexDirection: "column", top: 10, right: 10 }}>
           <IconButton aria-label="favorite" size="small">
             <FavoriteBorder />
           </IconButton>
-          <IconButton aria-label="share" size="small">
-            <Share />
-          </IconButton>
+          <WebShare text={data?.title} url={`product_details/${data.id}`}>
+            <IconButton aria-label="share" size="small">
+              <Share />
+            </IconButton>
+          </WebShare>
         </Box>
 
         {data.bestSelling && <Chip label="best Selling" color="success" size="small" sx={{ borderRadius: "0 0 10px 0", position: "absolute", top: 0, left: 0 }} />}
       </Box>
 
       {/* Product Details */}
-      <Box sx={{ p: 2, bgcolor: "secondary.main", cursor: "pointer" }} onClick={() => navigate(`/Product_details/${data.id}`)}>
+      <Box sx={{ p: 2, bgcolor: "secondary.main", cursor: "pointer" }} onClick={() => navigate(`/product_details/${data.id}`)}>
         <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
           {trimTextToWordLimit(data.title, 30)}
         </Typography>
 
         {/* Ratings */}
         <Ratings rat={data.rating} totalRaters={data.totalRaters} />
-
         {/* Price Section */}
         <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
           <Typography variant="h6" color="textPrimary">
@@ -67,7 +69,6 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
             </>
           )}
         </Stack>
-
         {/* Colors */}
         {/* {data.colors && (
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>

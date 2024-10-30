@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import React, { useRef } from "react";
-import { Box, Typography, IconButton, Button } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { Box, Typography, Button } from "@mui/material";
+// import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 // import CategoryCard from "@/components/Container/CategoryCard";
 
@@ -9,18 +9,18 @@ interface ViewSliderview {
   children: ReactNode; // Define the type for children
   title: string;
   navigateTo: string;
-  scrollnumber: number;
+  scrollnumber?: number;
 }
-const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigateTo, scrollnumber }) => {
+export const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigateTo }) => {
   const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable box
 
   // Function to scroll left or right by the given offset
-  const scroll = (scrollOffset: number): void => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft += scrollOffset;
-    }
-  };
+  // const scroll = (scrollOffset: number): void => {
+  //   if (scrollRef.current) {
+  //     scrollRef.current.scrollLeft += scrollOffset;
+  //   }
+  // };
   return (
     <Box sx={{ my: 1 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -34,9 +34,9 @@ const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigateTo, scr
       {/* Scrollable Section */}
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         {/* Left Arrow Button */}
-        <IconButton onClick={() => scroll(-scrollnumber)}>
+        {/* <IconButton onClick={() => scroll(-scrollnumber)}>
           <ArrowBackIos />
-        </IconButton>
+        </IconButton> */}
 
         {/* Scrollable Box */}
         <Box
@@ -52,12 +52,10 @@ const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigateTo, scr
         </Box>
 
         {/* Right Arrow Button */}
-        <IconButton onClick={() => scroll(scrollnumber)}>
+        {/* <IconButton onClick={() => scroll(scrollnumber)}>
           <ArrowForwardIos />
-        </IconButton>
+        </IconButton> */}
       </Box>
     </Box>
   );
 };
-
-export default Sliderview;

@@ -3,7 +3,9 @@ import { Box, Button, Grid, IconButton, InputBase, Typography, Menu, MenuItem } 
 import { ShoppingCart, FavoriteBorder, Search, AccountCircle, Login, Logout } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { getLocalAuth } from "@/utils/localStorage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
+import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 
 interface TopBarProps {
   toggleTheme: () => void;
@@ -16,13 +18,25 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
     // navigate("/user/auth/login", { replace: true });
   };
 
-  // const title = useAppSelector((state) => state.topbar.title);
+  const searchTitle = useAppSelector((state) => state.topbar.searchTitle);
+
+  const dispatch = useAppDispatch();
+
+  // const [titleData, setTitleData] = useState<string>("");
+  // const send = () => {
+  //   dispatch(setTitle(titleData));
+  //   setTitleData("");
+  // };
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTitle(e.target.value));
+    // setTitleData("");
+  };
 
   const tegLine = heroLine.find((e) => e.slug == "top-bar");
   console.log("tegLine", tegLine);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -81,7 +95,7 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
                 width: "95%",
               }}
             >
-              <InputBase placeholder="What are you looking for?" sx={{ width: "100%" }} />
+              <InputBase placeholder="What are you looking for?" sx={{ width: "100%" }} value={searchTitle} onChange={handleSearchChange} />
 
               <IconButton type="submit">
                 <Search />

@@ -3,6 +3,7 @@ import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import Image from "@/components/image/Image";
 import { useProduct } from "./Product.hook";
 import Ratings from "@/components/ratings/Ratings";
+import { WebShare } from "@/components/Container";
 
 const ProductDetails = () => {
   // Check if the screen width is below 600px (mobile view)
@@ -41,6 +42,9 @@ const ProductDetails = () => {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {/* Product Title */}
             <Typography variant="h5">{product?.title}</Typography>
+            <Typography variant="body1" sx={{ cursor: "pointer", color: "primary.main" }}>
+              view stores {product?.store.store_name}
+            </Typography>
 
             {/* Ratings Component */}
             <Ratings rat={product?.rating} totalRaters={product?.totalRaters} />
@@ -66,8 +70,9 @@ const ProductDetails = () => {
               <Typography variant="subtitle2">Colors:</Typography>
               {product?.colors && (
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
-                  {product.colors.map((color) => (
+                  {product.colors.map((color, index) => (
                     <Box
+                      key={index}
                       sx={{
                         border: 1,
                         borderColor: "secondary.main",
@@ -98,8 +103,8 @@ const ProductDetails = () => {
               <>
                 <Typography variant="subtitle2">Size:</Typography>
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto" }}>
-                  {product.sizes.map((size) => (
-                    <Button key={size} variant="text" sx={{ px: 3, width: "fit-content" }}>
+                  {product.sizes.map((size, index) => (
+                    <Button key={index} variant="text" sx={{ px: 3, width: "fit-content" }}>
                       {size}
                     </Button>
                   ))}
@@ -133,9 +138,11 @@ const ProductDetails = () => {
                 <FavoriteBorder />
               </IconButton>
               {/* share product*/}
-              <IconButton>
-                <Share />
-              </IconButton>
+              <WebShare text={product?.title} url={`product_details/${product?.id}`}>
+                <IconButton>
+                  <Share />
+                </IconButton>
+              </WebShare>
             </Box>
 
             {/* Product Description */}
@@ -150,7 +157,7 @@ const ProductDetails = () => {
               <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                 Delivery Charge
               </Typography>
-              <Typography variant="body1">₹{product?.delivery_charges} Delivery Charge</Typography>
+              <Typography variant="body1">{product?.delivery_charges == 0 ? " Free Delivery" : `₹${product?.delivery_charges} Delivery Charge`}</Typography>
             </Box>
 
             <Box>
@@ -158,6 +165,12 @@ const ProductDetails = () => {
                 Return Delivery
               </Typography>
               <Typography variant="body1">{product?.replacementPolicy}</Typography>
+            </Box>
+            <Box>
+              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                Warranty
+              </Typography>
+              <Typography variant="body1">{product?.warranty} year warranty</Typography>
             </Box>
           </Box>
         </Grid>

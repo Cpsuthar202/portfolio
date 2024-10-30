@@ -11,8 +11,9 @@ const UnprotectedRoutes = () => {
       <Route path="/" element={<UnprotectedWrapper />}>
         <Route path="/" element={<Home />} />
         <Route path="/display/:label" element={<Display />} />
+        <Route path="/product/:label/:id" element={<Product />} />
         <Route path="/product" element={<Product />} />
-        <Route path="/Product_details/:product_id" element={<ProductDetails />} />
+        <Route path="/product_details/:product_id" element={<ProductDetails />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

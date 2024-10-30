@@ -15,7 +15,7 @@ export interface Iproduct {
   sizes?: string[];
   brands: Ibrands;
   categories: Icategories;
-  shop: shop;
+  store: store;
   images: string[];
   hero_images?: string[];
   teg: string[];
@@ -35,9 +35,9 @@ interface Color {
   image?: string;
 }
 
-interface shop {
-  shop_name: string;
-  shop_id: string;
+interface store {
+  store_name: string;
+  id: string;
   logo: string;
 }
 export const productData: Iproduct[] = [
@@ -61,10 +61,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "7",
-      logo: "https://m.media-amazon.com/images/S/stores-image-uploads-eu-prod/d/AmazonStores/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
-      shop_name: "Fitness Zone",
+    store: {
+      id: "7",
+      logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
+      store_name: "Fitness Zone",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -89,7 +89,7 @@ export const productData: Iproduct[] = [
     ],
     replacementPolicy: "7 days replacement policy",
     delivery_charges: 0,
-    warranty: 1,
+    warranty: 5,
     bestSelling: false,
     numberOfOrders: 1500,
     availability: true,
@@ -143,10 +143,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -190,10 +190,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -240,10 +240,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "s2",
-      logo: "https://img.freepik.com/free-vector/gradient-instagram-shop-logo-template_23-2149704603.jpg",
-      shop_name: "Fashion Hub",
+    store: {
+      id: "s2",
+      logo: "https://img.freepik.com/free-vector/gradient-instagram-store-logo-template_23-2149704603.jpg",
+      store_name: "Fashion Hub",
     },
     images: ["https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg"],
     teg: ["Boat", "earbuds"],
@@ -310,10 +310,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -357,10 +357,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -406,10 +406,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "7",
-      logo: "https://m.media-amazon.com/images/S/stores-image-uploads-eu-prod/d/AmazonStores/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
-      shop_name: "Fitness Zone",
+    store: {
+      id: "7",
+      logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
+      store_name: "Fitness Zone",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -490,10 +490,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -537,10 +537,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -586,10 +586,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "7",
-      logo: "https://m.media-amazon.com/images/S/stores-image-uploads-eu-prod/d/AmazonStores/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
-      shop_name: "Fitness Zone",
+    store: {
+      id: "7",
+      logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
+      store_name: "Fitness Zone",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -670,10 +670,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -717,10 +717,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -766,10 +766,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "7",
-      logo: "https://m.media-amazon.com/images/S/stores-image-uploads-eu-prod/d/AmazonStores/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
-      shop_name: "Fitness Zone",
+    store: {
+      id: "7",
+      logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
+      store_name: "Fitness Zone",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -850,10 +850,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -897,10 +897,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -946,10 +946,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "7",
-      logo: "https://m.media-amazon.com/images/S/stores-image-uploads-eu-prod/d/AmazonStores/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
-      shop_name: "Fitness Zone",
+    store: {
+      id: "7",
+      logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
+      store_name: "Fitness Zone",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -1030,10 +1030,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -1077,10 +1077,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -1126,10 +1126,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "7",
-      logo: "https://m.media-amazon.com/images/S/stores-image-uploads-eu-prod/d/AmazonStores/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
-      shop_name: "Fitness Zone",
+    store: {
+      id: "7",
+      logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
+      store_name: "Fitness Zone",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",
@@ -1210,10 +1210,10 @@ export const productData: Iproduct[] = [
       image:
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
-    shop: {
-      shop_id: "4",
-      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-shop.jpg",
-      shop_name: "Book Nook",
+    store: {
+      id: "4",
+      logo: "https://media-cdn.tripadvisor.com/media/photo-s/06/17/c7/3f/item-store.jpg",
+      store_name: "Book Nook",
     },
     images: [
       "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg",
@@ -1257,10 +1257,10 @@ export const productData: Iproduct[] = [
     sizes: ["standard"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
-    shop: {
-      shop_id: "1",
+    store: {
+      id: "1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
-      shop_name: "Tech Haven",
+      store_name: "Tech Haven",
     },
     images: [
       "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg",

@@ -5,10 +5,12 @@ import { Iproduct, productData } from "@/data/product";
 import { brands, Ibrands } from "@/data/brands";
 // import { title } from "process";
 import { ProductCard } from "@/components/card";
-import Sliderview from "../../components/Container/Sliderview";
 import CategoryCard from "@/components/card/CategoryCard";
-import { IshopsData, shopsData } from "@/data/shops";
+import { useNavigate } from "react-router-dom";
+import { IstoresData, storesData } from "@/data/stores";
+import { Sliderview } from "@/components/Container";
 const Home = () => {
+  const navigate = useNavigate();
   // const dispatch = useAppDispatch();
 
   // const [titleData, setTitleData] = useState<string>("");
@@ -21,26 +23,26 @@ const Home = () => {
 
   return (
     <Box>
-      <Sliderview title="Categories" scrollnumber={200} navigateTo="/display/categories">
+      <Sliderview title="Categories" scrollnumber={200} navigateTo="/display/categorie">
         {categoriesData.map((item: Icategories, index) => (
           <Box key={index}>
-            <CategoryCard src={item.image} label={item.label} />
+            <CategoryCard src={item.image} label={item.label} onClick={() => navigate(`/product/categorie/${item.id}`)} />
           </Box>
         ))}
       </Sliderview>
 
-      <Sliderview title="Brands" scrollnumber={200} navigateTo="/display/brands">
+      <Sliderview title="Brands" scrollnumber={200} navigateTo="/display/brand">
         {brands.map((item: Ibrands, index) => (
           <Box key={index}>
-            <CategoryCard src={item.logo} label={item.label} />
+            <CategoryCard src={item.logo} label={item.label} onClick={() => navigate(`/product/brand/${item.id}`)} />
           </Box>
         ))}
       </Sliderview>
 
-      <Sliderview title="Shops" scrollnumber={200} navigateTo="/display/shop">
-        {shopsData.map((item: IshopsData, index) => (
+      <Sliderview title="Stores" scrollnumber={200} navigateTo="/display/store">
+        {storesData.map((item: IstoresData, index: number) => (
           <Box key={index}>
-            <CategoryCard src={item.logo ? item.logo : item.image} label={item.shop_name} />
+            <CategoryCard src={item.logo ? item.logo : item.image} label={item.store_name} onClick={() => navigate(`/product/store/${item.id}`)} />
           </Box>
         ))}
       </Sliderview>

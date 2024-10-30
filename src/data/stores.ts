@@ -1,9 +1,9 @@
-export interface IshopsData {
+export interface IstoresData {
   id: string;
   logo?: string;
   image: string;
   owner_photo?: string;
-  shop_name: string;
+  store_name: string;
   ownerName: string;
   address: {
     street: string;
@@ -19,13 +19,13 @@ export interface IshopsData {
   description: string;
 }
 
-export const shopsData: IshopsData[] = [
+export const storesData: IstoresData[] = [
   {
     id: "s1",
     // logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0dTZN7KmUKqsI2HHADhW5XSXzQXA_jedmZg&s",
-    image: "https://c8.alamy.com/comp/ED0HHW/kerala-india-shops-in-mundakayam-ED0HHW.jpg",
-    owner_photo: "https://c8.alamy.com/comp/ED0HHW/kerala-india-shops-in-mundakayam-ED0HHW.jpg",
-    shop_name: "Tech Haven",
+    image: "https://c8.alamy.com/comp/ED0HHW/kerala-india-storess-in-mundakayam-ED0HHW.jpg",
+    owner_photo: "https://c8.alamy.com/comp/ED0HHW/kerala-india-storess-in-mundakayam-ED0HHW.jpg",
+    store_name: "Tech Haven",
     ownerName: "John Doe",
     address: {
       street: "123 Tech Street",
@@ -38,14 +38,14 @@ export const shopsData: IshopsData[] = [
       email: "contact@techhaven.com",
       phone: "+1-123-456-7890",
     },
-    description: "A one-stop shop for the latest in tech gadgets and electronics.",
+    description: "A one-stop stores for the latest in tech gadgets and electronics.",
   },
   {
     id: "s2",
-    logo: "https://img.freepik.com/free-vector/gradient-instagram-shop-logo-template_23-2149704603.jpg",
-    image: "https://www.shutterstock.com/image-photo/young-woman-happily-shops-fresh-260nw-2476499265.jpg",
+    logo: "https://img.freepik.com/free-vector/gradient-instagram-stores-logo-template_23-2149704603.jpg",
+    image: "https://www.shutterstock.com/image-photo/young-woman-happily-storess-fresh-260nw-2476499265.jpg",
     owner_photo: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-    shop_name: "Fashion Hub",
+    store_name: "Fashion Hub",
     ownerName: "Jane Smith",
     address: {
       street: "456 Fashion Ave",
@@ -65,7 +65,7 @@ export const shopsData: IshopsData[] = [
     // logo: "https://i.pinimg.com/originals/c1/92/9d/c1929d3492c2f64ab65b43808c072043.jpg",
     image: "https://imgmedia.lbb.in/media/2021/03/604af35bf9e6694e5d32d061_1615524699384.jpg",
     owner_photo: "https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E=",
-    shop_name: "Home & Decor",
+    store_name: "Home & Decor",
     ownerName: "Alice Johnson",
     address: {
       street: "789 Maple Lane",
@@ -82,10 +82,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s4",
-    logo: "https://thumbs.dreamstime.com/b/lets-shopping-logo-design-template-cart-icon-designs-134743663.jpg",
+    logo: "https://thumbs.dreamstime.com/b/lets-storesping-logo-design-template-cart-icon-designs-134743663.jpg",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoV3kS2Wg6n5b_-XJ3OXa6dZdSnpRTPX6Mdw&s",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwRPWpO-12m19irKlg8znjldmcZs5PO97B6A&s",
-    shop_name: "Book Nook",
+    store_name: "Book Nook",
     ownerName: "Mark Lewis",
     address: {
       street: "321 Book Street",
@@ -102,10 +102,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s5",
-    logo: "https://img.freepik.com/premium-vector/best-shop-logo-design_501861-419.jpg",
-    image: "https://cdn.shopify.com/s/files/1/1246/6441/files/Sephora_Shop_in_shop_480x480.jpg?v=1648491761",
+    logo: "https://img.freepik.com/premium-vector/best-stores-logo-design_501861-419.jpg",
+    image: "https://cdn.storesify.com/s/files/1/1246/6441/files/Sephora_stores_in_stores_480x480.jpg?v=1648491761",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvJaoIeJQU_V9rL_ZII61whWyqSFbmMgTgwQ&s",
-    shop_name: "Gourmet Market",
+    store_name: "Gourmet Market",
     ownerName: "Emma Thompson",
     address: {
       street: "88 Culinary Road",
@@ -122,10 +122,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s6",
-    // logo: "https://png.pngtree.com/png-vector/20190322/ourmid/pngtree-shop-logo-vector-template-design-illustration-png-image_860078.jpg",
+    // logo: "https://png.pngtree.com/png-vector/20190322/ourmid/pngtree-stores-logo-vector-template-design-illustration-png-image_860078.jpg",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc7tIped7JQzX1IDuNk2sNmCBDzN2Rhg97XQ&s",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeHt2GDofV5sNOaTrLarqU3XmMpTNXxaw9dg&s",
-    shop_name: "Pet Paradise",
+    store_name: "Pet Paradise",
     ownerName: "Daniel Harris",
     address: {
       street: "654 Pet Lane",
@@ -142,11 +142,11 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s7",
-    logo: "https://img.freepik.com/premium-vector/colorful-bag-that-says-shopping-here-here_1288538-6301.jpg?semt=ais_hybrid",
+    logo: "https://img.freepik.com/premium-vector/colorful-bag-that-says-storesping-here-here_1288538-6301.jpg?semt=ais_hybrid",
     image:
       "https://i.guim.co.uk/img/media/bb5e732bdd0ae3bafca2ca7182232a562a824dfa/0_331_6541_3924/master/6541.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=2d7e945e63c81df2a9e3fdbf154c7958",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvPjv1lHEIpzgDk_e3Sm-e4EVOzggYdb5aHA&s",
-    shop_name: "Fitness Zone",
+    store_name: "Fitness Zone",
     ownerName: "Laura Carter",
     address: {
       street: "111 Fitness Street",
@@ -163,10 +163,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s8",
-    logo: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/store-logo-design%2C-online-shopping-store-logo-template-b96b23a1a56e685fe30519cbf20883bc_screen.jpg?ts=1662903800",
-    image: "https://c8.alamy.com/comp/CF4H1C/the-exterior-of-a-local-convenience-shop-british-food-wine-store-in-CF4H1C.jpg",
+    logo: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/store-logo-design%2C-online-storesping-store-logo-template-b96b23a1a56e685fe30519cbf20883bc_screen.jpg?ts=1662903800",
+    image: "https://c8.alamy.com/comp/CF4H1C/the-exterior-of-a-local-convenience-stores-british-food-wine-store-in-CF4H1C.jpg",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjw9i6PO7C3BluMusZzcQs2J7BWkF0pLSrRw&s",
-    shop_name: "Kids World",
+    store_name: "Kids World",
     ownerName: "Nancy Lee",
     address: {
       street: "234 Fun Street",
@@ -184,9 +184,9 @@ export const shopsData: IshopsData[] = [
   {
     id: "s9",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_jCLFM94W5u8LLAqAlyEPEDqHONQMIEYyhA&s",
-    image: "https://c8.alamy.com/comp/H3D3H0/small-indian-shop-sells-merchandise-per-single-unit-H3D3H0.jpg",
+    image: "https://c8.alamy.com/comp/H3D3H0/small-indian-stores-sells-merchandise-per-single-unit-H3D3H0.jpg",
     owner_photo: "hhttps://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8",
-    shop_name: "Outdoor Life",
+    store_name: "Outdoor Life",
     ownerName: "Chris Green",
     address: {
       street: "555 Adventure Road",
@@ -203,10 +203,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s10",
-    logo: "https://thumbs.dreamstime.com/b/letter-z-online-shopping-shopping-application-company-branding-vector-logo-icon-illustration-letter-z-online-shopping-shopping-324351567.jpg",
+    logo: "https://thumbs.dreamstime.com/b/letter-z-online-storesping-storesping-application-company-branding-vector-logo-icon-illustration-letter-z-online-storesping-storesping-324351567.jpg",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBq_uwsHdVmzZwmr-BEk3IQAwwarU2Qlchqg&s",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Hb5xzFZJCTW4cMqmPwsgfw-gILUV7QevvQ&s",
-    shop_name: "Beauty Bliss",
+    store_name: "Beauty Bliss",
     ownerName: "Sophia Martin",
     address: {
       street: "77 Beauty Blvd",
@@ -224,9 +224,9 @@ export const shopsData: IshopsData[] = [
   {
     id: "s11",
     // logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0dTZN7KmUKqsI2HHADhW5XSXzQXA_jedmZg&s",
-    image: "https://c8.alamy.com/comp/ED0HHW/kerala-india-shops-in-mundakayam-ED0HHW.jpg",
-    owner_photo: "https://c8.alamy.com/comp/ED0HHW/kerala-india-shops-in-mundakayam-ED0HHW.jpg",
-    shop_name: "Tech Haven",
+    image: "https://c8.alamy.com/comp/ED0HHW/kerala-india-storess-in-mundakayam-ED0HHW.jpg",
+    owner_photo: "https://c8.alamy.com/comp/ED0HHW/kerala-india-storess-in-mundakayam-ED0HHW.jpg",
+    store_name: "Tech Haven",
     ownerName: "John Doe",
     address: {
       street: "123 Tech Street",
@@ -239,14 +239,14 @@ export const shopsData: IshopsData[] = [
       email: "contact@techhaven.com",
       phone: "+1-123-456-7890",
     },
-    description: "A one-stop shop for the latest in tech gadgets and electronics.",
+    description: "A one-stop stores for the latest in tech gadgets and electronics.",
   },
   {
     id: "s12",
-    logo: "https://img.freepik.com/free-vector/gradient-instagram-shop-logo-template_23-2149704603.jpg",
-    image: "https://www.shutterstock.com/image-photo/young-woman-happily-shops-fresh-260nw-2476499265.jpg",
+    logo: "https://img.freepik.com/free-vector/gradient-instagram-stores-logo-template_23-2149704603.jpg",
+    image: "https://www.shutterstock.com/image-photo/young-woman-happily-storess-fresh-260nw-2476499265.jpg",
     owner_photo: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
-    shop_name: "Fashion Hub",
+    store_name: "Fashion Hub",
     ownerName: "Jane Smith",
     address: {
       street: "456 Fashion Ave",
@@ -266,7 +266,7 @@ export const shopsData: IshopsData[] = [
     // logo: "https://i.pinimg.com/originals/c1/92/9d/c1929d3492c2f64ab65b43808c072043.jpg",
     image: "https://imgmedia.lbb.in/media/2021/03/604af35bf9e6694e5d32d061_1615524699384.jpg",
     owner_photo: "https://media.gettyimages.com/id/1317804578/photo/one-businesswoman-headshot-smiling-at-the-camera.jpg?s=612x612&w=gi&k=20&c=tFkDOWmEyqXQmUHNxkuR5TsmRVLi5VZXYm3mVsjee0E=",
-    shop_name: "Home & Decor",
+    store_name: "Home & Decor",
     ownerName: "Alice Johnson",
     address: {
       street: "789 Maple Lane",
@@ -283,10 +283,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s14",
-    logo: "https://thumbs.dreamstime.com/b/lets-shopping-logo-design-template-cart-icon-designs-134743663.jpg",
+    logo: "https://thumbs.dreamstime.com/b/lets-storesping-logo-design-template-cart-icon-designs-134743663.jpg",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoV3kS2Wg6n5b_-XJ3OXa6dZdSnpRTPX6Mdw&s",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwRPWpO-12m19irKlg8znjldmcZs5PO97B6A&s",
-    shop_name: "Book Nook",
+    store_name: "Book Nook",
     ownerName: "Mark Lewis",
     address: {
       street: "321 Book Street",
@@ -303,10 +303,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s15",
-    logo: "https://img.freepik.com/premium-vector/best-shop-logo-design_501861-419.jpg",
-    image: "https://cdn.shopify.com/s/files/1/1246/6441/files/Sephora_Shop_in_shop_480x480.jpg?v=1648491761",
+    logo: "https://img.freepik.com/premium-vector/best-stores-logo-design_501861-419.jpg",
+    image: "https://cdn.storesify.com/s/files/1/1246/6441/files/Sephora_stores_in_stores_480x480.jpg?v=1648491761",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvJaoIeJQU_V9rL_ZII61whWyqSFbmMgTgwQ&s",
-    shop_name: "Gourmet Market",
+    store_name: "Gourmet Market",
     ownerName: "Emma Thompson",
     address: {
       street: "88 Culinary Road",
@@ -323,10 +323,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s16",
-    // logo: "https://png.pngtree.com/png-vector/20190322/ourmid/pngtree-shop-logo-vector-template-design-illustration-png-image_860078.jpg",
+    // logo: "https://png.pngtree.com/png-vector/20190322/ourmid/pngtree-stores-logo-vector-template-design-illustration-png-image_860078.jpg",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc7tIped7JQzX1IDuNk2sNmCBDzN2Rhg97XQ&s",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeHt2GDofV5sNOaTrLarqU3XmMpTNXxaw9dg&s",
-    shop_name: "Pet Paradise",
+    store_name: "Pet Paradise",
     ownerName: "Daniel Harris",
     address: {
       street: "654 Pet Lane",
@@ -343,11 +343,11 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s17",
-    logo: "https://img.freepik.com/premium-vector/colorful-bag-that-says-shopping-here-here_1288538-6301.jpg?semt=ais_hybrid",
+    logo: "https://img.freepik.com/premium-vector/colorful-bag-that-says-storesping-here-here_1288538-6301.jpg?semt=ais_hybrid",
     image:
       "https://i.guim.co.uk/img/media/bb5e732bdd0ae3bafca2ca7182232a562a824dfa/0_331_6541_3924/master/6541.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=2d7e945e63c81df2a9e3fdbf154c7958",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvPjv1lHEIpzgDk_e3Sm-e4EVOzggYdb5aHA&s",
-    shop_name: "Fitness Zone",
+    store_name: "Fitness Zone",
     ownerName: "Laura Carter",
     address: {
       street: "111 Fitness Street",
@@ -364,10 +364,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s18",
-    logo: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/store-logo-design%2C-online-shopping-store-logo-template-b96b23a1a56e685fe30519cbf20883bc_screen.jpg?ts=1662903800",
-    image: "https://c8.alamy.com/comp/CF4H1C/the-exterior-of-a-local-convenience-shop-british-food-wine-store-in-CF4H1C.jpg",
+    logo: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/store-logo-design%2C-online-storesping-store-logo-template-b96b23a1a56e685fe30519cbf20883bc_screen.jpg?ts=1662903800",
+    image: "https://c8.alamy.com/comp/CF4H1C/the-exterior-of-a-local-convenience-stores-british-food-wine-store-in-CF4H1C.jpg",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjw9i6PO7C3BluMusZzcQs2J7BWkF0pLSrRw&s",
-    shop_name: "Kids World",
+    store_name: "Kids World",
     ownerName: "Nancy Lee",
     address: {
       street: "234 Fun Street",
@@ -385,9 +385,9 @@ export const shopsData: IshopsData[] = [
   {
     id: "s19",
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_jCLFM94W5u8LLAqAlyEPEDqHONQMIEYyhA&s",
-    image: "https://c8.alamy.com/comp/H3D3H0/small-indian-shop-sells-merchandise-per-single-unit-H3D3H0.jpg",
+    image: "https://c8.alamy.com/comp/H3D3H0/small-indian-stores-sells-merchandise-per-single-unit-H3D3H0.jpg",
     owner_photo: "hhttps://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8",
-    shop_name: "Outdoor Life",
+    store_name: "Outdoor Life",
     ownerName: "Chris Green",
     address: {
       street: "555 Adventure Road",
@@ -404,10 +404,10 @@ export const shopsData: IshopsData[] = [
   },
   {
     id: "s20",
-    logo: "https://thumbs.dreamstime.com/b/letter-z-online-shopping-shopping-application-company-branding-vector-logo-icon-illustration-letter-z-online-shopping-shopping-324351567.jpg",
+    logo: "https://thumbs.dreamstime.com/b/letter-z-online-storesping-storesping-application-company-branding-vector-logo-icon-illustration-letter-z-online-storesping-storesping-324351567.jpg",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBq_uwsHdVmzZwmr-BEk3IQAwwarU2Qlchqg&s",
     owner_photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Hb5xzFZJCTW4cMqmPwsgfw-gILUV7QevvQ&s",
-    shop_name: "Beauty Bliss",
+    store_name: "Beauty Bliss",
     ownerName: "Sophia Martin",
     address: {
       street: "77 Beauty Blvd",
