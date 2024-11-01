@@ -1,6 +1,6 @@
 // src/theme/commonTheme.ts
 import { mColor } from "@color";
-import { ThemeOptions } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material/styles";
 
 export const commonTheme: ThemeOptions = {
   palette: {
@@ -51,64 +51,93 @@ export const commonTheme: ThemeOptions = {
     fontFamily: "Poppins",
     h1: {
       fontSize: "110px",
-      // color: "#ff0033",
       // fontWeight: 300,
       // letterSpacing: "-0.01562em",
       // lineHeight: 1.167,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "105px",
+      },
     },
     h2: {
       fontSize: "54px",
       // fontWeight: 300,
       // letterSpacing: "-0.00833em",
       // lineHeight: 1.2,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "50px",
+      },
     },
     h3: {
-      fontSize: "36px",
+      fontSize: "35px",
       // fontWeight: 400,
       // letterSpacing: "0em",
       // lineHeight: 1.167,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "30px",
+      },
     },
     h4: {
-      fontSize: "32px",
+      fontSize: "30px",
       // fontWeight: 400,
       // letterSpacing: "0.00735em",
       // lineHeight: 1.235,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "25px",
+      },
     },
     h5: {
-      fontSize: "24px",
+      fontSize: "25px",
       // fontWeight: 400,
       // letterSpacing: "0em",
       // lineHeight: 1.334,
+      [createTheme().breakpoints.down("sm")]: {
+        fontSize: "20px",
+      },
     },
     h6: {
       fontSize: "20px",
       // fontWeight: 500,
       // letterSpacing: "0.0075em",
       // lineHeight: 1.6,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "15px",
+      },
     },
     subtitle1: {
       fontSize: "16px",
       // fontWeight: 400,
       // letterSpacing: "0.00938em",
       // lineHeight: 1.75,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "10px",
+      },
     },
     subtitle2: {
       fontSize: "14px",
       // fontWeight: 500,
       // letterSpacing: "0.00714em",
       // lineHeight: 1.57,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "8px",
+      },
     },
     body1: {
       fontSize: "12px",
       // fontWeight: 400,
       // letterSpacing: "0.03125em",
       // lineHeight: 1.5,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "7px",
+      },
     },
     body2: {
       fontSize: "10px",
       // fontWeight: 400,
       // letterSpacing: "0.01786em",
       // lineHeight: 1.43,
+      [createTheme().breakpoints.down("md")]: {
+        fontSize: "5px",
+      },
     },
     // button: {
     //   fontSize: "0.875rem",

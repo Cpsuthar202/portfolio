@@ -1,5 +1,4 @@
-import { ILoginResponse } from "@/store/reducers/auth/type";
-import { getLocalAuth } from "@/utils/localStorage";
+import { checkUserToken } from "@/utils/localStorage";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -9,18 +8,27 @@ const AuthWrapper = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const checkUserToken = () => {
-      const userToken: ILoginResponse = getLocalAuth();
-      if (userToken && userToken.token) {
-        setIsLoggedIn(true);
-        navigate("/user", { replace: true });
-      } else {
-        setIsLoggedIn(false);
-      }
-    };
-
-    checkUserToken();
+    if (checkUserToken()) {
+      setIsLoggedIn(true);
+      navigate("/user", { replace: true });
+    } else {
+      setIsLoggedIn(false);
+    }
   }, [navigate]);
+
+  // useEffect(() => {
+  //   const checkUserToken = () => {
+  //     const userToken: ILoginResponse = getLocalAuth();
+  //     if (userToken && userToken.token) {
+  //       setIsLoggedIn(true);
+  //       navigate("/user", { replace: true });
+  //     } else {
+  //       setIsLoggedIn(false);
+  //     }
+  //   };
+
+  //   checkUserToken();
+  // }, [navigate]);
 
   return (
     <>

@@ -42,7 +42,7 @@ const Home = () => {
       <Sliderview title="Stores" scrollnumber={200} navigateTo="/display/store">
         {storesData.map((item: IstoresData, index: number) => (
           <Box key={index}>
-            <CategoryCard src={item.logo ? item.logo : item.image} label={item.store_name} onClick={() => navigate(`/product/store/${item.id}`)} />
+            <CategoryCard src={item.logo ? item.logo : item.image} label={item.store_name} onClick={() => navigate(`/store_details/${item.id}`)} />
           </Box>
         ))}
       </Sliderview>

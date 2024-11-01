@@ -31,3 +31,8 @@ export const getInitialTheme = (): boolean => {
 export const setInitialTheme = (newMode: boolean): void => {
   localStorage.setItem("isDarkMode", JSON.stringify(newMode));
 };
+
+export const checkUserToken = (): boolean => {
+  const userToken: ILoginResponse = getLocalAuth();
+  return userToken?.token ? true : false;
+};

@@ -1,8 +1,8 @@
 import { heroLine } from "@/data/heroLine";
 import { Box, Button, Grid, IconButton, InputBase, Typography, Menu, MenuItem } from "@mui/material";
-import { ShoppingCart, FavoriteBorder, Search, AccountCircle, Login, Logout } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import { getLocalAuth } from "@/utils/localStorage";
+import { ShoppingCart, FavoriteBorder, AccountCircle, Login, Logout } from "@mui/icons-material";
+import { useLocation, useNavigate } from "react-router-dom";
+import { checkUserToken } from "@/utils/localStorage";
 import { useState, useEffect, ChangeEvent } from "react";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -12,6 +12,14 @@ interface TopBarProps {
 }
 const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
   // const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSearch = () => {
+    if (["/", "/user"].includes(location.pathname)) {
+      navigate("/product");
+    }
+  };
+
   const handleLogout = () => {
     localStorage.clear();
     navigate("/", { replace: true });
@@ -34,7 +42,6 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
   };
 
   const tegLine = heroLine.find((e) => e.slug == "top-bar");
-  console.log("tegLine", tegLine);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -54,16 +61,11 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkUserToken = () => {
-      const userToken = getLocalAuth();
-      if (!userToken || !userToken.token) {
-        setIsLoggedIn(false);
-      } else {
-        setIsLoggedIn(true);
-      }
-    };
-
-    checkUserToken();
+    if (checkUserToken()) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
   }, [navigate]);
 
   return (
@@ -92,14 +94,16 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
                 bgcolor: "secondary.main",
                 borderRadius: 1,
                 px: 2,
+                py: 1,
                 width: "95%",
               }}
+              onClick={handleSearch}
             >
               <InputBase placeholder="What are you looking for?" sx={{ width: "100%" }} value={searchTitle} onChange={handleSearchChange} />
 
-              <IconButton type="submit">
+              {/* <IconButton type="submit">
                 <Search />
-              </IconButton>
+              </IconButton> */}
             </Box>
           </Grid>
 

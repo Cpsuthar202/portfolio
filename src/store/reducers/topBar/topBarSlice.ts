@@ -26,6 +26,5 @@ export const topBarSlice = createSlice({
 export const { setSearchTitle } = topBarSlice.actions;
 
 // Typing the state in the selector
-export const searchTitle = (state: { topBar: ItopBar }) => state.topBar.searchTitle;
 
 export default topBarSlice.reducer;

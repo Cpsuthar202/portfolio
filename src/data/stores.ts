@@ -1,6 +1,7 @@
 export interface IstoresData {
   id: string;
   logo?: string;
+  banner_image?: string;
   image: string;
   owner_photo?: string;
   store_name: string;
@@ -17,12 +18,19 @@ export interface IstoresData {
     phone: string;
   };
   description: string;
+  storeHours?: Record<string, string>;
+  socialMedia?: {
+    facebook: string;
+    twitter: string;
+    instagram: string;
+  };
+  rating?: number;
 }
 
 export const storesData: IstoresData[] = [
   {
     id: "s1",
-    // logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0dTZN7KmUKqsI2HHADhW5XSXzQXA_jedmZg&s",
+    banner_image: "https://rukminim2.flixcart.com/fk-p-flap/1400/232/image/5d2743f3be835a42.jpg?q=60",
     image: "https://c8.alamy.com/comp/ED0HHW/kerala-india-storess-in-mundakayam-ED0HHW.jpg",
     owner_photo: "https://c8.alamy.com/comp/ED0HHW/kerala-india-storess-in-mundakayam-ED0HHW.jpg",
     store_name: "Tech Haven",
@@ -38,11 +46,27 @@ export const storesData: IstoresData[] = [
       email: "contact@techhaven.com",
       phone: "+1-123-456-7890",
     },
-    description: "A one-stop stores for the latest in tech gadgets and electronics.",
+    description: "A one-stop store for the latest in tech gadgets and electronics.",
+    storeHours: {
+      monday: "9:00 AM - 6:00 PM",
+      tuesday: "9:00 AM - 6:00 PM",
+      wednesday: "9:00 AM - 6:00 PM",
+      thursday: "9:00 AM - 6:00 PM",
+      friday: "9:00 AM - 6:00 PM",
+      saturday: "10:00 AM - 4:00 PM",
+      sunday: "Closed",
+    },
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s2",
     logo: "https://img.freepik.com/free-vector/gradient-instagram-stores-logo-template_23-2149704603.jpg",
+    banner_image: "https://cdn.vectorstock.com/i/500p/09/80/online-shopping-banner-vector-17230980.jpg",
     image: "https://www.shutterstock.com/image-photo/young-woman-happily-storess-fresh-260nw-2476499265.jpg",
     owner_photo: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
     store_name: "Fashion Hub",
@@ -59,6 +83,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-987-654-3210",
     },
     description: "Trendy and stylish clothing for all ages.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s3",
@@ -79,6 +109,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-512-555-1212",
     },
     description: "Beautiful home furnishings and decor items.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s4",
@@ -99,6 +135,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-206-555-9876",
     },
     description: "Your neighborhood bookstore for all genres.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s5",
@@ -119,6 +161,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-503-555-7890",
     },
     description: "Organic and gourmet food items for healthy living.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s6",
@@ -139,6 +187,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-303-555-1234",
     },
     description: "All the supplies and care products for your pets.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s7",
@@ -160,6 +214,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-312-555-5678",
     },
     description: "Everything you need for fitness and sports activities.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s8",
@@ -180,6 +240,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-213-555-4321",
     },
     description: "A wide range of toys and products for children of all ages.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s9",
@@ -200,6 +266,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-602-555-6789",
     },
     description: "Gear and apparel for outdoor enthusiasts and adventurers.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s10",
@@ -220,6 +292,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-305-555-0987",
     },
     description: "Top beauty products and cosmetics from around the world.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s11",
@@ -240,6 +318,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-123-456-7890",
     },
     description: "A one-stop stores for the latest in tech gadgets and electronics.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s12",
@@ -260,6 +344,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-987-654-3210",
     },
     description: "Trendy and stylish clothing for all ages.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s13",
@@ -280,6 +370,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-512-555-1212",
     },
     description: "Beautiful home furnishings and decor items.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s14",
@@ -300,6 +396,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-206-555-9876",
     },
     description: "Your neighborhood bookstore for all genres.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s15",
@@ -320,6 +422,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-503-555-7890",
     },
     description: "Organic and gourmet food items for healthy living.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s16",
@@ -340,6 +448,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-303-555-1234",
     },
     description: "All the supplies and care products for your pets.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s17",
@@ -361,6 +475,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-312-555-5678",
     },
     description: "Everything you need for fitness and sports activities.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s18",
@@ -381,6 +501,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-213-555-4321",
     },
     description: "A wide range of toys and products for children of all ages.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s19",
@@ -401,6 +527,12 @@ export const storesData: IstoresData[] = [
       phone: "+1-602-555-6789",
     },
     description: "Gear and apparel for outdoor enthusiasts and adventurers.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
   {
     id: "s20",
@@ -421,5 +553,11 @@ export const storesData: IstoresData[] = [
       phone: "+1-305-555-0987",
     },
     description: "Top beauty products and cosmetics from around the world.",
+    socialMedia: {
+      facebook: "https://facebook.com/techhaven",
+      twitter: "https://twitter.com/techhaven",
+      instagram: "https://instagram.com/techhaven",
+    },
+    rating: 4.5,
   },
 ];

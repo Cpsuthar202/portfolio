@@ -17,7 +17,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
   return (
     <Box
       sx={{
-        width: "100%",
+        // width: "100%",
         border: 1,
         borderColor: "secondary.main",
         borderRadius: 2,

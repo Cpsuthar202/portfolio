@@ -1,6 +1,7 @@
 import { ProductCard } from "@/components/card";
 import { Iproduct, productData } from "@/data/product";
-import { useAppSelector } from "@/store/store";
+import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,10 +10,16 @@ const Product = () => {
   const { label, id } = useParams();
   const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
   // const [searchTerm, setSearchTerm] = useState("");
-
-  const searchTitle = useAppSelector((state) => state.topbar.searchTitle);
+  const dispatch = useAppDispatch();
+  const { searchTitle } = useAppSelector((state) => state.topbar);
 
   console.log("title", searchTitle);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setSearchTitle(""));
+    };
+  }, []);
 
   useEffect(() => {
     let FilteredProducts = productData;

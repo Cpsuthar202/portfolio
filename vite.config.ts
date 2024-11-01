@@ -4,6 +4,7 @@ import * as path from "path";
 
 const FRONTEND_HOST = process.env.VITE_APP_HOST;
 const FRONTEND_PORT = process.env.VITE_APP_PORT;
+console.log("Port from env:", FRONTEND_PORT);
 
 // https://vitejs.dev/config/
 export default defineConfig({

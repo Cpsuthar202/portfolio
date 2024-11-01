@@ -21,3 +21,7 @@ export const WebShare: React.FC<IWebShare> = ({ url, text, children }) => {
     </RWebShare>
   );
 };
+
+export const handleShareUrl = ({ url }: { url?: string }) => {
+  window.open(url, "_blank");
+};
