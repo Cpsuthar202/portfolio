@@ -40,14 +40,9 @@ const Product = () => {
     setFilteredProducts(FilteredProducts);
   }, [label, id, searchTitle]);
 
-  // Check if filtered products list is empty
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      {/* Search Input */}
-      {/* <TextField label="Search Products" variant="outlined" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} sx={{ marginBottom: 2 }} /> */}
-
-      {/* Displaying filtered products */}
+      s{/* Displaying filtered products */}
       <Grid container>
         {filteredProducts.length != 0 ? (
           filteredProducts.map((p: Iproduct, index: number) => (

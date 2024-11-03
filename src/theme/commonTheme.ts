@@ -48,86 +48,86 @@ export const commonTheme: ThemeOptions = {
     },
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: "Nunito",
     h1: {
-      fontSize: "110px",
+      fontSize: "55px",
       // fontWeight: 300,
       // letterSpacing: "-0.01562em",
       // lineHeight: 1.167,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "105px",
+        fontSize: "50px",
       },
     },
     h2: {
-      fontSize: "54px",
+      fontSize: "50px",
       // fontWeight: 300,
       // letterSpacing: "-0.00833em",
       // lineHeight: 1.2,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "50px",
+        fontSize: "45px",
       },
     },
     h3: {
-      fontSize: "35px",
+      fontSize: "45px",
       // fontWeight: 400,
       // letterSpacing: "0em",
       // lineHeight: 1.167,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "30px",
+        fontSize: "40px",
       },
     },
     h4: {
-      fontSize: "30px",
+      fontSize: "40px",
       // fontWeight: 400,
       // letterSpacing: "0.00735em",
       // lineHeight: 1.235,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "25px",
+        fontSize: "35px",
       },
     },
     h5: {
-      fontSize: "25px",
+      fontSize: "35px",
       // fontWeight: 400,
       // letterSpacing: "0em",
       // lineHeight: 1.334,
       [createTheme().breakpoints.down("sm")]: {
-        fontSize: "20px",
+        fontSize: "30px",
       },
     },
     h6: {
-      fontSize: "20px",
+      fontSize: "30px",
       // fontWeight: 500,
       // letterSpacing: "0.0075em",
       // lineHeight: 1.6,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "15px",
+        fontSize: "25px",
       },
     },
     subtitle1: {
-      fontSize: "16px",
+      fontSize: "25px",
       // fontWeight: 400,
       // letterSpacing: "0.00938em",
       // lineHeight: 1.75,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "10px",
+        fontSize: "20px",
       },
     },
     subtitle2: {
-      fontSize: "14px",
+      fontSize: "20px",
       // fontWeight: 500,
       // letterSpacing: "0.00714em",
       // lineHeight: 1.57,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "8px",
+        fontSize: "15px",
       },
     },
     body1: {
-      fontSize: "12px",
+      fontSize: "15px",
       // fontWeight: 400,
       // letterSpacing: "0.03125em",
       // lineHeight: 1.5,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "7px",
+        fontSize: "10px",
       },
     },
     body2: {
@@ -171,6 +171,7 @@ export const commonTheme: ThemeOptions = {
           textTransform: "none",
           // Sets the default text color to white
           color: mColor.white,
+          whiteSpace: "nowrap",
         },
         containedPrimary: {
           // Sets the primary button background color

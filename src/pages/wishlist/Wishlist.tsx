@@ -5,7 +5,7 @@ import { ProductCard } from "@/components/card";
 const Wishlist = () => {
   return (
     <Box>
-      <Typography variant="h5" color="primary">
+      <Typography variant="h6" sx={{ textAlign: "center" }}>
         Your Wishlist
       </Typography>
       <Box>

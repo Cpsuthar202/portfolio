@@ -13,7 +13,7 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
   return (
     <Box sx={{ width: "90%", m: 1, borderRadius: "10px", overflow: "hidden", border: 1, borderColor: "secondary.main", cursor: "pointer" }} onClick={onClick}>
       <Box sx={{ height: "100px", width: "100%", p: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Image src={src} alt="image" style={{ height: "100%", width: "100%", borderRadius: "5px", cursor: "pointer" }} />
+        <Image src={src} alt="image" style={{ height: "100%", borderRadius: "5px", cursor: "pointer" }} />
       </Box>
       <Typography
         variant="body1"
@@ -21,6 +21,7 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
         sx={{
           textAlign: "center",
           px: 2,
+          mb: 1,
           whiteSpace: "nowrap", // Prevent text wrapping
           overflow: "hidden", // Hide overflow
           // textOverflow: "ellipsis", // Show ellipsis if the text is too long

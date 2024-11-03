@@ -1,92 +1,46 @@
-import { heroLine } from "@/data/heroLine";
-import { Box, Button, Grid, IconButton, InputBase, Typography, Menu, MenuItem } from "@mui/material";
-import { ShoppingCart, FavoriteBorder, AccountCircle, Login, Logout } from "@mui/icons-material";
-import { useLocation, useNavigate } from "react-router-dom";
-import { checkUserToken } from "@/utils/localStorage";
-import { useState, useEffect, ChangeEvent } from "react";
-import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
-import { useAppDispatch, useAppSelector } from "@/store/store";
+import { Box, Grid, IconButton, InputBase, Typography, Drawer, Button } from "@mui/material";
+import { ShoppingCart, FavoriteBorder } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
+import React from "react";
+import { mColor } from "@color";
+import SideBar from "../sideBar/SideBar";
+import { useTopBar } from "./TopBar.hook";
+import LogoutDialog from "@/pages/auth/dialog/LogoutDialog";
+import SimpleDialog from "../dialog/SimpleDialog";
 
 interface TopBarProps {
   toggleTheme: () => void;
 }
-const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
-  // const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleSearch = () => {
-    if (["/", "/user"].includes(location.pathname)) {
-      navigate("/product");
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/", { replace: true });
-    // navigate("/user/auth/login", { replace: true });
-  };
-
-  const searchTitle = useAppSelector((state) => state.topbar.searchTitle);
-
-  const dispatch = useAppDispatch();
-
-  // const [titleData, setTitleData] = useState<string>("");
-  // const send = () => {
-  //   dispatch(setTitle(titleData));
-  //   setTitleData("");
-  // };
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchTitle(e.target.value));
-    // setTitleData("");
-  };
-
-  const tegLine = heroLine.find((e) => e.slug == "top-bar");
-
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleLogin = () => {
-    setAnchorEl(null);
-    navigate("/user/auth/login");
-  };
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (checkUserToken()) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [navigate]);
-
+const TopBar: React.FC<TopBarProps> = () => {
+  const {
+    variable: { isLoggedIn, open, tegLine, searchTitle, openConfDialog, setOpenConfDialog },
+    methods: { navigate, handleAuth, toggleDrawer, handleSearch, handleSearchChange },
+  } = useTopBar();
   return (
     <>
+      {/* Wrapper for top bar and search section */}
       <Box sx={{ borderBottom: 2, borderColor: "secondary.main", width: "100%" }}>
+        {/* Hero line display */}
         <Box sx={{ bgcolor: "background.paper", color: "text.secondary" }}>
-          <Typography variant="subtitle2" sx={{ textAlign: "center" }}>
+          <Typography variant="body1" sx={{ textAlign: "center", py: 1 }}>
             {tegLine?.title}
-            <Button variant="text" sx={{ color: "text.secondary" }}>
-              ShopNow
-            </Button>
           </Typography>
         </Box>
+
+        {/* Main Grid container for menu, search bar, and action icons */}
         <Grid container sx={{ p: 1 }}>
+          {/* Left section: Menu button and site title */}
           <Grid item md={4} sm={6} xs={6} sx={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
-            <IconButton>{/* <Menu /> */}</IconButton>
-            <Typography variant="h5">Exclusive</Typography>
+            <IconButton onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              Exclusive
+            </Typography>
           </Grid>
 
+          {/* Center section: Search bar */}
           <Grid item md={4} sm={12} xs={12} order={{ xs: 3, sm: 3, md: 2 }} sx={{ display: "grid", placeItems: "center" }}>
-            {/* Search Bar */}
             <Box
               sx={{
                 display: "flex",
@@ -100,60 +54,40 @@ const TopBar: React.FC<TopBarProps> = ({ toggleTheme }) => {
               onClick={handleSearch}
             >
               <InputBase placeholder="What are you looking for?" sx={{ width: "100%" }} value={searchTitle} onChange={handleSearchChange} />
-
-              {/* <IconButton type="submit">
-                <Search />
-              </IconButton> */}
             </Box>
           </Grid>
 
+          {/* Right section: Wishlist, Cart, and Authentication button */}
           <Grid item md={4} sm={6} xs={6} order={{ xs: 2, sm: 2, md: 3 }} sx={{ display: "flex", justifyContent: "end", alignItems: "center" }}>
-            {/* Icons */}
-            <Box sx={{}}>
+            <Box>
               <IconButton onClick={() => navigate("/user/wishlist")}>
                 <FavoriteBorder />
               </IconButton>
               <IconButton>
                 <ShoppingCart />
               </IconButton>
-              <IconButton edge="end" aria-label="account of current user" aria-controls="user-menu" aria-haspopup="true" onClick={handleMenuOpen} color="inherit">
-                {isLoggedIn ? <Login /> : <Logout />}
-              </IconButton>
-              <IconButton onClick={() => toggleTheme()}>
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="user-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                sx={{
-                  "& .MuiPaper-root": {
-                    backgroundColor: "#f0f0f0", // Change to your desired color
-                  },
-                }}
-              >
-                {isLoggedIn ? (
-                  <>
-                    <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        handleLogout();
-                        handleMenuClose();
-                      }}
-                    >
-                      Logout
-                    </MenuItem>
-                  </>
-                ) : (
-                  <MenuItem onClick={handleLogin}>Login</MenuItem>
-                )}
-              </Menu>
+              <Button onClick={handleAuth}>{isLoggedIn ? "LogOut" : "LogIn"}</Button>
             </Box>
           </Grid>
         </Grid>
       </Box>
+
+      {/* Sidebar Drawer component */}
+      <Drawer
+        open={open}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: { bgcolor: mColor.white },
+        }}
+      >
+        <SideBar onClickMenu={toggleDrawer(false)} />
+      </Drawer>
+
+      {openConfDialog && (
+        <SimpleDialog open={openConfDialog} handleClose={() => setOpenConfDialog(false)}>
+          <LogoutDialog handleClose={() => setOpenConfDialog(false)} />
+        </SimpleDialog>
+      )}
     </>
   );
 };

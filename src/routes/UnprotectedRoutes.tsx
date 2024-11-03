@@ -5,6 +5,7 @@ import Display from "@/pages/display/Display";
 import Product from "@/pages/product/Product";
 import ProductDetails from "@/pages/product/ProductDetails";
 import StoreDetails from "@/pages/store/StoreDetails";
+import BestSelling from "@/pages/bestSelling/BestSelling";
 
 const UnprotectedRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const UnprotectedRoutes = () => {
         <Route path="/product/:label/:id" element={<Product />} />
         <Route path="/product" element={<Product />} />
         <Route path="/store_details/:id" element={<StoreDetails />} />
+        <Route path="/best_selling" element={<BestSelling />} />
         <Route path="/product_details/:product_id" element={<ProductDetails />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
