@@ -8,62 +8,41 @@ import { IstoresData, storesData } from "@/data/stores";
 
 type DataItem = Icategories | Ibrands | IstoresData;
 
-const useDisplayHook = () => {
+const useDisplay = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { label } = useParams<{ label: string }>();
   const { searchTitle } = useAppSelector((state) => state.topbar);
 
-  // Clean up search title on unmount
+  // Reset search title on component unmount
   useEffect(() => {
+    // Set up logic when the component mounts
+    dispatch(setSearchTitle(""));
+
+    // Cleanup function to reset searchTitle when the component unmounts
     return () => {
       dispatch(setSearchTitle(""));
     };
   }, [dispatch]);
-
-  // Function to fetch and filter data
+  // Fetch and filter data based on label and searchTitle
   const getData = (): DataItem[] => {
-    let data: DataItem[] = [];
-
-    switch (label) {
-      case "categorie":
-        data = categoriesData;
-        break;
-      case "brand":
-        data = brands;
-        break;
-      case "store":
-        data = storesData;
-        break;
-      default:
-        data = [];
-    }
-
+    const data = label === "categorie" ? categoriesData : label === "brand" ? brands : label === "store" ? storesData : [];
     return data.filter((item) => {
       const itemLabel = "label" in item ? item.label : "store_name" in item ? item.store_name : "";
       return itemLabel.toLowerCase().includes(searchTitle.toLowerCase());
     });
   };
 
-  // Navigate to the correct path based on item type
+  // Navigate based on item type
   const handleNavigation = (item: DataItem) => {
-    if (label === "store") {
-      navigate(`/store_details/${item.id}`);
-    } else {
-      navigate(`/product/${label}/${item.id}`);
-    }
+    const path = label === "store" ? `/store_details/${item.id}` : `/product/${label}/${item.id}`;
+    navigate(path);
   };
 
   return {
-    variable: {
-      searchTitle,
-      label,
-    },
-    methods: {
-      getData,
-      handleNavigation,
-    },
+    variable: { searchTitle, label },
+    methods: { getData, handleNavigation },
   };
 };
 
-export default useDisplayHook;
+export default useDisplay;

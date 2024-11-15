@@ -1,48 +1,18 @@
 import { ProductCard } from "@/components/card";
-import { Iproduct, productData } from "@/data/product";
-import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
-import { useAppDispatch, useAppSelector } from "@/store/store";
+import { Iproduct } from "@/data/product";
+
 import { Box, Grid, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useProduct } from "./Product.hook";
 
 const Product = () => {
-  const { label, id } = useParams();
-  const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-  const dispatch = useAppDispatch();
-  const { searchTitle } = useAppSelector((state) => state.topbar);
-
-  console.log("title", searchTitle);
-
-  useEffect(() => {
-    return () => {
-      dispatch(setSearchTitle(""));
-    };
-  }, []);
-
-  useEffect(() => {
-    let FilteredProducts = productData;
-
-    if (label === "categorie") {
-      FilteredProducts = productData.filter((product) => product.categories.id === id);
-    } else if (label === "brand") {
-      FilteredProducts = productData.filter((product) => product.brands.id === id);
-    } else if (label === "store") {
-      FilteredProducts = productData.filter((product) => product.store.id === id);
-    }
-
-    // Apply search filter
-    if (searchTitle) {
-      FilteredProducts = FilteredProducts.filter((product) => product.teg.some((tag) => tag.toLowerCase().includes(searchTitle.toLowerCase())));
-    }
-
-    setFilteredProducts(FilteredProducts);
-  }, [label, id, searchTitle]);
+  const {
+    variables: { filteredProducts },
+    // methods: {},
+  } = useProduct();
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      s{/* Displaying filtered products */}
+      {/* Displaying filtered products */}
       <Grid container>
         {filteredProducts.length != 0 ? (
           filteredProducts.map((p: Iproduct, index: number) => (

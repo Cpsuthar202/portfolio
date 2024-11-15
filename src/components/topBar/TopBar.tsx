@@ -34,7 +34,7 @@ const TopBar: React.FC<TopBarProps> = () => {
             <IconButton onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => navigate("/")}>
               Exclusive
             </Typography>
           </Grid>
@@ -63,7 +63,7 @@ const TopBar: React.FC<TopBarProps> = () => {
               <IconButton onClick={() => navigate("/user/wishlist")}>
                 <FavoriteBorder />
               </IconButton>
-              <IconButton>
+              <IconButton onClick={() => navigate("/user/cart")}>
                 <ShoppingCart />
               </IconButton>
               <Button onClick={handleAuth}>{isLoggedIn ? "LogOut" : "LogIn"}</Button>

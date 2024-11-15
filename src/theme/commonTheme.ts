@@ -166,7 +166,7 @@ export const commonTheme: ThemeOptions = {
       styleOverrides: {
         root: {
           // Sets a border radius of 8px for all buttons
-          borderRadius: 8,
+          borderRadius: 5,
           // Prevents automatic text capitalization
           textTransform: "none",
           // Sets the default text color to white

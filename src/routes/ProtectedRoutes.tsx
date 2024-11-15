@@ -5,6 +5,7 @@ import Home from "@/pages/home/Home";
 import Wishlist from "@/pages/wishlist/Wishlist";
 import Profile from "@/pages/profile/Profile";
 import Order from "@/pages/order/Order";
+import Cart from "@/pages/cart/Cart";
 
 const ProtectedRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const ProtectedRoutes = () => {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route path="/*" element={<NotFound />} /> */}
         <Route path="*" element={<Navigate to="/user" replace />} />
       </Route>

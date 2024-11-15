@@ -1,17 +1,15 @@
 import { ProductCard } from "@/components/card";
 import { handleShareUrl, Sliderview } from "@/components/Container";
 import Image from "@/components/image/Image";
-import { Iproduct, productData } from "@/data/product";
-import { storesData } from "@/data/stores";
+import { Iproduct } from "@/data/product";
 import { Email, Facebook, Instagram, Phone, X } from "@mui/icons-material";
 import { Avatar, Box, Container, Divider, IconButton, Rating, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useStoreDetails } from "./StoreDetails.hook";
 
 const StoreDetails = () => {
-  const { id } = useParams();
-  const store = storesData.find((e) => e.id == id);
-  const products = productData.filter((product) => product.store.id === id);
-  console.log("store", store);
+  const {
+    variable: { store, products },
+  } = useStoreDetails();
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 1 }}>

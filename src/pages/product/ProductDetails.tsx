@@ -1,37 +1,17 @@
-import { Grid, Typography, Button, IconButton, Box, Stack, useMediaQuery, useTheme, Chip, Container, LinearProgress } from "@mui/material";
+import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, LinearProgress } from "@mui/material";
 import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import Image from "@/components/image/Image";
 import { useProduct } from "./Product.hook";
 import Ratings from "@/components/ratings/Ratings";
 import { WebShare } from "@/components/Container";
-import { useNavigate } from "react-router-dom";
 import { mColor } from "@color";
-interface RatingDistribution {
-  rating: string;
-  count: number;
-  color: string;
-}
 
 const ProductDetails = () => {
-  // Check if the screen width is below 600px (mobile view)
-  const theme = useTheme();
-  const navigate = useNavigate();
-
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
   // Destructure variables and methods from the useProduct hook
   const {
-    variables: { product, stectImage, quantity, maxQuantity },
-    methods: { setStectImage, handleIncrement, handleDecrement },
+    variables: { product, stectImage, quantity, maxQuantity, isSmallScreen, ratingsData },
+    methods: { setStectImage, handleIncrement, handleDecrement, navigate },
   } = useProduct();
-
-  const ratingsData: RatingDistribution[] = [
-    { rating: "5 Start", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },
-    { rating: "4 Start", count: product?.ratings?.rat_4 || 0, color: "#8BC34A" },
-    { rating: "3 Start", count: product?.ratings?.rat_3 || 0, color: "#CDDC39" },
-    { rating: "2 Start", count: product?.ratings?.rat_2 || 0, color: "#FFC107" },
-    { rating: "1 Start", count: product?.ratings?.rat_1 || 0, color: "#F44336" },
-  ];
 
   return (
     <Box>
@@ -193,7 +173,7 @@ const ProductDetails = () => {
                 <Typography variant="body1">{product?.replacementPolicy}</Typography>
               </Typography>
 
-              <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+              <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
                 Warranty
                 <Typography variant="body1">{product?.warranty} year warranty</Typography>
               </Typography>
@@ -201,10 +181,10 @@ const ProductDetails = () => {
           </Box>
         </Grid>
       </Grid>
-      <Container sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <Container sx={{ display: "flex", flexDirection: "column", gap: 2, p: 0 }}>
         {/* features */}
         <Box>
-          <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+          <Typography variant="subtitle2" sx={{ fontWeight: "bold", mt: 1 }}>
             Features
           </Typography>
           {product?.features.map((f) => (

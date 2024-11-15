@@ -20,14 +20,14 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
   return (
     <Box
       sx={{
-        border: 1,
-        borderColor: "secondary.main",
         borderRadius: 2,
         overflow: "hidden",
+        boxShadow: 1,
+        height: "100%",
       }}
     >
       <Box sx={{ position: "relative", p: 1 }}>
-        <Image src={data.images[0]} alt={data.title} style={{ width: "100%", height: "200px", borderRadius: 2 }} />
+        <Image src={data.images[0]} alt={data.title} style={{ width: "100%", height: "200px", borderRadius: 2, opacity: data.stock === 0 ? 0.6 : 1 }} />
         {/* Product Image */}
         {/* Favorite and Share Icons */}
         <Box sx={{ position: "absolute", display: "flex", flexDirection: "column", top: 10, right: 10 }}>
@@ -74,10 +74,10 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
       </Box>
 
       {/* Product Details */}
-      <Box sx={{ p: 2, bgcolor: "secondary.main", cursor: "pointer" }} onClick={() => navigate(`/product_details/${data.id}`)}>
+      <Box sx={{ p: 2, bgcolor: "secondary.main", cursor: "pointer", height: "100%" }} onClick={() => navigate(`/product_details/${data.id}`)}>
         {/* Title */}
         <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
-          {trimTextToWordLimit(data.title, 30)}
+          {trimTextToWordLimit(data.title, 40)}
         </Typography>
 
         {/* Ratings */}

@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Image from "../image/Image";
+import { mColor } from "@color";
 // import { useNavigate } from "react-router-dom";
 
 interface ICategoryCard {
@@ -11,24 +12,35 @@ interface ICategoryCard {
 export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) => {
   // const navigate = useNavigate();
   return (
-    <Box sx={{ width: "90%", m: 1, borderRadius: "10px", overflow: "hidden", border: 1, borderColor: "secondary.main", cursor: "pointer" }} onClick={onClick}>
-      <Box sx={{ height: "100px", width: "100%", p: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <Image src={src} alt="image" style={{ height: "100%", borderRadius: "5px", cursor: "pointer" }} />
+    <Box sx={{ m: 1, borderRadius: 2, overflow: "hidden", boxShadow: 1 }}>
+      <Box sx={{ p: 1, bgcolor: "secondary.main" }}>
+        <Typography
+          variant="body1"
+          // color="primary"
+          sx={{
+            textAlign: "center",
+            px: 2,
+            mb: 1,
+            whiteSpace: "nowrap", // Prevent text wrapping
+            overflow: "hidden", // Hide overflow
+            // textOverflow: "ellipsis", // Show ellipsis if the text is too long
+          }}
+        >
+          {label}
+        </Typography>
+
+        <Box sx={{ height: "100px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", bgcolor: mColor.white, borderRadius: 2 }}>
+          <Image src={src} alt="image" style={{ height: "100%" }} />
+        </Box>
       </Box>
-      <Typography
-        variant="body1"
-        color="primary"
+      <Box
         sx={{
-          textAlign: "center",
-          px: 2,
-          mb: 1,
-          whiteSpace: "nowrap", // Prevent text wrapping
-          overflow: "hidden", // Hide overflow
-          // textOverflow: "ellipsis", // Show ellipsis if the text is too long
+          bgcolor: mColor.white,
         }}
+        onClick={onClick}
       >
-        {label}
-      </Typography>
+        <Button sx={{ width: "100%", borderRadius: 0 }}>Shop now</Button>
+      </Box>
     </Box>
   );
 };

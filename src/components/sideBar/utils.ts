@@ -51,6 +51,11 @@ const sidebarMenuList: ITextButtonList[] = [
     label: "Your Order",
     link: "/user/order",
   },
+  {
+    id: "cart",
+    label: "Your Cart",
+    link: "/user/cart",
+  },
 ];
 
 export { sidebarMenuList };

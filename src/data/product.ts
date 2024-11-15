@@ -112,7 +112,7 @@ export const productData: Iproduct[] = [
     bestSelling_number: 4,
     numberOfOrders: 1500,
     availability: true,
-    stock: 0,
+    stock: 4,
   },
   {
     id: "p2",
