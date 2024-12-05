@@ -357,6 +357,7 @@ export const commonTheme: ThemeOptions = {
           "& .MuiOutlinedInput-root": {
             color: mColor.primaryMain, // Text color
             borderRadius: "10px", // Custom border radius for outlined variant
+
             "& fieldset": {
               borderColor: mColor.primaryLight, // Default border color for outlined
             },
@@ -383,20 +384,22 @@ export const commonTheme: ThemeOptions = {
 
           // Standard variant customization
           "& .MuiInput-underline": {
-            color: mColor.errorMain,
+            fontSize: "20px",
+            color: mColor.primaryMain,
 
             "&:before": {
-              borderBottomColor: mColor.errorMain, // Border color before focus for standard
+              borderBottomColor: mColor.primaryMain, // Border color before focus for standard
             },
             "&:hover:not(.Mui-disabled):before": {
-              borderBottomColor: mColor.errorLight, // Border color on hover for standard
+              borderBottomColor: mColor.primaryLight, // Border color on hover for standard
             },
             "&:after": {
-              borderBottomColor: mColor.errorDark, // Border color when focused for standard
+              borderBottomColor: mColor.primaryDark, // Border color when focused for standard
             },
           },
 
           "& .MuiFormLabel-root": {
+            fontSize: "19px",
             color: mColor.primaryMain, // Label color
             "&.Mui-focused": {
               color: mColor.primaryDark, // Label color when focused

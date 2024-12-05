@@ -1,15 +1,16 @@
 export interface ILoginSchema {
   email: string;
   password: string;
+  phone_number: string;
 }
 export interface ILoginSchemaErr {
   full_name?: string;
-  email?: string;
+  phone_number?: string;
   password?: string;
 }
 export interface IRegistrationSchema {
-  email: string;
   full_name: string;
+  phone_number: string;
   password: string;
 }
 
@@ -19,7 +20,7 @@ export interface ILoginResponse {
 }
 
 interface IUser {
-  email: string;
   password: string;
+  phone_number: string;
   full_name?: string;
 }

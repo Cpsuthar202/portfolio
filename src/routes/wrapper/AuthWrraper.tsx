@@ -9,6 +9,8 @@ const AuthWrapper = () => {
 
   useEffect(() => {
     if (checkUserToken()) {
+      console.log("jhgfd");
+
       setIsLoggedIn(true);
       navigate("/user", { replace: true });
     } else {
@@ -32,13 +34,15 @@ const AuthWrapper = () => {
 
   return (
     <>
-      <Box sx={{ display: "grid", placeItems: "center", width: "100vw", height: "90vh" }}>
-        {!isLoggedIn && (
-          <Box sx={{ borderRadius: "10px", padding: "20px", boxShadow: 2, m: 1, width: "370px" }}>
-            <Outlet />
+      {!isLoggedIn && (
+        <Box sx={{ display: "flex", height: "85vh" }}>
+          <Box sx={{ display: "grid", placeItems: "center", flex: 1 }}>
+            <Box sx={{ maxWidth: "400px", width: "100%", border: 1, p: 3, px: 4, borderColor: "primary.main", borderRadius: 2, textAlign: "center" }}>
+              <Outlet />
+            </Box>
           </Box>
-        )}
-      </Box>
+        </Box>
+      )}
     </>
   );
 };

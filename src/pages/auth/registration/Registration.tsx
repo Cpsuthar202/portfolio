@@ -1,128 +1,80 @@
-import { Box, Typography, TextField, Button, IconButton, FormControlLabel, Checkbox, Divider } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import React from "react";
+import { TextField, Button, Checkbox, FormControlLabel, Typography, Divider, Box } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useState } from "react";
-import { mColor } from "@/theme/utils/color";
-import { UseRegistration } from "./Registration.hook";
 import { useNavigate } from "react-router-dom";
-const Registration = () => {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+import { UseRegistration } from "./Registration.hook";
+import AuthLayout from "../utility/AuthLayout";
+import PasswordField from "../utility/PasswordField";
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+const Registration: React.FC = () => {
+  const navigate = useNavigate();
   const {
     veriabls: { registrationDetails, registrationDetailsErr },
     methods: { handleRegistrationDetailsChange, handleSubmit },
   } = UseRegistration();
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "20px",
-      }}
-    >
-      {/* Logo */}
-      <Box
-        component="img"
-        sx={{
-          height: 40,
-          mb: 2,
-        }}
-        src="/path/to/logo.png"
-        alt="Logo"
-      />
-
-      <Typography variant="h5" fontWeight="bold" color="primary.dark">
-        Create an account
-      </Typography>
-      <Typography variant="body2" color="primary.main">
-        Enter your details to register.
-      </Typography>
-      <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-        <TextField
-          margin="normal"
-          // required
-          fullWidth
-          id="fullName"
-          label="Full Name"
-          name="full_name"
-          autoComplete="name"
-          autoFocus
-          value={registrationDetails.full_name}
-          onChange={handleRegistrationDetailsChange}
-          error={!!registrationDetailsErr.full_name}
-          helperText={registrationDetailsErr.full_name}
-        />
-
-        {/* Email Input */}
-        <TextField
-          margin="normal"
-          // required
-          fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
-          value={registrationDetails.email}
-          onChange={handleRegistrationDetailsChange}
-          error={!!registrationDetailsErr.email}
-          helperText={registrationDetailsErr.email}
-        />
-
-        {/* Password Input */}
-        <Box sx={{ position: "relative", width: "100%" }}>
+    <AuthLayout title="Create an account" subtitle="Enter your details to register.">
+      <form onSubmit={handleSubmit}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
-            margin="normal"
-            // required
+            variant="standard"
             fullWidth
-            name="password"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            id="password"
-            autoComplete="current-password"
-            value={registrationDetails.password}
+            label="Full Name"
+            name="full_name"
+            value={registrationDetails.full_name}
             onChange={handleRegistrationDetailsChange}
-            error={!!registrationDetailsErr.password}
-            helperText={registrationDetailsErr.password}
+            error={!!registrationDetailsErr.full_name}
+            helperText={registrationDetailsErr.full_name}
           />
-          <IconButton sx={{ position: "absolute", right: 8, top: 30 }} onClick={handleClickShowPassword}>
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-          </IconButton>
+          {/* <TextField
+            variant="standard"
+            fullWidth
+            label="Email Address"
+            name="email"
+            value={registrationDetails.email}
+            onChange={handleRegistrationDetailsChange}
+            error={!!registrationDetailsErr.email}
+            helperText={registrationDetailsErr.email}
+          /> */}
+          <TextField
+            variant="standard"
+            fullWidth
+            label="Phone Number"
+            name="phone_number"
+            type="number"
+            inputProps={{
+              maxLength: 10, // Enforces a maximum of 10 characters
+              pattern: "\\d{10}",
+            }}
+            value={registrationDetails.phone_number}
+            onChange={handleRegistrationDetailsChange}
+            error={!!registrationDetailsErr.phone_number}
+            helperText={registrationDetailsErr.phone_number}
+          />
+
+          <PasswordField value={registrationDetails.password} onChange={handleRegistrationDetailsChange} error={!!registrationDetailsErr.password} helperText={registrationDetailsErr.password} />
+          <FormControlLabel control={<Checkbox required sx={{ color: "primary.main" }} />} label="Agree to Terms" sx={{ color: "primary.main" }} />
+          <Button type="submit" fullWidth variant="contained" color="primary" sx={{}}>
+            Register
+          </Button>
         </Box>
-
-        {/* Terms and Conditions */}
-        <FormControlLabel control={<Checkbox value="agree" required sx={{ color: mColor.primaryMain }} />} label="Agree to Terms" />
-
-        {/* Register Button */}
-        <Button type="submit" fullWidth variant="contained" color="primary" sx={{ mt: 2, mb: 2 }}>
-          Register
-        </Button>
       </form>
-
-      {/* Divider with Or */}
-      <Divider sx={{ width: "100%", mb: 2 }}>
-        <Typography variant="body2" color="primary.main">
+      <Divider>
+        <Typography variant="body1" color="primary.main">
           Or, Register with
         </Typography>
       </Divider>
-
-      {/* Google Sign Up Button */}
-      <Button fullWidth variant="outlined" startIcon={<GoogleIcon />} sx={{ mb: 2 }}>
+      <Button fullWidth variant="outlined" startIcon={<GoogleIcon />}>
         Sign up with Google
       </Button>
-
-      {/* Login Link */}
-      <Typography variant="body2" sx={{ mt: 2, display: "flex", gap: 1 }}>
+      <Typography>
         Already have an account?
-        <Typography variant="body2" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/login")}>
+        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={() => navigate("/user/auth/login")}>
           Log in here
         </Typography>
       </Typography>
-    </Box>
+    </AuthLayout>
   );
 };
 

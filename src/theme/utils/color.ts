@@ -2,7 +2,8 @@ export const mColor = {
   white: "#ffffff",
   black: "#000000",
 
-  primaryMain: "#DB4444",
+  primaryMain: "#003f88",
+  // primaryMain: "#DB4444",
 
   secondaryMain: "#F5F5F5",
 
@@ -12,9 +13,9 @@ export const mColor = {
 
   // b
 
-  primaryLight: "#DB4444",
+  primaryLight: "#00509d",
   // primaryMain: "#1976d2",
-  primaryDark: "#004ba0",
+  primaryDark: "#00296b",
 
   secondaryLight: "#ff5c8d",
   // secondaryMain: "#dc004e",

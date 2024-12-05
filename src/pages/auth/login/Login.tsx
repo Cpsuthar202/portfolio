@@ -1,121 +1,98 @@
 import React from "react";
-import { Box, Button, TextField, Typography, Divider, IconButton } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { TextField, Button, Typography, Divider, Box, IconButton } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useLogin } from "./Login.hook";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "./Login.hook";
+import AuthLayout from "../utility/AuthLayout";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-const Login = () => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
   const {
     veriabls: { loginDetails, loginDetailsErr },
     methods: { handleLoginDetailsChange, handleSubmit },
   } = useLogin();
 
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "20px",
-      }}
-    >
-      {/* Logo */}
-      <Box
-        component="img"
-        sx={{
-          height: 40,
-          mb: 2,
-        }}
-        src="/path/to/logo.png"
-        alt="Logo"
-      />
-
-      {/* Welcome Text */}
-      <Typography variant="h5" fontWeight="bold" color="primary.dark">
-        Welcome back!
-      </Typography>
-      <Typography variant="body2" color="primary.main">
-        Enter to get unlimited access to data & information.
-      </Typography>
-
-      {/* Form */}
-      <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-        {/* Email Input */}
-        <TextField
-          margin="normal"
-          // required
-          fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
-          autoFocus
-          value={loginDetails.email}
-          onChange={handleLoginDetailsChange}
-          error={!!loginDetailsErr.email}
-          helperText={loginDetailsErr.email}
-        />
-
-        {/* Password Input */}
-        <Box sx={{ position: "relative", width: "100%" }}>
-          <TextField
-            margin="normal"
-            // required
+    <AuthLayout title="Log in to E-Commerce" subtitle="Enter your details below">
+      <form onSubmit={handleSubmit}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {/* <TextField
+            variant="standard"
             fullWidth
-            name="password"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            id="password"
-            autoComplete="current-password"
-            value={loginDetails.password}
+            label="Email Address"
+            name="email"
+            value={loginDetails.email}
             onChange={handleLoginDetailsChange}
-            error={!!loginDetailsErr.password}
-            helperText={loginDetailsErr.password}
+            error={!!loginDetailsErr.email}
+            helperText={loginDetailsErr.email}
+          /> */}
+          <TextField
+            variant="standard"
+            fullWidth
+            label="Phone Number"
+            name="phone_number"
+            type="number"
+            value={loginDetails.phone_number}
+            onChange={handleLoginDetailsChange}
+            error={!!loginDetailsErr.phone_number}
+            helperText={loginDetailsErr.phone_number}
           />
-          <IconButton sx={{ position: "absolute", right: 8, top: 30 }} onClick={handleClickShowPassword}>
-            {showPassword ? <VisibilityOff /> : <Visibility />}
-          </IconButton>
-        </Box>
-
-        <Box sx={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          {/* Forgot Password Link */}
-
-          <Typography variant="body2" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/registration")}>
-            Forgot password
+          <Box sx={{ position: "relative" }}>
+            <TextField
+              variant="standard"
+              fullWidth
+              type={showPassword ? "text" : "password"}
+              label="PassWord"
+              name="password"
+              value={loginDetails.password}
+              onChange={handleLoginDetailsChange}
+              error={!!loginDetailsErr.password}
+              helperText={loginDetailsErr.password}
+            />
+            <IconButton sx={{ position: "absolute", right: 8, top: 18 }} onClick={toggleShowPassword}>
+              {showPassword ? (
+                <VisibilityOff
+                  sx={{
+                    color: loginDetailsErr.password ? "error.main" : "primary.main",
+                  }}
+                />
+              ) : (
+                <Visibility
+                  sx={{
+                    color: loginDetailsErr.password ? "error.main" : "primary.main",
+                  }}
+                />
+              )}
+            </IconButton>
+          </Box>
+          <Typography sx={{ textAlign: "end", cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/forgot-password")}>
+            Forgot password?
           </Typography>
+          <Button type="submit" fullWidth variant="contained" color="primary">
+            Log In
+          </Button>
         </Box>
-
-        {/* Log In Button */}
-        <Button type="submit" fullWidth variant="contained" color="primary" sx={{ mt: 2, mb: 2 }}>
-          LogIn
-        </Button>
       </form>
-
-      {/* Divider with Or */}
-      <Divider sx={{ width: "100%", mb: 2 }}>
-        <Typography variant="body2" color="primary.main">
+      <Divider>
+        <Typography variant="body1" color="primary.main">
           Or, Login with
         </Typography>
       </Divider>
-
-      {/* Google Login Button */}
-      <Button fullWidth variant="outlined" startIcon={<GoogleIcon />} sx={{ mb: 2 }}>
+      <Button fullWidth variant="outlined" startIcon={<GoogleIcon />}>
         Sign in with Google
       </Button>
-
-      {/* Register Link */}
-      <Typography variant="body2" sx={{ mt: 2, display: "flex", gap: 1 }}>
+      <Typography>
         Don’t have an account?
-        <Typography variant="body2" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/registration")}>
+        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={() => navigate("/user/auth/registration")}>
           Register here
         </Typography>
       </Typography>
-    </Box>
+    </AuthLayout>
   );
 };
 

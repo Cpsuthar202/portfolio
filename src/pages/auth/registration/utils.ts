@@ -14,11 +14,20 @@ export const validateFields = (data: IRegistrationSchema) => {
   }
 
   // Email validation
-  if (!data?.email) {
-    err.email = "Email is required";
+  // if (!data?.email) {
+  //   err.email = "Email is required";
+  //   isValid = false;
+  // } else if (!emailRegex.test(data.email ?? "")) {
+  //   err.email = "Please enter a valid email";
+  //   isValid = false;
+  // }
+
+  // phone number validation
+  if (!data?.phone_number) {
+    err.phone_number = "Number is required";
     isValid = false;
-  } else if (!emailRegex.test(data.email ?? "")) {
-    err.email = "Please enter a valid email";
+  } else if (data.phone_number.length < 10) {
+    err.phone_number = "Please enter a valid Number";
     isValid = false;
   }
 
