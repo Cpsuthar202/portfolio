@@ -1,58 +1,87 @@
 import { ILoginResponse } from "@/store/reducers/auth/type";
 import { setLocalAuth } from "@/utils/localStorage";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-const validateFields = (otp: string): { isValid: boolean; err: { otp?: string } } => {
-  const err: { otp?: string } = {};
-  let isValid = true;
-
-  if (!otp || otp.length < 6) {
-    err.otp = "OTP is required and should be 6 characters long";
-    isValid = false;
-  }
-
-  return { isValid, err };
-};
+import { validateOtp, validatePassword } from "../validateFields";
+// import { validatePassword } from "../login/utils";
 
 const useOtp = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const userdata = location.state.registrationDetails;
+  const userdata = location.state.userdata;
+  const actiontype = location.state.action;
+  const otpTime = 5 as number;
+  console.log({ actiontype, userdata });
 
   const RegistrationToken: ILoginResponse = { user: userdata, token: "qwertyuiopasdfghjklzxcvbnm" };
+  const [validationData, setValidationData] = useState<{ otp: string; password?: string }>({ otp: "", password: "" });
+  const [validationDataErr, setValidationDataErr] = useState<{ otp?: string; password?: string }>({});
+  const [timer, setTimer] = useState<number>(otpTime);
+  const [runInterval, setRunInterval] = useState<boolean>(true);
 
-  const [otp, setOtp] = useState<string>("");
-  const [otpErr, setOtpErr] = useState<string>("");
-  const handleChangeOtp = (e: ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if (runInterval && timer > 0) {
+      const interval = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [runInterval, timer]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "otp" && value.length > 6) {
       return; // Prevent exceeding 6 digits
     }
     console.log({ name, value });
-    setOtp(value);
-    setOtpErr("");
+    setValidationData((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+    setValidationDataErr((prevErr) => ({ ...prevErr, [name]: "" }));
   };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { isValid, err } = validateFields(otp);
-    console.log({ isValid, err });
 
-    if (isValid) {
-      setLocalAuth(RegistrationToken);
-      navigate("/user", { replace: true });
-    } else {
-      setOtpErr(err.otp ?? "");
+    const otpValidation = validateOtp(validationData.otp);
+
+    if (!otpValidation.isValid) {
+      setValidationDataErr((prev) => ({ ...prev, otp: otpValidation.err.otp ?? "" }));
+      return;
     }
+
+    if (actiontype === "forgetpassword") {
+      const passwordValidation = validatePassword(validationData.password ?? "");
+
+      if (!passwordValidation.isValid) {
+        setValidationDataErr((prev) => ({ ...prev, password: passwordValidation.err.password ?? "" }));
+        return;
+      }
+    }
+
+    // Successful validation
+    setLocalAuth(RegistrationToken);
+    navigate("/user", { replace: true });
+  };
+
+  const handleResendOtp = async () => {
+    setTimer(otpTime);
+    setRunInterval(true);
   };
 
   return {
     veriabls: {
-      otp,
-      otpErr,
+      validationData,
+      validationDataErr,
       userdata,
+      actiontype,
+      timer,
     },
-    methods: { handleChangeOtp, handleSubmit },
+    methods: { handleChange, handleSubmit, handleResendOtp },
   };
 };
 export { useOtp };

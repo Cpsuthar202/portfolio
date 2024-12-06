@@ -3,12 +3,14 @@ import { setLocalAuth } from "@/utils/localStorage";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { validateFields } from "./utils";
+import { validateNumber } from "../validateFields";
 
 const useLogin = () => {
   const navigate = useNavigate();
   const [loginDetails, setLoginDetails] = useState<ILoginSchema>({ email: "", phone_number: "", password: "" });
   const [loginDetailsErr, setLoginDetailsErr] = useState<ILoginSchemaErr>({});
   const loginToken: ILoginResponse = { user: loginDetails, token: "qwertyuiopasdfghjklzxcvbnm" };
+  console.log("loginDetailsErr", loginDetailsErr);
 
   const handleLoginDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,7 +28,7 @@ const useLogin = () => {
     e.preventDefault();
 
     const validation = validateFields(loginDetails);
-    console.log({ validation });
+    console.log("login", validation.err);
 
     if (validation.isValid) {
       setLocalAuth(loginToken);
@@ -35,10 +37,23 @@ const useLogin = () => {
       setLoginDetailsErr(validation.err);
     }
   };
+  const handleForgotPassword = async () => {
+    console.log("iuytrewazxc");
+
+    const validation = validateNumber(loginDetails.phone_number);
+    console.log("handleForgotPassword", validation);
+    if (validation.isValid) {
+      navigate("/user/auth/verify_otp", {
+        state: { userdata: loginDetails, action: "forgetpassword" },
+      });
+    } else {
+      setLoginDetailsErr(validation.err);
+    }
+  };
 
   return {
     veriabls: { loginDetails, loginDetailsErr },
-    methods: { handleLoginDetailsChange, handleSubmit },
+    methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword },
   };
 };
 

@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const {
     veriabls: { loginDetails, loginDetailsErr },
-    methods: { handleLoginDetailsChange, handleSubmit },
+    methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword },
   } = useLogin();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
               variant="standard"
               fullWidth
               type={showPassword ? "text" : "password"}
-              label="PassWord"
+              label="Password"
               name="password"
               value={loginDetails.password}
               onChange={handleLoginDetailsChange}
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
               )}
             </IconButton>
           </Box>
-          <Typography sx={{ textAlign: "end", cursor: "pointer", color: "primary.main" }} onClick={() => navigate("/user/auth/forgot-password")}>
+          <Typography sx={{ textAlign: "end", cursor: "pointer", color: "primary.main" }} onClick={handleForgotPassword}>
             Forgot password?
           </Typography>
           <Button type="submit" fullWidth variant="contained" color="primary">

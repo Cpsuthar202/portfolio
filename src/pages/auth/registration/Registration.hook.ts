@@ -27,7 +27,7 @@ const UseRegistration = () => {
     if (validation.isValid) {
       console.log({ registrationDetails });
       navigate("/user/auth/verify_otp", {
-        state: { registrationDetails },
+        state: { userdata: registrationDetails, action: "registration" },
       });
     } else {
       setRegistrationDetailsErr(validation.err);
