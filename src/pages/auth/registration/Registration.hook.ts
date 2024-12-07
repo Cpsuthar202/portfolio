@@ -1,10 +1,15 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { ILoginSchemaErr, IRegistrationSchema } from "@/store/reducers/auth/type";
 import { useNavigate } from "react-router-dom";
 import { validateFields } from "./utils";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setRegisterDetailPreserve } from "@/store/reducers/auth/authSlice";
 
 const UseRegistration = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { registerDetailPreserve } = useAppSelector((state) => state.auth);
+
   const [registrationDetails, setRegistrationDetails] = useState<IRegistrationSchema>({ full_name: "", phone_number: "", password: "" });
   const [registrationDetailsErr, setRegistrationDetailsErr] = useState<ILoginSchemaErr>({});
 
@@ -22,7 +27,7 @@ const UseRegistration = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //
+    dispatch(setRegisterDetailPreserve(registrationDetails));
     const validation = validateFields(registrationDetails);
     if (validation.isValid) {
       console.log({ registrationDetails });
@@ -33,9 +38,23 @@ const UseRegistration = () => {
       setRegistrationDetailsErr(validation.err);
     }
   };
+
+  const handleLogin = async () => {
+    dispatch(setRegisterDetailPreserve(registrationDetails));
+    navigate("/user/auth/login");
+  };
+
+  useEffect(() => {
+    if (registerDetailPreserve) {
+      setRegistrationDetails(registerDetailPreserve);
+    } else {
+      console.log("No preserved login.");
+    }
+  }, [registerDetailPreserve]);
+
   return {
     veriabls: { registrationDetails, registrationDetailsErr },
-    methods: { handleRegistrationDetailsChange, handleSubmit },
+    methods: { handleRegistrationDetailsChange, handleSubmit, handleLogin },
   };
 };
 

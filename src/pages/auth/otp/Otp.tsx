@@ -19,6 +19,7 @@ const Otp = () => {
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
+            autoFocus
             variant="standard"
             label="Otp"
             name="otp"
@@ -68,7 +69,7 @@ const Otp = () => {
               </Button>
             ) : (
               <Typography variant="body1" sx={{}}>
-                {timer > 0 && `${timer} sec`}
+                Resend OTP in {timer > 0 && `${timer} sec`}
               </Typography>
             )}
           </Box>

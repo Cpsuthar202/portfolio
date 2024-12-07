@@ -1,5 +1,12 @@
+export interface IAuthSliceInitialState {
+  isLoading: boolean;
+  data: ILoginResponse | null;
+  isError: boolean;
+  isLoadingUser: boolean;
+  loginDetailPreserve: ILoginSchema | null;
+  registerDetailPreserve: IRegistrationSchema | null;
+}
 export interface ILoginSchema {
-  email: string;
   password: string;
   phone_number: string;
 }
@@ -8,6 +15,7 @@ export interface ILoginSchemaErr {
   phone_number?: string;
   password?: string;
 }
+
 export interface IRegistrationSchema {
   full_name: string;
   phone_number: string;

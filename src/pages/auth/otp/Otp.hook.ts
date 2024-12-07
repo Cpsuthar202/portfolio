@@ -3,15 +3,17 @@ import { setLocalAuth } from "@/utils/localStorage";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { validateOtp, validatePassword } from "../validateFields";
+import { setLoginDetailPreserve } from "@/store/reducers/auth/authSlice";
+import { useAppDispatch } from "@/store/store";
 // import { validatePassword } from "../login/utils";
 
 const useOtp = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useAppDispatch();
   const userdata = location.state.userdata;
   const actiontype = location.state.action;
   const otpTime = 5 as number;
-  console.log({ actiontype, userdata });
 
   const RegistrationToken: ILoginResponse = { user: userdata, token: "qwertyuiopasdfghjklzxcvbnm" };
   const [validationData, setValidationData] = useState<{ otp: string; password?: string }>({ otp: "", password: "" });
@@ -66,6 +68,7 @@ const useOtp = () => {
     // Successful validation
     setLocalAuth(RegistrationToken);
     navigate("/user", { replace: true });
+    dispatch(setLoginDetailPreserve(null));
   };
 
   const handleResendOtp = async () => {

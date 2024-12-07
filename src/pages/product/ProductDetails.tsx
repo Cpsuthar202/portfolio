@@ -9,8 +9,8 @@ import { mColor } from "@color";
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
-    variables: { product, stectImage, quantity, maxQuantity, isSmallScreen, ratingsData },
-    methods: { setStectImage, handleIncrement, handleDecrement, navigate },
+    variables: { product, selectImage, setselectImage, quantity, maxQuantity, isSmallScreen, ratingsData },
+    methods: { handleIncrement, handleDecrement, navigate },
   } = useProduct();
 
   return (
@@ -20,7 +20,7 @@ const ProductDetails = () => {
         <Grid item xs={12} md={6} sx={{ display: "grid", placeItems: "center" }}>
           {/* Main Product Image */}
           <Box sx={{ width: isSmallScreen ? "100%" : "70%", display: "grid", placeItems: "center", position: "relative" }}>
-            <Image src={stectImage} alt="image" style={{ width: "100%", borderRadius: 10 }} />
+            <Image src={selectImage} alt="image" style={{ width: "100%", borderRadius: 10 }} />
             {/* Sold Out Labels */}
             {product?.stock === 0 && <Chip label="Sold Out" color="error" size="small" sx={{ borderRadius: "5px ", position: "absolute", top: 0, right: 0 }} />}
 
@@ -28,7 +28,7 @@ const ProductDetails = () => {
             {product?.images && product.images.length >= 2 && (
               <Box sx={{ display: "flex", overflowX: "auto", width: "100%" }}>
                 {product.images.map((i) => (
-                  <Image key={i} src={i} alt="image" style={{ height: isSmallScreen ? 50 : 100, margin: 8, borderRadius: 10 }} onClick={() => setStectImage(i)} />
+                  <Image key={i} src={i} alt="image" style={{ height: isSmallScreen ? 50 : 100, margin: 8, borderRadius: 10 }} onClick={() => setselectImage(i)} />
                 ))}
               </Box>
             )}
@@ -75,7 +75,7 @@ const ProductDetails = () => {
 
             {/* Available Colors */}
             <Box>
-              <Typography variant="subtitle2">Colors:</Typography>
+              <Typography variant="subtitle2">Colors</Typography>
               {product?.colors && (
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
                   {product.colors.map((color, index) => (
@@ -91,15 +91,17 @@ const ProductDetails = () => {
                         justifyContent: "center",
                         alignItems: "center",
                         gap: "9px",
+                        cursor: "pointer",
                       }}
+                      onClick={() => setselectImage(color.image)}
                     >
                       {color.image ? (
-                        <Image src={color.image} alt="image" style={{ height: "50px", borderRadius: 10, border: 1 }} onClick={() => setStectImage(color.image)} />
+                        <Image src={color.image} alt="image" style={{ height: "50px", borderRadius: 10, border: 1, cursor: "pointer" }} />
                       ) : (
                         <Box key={color.code} sx={{ width: "20px", height: "20px", bgcolor: color.code, borderRadius: "10%" }} />
                       )}
 
-                      <Typography variant="body1">{color.label}</Typography>
+                      {/* <Typography variant="body1">{color.label}</Typography> */}
                     </Box>
                   ))}
                 </Stack>
@@ -138,6 +140,10 @@ const ProductDetails = () => {
                   </IconButton>
                 </Stack>
               )}
+
+              <Button variant="outlined" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0}>
+                Add to cart
+              </Button>
 
               {/* Buy Now Button */}
               <Button variant="contained" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0}>

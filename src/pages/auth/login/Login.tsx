@@ -1,16 +1,14 @@
 import React from "react";
 import { TextField, Button, Typography, Divider, Box, IconButton } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useNavigate } from "react-router-dom";
 import { useLogin } from "./Login.hook";
 import AuthLayout from "../utility/AuthLayout";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Login: React.FC = () => {
-  const navigate = useNavigate();
   const {
     veriabls: { loginDetails, loginDetailsErr },
-    methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword },
+    methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword, handleRegistration },
   } = useLogin();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -21,19 +19,10 @@ const Login: React.FC = () => {
     <AuthLayout title="Log in to E-Commerce" subtitle="Enter your details below">
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {/* <TextField
-            variant="standard"
-            fullWidth
-            label="Email Address"
-            name="email"
-            value={loginDetails.email}
-            onChange={handleLoginDetailsChange}
-            error={!!loginDetailsErr.email}
-            helperText={loginDetailsErr.email}
-          /> */}
           <TextField
             variant="standard"
             fullWidth
+            autoFocus
             label="Phone Number"
             name="phone_number"
             type="number"
@@ -88,7 +77,7 @@ const Login: React.FC = () => {
       </Button>
       <Typography>
         Don’t have an account?
-        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={() => navigate("/user/auth/registration")}>
+        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={handleRegistration}>
           Register here
         </Typography>
       </Typography>

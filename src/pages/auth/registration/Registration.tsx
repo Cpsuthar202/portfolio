@@ -1,16 +1,14 @@
 import React from "react";
 import { TextField, Button, Checkbox, FormControlLabel, Typography, Divider, Box } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useNavigate } from "react-router-dom";
 import { UseRegistration } from "./Registration.hook";
 import AuthLayout from "../utility/AuthLayout";
 import PasswordField from "../utility/PasswordField";
 
 const Registration: React.FC = () => {
-  const navigate = useNavigate();
   const {
     veriabls: { registrationDetails, registrationDetailsErr },
-    methods: { handleRegistrationDetailsChange, handleSubmit },
+    methods: { handleRegistrationDetailsChange, handleSubmit, handleLogin },
   } = UseRegistration();
 
   return (
@@ -18,6 +16,7 @@ const Registration: React.FC = () => {
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
+            autoFocus
             variant="standard"
             fullWidth
             label="Full Name"
@@ -27,16 +26,7 @@ const Registration: React.FC = () => {
             error={!!registrationDetailsErr.full_name}
             helperText={registrationDetailsErr.full_name}
           />
-          {/* <TextField
-            variant="standard"
-            fullWidth
-            label="Email Address"
-            name="email"
-            value={registrationDetails.email}
-            onChange={handleRegistrationDetailsChange}
-            error={!!registrationDetailsErr.email}
-            helperText={registrationDetailsErr.email}
-          /> */}
+
           <TextField
             variant="standard"
             fullWidth
@@ -70,7 +60,7 @@ const Registration: React.FC = () => {
       </Button>
       <Typography>
         Already have an account?
-        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={() => navigate("/user/auth/login")}>
+        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={handleLogin}>
           Log in here
         </Typography>
       </Typography>

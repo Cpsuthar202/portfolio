@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import topReducer from "./reducers/topBar/topBarSlice";
+import authReducer from "./reducers/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     topbar: topReducer,
   },
 });

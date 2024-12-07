@@ -11,15 +11,14 @@ const useProduct = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
-  const { searchTitle } = useAppSelector((state) => state.topbar);
+
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
+  // Productlist
+  const { searchTitle } = useAppSelector((state) => state.topbar);
   const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
-  // const [searchTerm, setSearchTerm] = useState("");
-
   useEffect(() => {
     let FilteredProducts = productData;
-
     if (label === "categorie") {
       FilteredProducts = productData.filter((product) => product.categories.id === id);
     } else if (label === "brand") {
@@ -36,11 +35,19 @@ const useProduct = () => {
     setFilteredProducts(FilteredProducts);
   }, [label, id, searchTitle]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(setSearchTitle(""));
+    };
+  }, []);
+
+  // ProductDetails
   const product = productData.find((e) => e.id === product_id);
 
   const maxQuantity = product?.stock || 0;
+  // const [productColor, setProductColor] = useState<Color>(product?.colors[0]);
 
-  const [stectImage, setStectImage] = useState<string | undefined>(product?.images[0]);
+  const [selectImage, setselectImage] = useState<string | undefined>("");
   const [quantity, setQuantity] = useState<number>(1);
 
   const handleIncrement = () => {
@@ -62,16 +69,11 @@ const useProduct = () => {
     { rating: "1 Start", count: product?.ratings?.rat_1 || 0, color: "#F44336" },
   ];
 
-  useEffect(() => {
-    return () => {
-      dispatch(setSearchTitle(""));
-    };
-  }, []);
-
   return {
     variables: {
       product,
-      stectImage,
+      selectImage,
+      setselectImage,
       quantity,
       maxQuantity,
       isSmallScreen,
@@ -80,7 +82,6 @@ const useProduct = () => {
       filteredProducts,
     },
     methods: {
-      setStectImage,
       handleIncrement,
       handleDecrement,
       navigate,

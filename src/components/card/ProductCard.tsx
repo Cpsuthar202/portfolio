@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, IconButton, Box, Stack, Chip } from "@mui/material";
+import { Typography, IconButton, Box, Stack, Chip, Button } from "@mui/material";
 import { FavoriteBorder, Share } from "@mui/icons-material";
 import { Iproduct } from "@/data/product";
 import Image from "../image/Image";
@@ -27,8 +27,13 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
       }}
     >
       <Box sx={{ position: "relative", p: 1 }}>
-        <Image src={data.images[0]} alt={data.title} style={{ width: "100%", height: "200px", borderRadius: 2, opacity: data.stock === 0 ? 0.6 : 1 }} />
         {/* Product Image */}
+        <Image
+          src={data.images[0]}
+          alt={data.title}
+          style={{ width: "100%", height: "200px", borderRadius: 2, opacity: data.stock === 0 ? 0.6 : 1 }}
+          onClick={() => navigate(`/product_details/${data.id}`)}
+        />
         {/* Favorite and Share Icons */}
         <Box sx={{ position: "absolute", display: "flex", flexDirection: "column", top: 10, right: 10 }}>
           <IconButton aria-label="favorite" size="small">
@@ -72,9 +77,8 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
           </Typography>
         )} */}
       </Box>
-
       {/* Product Details */}
-      <Box sx={{ p: 2, bgcolor: "secondary.main", cursor: "pointer", height: "100%" }} onClick={() => navigate(`/product_details/${data.id}`)}>
+      <Box sx={{ p: 2, bgcolor: "secondary.main", height: "100%" }}>
         {/* Title */}
         <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
           {trimTextToWordLimit(data.title, 40)}
@@ -99,6 +103,9 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
             </>
           )}
         </Stack>
+        <Button variant="outlined" color="primary" fullWidth>
+          Add to cart
+        </Button>
       </Box>
     </Box>
   );

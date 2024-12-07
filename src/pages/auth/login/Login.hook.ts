@@ -1,16 +1,20 @@
 import { ILoginSchema, ILoginSchemaErr, ILoginResponse } from "@/store/reducers/auth/type";
 import { setLocalAuth } from "@/utils/localStorage";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { validateFields } from "./utils";
 import { validateNumber } from "../validateFields";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { setLoginDetailPreserve } from "@/store/reducers/auth/authSlice";
 
 const useLogin = () => {
   const navigate = useNavigate();
-  const [loginDetails, setLoginDetails] = useState<ILoginSchema>({ email: "", phone_number: "", password: "" });
+  const dispatch = useAppDispatch();
+  const { loginDetailPreserve } = useAppSelector((state) => state.auth);
+
+  const [loginDetails, setLoginDetails] = useState<ILoginSchema>({ phone_number: "", password: "" });
   const [loginDetailsErr, setLoginDetailsErr] = useState<ILoginSchemaErr>({});
   const loginToken: ILoginResponse = { user: loginDetails, token: "qwertyuiopasdfghjklzxcvbnm" };
-  console.log("loginDetailsErr", loginDetailsErr);
 
   const handleLoginDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,22 +30,20 @@ const useLogin = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    dispatch(setLoginDetailPreserve(loginDetails));
     const validation = validateFields(loginDetails);
-    console.log("login", validation.err);
 
     if (validation.isValid) {
       setLocalAuth(loginToken);
       navigate("/user", { replace: true });
+      dispatch(setLoginDetailPreserve(null));
     } else {
       setLoginDetailsErr(validation.err);
     }
   };
   const handleForgotPassword = async () => {
-    console.log("iuytrewazxc");
-
+    dispatch(setLoginDetailPreserve(loginDetails));
     const validation = validateNumber(loginDetails.phone_number);
-    console.log("handleForgotPassword", validation);
     if (validation.isValid) {
       navigate("/user/auth/verify_otp", {
         state: { userdata: loginDetails, action: "forgetpassword" },
@@ -50,10 +52,20 @@ const useLogin = () => {
       setLoginDetailsErr(validation.err);
     }
   };
-
+  const handleRegistration = async () => {
+    dispatch(setLoginDetailPreserve(loginDetails));
+    navigate("/user/auth/registration");
+  };
+  useEffect(() => {
+    if (loginDetailPreserve) {
+      setLoginDetails(loginDetailPreserve);
+    } else {
+      console.log("No preserved login.");
+    }
+  }, [loginDetailPreserve]);
   return {
     veriabls: { loginDetails, loginDetailsErr },
-    methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword },
+    methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword, handleRegistration },
   };
 };
 

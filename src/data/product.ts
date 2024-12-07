@@ -29,7 +29,7 @@ export interface Iproduct {
   stock: number;
 }
 
-interface Color {
+export interface Color {
   label: string;
   code: string;
   image?: string;
@@ -132,8 +132,8 @@ export const productData: Iproduct[] = [
       rat_1: 40,
     },
     colors: [
-      { label: "Wandering Black", code: "#000000" },
-      { label: "Stone Grey", code: "#928E85", image: "https://m.media-amazon.com/images/I/81cOiHmMWaL._SX679_.jpg" },
+      // { label: "Wandering Black", code: "#000000" },
+      { label: "Stone Grey", code: "#928E85", image: "https://m.media-amazon.com/images/I/713qhVzJF-L._SX679_.jpg" },
       { label: "Steely Grey", code: "#71797E", image: "https://m.media-amazon.com/images/I/819ncSF8QqL._SX679_.jpg" },
       { label: "Rustic Olive", code: "#438759", image: "https://m.media-amazon.com/images/I/81W0g1G3n5L._SX679_.jpg" },
       { label: "Rustic Olive", code: "#438759", image: "https://m.media-amazon.com/images/I/81W0g1G3n5L._SX679_.jpg" },
