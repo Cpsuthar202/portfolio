@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, IconButton, Box, Stack, Chip, Button } from "@mui/material";
+import { Typography, IconButton, Box, Stack, Chip } from "@mui/material";
 import { FavoriteBorder, Share } from "@mui/icons-material";
 import { Iproduct } from "@/data/product";
 import Image from "../image/Image";
@@ -103,9 +103,9 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
             </>
           )}
         </Stack>
-        <Button variant="outlined" color="primary" fullWidth>
+        {/* <Button variant="outlined" color="primary" fullWidth>
           Add to cart
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );

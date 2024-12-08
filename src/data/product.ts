@@ -74,7 +74,7 @@ export const productData: Iproduct[] = [
       { label: "Pure White", code: " #FFFFFF", image: "https://m.media-amazon.com/images/I/61+62pfcajL._SX522_.jpg" },
       { label: " Thunder Blue", code: "#4E5D73", image: "https://m.media-amazon.com/images/I/71XWviFA49L._SX522_.jpg" },
     ],
-    sizes: ["standard"],
+    sizes: ["standard", "s", "m", "l", "xl", "xxl"],
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
     store: {
@@ -216,7 +216,7 @@ export const productData: Iproduct[] = [
     },
     colors: [
       { label: "Black", code: "#000000", image: "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg" },
-      { label: "Cider Cyan", code: "#00FFFF", image: "https://m.media-amazon.com/images/I/71oXzCK43NL._SX522_.jpgg" },
+      // { label: "Cider Cyan", code: "#00FFFF", image: "https://m.media-amazon.com/images/I/71oXzCK43NL._SX522_.jpgg" },
       { label: "Olive Green", code: "#808000", image: "https://m.media-amazon.com/images/I/71i6-yYY1IL._SX522_.jpg" },
       { label: "Pure White", code: " #FFFFFF", image: "https://m.media-amazon.com/images/I/61+62pfcajL._SX522_.jpg" },
       { label: " Thunder Blue", code: "#4E5D73", image: "https://m.media-amazon.com/images/I/71XWviFA49L._SX522_.jpg" },

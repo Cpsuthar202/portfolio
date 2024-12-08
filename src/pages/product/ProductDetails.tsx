@@ -9,8 +9,8 @@ import { mColor } from "@color";
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
-    variables: { product, selectImage, setselectImage, quantity, maxQuantity, isSmallScreen, ratingsData },
-    methods: { handleIncrement, handleDecrement, navigate },
+    variables: { product, selectImage, setselectImage, quantity, maxQuantity, isSmallScreen, ratingsData, cardProduct, setcardproduct },
+    methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy },
   } = useProduct();
 
   return (
@@ -75,15 +75,15 @@ const ProductDetails = () => {
 
             {/* Available Colors */}
             <Box>
-              <Typography variant="subtitle2">Colors</Typography>
+              <Typography variant="subtitle2">Colors: {cardProduct?.color?.label}</Typography>
               {product?.colors && (
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
                   {product.colors.map((color, index) => (
-                    <Box
+                    <Button
                       key={index}
                       sx={{
-                        border: 1,
-                        borderColor: "secondary.main",
+                        border: cardProduct?.color?.image === color.image ? 1 : 0,
+                        borderColor: "primary.main",
                         borderRadius: "10px",
                         p: 1,
                         display: "flex",
@@ -93,16 +93,17 @@ const ProductDetails = () => {
                         gap: "9px",
                         cursor: "pointer",
                       }}
-                      onClick={() => setselectImage(color.image)}
+                      onClick={() => {
+                        setselectImage(color.image);
+                        setcardproduct({ ...cardProduct, color: color });
+                      }}
                     >
                       {color.image ? (
                         <Image src={color.image} alt="image" style={{ height: "50px", borderRadius: 10, border: 1, cursor: "pointer" }} />
                       ) : (
                         <Box key={color.code} sx={{ width: "20px", height: "20px", bgcolor: color.code, borderRadius: "10%" }} />
                       )}
-
-                      {/* <Typography variant="body1">{color.label}</Typography> */}
-                    </Box>
+                    </Button>
                   ))}
                 </Stack>
               )}
@@ -111,10 +112,10 @@ const ProductDetails = () => {
             {/* Available Sizes */}
             {product?.sizes && (
               <>
-                <Typography variant="subtitle2">Size:</Typography>
-                <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto" }}>
+                <Typography variant="subtitle2">Size</Typography>
+                <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
                   {product.sizes.map((size, index) => (
-                    <Button key={index} variant="text" sx={{ px: 3, width: "fit-content" }}>
+                    <Button key={index} variant={cardProduct.size === size ? "outlined" : "text"} sx={{ px: 3, width: "fit-content" }} onClick={() => setcardproduct({ ...cardProduct, size: size })}>
                       {size}
                     </Button>
                   ))}
@@ -141,12 +142,12 @@ const ProductDetails = () => {
                 </Stack>
               )}
 
-              <Button variant="outlined" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0}>
+              <Button variant="outlined" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0} onClick={handleToCart}>
                 Add to cart
               </Button>
 
               {/* Buy Now Button */}
-              <Button variant="contained" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0}>
+              <Button variant="contained" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0} onClick={handleToBuy}>
                 {product?.stock === 0 ? " Sold Out" : "Buy Now"}
               </Button>
               {/* Add to Wishlist */}

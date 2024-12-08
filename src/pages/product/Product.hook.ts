@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Iproduct, productData } from "@/data/product";
+import { Color, Iproduct, productData } from "@/data/product";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { RatingDistribution } from "./utils";
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -43,23 +43,36 @@ const useProduct = () => {
 
   // ProductDetails
   const product = productData.find((e) => e.id === product_id);
-
-  const maxQuantity = product?.stock || 0;
-  // const [productColor, setProductColor] = useState<Color>(product?.colors[0]);
-
-  const [selectImage, setselectImage] = useState<string | undefined>("");
   const [quantity, setQuantity] = useState<number>(1);
+  const maxQuantity = product?.stock || 0;
+  const [cardProduct, setcardproduct] = useState<{ product_id: string | undefined; size: string | undefined; color: Color | undefined; quantity: number }>({
+    product_id: product?.id,
+    size: product?.sizes?.[0],
+    color: product?.colors?.[0],
+    quantity: quantity,
+  });
+
+  const [selectImage, setselectImage] = useState<string | undefined>(product?.images[0]);
 
   const handleIncrement = () => {
     if (quantity < maxQuantity) {
       setQuantity(quantity + 1);
+      setcardproduct({ ...cardProduct, quantity: quantity + 1 });
     }
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      setcardproduct({ ...cardProduct, quantity: quantity - 1 });
     }
+  };
+
+  const handleToCart = () => {
+    console.log("handleToCart", cardProduct);
+  };
+  const handleToBuy = () => {
+    console.log("handleToBuy", cardProduct);
   };
   const ratingsData: RatingDistribution[] = [
     { rating: "5 Start", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },
@@ -80,11 +93,15 @@ const useProduct = () => {
       ratingsData,
       searchTitle,
       filteredProducts,
+      cardProduct,
+      setcardproduct,
     },
     methods: {
       handleIncrement,
       handleDecrement,
       navigate,
+      handleToBuy,
+      handleToCart,
     },
   };
 };
