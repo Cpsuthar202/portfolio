@@ -7,86 +7,112 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
 
 const useProduct = () => {
-  const { product_id, label, id } = useParams();
+  // Extract route parameters
+  const { product_id, label, id } = useParams<{ product_id: string; label: string; id: string }>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
 
+  // Media query to detect small screens
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Productlist
+  // Redux selector for the search title from the top bar
   const { searchTitle } = useAppSelector((state) => state.topbar);
+
+  // State to manage filtered product list
   const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
+
+  // Fetch the selected product details
+  const product = productData.find((e) => e.id === product_id);
+
+  // State to manage product quantity
+  const [quantity, setQuantity] = useState<number>(1);
+  const maxQuantity = product?.stock || 0;
+
+  // State to manage selected product details for cart
+  const [cardProduct, setCardProduct] = useState<{
+    product_id: string | undefined;
+    size: string | undefined;
+    color: Color | undefined;
+    quantity: number;
+  }>({
+    product_id: product?.id,
+    size: product?.sizes?.[0],
+    color: product?.colors?.[0],
+    quantity,
+  });
+
+  // State to manage the selected image of the product
+  const [selectImage, setSelectImage] = useState<string | undefined>(product?.images[0]);
+
+  // Rating distribution for the product
+  const ratingsData: RatingDistribution[] = [
+    { rating: "5 Star", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },
+    { rating: "4 Star", count: product?.ratings?.rat_4 || 0, color: "#8BC34A" },
+    { rating: "3 Star", count: product?.ratings?.rat_3 || 0, color: "#CDDC39" },
+    { rating: "2 Star", count: product?.ratings?.rat_2 || 0, color: "#FFC107" },
+    { rating: "1 Star", count: product?.ratings?.rat_1 || 0, color: "#F44336" },
+  ];
+
+  // Effect to filter products based on the route parameters and search title
   useEffect(() => {
-    let FilteredProducts = productData;
+    let filtered = productData;
+
+    // Filter based on label (categorie, brand, store)
     if (label === "categorie") {
-      FilteredProducts = productData.filter((product) => product.categories.id === id);
+      filtered = filtered.filter((product) => product.categories.id === id);
     } else if (label === "brand") {
-      FilteredProducts = productData.filter((product) => product.brands.id === id);
+      filtered = filtered.filter((product) => product.brands.id === id);
     } else if (label === "store") {
-      FilteredProducts = productData.filter((product) => product.store.id === id);
+      filtered = filtered.filter((product) => product.store.id === id);
     }
 
-    // Apply search filter
+    // Apply search title filter
     if (searchTitle) {
-      FilteredProducts = FilteredProducts.filter((product) => product.teg.some((tag) => tag.toLowerCase().includes(searchTitle.toLowerCase())));
+      filtered = filtered.filter((product) => product.teg.some((tag) => tag.toLowerCase().includes(searchTitle.toLowerCase())));
     }
 
-    setFilteredProducts(FilteredProducts);
+    setFilteredProducts(filtered);
   }, [label, id, searchTitle]);
 
+  // Effect to reset search title when the component unmounts
   useEffect(() => {
     return () => {
       dispatch(setSearchTitle(""));
     };
-  }, []);
+  }, [dispatch]);
 
-  // ProductDetails
-  const product = productData.find((e) => e.id === product_id);
-  const [quantity, setQuantity] = useState<number>(1);
-  const maxQuantity = product?.stock || 0;
-  const [cardProduct, setcardproduct] = useState<{ product_id: string | undefined; size: string | undefined; color: Color | undefined; quantity: number }>({
-    product_id: product?.id,
-    size: product?.sizes?.[0],
-    color: product?.colors?.[0],
-    quantity: quantity,
-  });
-
-  const [selectImage, setselectImage] = useState<string | undefined>(product?.images[0]);
-
+  // Increment product quantity
   const handleIncrement = () => {
     if (quantity < maxQuantity) {
-      setQuantity(quantity + 1);
-      setcardproduct({ ...cardProduct, quantity: quantity + 1 });
+      setQuantity((prev) => prev + 1);
+      setCardProduct({ ...cardProduct, quantity: quantity + 1 });
     }
   };
 
+  // Decrement product quantity
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
-      setcardproduct({ ...cardProduct, quantity: quantity - 1 });
+      setQuantity((prev) => prev - 1);
+      setCardProduct({ ...cardProduct, quantity: quantity - 1 });
     }
   };
 
+  // Handle adding product to cart
   const handleToCart = () => {
-    console.log("handleToCart", cardProduct);
+    console.log("Added to cart", cardProduct);
   };
+
+  // Handle buying product directly
   const handleToBuy = () => {
-    console.log("handleToBuy", cardProduct);
+    console.log("Purchased", cardProduct);
   };
-  const ratingsData: RatingDistribution[] = [
-    { rating: "5 Start", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },
-    { rating: "4 Start", count: product?.ratings?.rat_4 || 0, color: "#8BC34A" },
-    { rating: "3 Start", count: product?.ratings?.rat_3 || 0, color: "#CDDC39" },
-    { rating: "2 Start", count: product?.ratings?.rat_2 || 0, color: "#FFC107" },
-    { rating: "1 Start", count: product?.ratings?.rat_1 || 0, color: "#F44336" },
-  ];
 
   return {
     variables: {
       product,
       selectImage,
-      setselectImage,
+      setSelectImage,
       quantity,
       maxQuantity,
       isSmallScreen,
@@ -94,7 +120,7 @@ const useProduct = () => {
       searchTitle,
       filteredProducts,
       cardProduct,
-      setcardproduct,
+      setCardProduct,
     },
     methods: {
       handleIncrement,

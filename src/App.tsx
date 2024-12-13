@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import TopBar from "./components/topBar/TopBar";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import React, { Suspense, lazy } from "react";
+import { Toaster, ToastBar } from "react-hot-toast";
 
 const AuthRoutes = lazy(() => import("./routes/AuthRoutes"));
 const ProtectedRoutes = lazy(() => import("./routes/ProtectedRoutes"));
@@ -16,6 +17,21 @@ const App: React.FC<AppProps> = ({ toggleTheme }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
+      {/* <Toaster /> */}
+      <Toaster>
+        {(t) => (
+          <ToastBar toast={t}>
+            {({ icon, message }) => (
+              <>
+                {icon}
+                {message}
+                {/* {t.type !== "loading" && <button onClick={() => toast.dismiss(t.id)}>X</button>} */}
+              </>
+            )}
+          </ToastBar>
+        )}
+      </Toaster>
+
       <Box sx={{ overflow: "auto", height: isSmallScreen ? "95vh" : "100vh", border: 1 }}>
         <TopBar toggleTheme={toggleTheme} />
         <Suspense fallback={<div>Loading...</div>}>

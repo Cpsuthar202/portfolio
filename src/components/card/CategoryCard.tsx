@@ -40,7 +40,7 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
         }}
         onClick={onClick}
       >
-        <Button sx={{ width: "100%", borderRadius: 0 }}>Shop now</Button>
+        <Button sx={{ width: "100%", borderRadius: 0 }}>view</Button>
       </Box>
     </Box>
   );

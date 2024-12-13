@@ -59,9 +59,11 @@ const Login: React.FC = () => {
               )}
             </IconButton>
           </Box>
-          <Typography sx={{ textAlign: "end", cursor: "pointer", color: "primary.main" }} onClick={handleForgotPassword}>
-            Forgot password?
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "end", width: "100%" }}>
+            <Button variant="text" color="primary" sx={{ py: "1px" }} onClick={handleForgotPassword}>
+              Forgot password ?
+            </Button>
+          </Box>
           <Button type="submit" fullWidth variant="contained" color="primary">
             Log In
           </Button>

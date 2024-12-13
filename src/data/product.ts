@@ -69,7 +69,6 @@ export const productData: Iproduct[] = [
     },
     colors: [
       { label: "Black", code: "#000000", image: "https://m.media-amazon.com/images/I/71RFdy6y6LL._SX522_.jpg" },
-      { label: "Cider Cyan", code: "#00FFFF", image: "https://m.media-amazon.com/images/I/71oXzCK43NL._SX522_.jpgg" },
       { label: "Olive Green", code: "#808000", image: "https://m.media-amazon.com/images/I/71i6-yYY1IL._SX522_.jpg" },
       { label: "Pure White", code: " #FFFFFF", image: "https://m.media-amazon.com/images/I/61+62pfcajL._SX522_.jpg" },
       { label: " Thunder Blue", code: "#4E5D73", image: "https://m.media-amazon.com/images/I/71XWviFA49L._SX522_.jpg" },
@@ -88,7 +87,12 @@ export const productData: Iproduct[] = [
       "https://m.media-amazon.com/images/I/71QZbcvD65L._SX522_.jpg",
       "https://m.media-amazon.com/images/I/61vBE3t4x1L._SX522_.jpg",
       "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/61rM6cHlA1L._SX522_.jpg",
+
+      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
     ],
     teg: ["bosco", "phone"],
     features: [

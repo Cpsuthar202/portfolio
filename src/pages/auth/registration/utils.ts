@@ -5,7 +5,8 @@ export const validateFields = (data: IRegistrationSchema) => {
   const err: ILoginSchemaErr = {};
   let isValid = true;
 
-  // Validate phone number
+  // Validate full_name
+
   const nameValidation = validateName(data.full_name);
   if (!nameValidation.isValid) {
     isValid = false;

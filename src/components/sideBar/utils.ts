@@ -8,7 +8,7 @@ const sidebarMenuList: ITextButtonList[] = [
   {
     id: "profile",
     label: "Profile",
-    link: "/user/profile",
+    link: "/user/profile/information",
   },
   {
     id: "dashboard",

@@ -1,54 +1,26 @@
 import React from "react";
-import { Avatar, Box, Divider, Container, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Container, Typography, IconButton } from "@mui/material";
 import { Edit } from "@mui/icons-material";
-
-// interface Address {
-//   street: string;
-//   city: string;
-//   state: string;
-//   zip: string;
-//   country: string;
-// }
-
-// interface UserProfileProps {}
-
-const userData = {
-  profile_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTSKbCFe_QYSVH-4FpaszXvakr2Eti9eAJpQ&s",
-  name: "Chandra prakash suthar",
-  email: "jane.doe@example.com",
-  phone_number: "7023667323",
-  gender: "Male",
-  dob: "20-02-1999",
-};
+import { useProfile } from "./Profile.hook";
+import Displayaddress from "./utility/Displayaddress";
 
 const Profile: React.FC = () => {
-  // const [newPassword, setNewPassword] = useState("");
-  // const [addressData, setAddressData] = useState(userData.address);
-
-  // const handlePasswordChange = () => {
-  //   if (newPassword) {
-  //     alert("Password changed successfully!");
-  //     setNewPassword("");
-  //   } else {
-  //     alert("Please enter a new password.");
-  //   }
-  // };
-
-  // const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setAddressData((prev) => ({ ...prev, [name]: value }));
-  // };
+  const {
+    variables: { userData, defaultAddress },
+    methods: { handleAddress, handleUpdatePassword },
+  } = useProfile();
 
   return (
-    <Container sx={{ border: 1 }}>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+    <Container sx={{}}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-            Personal Information
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
+            Information
           </Typography>
-          <Edit />
+          <IconButton>
+            <Edit />
+          </IconButton>
         </Box>
-
         <Avatar src={userData.profile_url} alt="Owner" variant="rounded" sx={{ width: 70, height: 70 }} />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           {userData.name}
@@ -56,23 +28,77 @@ const Profile: React.FC = () => {
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Email Address
-          <Typography variant="subtitle2"> {userData.email}</Typography>
+          {userData.email ? (
+            <Typography variant="body1"> {userData.email}</Typography>
+          ) : (
+            <Typography variant="body1" color="error">
+              Add Email
+            </Typography>
+          )}
         </Typography>
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Mobile Number
-          <Typography variant="subtitle2"> {userData.phone_number}</Typography>
+          {userData.email ? (
+            <Typography variant="body1"> {userData.email}</Typography>
+          ) : (
+            <Typography variant="body1" color="error">
+              Add Email
+            </Typography>
+          )}
+          <Typography variant="body1"> {userData.phone_number}</Typography>
         </Typography>
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Gender
-          <Typography variant="subtitle2"> {userData.gender}</Typography>
+          {userData.email ? (
+            <Typography variant="body1"> {userData.email}</Typography>
+          ) : (
+            <Typography variant="body1" color="error">
+              Add Email
+            </Typography>
+          )}
+          <Typography variant="body1"> {userData.gender}</Typography>
         </Typography>
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Date of Birth
-          <Typography variant="subtitle2"> {userData.dob}</Typography>
+          {userData.email ? (
+            <Typography variant="body1"> {userData.email}</Typography>
+          ) : (
+            <Typography variant="body1" color="error">
+              Add Email
+            </Typography>
+          )}
+          <Typography variant="body1"> {userData.dob}</Typography>
         </Typography>
+        <Divider />
+
+        <Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+              Update Password
+            </Typography>
+            <IconButton onClick={handleUpdatePassword}>
+              <Edit />
+            </IconButton>
+          </Box>
+          <Typography variant="body1">******** </Typography>
+        </Box>
+        <Divider />
+
+        <Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+              Address
+            </Typography>
+            <IconButton onClick={handleAddress}>
+              <Edit />
+            </IconButton>
+          </Box>
+          <Displayaddress address={defaultAddress} />
+        </Box>
+
         <Divider />
       </Box>
     </Container>

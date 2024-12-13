@@ -6,6 +6,11 @@ import Wishlist from "@/pages/wishlist/Wishlist";
 import Profile from "@/pages/profile/Profile";
 import Order from "@/pages/order/Order";
 import Cart from "@/pages/cart/Cart";
+import ProfileWrraper from "./wrapper/ProfileWrraper";
+import Address from "@/pages/profile/Address";
+import Manageaddress from "@/pages/profile/Manageaddress";
+import Updatepassword from "@/pages/profile/Updatepassword";
+// import Updatepassword from "@/pages/profile/updatepassword";
 
 const ProtectedRoutes = () => {
   return (
@@ -14,7 +19,15 @@ const ProtectedRoutes = () => {
         {/* <Route index element={<Dashboard />} /> */}
         <Route index element={<Home />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfileWrraper />}>
+          <Route index element={<Navigate to="/profile/information" replace />} />
+          <Route path="information" element={<Profile />} />
+          <Route path="address" element={<Address />} />
+          <Route path="manage-address" element={<Manageaddress />} />
+
+          <Route path="update-password" element={<Updatepassword />} />
+        </Route>
+        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/order" element={<Order />} />
         <Route path="/cart" element={<Cart />} />
         {/* <Route path="/*" element={<NotFound />} /> */}

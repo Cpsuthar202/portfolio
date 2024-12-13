@@ -72,9 +72,23 @@ export const validateEmail = (email: string): { isValid: boolean; err: { email?:
 
 export const validateName = (full_name: string): { isValid: boolean; err: { full_name?: string } } => {
   const err: { full_name?: string } = {};
+
   let isValid = true;
   if (!full_name) {
-    err.full_name = "name is required";
+    err.full_name = "Name is required";
+    isValid = false;
+  }
+
+  return { isValid, err };
+};
+
+export const validatetext = (text: string): { isValid: boolean; err: { text?: string } } => {
+  const err: { text?: string } = {};
+  console.log("text", text);
+
+  let isValid = true;
+  if (!text) {
+    err.text = `${text} s is required`;
     isValid = false;
   }
 

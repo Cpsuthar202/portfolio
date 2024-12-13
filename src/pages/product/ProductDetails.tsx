@@ -9,7 +9,7 @@ import { mColor } from "@color";
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
-    variables: { product, selectImage, setselectImage, quantity, maxQuantity, isSmallScreen, ratingsData, cardProduct, setcardproduct },
+    variables: { product, selectImage, setSelectImage, quantity, maxQuantity, isSmallScreen, ratingsData, cardProduct, setCardProduct },
     methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy },
   } = useProduct();
 
@@ -26,10 +26,12 @@ const ProductDetails = () => {
 
             {/* Thumbnail Images */}
             {product?.images && product.images.length >= 2 && (
-              <Box sx={{ display: "flex", overflowX: "auto", width: "100%" }}>
-                {product.images.map((i) => (
-                  <Image key={i} src={i} alt="image" style={{ height: isSmallScreen ? 50 : 100, margin: 8, borderRadius: 10 }} onClick={() => setselectImage(i)} />
-                ))}
+              <Box sx={{ width: "100%", overflowX: "auto" }}>
+                <Box sx={{ display: "flex", width: "fit-content", m: "auto" }}>
+                  {product.images.map((image) => (
+                    <Image key={image} src={image} alt="image" style={{ height: isSmallScreen ? 50 : 70, margin: 8, borderRadius: 10 }} onClick={() => setSelectImage(image)} />
+                  ))}
+                </Box>
               </Box>
             )}
           </Box>
@@ -75,7 +77,9 @@ const ProductDetails = () => {
 
             {/* Available Colors */}
             <Box>
-              <Typography variant="subtitle2">Colors: {cardProduct?.color?.label}</Typography>
+              <Typography variant="subtitle2" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                Colors : <Typography variant="body1">{cardProduct?.color?.label}</Typography>
+              </Typography>
               {product?.colors && (
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
                   {product.colors.map((color, index) => (
@@ -94,8 +98,8 @@ const ProductDetails = () => {
                         cursor: "pointer",
                       }}
                       onClick={() => {
-                        setselectImage(color.image);
-                        setcardproduct({ ...cardProduct, color: color });
+                        setSelectImage(color.image);
+                        setCardProduct({ ...cardProduct, color: color });
                       }}
                     >
                       {color.image ? (
@@ -115,7 +119,7 @@ const ProductDetails = () => {
                 <Typography variant="subtitle2">Size</Typography>
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
                   {product.sizes.map((size, index) => (
-                    <Button key={index} variant={cardProduct.size === size ? "outlined" : "text"} sx={{ px: 3, width: "fit-content" }} onClick={() => setcardproduct({ ...cardProduct, size: size })}>
+                    <Button key={index} variant={cardProduct.size === size ? "outlined" : "text"} sx={{ px: 3, width: "fit-content" }} onClick={() => setCardProduct({ ...cardProduct, size: size })}>
                       {size}
                     </Button>
                   ))}
@@ -143,7 +147,7 @@ const ProductDetails = () => {
               )}
 
               <Button variant="outlined" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0} onClick={handleToCart}>
-                Add to cart
+                Add to Cart
               </Button>
 
               {/* Buy Now Button */}
