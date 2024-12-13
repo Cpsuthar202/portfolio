@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Ratings from "../ratings/Ratings";
 import { WebShare } from "../Container";
 import { mColor } from "@color";
+import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
 
 interface IProductCard {
   data: Iproduct;
@@ -16,6 +17,7 @@ interface IProductCard {
 
 export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => {
   const navigate = useNavigate();
+  const { isSmScreen } = useResponsiveScreens();
 
   return (
     <Box
@@ -24,6 +26,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
         overflow: "hidden",
         boxShadow: 1,
         height: "100%",
+        width: "100%",
       }}
     >
       <Box sx={{ position: "relative", p: 1 }}>
@@ -51,11 +54,11 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
             label={bastSellingNo ? `# ${data?.bestSelling_number}` : "Best Selling"}
             color="warning"
             size="small"
-            sx={{ borderRadius: "0 0 5px 0", position: "absolute", top: 0, left: 0, color: mColor.white }}
+            sx={{ borderRadius: "0 0 5px 0", position: "absolute", top: 0, left: 0, color: mColor.white, fontSize: isSmScreen ? "10px" : "13px" }}
             onClick={() => navigate("/best_selling")}
           />
         )}
-        {data.stock === 0 && <Chip label="Sold Out" color="error" size="small" sx={{ borderRadius: "0 5px 0 0", position: "absolute", bottom: 0, left: 0 }} />}
+        {data.stock === 0 && <Chip label="Sold Out" color="error" size="small" sx={{ borderRadius: "0 5px 0 0", position: "absolute", bottom: 0, left: 0, fontSize: isSmScreen ? "10px" : "13px" }} />}
         {/* Sold Out Diagonal Label */}
         {/* {data.stock != 0 && (
           <Typography
@@ -78,7 +81,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
         )} */}
       </Box>
       {/* Product Details */}
-      <Box sx={{ p: 2, bgcolor: "secondary.main", height: "100%" }}>
+      <Box sx={{ p: 2, bgcolor: "secondary.main", height: "100%", cursor: "pointer" }} onClick={() => navigate(`/product_details/${data.id}`)}>
         {/* Title */}
         <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
           {trimTextToWordLimit(data.title, 40)}

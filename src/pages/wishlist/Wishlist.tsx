@@ -5,18 +5,17 @@ import { ProductCard } from "@/components/card";
 const Wishlist = () => {
   return (
     <Box>
-      <Typography variant="h6" sx={{ textAlign: "center" }}>
+      <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
         Your Wishlist
       </Typography>
-      <Box>
-        <Grid container>
-          {productData.map((p: Iproduct, index: number) => (
-            <Grid item key={index} lg={2} md={4} sm={6} xs={6} sx={{ p: 1 }}>
-              <ProductCard data={p} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+
+      <Grid container>
+        {productData.map((p: Iproduct, index: number) => (
+          <Grid item key={index} lg={2} md={4} sm={6} xs={6} sx={{ p: 1 }}>
+            <ProductCard data={p} />
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };

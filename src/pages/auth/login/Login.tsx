@@ -77,9 +77,9 @@ const Login: React.FC = () => {
       <Button fullWidth variant="outlined" startIcon={<GoogleIcon />}>
         Sign in with Google
       </Button>
-      <Typography>
+      <Typography variant="body1">
         Don’t have an account?
-        <Typography component="span" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={handleRegistration}>
+        <Typography component="span" variant="body1" sx={{ color: "primary.main", cursor: "pointer", ml: 1 }} onClick={handleRegistration}>
           Register here
         </Typography>
       </Typography>

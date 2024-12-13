@@ -11,7 +11,7 @@ const BestSelling: React.FC = () => {
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ textAlign: "center" }}>
+      <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
         Best Selling
       </Typography>
       <Grid container>

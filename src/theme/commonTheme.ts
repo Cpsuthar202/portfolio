@@ -127,7 +127,7 @@ export const commonTheme: ThemeOptions = {
       // letterSpacing: "0.03125em",
       // lineHeight: 1.5,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "10px",
+        fontSize: "13px",
       },
     },
     body2: {
@@ -136,7 +136,7 @@ export const commonTheme: ThemeOptions = {
       // letterSpacing: "0.01786em",
       // lineHeight: 1.43,
       [createTheme().breakpoints.down("md")]: {
-        fontSize: "5px",
+        fontSize: "8px",
       },
     },
     // button: {

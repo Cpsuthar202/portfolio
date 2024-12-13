@@ -1,4 +1,4 @@
-import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, LinearProgress } from "@mui/material";
+import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, LinearProgress, Divider } from "@mui/material";
 import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import Image from "@/components/image/Image";
 import { useProduct } from "./Product.hook";
@@ -10,7 +10,7 @@ const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
     variables: { product, selectImage, setSelectImage, quantity, maxQuantity, isSmallScreen, ratingsData, cardProduct, setCardProduct },
-    methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy },
+    methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy, handleToFavorite },
   } = useProduct();
 
   return (
@@ -128,42 +128,57 @@ const ProductDetails = () => {
             )}
 
             {/* Quantity Selector and Buy Button */}
-            <Box sx={{ display: "flex", gap: 1 }}>
-              {product && product?.stock > 0 && (
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  {/* Decrement Quantity Button */}
-                  <IconButton onClick={handleDecrement} disabled={quantity <= 1}>
-                    <Remove />
-                  </IconButton>
-                  {/* Current Quantity */}
-                  <Box sx={{ border: 1, borderColor: "primary.main", p: 1, px: 2, borderRadius: 2 }}>
-                    <Typography>{quantity}</Typography>
-                  </Box>
-                  {/* Increment Quantity Button */}
-                  <IconButton onClick={handleIncrement} disabled={quantity >= maxQuantity}>
-                    <Add />
-                  </IconButton>
-                </Stack>
-              )}
 
-              <Button variant="outlined" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0} onClick={handleToCart}>
-                Add to Cart
-              </Button>
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container spacing={2} alignItems="center">
+                {/* Quantity Controller */}
+                {product && product?.stock > 0 && (
+                  <Grid item xs={6} sm={4} md={3} order={{ xs: 1, sm: 1 }}>
+                    <Stack direction="row" alignItems="center" spacing={1} sx={{ justifyContent: "space-between" }}>
+                      {/* Decrement Quantity Button */}
+                      <IconButton onClick={handleDecrement} disabled={quantity <= 1}>
+                        <Remove />
+                      </IconButton>
+                      {/* Current Quantity */}
+                      <Box sx={{ border: 1, borderColor: "primary.main", p: 1, px: 2, borderRadius: 2 }}>
+                        <Typography>{quantity}</Typography>
+                      </Box>
+                      {/* Increment Quantity Button */}
+                      <IconButton onClick={handleIncrement} disabled={quantity >= maxQuantity}>
+                        <Add />
+                      </IconButton>
+                    </Stack>
+                  </Grid>
+                )}
 
-              {/* Buy Now Button */}
-              <Button variant="contained" color="primary" sx={{ flex: 1 }} disabled={product?.stock === 0} onClick={handleToBuy}>
-                {product?.stock === 0 ? " Sold Out" : "Buy Now"}
-              </Button>
-              {/* Add to Wishlist */}
-              <IconButton>
-                <FavoriteBorder />
-              </IconButton>
-              {/* share product*/}
-              <WebShare text={product?.title} url={`product_details/${product?.id}`}>
-                <IconButton>
-                  <Share />
-                </IconButton>
-              </WebShare>
+                {/* Add to Cart Button */}
+                <Grid item xs={12} sm={4} md={3} order={{ xs: 3, sm: 2 }}>
+                  <Button variant="outlined" color="primary" fullWidth disabled={product?.stock === 0} onClick={handleToCart}>
+                    Add to Cart
+                  </Button>
+                </Grid>
+
+                {/* Buy Now Button */}
+                <Grid item xs={12} sm={4} md={3} order={{ xs: 4, sm: 3 }}>
+                  <Button variant="contained" color="primary" fullWidth disabled={product?.stock === 0} onClick={handleToBuy}>
+                    {product?.stock === 0 ? "Sold Out" : "Buy Now"}
+                  </Button>
+                </Grid>
+
+                {/* Share Button */}
+                <Grid item xs={6} sm={4} md={3} order={{ xs: 2, sm: 4 }}>
+                  <Stack direction="row" alignItems="center" spacing={1} sx={{ justifyContent: "space-evenly", width: "100%" }}>
+                    <IconButton onClick={() => product?.id && handleToFavorite(product.id)}>
+                      <FavoriteBorder />
+                    </IconButton>
+                    <WebShare text={product?.title} url={`product_details/${product?.id}`}>
+                      <IconButton>
+                        <Share />
+                      </IconButton>
+                    </WebShare>
+                  </Stack>
+                </Grid>
+              </Grid>
             </Box>
 
             {/* Product Description */}
@@ -172,22 +187,25 @@ const ProductDetails = () => {
                 Description
                 <Typography variant="body1">{product?.description}</Typography>
               </Typography>
+              <Divider />
 
               {/* Delivery and Return Information */}
               <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
                 Delivery Charge
                 <Typography variant="body1">{product?.delivery_charges == 0 ? " Free Delivery" : `₹${product?.delivery_charges} Delivery Charge`}</Typography>
               </Typography>
+              <Divider />
 
               <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
                 Return Delivery
                 <Typography variant="body1">{product?.replacementPolicy}</Typography>
               </Typography>
-
+              <Divider />
               <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
                 Warranty
                 <Typography variant="body1">{product?.warranty} year warranty</Typography>
               </Typography>
+              <Divider />
             </Box>
           </Box>
         </Grid>
@@ -204,6 +222,7 @@ const ProductDetails = () => {
             </Typography>
           ))}
         </Box>
+        <Divider />
         {/* Ratings Component */}
         <Box>
           <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
@@ -248,7 +267,7 @@ const ProductDetails = () => {
             })}
           </Stack>
         </Box>
-
+        <Divider />
         <Box>{product?.hero_images && product?.hero_images.map((i) => <Image key={i} src={i} alt="image" style={{ width: "100%" }} />)}</Box>
       </Container>
     </Box>

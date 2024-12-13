@@ -1,15 +1,20 @@
 import React from "react";
 import CategoryCard from "@/components/card/CategoryCard";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import useDisplay from "./Display.hook";
 
 const Display: React.FC = () => {
   const {
+    variable: { label },
     methods: { getData, handleNavigation },
   } = useDisplay();
 
   return (
     <Box>
+      <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
+        {label && label.charAt(0).toUpperCase() + label.slice(1)}
+      </Typography>
+
       {/* Render items in a responsive grid */}
       <Grid container>
         {getData().map((item, index) => (

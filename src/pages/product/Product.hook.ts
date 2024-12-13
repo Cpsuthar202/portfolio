@@ -5,6 +5,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { RatingDistribution } from "./utils";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
+import { successToast } from "@/components/toastify/Toast";
 
 const useProduct = () => {
   // Extract route parameters
@@ -100,10 +101,15 @@ const useProduct = () => {
 
   // Handle adding product to cart
   const handleToCart = () => {
+    successToast({ message: " product add successfully" });
     console.log("Added to cart", cardProduct);
   };
 
   // Handle buying product directly
+  const handleToFavorite = (id: string | undefined) => {
+    successToast({ message: "product add to favorite  successfully" });
+    console.log("handleToFavorite", id);
+  };
   const handleToBuy = () => {
     console.log("Purchased", cardProduct);
   };
@@ -128,6 +134,7 @@ const useProduct = () => {
       navigate,
       handleToBuy,
       handleToCart,
+      handleToFavorite,
     },
   };
 };

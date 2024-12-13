@@ -15,9 +15,9 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ title, subtitle, children }) =>
       gap: 2,
     }}
   >
-    <Typography variant="h6" fontWeight="bold" color="primary.dark">
+    <Typography variant="subtitle1" fontWeight="bold" color="primary.dark">
       {title}
-      <Typography variant="subtitle2" color="primary.main">
+      <Typography variant="body1" color="primary.main">
         {subtitle}
       </Typography>
     </Typography>

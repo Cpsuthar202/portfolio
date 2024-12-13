@@ -12,7 +12,7 @@ const Profile: React.FC = () => {
 
   return (
     <Container sx={{}}>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
             Information
@@ -39,38 +39,35 @@ const Profile: React.FC = () => {
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Mobile Number
-          {userData.email ? (
-            <Typography variant="body1"> {userData.email}</Typography>
+          {userData.phone_number ? (
+            <Typography variant="body1"> {userData.phone_number}</Typography>
           ) : (
             <Typography variant="body1" color="error">
-              Add Email
+              Add Phone Number
             </Typography>
           )}
-          <Typography variant="body1"> {userData.phone_number}</Typography>
         </Typography>
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Gender
-          {userData.email ? (
-            <Typography variant="body1"> {userData.email}</Typography>
+          {userData.gender ? (
+            <Typography variant="body1"> {userData.gender}</Typography>
           ) : (
             <Typography variant="body1" color="error">
-              Add Email
+              Add Gender
             </Typography>
-          )}
-          <Typography variant="body1"> {userData.gender}</Typography>
+          )}{" "}
         </Typography>
         <Divider />
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Date of Birth
-          {userData.email ? (
-            <Typography variant="body1"> {userData.email}</Typography>
+          {userData.dob ? (
+            <Typography variant="body1"> {userData.dob}</Typography>
           ) : (
             <Typography variant="body1" color="error">
-              Add Email
+              Add Date of Birth
             </Typography>
           )}
-          <Typography variant="body1"> {userData.dob}</Typography>
         </Typography>
         <Divider />
 

@@ -1,7 +1,7 @@
 import { Box, Button, Container, Divider, Grid, IconButton, Typography } from "@mui/material";
 import { useProfile } from "./Profile.hook";
 import Displayaddress from "./utility/Displayaddress";
-import { Add, CheckBox, CheckBoxOutlineBlank, Close } from "@mui/icons-material";
+import { Add, Close } from "@mui/icons-material";
 import SimpleDialog from "@/components/dialog/SimpleDialog";
 import { mColor } from "@color";
 
@@ -13,7 +13,7 @@ const Address = () => {
 
   return (
     <>
-      <Container>
+      <Container sx={{ p: 0 }}>
         <Grid container>
           <Grid item lg={4} md={6} sm={12} xs={12} sx={{ p: 1 }}>
             <Box sx={{ borderRadius: 2, overflow: "hidden", boxShadow: 1, height: "100%", p: 2, display: "grid", placeItems: "center" }}>
@@ -27,24 +27,14 @@ const Address = () => {
           </Grid>
           {userData.address.map((e, index) => (
             <Grid item lg={4} md={6} sm={12} xs={12} sx={{ p: 1 }} key={index}>
-              <Box sx={{ borderRadius: 2, overflow: "hidden", boxShadow: 1, height: "100%", p: 2 }}>
-                <Box>
+              <Box sx={{ borderRadius: 2, overflow: "hidden", boxShadow: 1, height: "100%", p: 2, border: e.default ? 1.5 : 0, borderColor: "primary.main" }}>
+                {/* <Box>
                   <Typography variant="body1" sx={{ display: "flex", gap: 1 }}>
                     Default {e.default ? <CheckBox sx={{ color: "primary.main" }} /> : <CheckBoxOutlineBlank sx={{ color: "primary.main" }} />}
-                    {/* <Radio
-                    checked={defaultAddressId === e.id}
-                    onChange={handledefaultAddressChange}
-                    value={e.id}
-                    name="radio-buttons"
-                    inputProps={{ "aria-label": "A" }}
-                    sx={{ color: "primary.main", ml: 1 }}
-                    size="small"
-                    icon={<CheckBoxOutlineBlank />} // Icon for unchecked state
-                    checkedIcon={<CheckBox />} // Icon for checked state
-                  /> */}
+                  
                   </Typography>
                   <Divider sx={{ my: 1 }} />
-                </Box>
+                </Box> */}
                 <Displayaddress address={e} />
                 <Box sx={{ mt: 1 }}>
                   <Button onClick={() => handleUpdateAddress(e)} sx={{ py: 0, pt: "1px" }}>

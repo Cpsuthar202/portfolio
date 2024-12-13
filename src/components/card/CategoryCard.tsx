@@ -12,7 +12,7 @@ interface ICategoryCard {
 export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) => {
   // const navigate = useNavigate();
   return (
-    <Box sx={{ m: 1, borderRadius: 2, overflow: "hidden" }}>
+    <Box sx={{ m: 1, borderRadius: 2, overflow: "hidden", width: "95%" }}>
       <Box sx={{ p: 1, bgcolor: "secondary.main", pb: 0 }}>
         <Typography
           variant="body1"
@@ -29,8 +29,8 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
           {label}
         </Typography>
 
-        <Box sx={{ height: "100px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", bgcolor: mColor.white, borderRadius: 2, overflow: "hidden" }}>
-          <Image src={src} alt="image" style={{ height: "100%" }} />
+        <Box sx={{ height: "100px", width: "fit-content", m: "auto", display: "flex", justifyContent: "center", alignItems: "center", bgcolor: mColor.white, borderRadius: 2, overflow: "hidden" }}>
+          <Image src={src} alt="image" style={{ height: "100%", width: "100%" }} />
         </Box>
       </Box>
       <Box

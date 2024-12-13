@@ -79,34 +79,36 @@ const Updatepassword = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="subtitle2" sx={{ fontWeight: "bold", my: 2 }}>
-        Update Password
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <PasswordField
-            label="Old Password"
-            name="old_password"
-            value={updatePassword.old_password}
-            onChange={handlePasswordChange}
-            error={!!updatePasswordErr.old_password}
-            helperText={updatePasswordErr.old_password}
-          />
-          <PasswordField
-            label="New Password"
-            name="new_password"
-            value={updatePassword.new_password}
-            onChange={handlePasswordChange}
-            error={!!updatePasswordErr.new_password}
-            helperText={updatePasswordErr.new_password}
-          />
+    <Container sx={{ p: 0 }}>
+      <Box sx={{ width: "100%", maxWidth: 500, m: "auto" }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: "bold", my: 2, color: "primary.main" }}>
+          Update Password
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, borderRadius: 2, boxShadow: 1 }}>
+            <PasswordField
+              label="Old Password"
+              name="old_password"
+              value={updatePassword.old_password}
+              onChange={handlePasswordChange}
+              error={!!updatePasswordErr.old_password}
+              helperText={updatePasswordErr.old_password}
+            />
+            <PasswordField
+              label="New Password"
+              name="new_password"
+              value={updatePassword.new_password}
+              onChange={handlePasswordChange}
+              error={!!updatePasswordErr.new_password}
+              helperText={updatePasswordErr.new_password}
+            />
 
-          <Button type="submit" variant="contained" color="primary">
-            Update
-          </Button>
-        </Box>
-      </form>
+            <Button type="submit" variant="contained" color="primary">
+              Update
+            </Button>
+          </Box>
+        </form>
+      </Box>
     </Container>
   );
 };

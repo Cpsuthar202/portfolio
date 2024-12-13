@@ -110,72 +110,73 @@ const Manageaddress = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="subtitle2" sx={{ fontWeight: "bold", my: 2, color: "primary.main" }}>
-        {`${state_action} ${state_action === "Add" ? "a new" : "your"} address`}
-      </Typography>
+    <Container sx={{ p: 0 }}>
+      <Box sx={{ width: "100%", maxWidth: 500, m: "auto" }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: "bold", my: 2, color: "primary.main" }}>
+          {`${state_action} ${state_action === "Add" ? "a new" : "your"} address`}
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, borderRadius: 2, boxShadow: 1 }}>
+            <TextField autoFocus variant="standard" label="Name" name="name" value={address?.name} onChange={handleAddressDetailsChange} error={!!addressErr.name} helperText={addressErr.name} />
 
-      <form onSubmit={handleSubmit}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <TextField autoFocus variant="standard" label="Name" name="name" value={address?.name} onChange={handleAddressDetailsChange} error={!!addressErr.name} helperText={addressErr.name} />
-
-          <TextField
-            variant="standard"
-            fullWidth
-            label="Mobile Number"
-            name="mobile_no"
-            type="number"
-            value={address?.mobile_no}
-            onChange={handleAddressDetailsChange}
-            error={!!addressErr.mobile_no}
-            helperText={addressErr.mobile_no}
-          />
-          <TextField
-            variant="standard"
-            label="pincode"
-            name="pincode"
-            type="number"
-            value={address?.pincode}
-            onChange={handleAddressDetailsChange}
-            error={!!addressErr.pincode}
-            helperText={addressErr.pincode}
-          />
-
-          <TextField
-            variant="standard"
-            label="Landmark"
-            name="landmark"
-            value={address?.landmark}
-            onChange={handleAddressDetailsChange}
-            error={!!addressErr.landmark}
-            helperText={addressErr.landmark}
-          />
-
-          <TextField variant="standard" label="City" name="city" value={address?.city} onChange={handleAddressDetailsChange} error={!!addressErr.city} helperText={addressErr.city} />
-          <TextField variant="standard" label="State" name="state" value={address?.state} onChange={handleAddressDetailsChange} error={!!addressErr.state} helperText={addressErr.state} />
-          <TextField variant="standard" label="Country" name="country" value={address?.country} onChange={handleAddressDetailsChange} error={!!addressErr.country} helperText={addressErr.country} />
-          <TextField variant="standard" label="area" name="area" value={address?.area} onChange={handleAddressDetailsChange} error={!!addressErr.area} helperText={addressErr.area} />
-          <TextField
-            variant="standard"
-            label="apartment"
-            name="apartment"
-            value={address?.apartment}
-            onChange={handleAddressDetailsChange}
-            error={!!addressErr.apartment}
-            helperText={addressErr.apartment}
-          />
-          {state_action != "Update" && (
-            <FormControlLabel
-              control={<Checkbox sx={{ color: "primary.main" }} checked={isDefaultAddress} onChange={handleCheckboxChange} />}
-              label="Make this my default address"
-              sx={{ color: "primary.main" }}
+            <TextField
+              variant="standard"
+              fullWidth
+              label="Mobile Number"
+              name="mobile_no"
+              type="number"
+              value={address?.mobile_no}
+              onChange={handleAddressDetailsChange}
+              error={!!addressErr.mobile_no}
+              helperText={addressErr.mobile_no}
             />
-          )}
-          <Button type="submit" fullWidth variant="contained" color="primary" disabled={disabled}>
-            {state_action} address
-          </Button>
-        </Box>
-      </form>
+            <TextField
+              variant="standard"
+              label="pincode"
+              name="pincode"
+              type="number"
+              value={address?.pincode}
+              onChange={handleAddressDetailsChange}
+              error={!!addressErr.pincode}
+              helperText={addressErr.pincode}
+            />
+
+            <TextField
+              variant="standard"
+              label="Landmark"
+              name="landmark"
+              value={address?.landmark}
+              onChange={handleAddressDetailsChange}
+              error={!!addressErr.landmark}
+              helperText={addressErr.landmark}
+            />
+
+            <TextField variant="standard" label="City" name="city" value={address?.city} onChange={handleAddressDetailsChange} error={!!addressErr.city} helperText={addressErr.city} />
+            <TextField variant="standard" label="State" name="state" value={address?.state} onChange={handleAddressDetailsChange} error={!!addressErr.state} helperText={addressErr.state} />
+            <TextField variant="standard" label="Country" name="country" value={address?.country} onChange={handleAddressDetailsChange} error={!!addressErr.country} helperText={addressErr.country} />
+            <TextField variant="standard" label="area" name="area" value={address?.area} onChange={handleAddressDetailsChange} error={!!addressErr.area} helperText={addressErr.area} />
+            <TextField
+              variant="standard"
+              label="apartment"
+              name="apartment"
+              value={address?.apartment}
+              onChange={handleAddressDetailsChange}
+              error={!!addressErr.apartment}
+              helperText={addressErr.apartment}
+            />
+            {state_action != "Update" && (
+              <FormControlLabel
+                control={<Checkbox sx={{ color: "primary.main" }} checked={isDefaultAddress} onChange={handleCheckboxChange} />}
+                label="Make this my default address"
+                sx={{ color: "primary.main" }}
+              />
+            )}
+            <Button type="submit" fullWidth variant="contained" color="primary" disabled={disabled}>
+              {state_action} address
+            </Button>
+          </Box>
+        </form>
+      </Box>
     </Container>
   );
 };
