@@ -31,12 +31,10 @@ const ProtectedWrapper = () => {
   // }, [navigate]);
 
   return (
-    // <Box sx={{ display: "flex", alignItems: "flex-start", width: "100vw" }}>
-    <Box sx={{ p: 2 }}>
+    <Box>
       {isLoggedIn && (
         <>
-          {/* <SideBar /> */}
-          <Box sx={{ width: "100%", height: "100%" }}>
+          <Box sx={{}}>
             <Outlet />
           </Box>
         </>

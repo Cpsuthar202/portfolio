@@ -13,7 +13,7 @@ interface TopBarProps {
 }
 const TopBar: React.FC<TopBarProps> = () => {
   const {
-    variable: { isLoggedIn, open, tegLine, searchTitle, openConfDialog, setOpenConfDialog },
+    variable: { isLoggedIn, open, searchTitle, openConfDialog, setOpenConfDialog },
     methods: { navigate, handleAuth, toggleDrawer, handleSearch, handleSearchChange },
   } = useTopBar();
   return (
@@ -21,11 +21,11 @@ const TopBar: React.FC<TopBarProps> = () => {
       {/* Wrapper for top bar and search section */}
       <Box sx={{ borderBottom: 2, borderColor: "secondary.main", width: "100%" }}>
         {/* Hero line display */}
-        <Box sx={{ bgcolor: "background.paper", color: "text.secondary" }}>
+        {/* <Box sx={{ bgcolor: "background.paper", color: "text.secondary" }}>
           <Typography variant="body1" sx={{ textAlign: "center", py: 1 }}>
             {tegLine?.title}
           </Typography>
-        </Box>
+        </Box> */}
 
         {/* Main Grid container for menu, search bar, and action icons */}
         <Grid container sx={{ p: 1 }}>

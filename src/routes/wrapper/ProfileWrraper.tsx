@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const ProfileWrraper = () => {
   return (
-    <Box>
+    <Box sx={{}}>
       <Outlet />
     </Box>
   );

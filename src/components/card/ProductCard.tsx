@@ -5,10 +5,11 @@ import { Iproduct } from "@/data/product";
 import Image from "../image/Image";
 import { trimTextToWordLimit } from "../utils/textUtils";
 import { useNavigate } from "react-router-dom";
-import Ratings from "../ratings/Ratings";
+import { DisplayRatings } from "../ratings/Ratings";
 import { WebShare } from "../Container";
 import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
+import { useProduct } from "@/pages/product/Product.hook";
 
 interface IProductCard {
   data: Iproduct;
@@ -18,6 +19,9 @@ interface IProductCard {
 export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => {
   const navigate = useNavigate();
   const { isSmScreen } = useResponsiveScreens();
+  const {
+    methods: { handleToWishlist },
+  } = useProduct();
 
   return (
     <Box
@@ -39,7 +43,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
         />
         {/* Favorite and Share Icons */}
         <Box sx={{ position: "absolute", display: "flex", flexDirection: "column", top: 10, right: 10 }}>
-          <IconButton aria-label="favorite" size="small">
+          <IconButton aria-label="favorite" size="small" onClick={() => handleToWishlist(data.id)}>
             <FavoriteBorder />
           </IconButton>
           <WebShare text={data.title} url={`product_details/${data.id}`}>
@@ -88,7 +92,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
         </Typography>
 
         {/* Ratings */}
-        <Ratings rat={data.ratings.rat} totalRaters={data.ratings.totalRaters} />
+        <DisplayRatings rat={data.ratings.rat} totalRaters={data.ratings.totalRaters} />
 
         {/* Price Section */}
         <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>

@@ -106,8 +106,8 @@ const useProduct = () => {
   };
 
   // Handle buying product directly
-  const handleToFavorite = (id: string | undefined) => {
-    successToast({ message: "product add to favorite  successfully" });
+  const handleToWishlist = (id: string | undefined) => {
+    successToast({ message: "product add to wishlist  successfully" });
     console.log("handleToFavorite", id);
   };
   const handleToBuy = () => {
@@ -134,7 +134,7 @@ const useProduct = () => {
       navigate,
       handleToBuy,
       handleToCart,
-      handleToFavorite,
+      handleToWishlist,
     },
   };
 };

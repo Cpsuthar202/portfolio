@@ -17,8 +17,7 @@ const App: React.FC<AppProps> = ({ toggleTheme }) => {
   const { isSmScreen } = useResponsiveScreens();
 
   return (
-    <>
-      {/* <Toaster /> */}
+    <Box sx={{}}>
       <Toaster>
         {(t) => (
           <ToastBar toast={t}>
@@ -33,19 +32,21 @@ const App: React.FC<AppProps> = ({ toggleTheme }) => {
         )}
       </Toaster>
 
-      <Box sx={{ overflow: "auto", height: isSmScreen ? "94vh" : "100vh", border: 1 }}>
+      <Box sx={{ overflow: "auto", height: isSmScreen ? "93vh" : "100vh" }}>
         <TopBar toggleTheme={toggleTheme} />
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/*" element={<UnprotectedRoutes />} />
-            <Route path="/user/*">
-              <Route path="auth/*" element={<AuthRoutes />} />
-              <Route path="*" element={<ProtectedRoutes />} />
-            </Route>
-          </Routes>
-        </Suspense>
+        <Box sx={{ px: 2 }}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/*" element={<UnprotectedRoutes />} />
+              <Route path="/user/*">
+                <Route path="auth/*" element={<AuthRoutes />} />
+                <Route path="*" element={<ProtectedRoutes />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

@@ -35,12 +35,16 @@ const AuthWrapper = () => {
   return (
     <>
       {!isLoggedIn && (
-        <Box sx={{ display: "flex", height: "79vh" }}>
-          <Box sx={{ display: "grid", placeItems: "center", flex: 1 }}>
-            <Box sx={{ minWidth: "max(20vw, 370px)", width: "370px", border: 1, p: 3, px: 4, borderColor: "primary.main", borderRadius: 2, textAlign: "center" }}>
+        <Box sx={{ display: "grid", placeItems: "center", flex: 1, height: "70vh" }}>
+          <Box sx={{ minWidth: "max(20vw, 370px)", width: "370px", p: 3, border: 1, px: 4, borderColor: "primary.main", borderRadius: 2, textAlign: "center" }}>
+            <Outlet />
+          </Box>
+
+          {/* <Box sx={{ display: "grid", placeItems: "center", flex: 1 }}>
+            <Box sx={{ minWidth: "max(20vw, 370px)", width: "370px", p: 3, border: 1, px: 4, borderColor: "primary.main", borderRadius: 2, textAlign: "center" }}>
               <Outlet />
             </Box>
-          </Box>
+          </Box> */}
         </Box>
       )}
     </>

@@ -2,7 +2,7 @@ import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, Line
 import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import Image from "@/components/image/Image";
 import { useProduct } from "./Product.hook";
-import Ratings from "@/components/ratings/Ratings";
+import { DisplayRatings } from "@/components/ratings/Ratings";
 import { WebShare } from "@/components/Container";
 import { mColor } from "@color";
 
@@ -10,7 +10,7 @@ const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
     variables: { product, selectImage, setSelectImage, quantity, maxQuantity, isSmallScreen, ratingsData, cardProduct, setCardProduct },
-    methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy, handleToFavorite },
+    methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy, handleToWishlist },
   } = useProduct();
 
   return (
@@ -57,7 +57,7 @@ const ProductDetails = () => {
             )}
 
             {/* Ratings Component */}
-            <Ratings rat={product?.ratings.rat} totalRaters={product?.ratings.totalRaters} />
+            <DisplayRatings rat={product?.ratings.rat} totalRaters={product?.ratings.totalRaters} />
 
             {/* Price Section */}
             <Stack direction="row" alignItems="center" spacing={1}>
@@ -168,7 +168,7 @@ const ProductDetails = () => {
                 {/* Share Button */}
                 <Grid item xs={6} sm={4} md={3} order={{ xs: 2, sm: 4 }}>
                   <Stack direction="row" alignItems="center" spacing={1} sx={{ justifyContent: "space-evenly", width: "100%" }}>
-                    <IconButton onClick={() => product?.id && handleToFavorite(product.id)}>
+                    <IconButton onClick={() => product?.id && handleToWishlist(product.id)}>
                       <FavoriteBorder />
                     </IconButton>
                     <WebShare text={product?.title} url={`product_details/${product?.id}`}>
@@ -230,7 +230,7 @@ const ProductDetails = () => {
           </Typography>
           <Box sx={{ display: "flex", alignContent: "center", gap: 1 }}>
             {/* <Rating value={product?.ratings.rat} precision={0.1} readOnly /> */}
-            <Ratings rat={product?.ratings.rat} totalRaters={product?.ratings.totalRaters} />
+            <DisplayRatings rat={product?.ratings.rat} totalRaters={product?.ratings.totalRaters} />
             <Typography variant="body1">{product?.ratings.rat} Ratings out of 5</Typography>
           </Box>
 

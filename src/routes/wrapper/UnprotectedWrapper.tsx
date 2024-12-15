@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const UnprotectedWrapper = () => {
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{}}>
       <Outlet />
     </Box>
   );

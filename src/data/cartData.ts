@@ -172,7 +172,7 @@ export const cartData: Iproduct[] = [
     bestSelling_number: 2,
     numberOfOrders: 1500,
     availability: true,
-    stock: 15,
+    stock: 0,
     quantity: 2,
   },
 
