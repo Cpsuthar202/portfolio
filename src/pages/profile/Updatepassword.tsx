@@ -82,6 +82,9 @@ const Updatepassword = () => {
     <Container sx={{ p: 0 }}>
       <Box sx={{ width: "100%", maxWidth: 500, m: "auto" }}>
         <Typography variant="subtitle1" sx={{ fontWeight: "bold", my: 2, color: "primary.main" }}>
+          Update Information
+        </Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: "bold", my: 2, color: "primary.main" }}>
           Update Password
         </Typography>
         <form onSubmit={handleSubmit}>

@@ -7,7 +7,7 @@ import Displayaddress from "./utility/Displayaddress";
 const Profile: React.FC = () => {
   const {
     variables: { userData, defaultAddress },
-    methods: { handleAddress, handleUpdatePassword },
+    methods: { handleAddress, handleUpdatePassword, handleUpdateInformation },
   } = useProfile();
 
   return (
@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
             Information
           </Typography>
-          <IconButton>
+          <IconButton onClick={handleUpdateInformation}>
             <Edit />
           </IconButton>
         </Box>

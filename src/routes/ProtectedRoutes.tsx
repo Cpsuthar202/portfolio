@@ -10,6 +10,7 @@ import ProfileWrraper from "./wrapper/ProfileWrraper";
 import Address from "@/pages/profile/Address";
 import Manageaddress from "@/pages/profile/Manageaddress";
 import Updatepassword from "@/pages/profile/Updatepassword";
+import Updateinformation from "@/pages/profile/Updateinformation";
 // import Updatepassword from "@/pages/profile/updatepassword";
 
 const ProtectedRoutes = () => {
@@ -22,6 +23,7 @@ const ProtectedRoutes = () => {
         <Route path="/profile" element={<ProfileWrraper />}>
           <Route index element={<Navigate to="/profile/information" replace />} />
           <Route path="information" element={<Profile />} />
+          <Route path="update-information" element={<Updateinformation />} />
           <Route path="address" element={<Address />} />
           <Route path="manage-address" element={<Manageaddress />} />
 

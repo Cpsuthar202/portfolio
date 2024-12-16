@@ -15,6 +15,9 @@ const useProfile = () => {
   const handleUpdatePassword = () => {
     navigate("/user/profile/update-password", { state: { phone_number: userData.phone_number } });
   };
+  const handleUpdateInformation = () => {
+    navigate("/user/profile/update-information");
+  };
 
   const handleAddAddress = () => {
     navigate("/user/profile/manage-address", { state: { action: "Add" } });
@@ -57,7 +60,7 @@ const useProfile = () => {
       openRemoveDialog,
       setOpenRemoveDialog,
     },
-    methods: { handleAddress, handleUpdatePassword, handleAddAddress, handleUpdateAddress, handlesDefaultAddres, handleRemoveAddress, handleRemoveAddressDialog },
+    methods: { handleAddress, handleUpdatePassword, handleAddAddress, handleUpdateAddress, handlesDefaultAddres, handleRemoveAddress, handleRemoveAddressDialog, handleUpdateInformation },
   };
 };
 

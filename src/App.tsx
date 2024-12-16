@@ -34,7 +34,7 @@ const App: React.FC<AppProps> = ({ toggleTheme }) => {
 
       <Box sx={{ overflow: "auto", height: isSmScreen ? "93vh" : "100vh" }}>
         <TopBar toggleTheme={toggleTheme} />
-        <Box sx={{ px: 2 }}>
+        <Box sx={{ p: 1, px: 2 }}>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route path="/*" element={<UnprotectedRoutes />} />
