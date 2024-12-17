@@ -5,11 +5,15 @@ interface DisplayProps {
   address: Iaddress | undefined;
 }
 const Displayaddress: React.FC<DisplayProps> = ({ address }) => {
+  console.log("Displayaddress");
+
   return (
     <Box>
-      <Typography variant="body1">
-        <strong>Name:</strong> {address?.name || "N/A"}
-      </Typography>
+      {address?.name && (
+        <Typography variant="body1">
+          <strong>Name:</strong> {address?.name || "N/A"}
+        </Typography>
+      )}
       <Typography variant="body1">
         <strong>Landmark:</strong> {address?.landmark || "N/A"}
       </Typography>
@@ -31,9 +35,11 @@ const Displayaddress: React.FC<DisplayProps> = ({ address }) => {
       <Typography variant="body1">
         <strong>Country:</strong> {address?.country || "N/A"}
       </Typography>
-      <Typography variant="body1">
-        <strong>Mobile No.:</strong> {address?.mobile_no || "N/A"}
-      </Typography>
+      {address?.mobile_no && (
+        <Typography variant="body1">
+          <strong>Mobile No.:</strong> {address?.mobile_no || "N/A"}
+        </Typography>
+      )}
     </Box>
   );
 };

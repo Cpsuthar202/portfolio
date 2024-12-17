@@ -1,7 +1,7 @@
 export interface Iaddress {
   id?: string; // Added ID property
-  name: string;
-  mobile_no: string;
+  name?: string;
+  mobile_no?: string;
   pincode: string;
   landmark: string;
   city: string;
@@ -9,7 +9,7 @@ export interface Iaddress {
   country: string;
   area: string;
   apartment: string;
-  default: boolean; // Indicates if the address is the default
+  default?: boolean; // Indicates if the address is the default
 }
 export interface IaddressErr {
   name?: string;

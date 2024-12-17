@@ -6,6 +6,9 @@ export const useStoreDetails = () => {
   const { id } = useParams();
   const store = storesData.find((e) => e.id == id);
   const products = productData.filter((product) => product.store.id === id);
+
+  console.log("store", store);
+
   return {
     variable: { store, products },
     methods: {},

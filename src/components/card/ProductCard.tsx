@@ -6,7 +6,7 @@ import Image from "../image/Image";
 import { trimTextToWordLimit } from "../utils/textUtils";
 import { useNavigate } from "react-router-dom";
 import { DisplayRatings } from "../ratings/Ratings";
-import { WebShare } from "../Container";
+import { WebShare } from "../container";
 import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
 import { useProduct } from "@/pages/product/Product.hook";
@@ -28,7 +28,9 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
       sx={{
         borderRadius: 2,
         overflow: "hidden",
-        boxShadow: 1,
+        // boxShadow: 1,
+        border: 1,
+        borderColor: "secondary.main",
         height: "100%",
         width: "100%",
       }}

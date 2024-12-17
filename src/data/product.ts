@@ -77,7 +77,7 @@ export const productData: Iproduct[] = [
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
     store: {
-      id: "1",
+      id: "s1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
       store_name: "Tech Haven",
     },
@@ -174,7 +174,7 @@ export const productData: Iproduct[] = [
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
     store: {
-      id: "7",
+      id: "s7",
       logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
       store_name: "Fitness Zone",
     },
@@ -229,7 +229,7 @@ export const productData: Iproduct[] = [
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
     store: {
-      id: "1",
+      id: "s1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
       store_name: "Tech Haven",
     },
@@ -363,7 +363,7 @@ export const productData: Iproduct[] = [
         "https://www.jiomart.com/images/product/original/rvluiwnjhu/ptron-funk-40-watt-bluetooth-wireless-speaker-with-mic-for-karaoke-black-product-images-orvluiwnjhu-p607218852-0-202401061211.jpg?im=Resize=(1000,1000)",
     },
     store: {
-      id: "7",
+      id: "s7",
       logo: "https://m.media-amazon.com/images/S/store-image-uploads-eu-prod/d/Amazonstore/A21TJRUUN4KGV/388cb5fa95916d7fc3ec84b28f33764c.w2260.h889._CR0%2C0%2C2260%2C889_SX200_.png",
       store_name: "Fitness Zone",
     },
@@ -417,7 +417,7 @@ export const productData: Iproduct[] = [
     brands: { id: "b1", label: "Boat", logo: "https://swarajya.gumlet.io/swarajya/2021-01/7a6e91f6-5862-4ac5-bb08-eb5bf2a3e20c/boAt_logo.jpg?w=610&q=50&compress=true&format=auto" },
     categories: { id: "c1", label: "Earbuds", image: "https://m.media-amazon.com/images/I/614hH1Cot3L.jpg" },
     store: {
-      id: "1",
+      id: "s1",
       logo: "https://media.gettyimages.com/id/1438530724/photo/facade-of-a-food-store-or-charcuterie.jpg?s=612x612&w=gi&k=20&c=KNUptosEYqC0qRHoO9nmliaO465VHqSMEOIBfbGJ6Es=",
       store_name: "Tech Haven",
     },

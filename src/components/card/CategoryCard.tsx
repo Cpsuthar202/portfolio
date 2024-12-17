@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Image from "../image/Image";
 import { mColor } from "@color";
 // import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
   // const navigate = useNavigate();
   return (
     <Box sx={{ m: 1, borderRadius: 2, overflow: "hidden", width: "95%" }}>
-      <Box sx={{ p: 1, bgcolor: "secondary.main", pb: 0 }}>
+      <Box sx={{ p: 1, border: 1, borderColor: "secondary.main", borderRadius: 2, m: "1px", cursor: "pointer" }} onClick={onClick}>
         <Typography
           variant="body1"
           // color="primary"
@@ -29,11 +29,23 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
           {label}
         </Typography>
 
-        <Box sx={{ height: "100px", width: "fit-content", m: "auto", display: "flex", justifyContent: "center", alignItems: "center", bgcolor: mColor.white, borderRadius: 2, overflow: "hidden" }}>
-          <Image src={src} alt="image" style={{ height: "100%", width: "100%" }} />
+        <Box
+          sx={{
+            height: "100px",
+            width: "fit-content",
+            m: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            bgcolor: mColor.white,
+            borderRadius: 2,
+            overflow: "hidden",
+          }}
+        >
+          <Image src={src} alt="image" style={{ height: "100%", width: "100%", cursor: "pointer" }} />
         </Box>
       </Box>
-      <Box
+      {/* <Box
         sx={{
           bgcolor: "secondary.main",
           // bgcolor: mColor.white,
@@ -41,7 +53,7 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
         onClick={onClick}
       >
         <Button sx={{ width: "100%", borderRadius: 0 }}>view</Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

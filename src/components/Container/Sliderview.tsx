@@ -24,7 +24,9 @@ export const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigate
   return (
     <Box sx={{ my: 1 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Typography variant="subtitle1">{title}</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+          {title}
+        </Typography>
         <Button variant="text" color="primary" onClick={() => navigate(navigateTo)}>
           View All
         </Button>
@@ -42,7 +44,7 @@ export const Sliderview: React.FC<ViewSliderview> = ({ children, title, navigate
           sx={{
             display: "flex",
             overflowX: "auto",
-            "&::-webkit-scrollbar": { height: "3px" },
+            // "&::-webkit-scrollbar": { height: "1px" },
             width: "100%",
           }}
         >

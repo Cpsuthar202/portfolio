@@ -78,6 +78,8 @@ const useProduct = () => {
 
   // Effect to reset search title when the component unmounts
   useEffect(() => {
+    console.log("useEffec-setSearchTitlet");
+
     return () => {
       dispatch(setSearchTitle(""));
     };
@@ -85,6 +87,8 @@ const useProduct = () => {
 
   // Increment product quantity
   const handleIncrement = () => {
+    console.log("handleIncrement");
+
     if (quantity < maxQuantity) {
       setQuantity((prev) => prev + 1);
       setCardProduct({ ...cardProduct, quantity: quantity + 1 });
@@ -93,6 +97,8 @@ const useProduct = () => {
 
   // Decrement product quantity
   const handleDecrement = () => {
+    console.log("handleDecrement");
+
     if (quantity > 1) {
       setQuantity((prev) => prev - 1);
       setCardProduct({ ...cardProduct, quantity: quantity - 1 });
@@ -101,16 +107,22 @@ const useProduct = () => {
 
   // Handle adding product to cart
   const handleToCart = () => {
+    console.log("handleToCart");
+
     successToast({ message: " product add successfully" });
     console.log("Added to cart", cardProduct);
   };
 
   // Handle buying product directly
   const handleToWishlist = (id: string | undefined) => {
+    console.log("handleToWishlist");
+
     successToast({ message: "product add to wishlist  successfully" });
-    console.log("handleToFavorite", id);
+    console.log("handleToWishlist", id);
   };
   const handleToBuy = () => {
+    console.log("handleToBuy");
+
     console.log("Purchased", cardProduct);
   };
 

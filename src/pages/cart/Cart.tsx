@@ -110,11 +110,11 @@ const Cart: React.FC = () => {
                           )}
                         </Stack>
 
-                        <Stack direction="row" alignItems="center" spacing={1}>
+                        <Stack direction="row" alignItems="center" spacing={1} sx={{}}>
                           <IconButton onClick={() => handleDecrement(data.id)} disabled={quantity <= 1}>
                             <Remove />
                           </IconButton>
-                          <Box sx={{ border: 1, borderColor: "primary.main", p: 1, px: 2, borderRadius: 2 }}>
+                          <Box sx={{ border: 1, borderColor: "primary.main", borderRadius: 2, p: 0.5, px: 1.5 }}>
                             <Typography>{quantity}</Typography>
                           </Box>
                           <IconButton onClick={() => handleIncrement(data.id, data.stock)} disabled={quantity === data.stock}>

@@ -8,7 +8,7 @@ import { ProductCard } from "@/components/card";
 import CategoryCard from "@/components/card/CategoryCard";
 import { useNavigate } from "react-router-dom";
 import { IstoresData, storesData } from "@/data/stores";
-import { Sliderview } from "@/components/Container";
+import { Sliderview } from "@/components/container";
 const Home = () => {
   const navigate = useNavigate();
   // const dispatch = useAppDispatch();

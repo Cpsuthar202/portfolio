@@ -1,5 +1,6 @@
 import { Container, Box, Typography, Button, TextField, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+
 type IpasswordData = {
   name: string;
   email: string;
@@ -68,7 +69,6 @@ const UpdateInformation = () => {
       setUpdateInformationErr(errors);
     }
   };
-
   return (
     <Container sx={{ p: 0 }}>
       <Box sx={{ width: "100%", maxWidth: 500, m: "auto" }}>
@@ -113,8 +113,20 @@ const UpdateInformation = () => {
               fullWidth
               error={!!updateInformationErr.gender}
               sx={{
+                "& .MuiInput-underline:before": {
+                  // borderBottom: "none", // Remove default underline
+                  borderColor: updateInformationErr.gender ? "error.main" : "primary.main",
+                },
+                "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+                  // borderBottom: "none", // Remove hover underline
+                  borderColor: "primary.main",
+                },
+                "& .MuiInput-underline:after": {
+                  borderBottom: "none", // Remove focus underline
+                },
+
                 marginBottom: 2, // Adds spacing between form fields
-                "& .MuiInputLabel-root": { color: updateInformationErr.gender ? "error.main" : "primary.main" }, // Customize label color
+                "& .MuiInputLabel-root": { color: updateInformationErr.gender ? "error.main" : "primary.main", fontSize: "17px" }, // Customize label color
                 "& .MuiOutlinedInput-root": {
                   borderRadius: 2, // Smooth rounded corners
                   "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -165,6 +177,7 @@ const UpdateInformation = () => {
               error={!!updateInformationErr.dob}
               helperText={updateInformationErr.dob}
             />
+
             <Button type="submit" variant="contained" color="primary">
               Update
             </Button>

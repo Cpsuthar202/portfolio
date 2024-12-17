@@ -24,6 +24,7 @@ const Image: React.FC<ImageProps> = ({ src, alt, sx, style, onClick }) => {
         ...style,
       }}
       onClick={onClick} // Optional click handler
+      loading="lazy"
     />
   );
 };

@@ -28,13 +28,6 @@ const Address = () => {
           {userData.address.map((e, index) => (
             <Grid item lg={4} md={6} sm={12} xs={12} sx={{ p: 1 }} key={index}>
               <Box sx={{ borderRadius: 2, overflow: "hidden", boxShadow: 1, height: "100%", p: 2, border: e.default ? 1.5 : 0, borderColor: "primary.main" }}>
-                {/* <Box>
-                  <Typography variant="body1" sx={{ display: "flex", gap: 1 }}>
-                    Default {e.default ? <CheckBox sx={{ color: "primary.main" }} /> : <CheckBoxOutlineBlank sx={{ color: "primary.main" }} />}
-                  
-                  </Typography>
-                  <Divider sx={{ my: 1 }} />
-                </Box> */}
                 <Displayaddress address={e} />
                 <Box sx={{ mt: 1 }}>
                   <Button onClick={() => handleUpdateAddress(e)} sx={{ py: 0, pt: "1px" }}>

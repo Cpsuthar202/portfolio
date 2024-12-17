@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { GiveRatings } from "@/components/ratings/Ratings";
 import { CustomAccordion } from "@/components/accordion";
-import { textCopy } from "@/components/card/textCopy";
+import { textCopy } from "@/components/copys/textCopy";
 import { ContentCopy } from "@mui/icons-material";
 import { useOrder } from "./Order.hook";
 import Image from "@/components/image/Image";
@@ -49,11 +49,13 @@ const Order = () => {
                   borderRadius: 2,
                   overflow: "hidden",
                   boxShadow: 1,
+                  // border: 1,
+                  // borderColor: "secondary.main",
                   height: "100%",
                   p: 2,
                   // border: 1,
                   width: "100%",
-                  "&:hover": { boxShadow: 3 },
+                  // "&:hover": { boxShadow: 3 },
                 }}
               >
                 <Typography variant="body1" sx={{ fontWeight: "bold" }}>

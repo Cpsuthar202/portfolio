@@ -3,7 +3,7 @@ import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import Image from "@/components/image/Image";
 import { useProduct } from "./Product.hook";
 import { DisplayRatings } from "@/components/ratings/Ratings";
-import { WebShare } from "@/components/Container";
+import { WebShare } from "@/components/container";
 import { mColor } from "@color";
 
 const ProductDetails = () => {
@@ -28,8 +28,8 @@ const ProductDetails = () => {
             {product?.images && product.images.length >= 2 && (
               <Box sx={{ width: "100%", overflowX: "auto" }}>
                 <Box sx={{ display: "flex", width: "fit-content", m: "auto" }}>
-                  {product.images.map((image) => (
-                    <Image key={image} src={image} alt="image" style={{ height: isSmallScreen ? 50 : 70, margin: 8, borderRadius: 10 }} onClick={() => setSelectImage(image)} />
+                  {product.images.map((image, index) => (
+                    <Image key={index} src={image} alt="image" style={{ height: isSmallScreen ? 50 : 70, margin: 8, borderRadius: 10 }} onClick={() => setSelectImage(image)} />
                   ))}
                 </Box>
               </Box>
@@ -133,7 +133,7 @@ const ProductDetails = () => {
               <Grid container spacing={2} alignItems="center">
                 {/* Quantity Controller */}
                 {product && product?.stock > 0 && (
-                  <Grid item xs={6} sm={4} md={3} order={{ xs: 1, sm: 1 }}>
+                  <Grid item xs={6} sm={6} md={6} lg={3} order={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                     <Stack direction="row" alignItems="center" spacing={1} sx={{ justifyContent: "space-between" }}>
                       {/* Decrement Quantity Button */}
                       <IconButton onClick={handleDecrement} disabled={quantity <= 1}>
@@ -152,21 +152,21 @@ const ProductDetails = () => {
                 )}
 
                 {/* Add to Cart Button */}
-                <Grid item xs={12} sm={4} md={3} order={{ xs: 3, sm: 2 }}>
+                <Grid item xs={12} sm={6} md={6} lg={3} order={{ xs: 3, sm: 3, md: 3, lg: 2 }}>
                   <Button variant="outlined" color="primary" fullWidth disabled={product?.stock === 0} onClick={handleToCart}>
                     Add to Cart
                   </Button>
                 </Grid>
 
                 {/* Buy Now Button */}
-                <Grid item xs={12} sm={4} md={3} order={{ xs: 4, sm: 3 }}>
+                <Grid item xs={12} sm={6} md={6} lg={3} order={{ xs: 4, sm: 4, md: 4, lg: 3 }}>
                   <Button variant="contained" color="primary" fullWidth disabled={product?.stock === 0} onClick={handleToBuy}>
                     {product?.stock === 0 ? "Sold Out" : "Buy Now"}
                   </Button>
                 </Grid>
 
                 {/* Share Button */}
-                <Grid item xs={6} sm={4} md={3} order={{ xs: 2, sm: 4 }}>
+                <Grid item xs={6} sm={6} md={6} lg={3} order={{ xs: 2, sm: 2, md: 2, lg: 4 }}>
                   <Stack direction="row" alignItems="center" spacing={1} sx={{ justifyContent: "space-evenly", width: "100%" }}>
                     <IconButton onClick={() => product?.id && handleToWishlist(product.id)}>
                       <FavoriteBorder />
@@ -216,8 +216,8 @@ const ProductDetails = () => {
           <Typography variant="subtitle2" sx={{ fontWeight: "bold", mt: 1 }}>
             Features
           </Typography>
-          {product?.features.map((f) => (
-            <Typography variant="body1" sx={{ my: 1 }}>
+          {product?.features.map((f, index) => (
+            <Typography variant="body1" key={index} sx={{ my: 1 }}>
               - {f}
             </Typography>
           ))}
