@@ -1,20 +1,15 @@
 import React from "react";
 import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider } from "@mui/material";
-import { cartData } from "@/data/cartData";
 import Image from "@/components/image/Image";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, SquareRounded } from "@mui/icons-material";
 import { useCart } from "./Cart.hook";
 import { trimTextToWordLimit } from "@/components/utils/textUtils";
-import { useNavigate } from "react-router-dom";
 
 const Cart: React.FC = () => {
-  const navigate = useNavigate();
   const {
-    variable: { cartFData, priceDetails },
-    methods: { handleIncrement, handleDecrement, healdCheckout, healdWishlistCart, healdRemoveCart },
+    variable: { cartData },
+    methods: { navigate, handleIncrement, handleDecrement, healdWishlistCart, healdRemoveCart, handleCheckOut },
   } = useCart();
-
-  console.log("cartData", cartData);
 
   return (
     <>
@@ -30,19 +25,17 @@ const Cart: React.FC = () => {
           <Divider />
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography variant="body1">
-              Price ({priceDetails.totalProducts} items, {priceDetails.totalQuantity} Quantity)
+              Price ({cartData.payment_details.items} items, {cartData.payment_details.quantity} Quantity)
             </Typography>
-            <Typography variant="body1"> ₹{priceDetails.totalPrice}</Typography>
+            <Typography variant="body1"> ₹{cartData.payment_details.price}</Typography>
           </Stack>
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography variant="body1">Discounted Price </Typography>
-            <Typography variant="body1" color="success.main">
-              - ₹{priceDetails.totalDiscountPrice}
-            </Typography>
+            <Typography variant="body1">₹{cartData.payment_details.discountPrice}</Typography>
           </Stack>
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography variant="body1">Delivery Charges </Typography>
-            <Typography variant="body1"> ₹{priceDetails.totalDeliveryCharges}</Typography>
+            <Typography variant="body1"> ₹{cartData.payment_details.delivery_charges}</Typography>
           </Stack>
           <Divider />
           <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -50,28 +43,28 @@ const Cart: React.FC = () => {
               Total Amount
             </Typography>
             <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-              ₹{priceDetails.totalDiscountPrice + priceDetails.totalDeliveryCharges}
+              ₹{cartData.payment_details.total_amount}
             </Typography>
           </Stack>
           <Divider />
           <Typography variant="body1" color="success.main" sx={{ fontWeight: "bold" }}>
-            You will save ₹{priceDetails.totalSavings} on this order
+            You will save ₹{cartData.payment_details.save_amount} on this order
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button variant="contained" onClick={healdCheckout}>
-              Place Order
+            <Button variant="contained" onClick={handleCheckOut}>
+              Proceed to Buy
             </Button>
           </Box>
         </Box>
         {/* </Container> */}
         {/* Cart Items */}
         <Grid container sx={{}}>
-          {cartData.map((data) => {
-            const cartItem = cartFData.find((item) => item.product_id === data.id);
-            const quantity = cartItem ? cartItem.quantity : 1;
+          {cartData.cartList.map((data) => {
+            // const cartItem = cartFData.find((item) => item.product_id === data.id);
+            // const quantity = cartItem ? cartItem.quantity : 1;
 
             return (
-              <Grid item md={4} sm={6} xs={12} sx={{ p: 1 }}>
+              <Grid item md={6} sm={6} xs={12} sx={{ p: 1 }}>
                 <Box
                   sx={{
                     borderRadius: 2,
@@ -85,7 +78,7 @@ const Cart: React.FC = () => {
                   }}
                 >
                   <Box sx={{ display: "flex", borderRadius: 1, mt: 1 }}>
-                    <Image src={data.images[0]} alt={data.title} sx={{ height: 60, cursor: "pointer", mr: 2 }} onClick={() => navigate(`/product_details/${data.id}`)} />
+                    <Image src={data.attributes.color?.image || data.image} alt={"N/O"} sx={{ height: 60, cursor: "pointer", mr: 2 }} onClick={() => navigate(`/product_details/${data.id}`)} />
                     <Box sx={{ flex: 1 }}>
                       <Typography variant="body1" sx={{ width: "100%" }}>
                         {data.id} {trimTextToWordLimit(data.title, 100)}
@@ -93,10 +86,25 @@ const Cart: React.FC = () => {
                     </Box>
                   </Box>
                   <Box sx={{ p: 1, pt: 0 }}>
+                    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                      <Stack direction="row" alignItems="center" spacing={1} sx={{}}>
+                        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                          Color :
+                        </Typography>
+                        {data.attributes.color?.code && <SquareRounded sx={{ color: data.attributes.color?.code }} />}
+                        <Typography variant="body1">{data.attributes.color?.label}</Typography>
+                      </Stack>
+                      <Stack direction="row" alignItems="center" spacing={1} sx={{}}>
+                        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                          Size :
+                        </Typography>
+                        <Typography variant="body1">{data.attributes?.size}</Typography>
+                      </Stack>
+                    </Box>
                     {data.stock > 0 ? (
                       <>
                         <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
-                          <Typography variant="subtitle2">₹{data.discountPrice}</Typography>
+                          <Typography variant="body1">₹{data.discountPrice}</Typography>
                           {data.discountPercentage > 0 && (
                             <>
                               <Typography variant="body1" sx={{ textDecoration: "line-through", color: "#888" }}>
@@ -109,15 +117,21 @@ const Cart: React.FC = () => {
                             </>
                           )}
                         </Stack>
+                        <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
+                          <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                            Total Amount
+                          </Typography>
+                          <Typography variant="body1">₹{(data.discountPrice + data.delivery_charges) * data.quantity}</Typography>
+                        </Stack>
 
                         <Stack direction="row" alignItems="center" spacing={1} sx={{}}>
-                          <IconButton onClick={() => handleDecrement(data.id)} disabled={quantity <= 1}>
+                          <IconButton onClick={() => handleDecrement(data.id)} disabled={data.quantity <= 1}>
                             <Remove />
                           </IconButton>
                           <Box sx={{ border: 1, borderColor: "primary.main", borderRadius: 2, p: 0.5, px: 1.5 }}>
-                            <Typography>{quantity}</Typography>
+                            <Typography>{data.quantity}</Typography>
                           </Box>
-                          <IconButton onClick={() => handleIncrement(data.id, data.stock)} disabled={quantity === data.stock}>
+                          <IconButton onClick={() => handleIncrement(data.id)} disabled={data.quantity === data.stock}>
                             <Add />
                           </IconButton>
                         </Stack>
