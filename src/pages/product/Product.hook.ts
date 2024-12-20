@@ -78,8 +78,6 @@ const useProduct = () => {
 
   // Effect to reset search title when the component unmounts
   useEffect(() => {
-    console.log("useEffec-setSearchTitlet");
-
     return () => {
       dispatch(setSearchTitle(""));
     };

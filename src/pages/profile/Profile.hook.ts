@@ -23,6 +23,8 @@ const useProfile = () => {
     navigate("/user/profile/manage-address", { state: { action: "Add" } });
   };
   const handleUpdateAddress = (e: Iaddress) => {
+    console.log("address handleUpdateAddress", e);
+
     navigate("/user/profile/manage-address", {
       state: { address: e, action: "Update" },
     });
@@ -38,7 +40,6 @@ const useProfile = () => {
   // Edit
   const [openRemoveDialog, setOpenRemoveDialog] = useState<boolean>(false);
   const [removeAddress, setRemoveAddress] = useState<Iaddress>();
-  console.log("removeAddress", removeAddress);
 
   const handleRemoveAddressDialog = (address: Iaddress) => {
     setRemoveAddress(address);

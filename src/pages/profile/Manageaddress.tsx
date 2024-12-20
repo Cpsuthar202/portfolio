@@ -4,15 +4,16 @@ import { ChangeEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { validateFields } from "./utils";
 import { loadingSuccessToast } from "@/components/toastify/Toast";
+import Rcsc from "@/components/rcsc/Rcsc";
 
 const Manageaddress = () => {
   const location = useLocation();
 
   const state_address = location.state.address;
   const state_action = location.state.action;
-  console.log({ state_address, state_action });
+  // console.log({ state_address, state_action });
 
-  const [disabled, setDisabled] = useState<boolean>(true);
+  // const [disabled, setDisabled] = useState<boolean>(true);
 
   const [address, setAddress] = useState<Iaddress>({
     name: state_address?.name,
@@ -26,6 +27,9 @@ const Manageaddress = () => {
     apartment: state_address?.apartment,
     default: false,
   });
+
+  // console.log("address", address);
+
   // const [address, setAddress] = useState<Iaddress>(
   //   location.state?.address || {
   //     name: "",
@@ -40,7 +44,7 @@ const Manageaddress = () => {
   //     default: false,
   //   }
   // );
-  console.log("add  ress", address);
+  // console.log("add  ress", address);
 
   const [addressErr, setAddressErr] = useState<IaddressErr>({});
 
@@ -67,7 +71,7 @@ const Manageaddress = () => {
   // Handle changes in address details
   const handleAddressDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setDisabled(false);
+    // setDisabled(false);
     // Validation for mobile number and pincode
     if (name === "mobile_no" && value.length > 10) {
       return; // Prevent exceeding 10 digits
@@ -118,7 +122,8 @@ const Manageaddress = () => {
         <form onSubmit={handleSubmit}>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, borderRadius: 2, boxShadow: 1 }}>
             <TextField autoFocus variant="standard" label="Name" name="name" value={address?.name} onChange={handleAddressDetailsChange} error={!!addressErr.name} helperText={addressErr.name} />
-
+            {/* <Dashboard address={address} /> */}
+            <Rcsc setAddress={setAddress} address={address} addressErr={addressErr} setAddressErr={setAddressErr} />
             <TextField
               variant="standard"
               fullWidth
@@ -151,9 +156,9 @@ const Manageaddress = () => {
               helperText={addressErr.landmark}
             />
 
-            <TextField variant="standard" label="City" name="city" value={address?.city} onChange={handleAddressDetailsChange} error={!!addressErr.city} helperText={addressErr.city} />
-            <TextField variant="standard" label="State" name="state" value={address?.state} onChange={handleAddressDetailsChange} error={!!addressErr.state} helperText={addressErr.state} />
-            <TextField variant="standard" label="Country" name="country" value={address?.country} onChange={handleAddressDetailsChange} error={!!addressErr.country} helperText={addressErr.country} />
+            {/* <TextField variant="standard" label="City" name="city" value={address?.city} onChange={handleAddressDetailsChange} error={!!addressErr.city} helperText={addressErr.city} /> */}
+            {/* <TextField variant="standard" label="State" name="state" value={address?.state} onChange={handleAddressDetailsChange} error={!!addressErr.state} helperText={addressErr.state} /> */}
+            {/* <TextField variant="standard" label="Country" name="country" value={address?.country} onChange={handleAddressDetailsChange} error={!!addressErr.country} helperText={addressErr.country} /> */}
             <TextField variant="standard" label="area" name="area" value={address?.area} onChange={handleAddressDetailsChange} error={!!addressErr.area} helperText={addressErr.area} />
             <TextField
               variant="standard"
@@ -171,7 +176,7 @@ const Manageaddress = () => {
                 sx={{ color: "primary.main" }}
               />
             )}
-            <Button type="submit" fullWidth variant="contained" color="primary" disabled={disabled}>
+            <Button type="submit" fullWidth variant="contained" color="primary">
               {state_action} address
             </Button>
           </Box>

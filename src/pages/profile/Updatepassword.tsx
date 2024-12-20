@@ -45,8 +45,6 @@ const Updatepassword = () => {
   });
   const [updatePasswordErr, setUpdatePasswordErr] = useState<PasswordErrors>({});
 
-  console.log("updatePasswordErr", updatePasswordErr);
-
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 

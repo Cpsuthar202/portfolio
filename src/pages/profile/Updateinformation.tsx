@@ -20,8 +20,6 @@ const UpdateInformation = () => {
     dob: "",
   });
 
-  console.log(updateInformation);
-
   const [updateInformationErr, setUpdateInformationErr] = useState<IpasswordErrors>({});
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
