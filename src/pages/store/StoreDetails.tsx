@@ -29,17 +29,22 @@ const StoreDetails = () => {
       {/* Store Details */}
       <Box sx={{ textAlign: "center" }}>
         <Avatar
-          src={store?.logo || "/default-logo.png"}
+          src={store?.logo || undefined}
           alt={store?.store_name || "Store Logo"}
           variant="rounded"
           sx={{
             width: 70,
             height: 70,
             margin: "auto",
+            bgcolor: "primary.main",
+            color: "white",
           }}
-        />
+        >
+          {!store?.logo && `${store?.store_name?.split(" ")[0][0] || "?"}`}
+          {/* {!store?.logo && `${store?.store_name?.split(" ")[0][0] || "?"} ${store?.store_name?.split(" ")[1]?.[0] || ""}`} */}
+        </Avatar>
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-          {store?.store_name}
+          {store?.store_name}1
         </Typography>
         <Typography variant="body1">{store?.description || "No description available."}</Typography>
       </Box>
@@ -49,18 +54,33 @@ const StoreDetails = () => {
         sx={{
           display: "flex",
           alignItems: "center",
+          // justifyContent: "start",
           gap: 2,
           // p: 2,
           // border: 1,
         }}
       >
-        <Avatar src={store?.owner_photo || "/default-owner.jpg"} alt="Owner" variant="rounded" sx={{ width: 50, height: 50 }} />
-        <Box>
-          <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-            Owner
-            <Typography variant="body1">{store?.ownerName || "Not available"}</Typography>
-          </Typography>
-        </Box>
+        <Avatar
+          src={store?.owner_photo || undefined}
+          alt={store?.store_name || "Store Logo"}
+          variant="rounded"
+          sx={{
+            width: 70,
+            height: 70,
+            // margin: "auto",
+            bgcolor: "primary.main",
+            color: "white",
+          }}
+        >
+          {store?.ownerName?.split(" ")[0][0] || "?"}
+        </Avatar>
+        {/* <Avatar src={store?.owner_photo || "/default-owner.jpg"} alt="Owner" variant="rounded" sx={{ width: 50, height: 50 }} /> */}
+        {/* <Box> */}
+        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+          Owner
+          <Typography variant="body1">{store?.ownerName || "Not available"}</Typography>
+        </Typography>
+        {/* </Box> */}
       </Box>
 
       <Divider />
@@ -105,21 +125,21 @@ const StoreDetails = () => {
         {store?.socialMedia?.facebook && (
           <Tooltip title="Facebook">
             <IconButton aria-label="Facebook" sx={{ color: "#3b5998" }} onClick={() => handleShareUrl({ url: store?.socialMedia?.facebook })}>
-              <Facebook sx={{ fontSize: "18px" }} />
+              <Facebook />
             </IconButton>
           </Tooltip>
         )}
         {store?.socialMedia?.twitter && (
           <Tooltip title="Twitter">
             <IconButton aria-label="Twitter" sx={{ color: "#1DA1F2" }} onClick={() => handleShareUrl({ url: store.socialMedia?.twitter })}>
-              <X sx={{ fontSize: "18px" }} />
+              <X />
             </IconButton>
           </Tooltip>
         )}
         {store?.socialMedia?.instagram && (
           <Tooltip title="Instagram">
             <IconButton aria-label="Instagram" sx={{ color: "#C13584" }} onClick={() => handleShareUrl({ url: store?.socialMedia?.instagram })}>
-              <Instagram sx={{ fontSize: "18px" }} />
+              <Instagram />
             </IconButton>
           </Tooltip>
         )}

@@ -42,8 +42,9 @@ export const profilDetails: Iprofile = {
   name: "Chandra Prakash Suthar",
   email: "jane.doe@example.com",
   phone_number: "7023667323",
-  gender: "Male",
-  dob: "20-02-1999",
+  gender: "male",
+  dob: "1999-02-20",
+  // dob: "20-02-1999",
   password: "ACPs1999",
   address: [
     {

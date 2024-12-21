@@ -16,7 +16,7 @@ const useProfile = () => {
     navigate("/user/profile/update-password", { state: { phone_number: userData.phone_number } });
   };
   const handleUpdateInformation = () => {
-    navigate("/user/profile/update-information");
+    navigate("/user/profile/update-information", { state: { profile_information: userData } });
   };
 
   const handleAddAddress = () => {

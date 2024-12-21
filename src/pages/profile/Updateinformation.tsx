@@ -1,5 +1,7 @@
+import { loadingSuccessToast } from "@/components/toastify/Toast";
 import { Container, Box, Typography, Button, TextField, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 type IpasswordData = {
   name: string;
@@ -12,13 +14,20 @@ type IpasswordData = {
 type IpasswordErrors = Partial<Record<keyof IpasswordData, string>>;
 
 const UpdateInformation = () => {
+  const location = useLocation();
+  const userData = location.state.profile_information;
+  console.log("userData", userData);
+
   const [updateInformation, setUpdateInformation] = useState<IpasswordData>({
-    name: "",
-    email: "",
-    phone_number: "",
-    gender: "",
-    dob: "",
+    name: userData.name || "",
+    email: userData.email || "",
+    phone_number: userData.phone_number || "",
+    gender: userData.gender || "",
+    dob: userData.dob || "",
   });
+
+  // console.log("updateInformation", updateInformation.dob.split("-").reverse().join("-"));
+  // console.log("updateInformation", updateInformation.dob);
 
   const [updateInformationErr, setUpdateInformationErr] = useState<IpasswordErrors>({});
 
@@ -30,6 +39,7 @@ const UpdateInformation = () => {
     setUpdateInformation((prevDetails) => ({
       ...prevDetails,
       [name]: value,
+      // [name]: name === "dob" ? value.split("-").reverse().join("-") : value,
     }));
     setUpdateInformationErr((prevErr) => ({ ...prevErr, [name]: "" }));
   };
@@ -62,6 +72,7 @@ const UpdateInformation = () => {
     const { isValid, errors } = validateFields(updateInformation);
     if (isValid) {
       console.log("Information updated successfully:", updateInformation);
+      loadingSuccessToast({ message: "Information updated successfully" });
       // TODO: Call API here
     } else {
       setUpdateInformationErr(errors);
@@ -170,7 +181,16 @@ const UpdateInformation = () => {
               name="dob"
               type="date"
               InputLabelProps={{ shrink: true }}
+              inputProps={{
+                // min: "20  00-01-01", // Set the minimum date
+                max: new Date().toISOString().split("T")[0], // Set the maximum date as today
+              }}
               value={updateInformation.dob}
+              // value={
+              //   updateInformation.dob
+              //     ? updateInformation.dob.split("-").reverse().join("-") // Convert DD-MM-YYYY to YYYY-MM-DD
+              //     : ""
+              // }
               onChange={handleInputChange}
               error={!!updateInformationErr.dob}
               helperText={updateInformationErr.dob}
