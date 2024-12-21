@@ -21,7 +21,19 @@ const Profile: React.FC = () => {
             <Edit />
           </IconButton>
         </Box>
-        <Avatar src={userData.profile_url} alt="Owner" variant="rounded" sx={{ width: 70, height: 70 }} />
+        <Avatar
+          src={userData.profile_url || undefined}
+          alt={userData.profile_url?.split(" ")[0][0] || "?"}
+          variant="rounded"
+          sx={{
+            width: 70,
+            height: 70,
+            bgcolor: "primary.main",
+            color: "white",
+          }}
+        >
+          {userData.name?.split(" ")[0][0] || "?"}
+        </Avatar>
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           {userData.name}
         </Typography>

@@ -187,7 +187,20 @@ const Rcsc: React.FC<RcscProps> = ({ setAddress, address, addressErr, setAddress
           }}
         >
           <InputLabel>{label}</InputLabel>
-          <Select value={value as string | any} onChange={handleChange(type as "country" | "state" | "city")} label={label} disabled={disabled} MenuProps={menuProps}>
+          <Select
+            value={value as string | any}
+            onChange={handleChange(type as "country" | "state" | "city")}
+            label={label}
+            disabled={disabled}
+            MenuProps={menuProps}
+            sx={{
+              "& .MuiSelect-select": {
+                fontSize: "20px", // Set the desired font size for the selected value
+                color: "primary.main", // Optional: Set the text color for the selected value
+                mt: 1,
+              },
+            }}
+          >
             {items.map((item) => (
               <MenuItem key={item.id} value={item.name || ""}>
                 {item.name}

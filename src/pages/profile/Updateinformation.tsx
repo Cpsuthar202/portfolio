@@ -1,9 +1,11 @@
 import { loadingSuccessToast } from "@/components/toastify/Toast";
-import { Container, Box, Typography, Button, TextField, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { Container, Box, Typography, Button, TextField, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Avatar, IconButton, Badge } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Add } from "@mui/icons-material";
 
 type IpasswordData = {
+  profile_url: string;
   name: string;
   email: string;
   phone_number: string;
@@ -19,15 +21,13 @@ const UpdateInformation = () => {
   console.log("userData", userData);
 
   const [updateInformation, setUpdateInformation] = useState<IpasswordData>({
+    profile_url: userData.profile_url || "",
     name: userData.name || "",
     email: userData.email || "",
     phone_number: userData.phone_number || "",
     gender: userData.gender || "",
     dob: userData.dob || "",
   });
-
-  // console.log("updateInformation", updateInformation.dob.split("-").reverse().join("-"));
-  // console.log("updateInformation", updateInformation.dob);
 
   const [updateInformationErr, setUpdateInformationErr] = useState<IpasswordErrors>({});
 
@@ -78,6 +78,14 @@ const UpdateInformation = () => {
       setUpdateInformationErr(errors);
     }
   };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setUpdateInformation((prev) => ({ ...prev, profile_url: imageUrl }));
+    }
+  };
   return (
     <Container sx={{ p: 0 }}>
       <Box sx={{ width: "100%", maxWidth: 500, m: "auto" }}>
@@ -85,7 +93,40 @@ const UpdateInformation = () => {
           Update Information
         </Typography>
         <form onSubmit={handleSubmit}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2, borderRadius: 2, boxShadow: 1 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 4, borderRadius: 2, boxShadow: 1 }}>
+            <Box sx={{ margin: "auto" }}>
+              <Badge
+                overlap="circular"
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                sx={{ width: "fit-content" }}
+                badgeContent={
+                  <IconButton
+                    sx={{ bgcolor: "white" }}
+                    component="label" // Allows triggering file input
+                  >
+                    <Add />
+                    <input type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} />
+                  </IconButton>
+                }
+              >
+                <Avatar
+                  src={updateInformation.profile_url}
+                  alt={updateInformation.name?.split(" ")[0][0] || "?"}
+                  variant="rounded"
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    m: 1,
+                    bgcolor: "primary.main",
+                    color: "white",
+                    border: 1,
+                    borderColor: "primary.main",
+                  }}
+                >
+                  {!updateInformation.profile_url && (userData.name?.split(" ")[0][0] || "?")}
+                </Avatar>
+              </Badge>
+            </Box>
             <TextField
               variant="standard"
               fullWidth
@@ -135,7 +176,7 @@ const UpdateInformation = () => {
                 },
 
                 marginBottom: 2, // Adds spacing between form fields
-                "& .MuiInputLabel-root": { color: updateInformationErr.gender ? "error.main" : "primary.main", fontSize: "17px" }, // Customize label color
+                "& .MuiInputLabel-root": { color: updateInformationErr.gender ? "error.main" : "primary.main", fontSize: "20px" }, // Customize label color
                 "& .MuiOutlinedInput-root": {
                   borderRadius: 2, // Smooth rounded corners
                   "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -153,6 +194,13 @@ const UpdateInformation = () => {
                 onChange={handleSelectChange}
                 name="gender"
                 label="Gender"
+                sx={{
+                  "& .MuiSelect-select": {
+                    fontSize: "18px", // Set the desired font size for the selected value
+                    color: "primary.main", // Optional: Set the text color for the selected value
+                    mt: 1,
+                  },
+                }}
                 MenuProps={{
                   PaperProps: {
                     sx: {

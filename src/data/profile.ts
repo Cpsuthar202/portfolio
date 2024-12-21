@@ -26,7 +26,7 @@ export interface IaddressErr {
 
 export interface Iprofile {
   user_id: string;
-  profile_url: string;
+  profile_url?: string;
   name: string;
   email: string;
   phone_number: string;
@@ -38,7 +38,8 @@ export interface Iprofile {
 
 export const profilDetails: Iprofile = {
   user_id: "1cps99",
-  profile_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTSKbCFe_QYSVH-4FpaszXvakr2Eti9eAJpQ&s",
+  profile_url: "https://cdn3.pixelcut.app/7/18/profile_photo_maker_hero_100866f715.jpg",
+  // profile_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTSKbCFe_QYSVH-4FpaszXvakr2Eti9eAJpQ&s",
   name: "Chandra Prakash Suthar",
   email: "jane.doe@example.com",
   phone_number: "7023667323",
