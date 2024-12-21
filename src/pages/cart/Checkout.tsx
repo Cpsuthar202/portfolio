@@ -3,7 +3,7 @@ import { useCart } from "./Cart.hook";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { Edit, SquareRounded } from "@mui/icons-material";
 import { trimTextToWordLimit } from "@/components/utils/textUtils";
-import Image from "@/components/image/Image";
+import { Image } from "@/components/image";
 
 const Checkout = () => {
   const {

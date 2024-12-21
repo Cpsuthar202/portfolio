@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider } from "@mui/material";
-import Image from "@/components/image/Image";
+import { Image } from "@/components/image";
 import { Add, Remove, SquareRounded } from "@mui/icons-material";
 import { useCart } from "./Cart.hook";
 import { trimTextToWordLimit } from "@/components/utils/textUtils";

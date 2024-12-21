@@ -7,7 +7,7 @@ import { CustomAccordion } from "@/components/accordion";
 import { textCopy } from "@/components/copys/textCopy";
 import { ContentCopy, SquareRounded } from "@mui/icons-material";
 import { useOrder } from "./Order.hook";
-import Image from "@/components/image/Image";
+import { Image } from "@/components/image";
 
 const Order = () => {
   const {

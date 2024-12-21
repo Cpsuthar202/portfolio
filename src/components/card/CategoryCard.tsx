@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import Image from "../image/Image";
+import { Image } from "../image";
 import { mColor } from "@color";
 // import { useNavigate } from "react-router-dom";
 

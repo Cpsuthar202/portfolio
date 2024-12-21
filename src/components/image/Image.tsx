@@ -9,7 +9,7 @@ interface ImageProps {
   onClick?: () => void; // Optional onClick handler
 }
 
-const Image: React.FC<ImageProps> = ({ src, alt, sx, style, onClick }) => {
+export const Image: React.FC<ImageProps> = ({ src, alt, sx, style, onClick }) => {
   return (
     <Box
       component="img"
@@ -29,4 +29,4 @@ const Image: React.FC<ImageProps> = ({ src, alt, sx, style, onClick }) => {
   );
 };
 
-export default Image;
+// export default Image;

@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, IconButton, Box, Stack, Chip } from "@mui/material";
 import { FavoriteBorder, Share } from "@mui/icons-material";
 import { Iproduct } from "@/data/product";
-import Image from "../image/Image";
 import { trimTextToWordLimit } from "../utils/textUtils";
 import { useNavigate } from "react-router-dom";
 import { DisplayRatings } from "../ratings/Ratings";
@@ -10,6 +9,7 @@ import { WebShare } from "../container";
 import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
 import { useProduct } from "@/pages/product/Product.hook";
+import { Image } from "../image";
 
 interface IProductCard {
   data: Iproduct;
