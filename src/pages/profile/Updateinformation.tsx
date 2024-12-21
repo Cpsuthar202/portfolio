@@ -3,24 +3,15 @@ import { Container, Box, Typography, Button, TextField, FormControl, InputLabel,
 import { ChangeEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Add } from "@mui/icons-material";
-
-type IpasswordData = {
-  profile_url: string;
-  name: string;
-  email: string;
-  phone_number: string;
-  gender: string;
-  dob: string;
-};
-
-type IpasswordErrors = Partial<Record<keyof IpasswordData, string>>;
+import { validateFieldsforUpdateInformation } from "./utils";
+import { Iupdateprofile, IupdateprofileErr } from "@/store/reducers/profile/type";
 
 const UpdateInformation = () => {
   const location = useLocation();
   const userData = location.state.profile_information;
   console.log("userData", userData);
 
-  const [updateInformation, setUpdateInformation] = useState<IpasswordData>({
+  const [updateInformation, setUpdateInformation] = useState<Iupdateprofile>({
     profile_url: userData.profile_url || "",
     name: userData.name || "",
     email: userData.email || "",
@@ -29,7 +20,7 @@ const UpdateInformation = () => {
     dob: userData.dob || "",
   });
 
-  const [updateInformationErr, setUpdateInformationErr] = useState<IpasswordErrors>({});
+  const [updateInformationErr, setUpdateInformationErr] = useState<IupdateprofileErr>({});
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -57,19 +48,9 @@ const UpdateInformation = () => {
     }
   };
 
-  const validateFields = (data: IpasswordData): { isValid: boolean; errors: IpasswordErrors } => {
-    const errors: IpasswordErrors = {};
-    if (!data.name.trim()) errors.name = "Name is required";
-    if (!/^\S+@\S+\.\S+$/.test(data.email)) errors.email = "Invalid email format";
-    if (!/^\d{10}$/.test(data.phone_number)) errors.phone_number = "Phone number must be 10 digits";
-    if (!["male", "female"].includes(data.gender)) errors.gender = "Please select a valid gender";
-    if (!data.dob) errors.dob = "Date of birth is required";
-    return { isValid: Object.keys(errors).length === 0, errors };
-  };
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const { isValid, errors } = validateFields(updateInformation);
+    const { isValid, errors } = validateFieldsforUpdateInformation(updateInformation);
     if (isValid) {
       console.log("Information updated successfully:", updateInformation);
       loadingSuccessToast({ message: "Information updated successfully" });

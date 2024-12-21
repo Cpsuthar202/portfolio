@@ -1,40 +1,42 @@
-export interface Iaddress {
-  id?: string; // Added ID property
-  name?: string;
-  mobile_no?: string;
-  pincode: string;
-  landmark: string;
-  city: string;
-  state: string;
-  country: string;
-  area: string;
-  apartment: string;
-  default?: boolean; // Indicates if the address is the default
-}
-export interface IaddressErr {
-  name?: string;
-  mobile_no?: string;
-  pincode?: string;
-  landmark?: string;
-  city?: string;
-  state?: string;
-  country?: string;
-  area?: string;
-  apartment?: string;
-  default?: boolean; // Indicates if the address is the default
-}
+// export interface Iaddress {
+//   id?: string; // Added ID property
+//   name?: string;
+//   mobile_no?: string;
+//   pincode: string;
+//   landmark: string;
+//   city: string;
+//   state: string;
+//   country: string;
+//   area: string;
+//   apartment: string;
+//   default?: boolean; // Indicates if the address is the default
+// }
+// export interface IaddressErr {
+//   name?: string;
+//   mobile_no?: string;
+//   pincode?: string;
+//   landmark?: string;
+//   city?: string;
+//   state?: string;
+//   country?: string;
+//   area?: string;
+//   apartment?: string;
+//   default?: boolean; // Indicates if the address is the default
+// }
 
-export interface Iprofile {
-  user_id: string;
-  profile_url?: string;
-  name: string;
-  email: string;
-  phone_number: string;
-  gender: string;
-  dob: string;
-  password: string;
-  address: Iaddress[];
-}
+import { Iprofile } from "@/store/reducers/profile/type";
+
+// export interface Iprofile {
+//   user_id: string;
+//   profile_url?: string;
+//   name: string;
+//   email: string;
+//   phone_number: string;
+//   gender: string;
+//   dob: string;
+//   password: string;
+//   address: Iaddress[];
+// }
 
 export const profilDetails: Iprofile = {
   user_id: "1cps99",

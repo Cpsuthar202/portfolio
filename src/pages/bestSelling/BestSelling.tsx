@@ -1,8 +1,8 @@
 import { ProductCard } from "@/components/card";
-import { Iproduct } from "@/data/product";
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useBestSelling } from "./BestSelling.hook";
+import { Iproduct } from "@/store/reducers/product/type";
 
 const BestSelling: React.FC = () => {
   const {

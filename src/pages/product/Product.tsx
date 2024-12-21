@@ -1,7 +1,7 @@
 import { ProductCard } from "@/components/card";
-import { Iproduct } from "@/data/product";
 import { Box, Grid, Typography } from "@mui/material";
 import { useProduct } from "./Product.hook";
+import { Iproduct } from "@/store/reducers/product/type";
 
 const Product = () => {
   const {

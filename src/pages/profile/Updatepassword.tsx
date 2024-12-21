@@ -1,8 +1,8 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-import { validatePassword } from "../auth/validateFields";
 import { useLocation } from "react-router-dom";
 import PasswordField from "../auth/utility/PasswordField";
+import { validateFieldsforUpdatepassword } from "./utils";
 
 type PasswordData = {
   phone_number: string;
@@ -11,29 +11,6 @@ type PasswordData = {
 };
 
 type PasswordErrors = Partial<Record<keyof PasswordData, string>>;
-
-const validateFields = (data: PasswordData) => {
-  const errors: PasswordErrors = {};
-  let isValid = true;
-
-  // Validate old password
-  const oldPasswordValidation = validatePassword(data.old_password);
-  console.log("oldPasswordValidation", oldPasswordValidation);
-
-  if (!oldPasswordValidation.isValid) {
-    isValid = false;
-    errors.old_password = oldPasswordValidation.err.password;
-  }
-
-  // Validate new password
-  const newPasswordValidation = validatePassword(data.new_password);
-  if (!newPasswordValidation.isValid) {
-    isValid = false;
-    errors.new_password = newPasswordValidation.err.password;
-  }
-
-  return { isValid, errors };
-};
 
 const Updatepassword = () => {
   const location = useLocation();
@@ -60,7 +37,7 @@ const Updatepassword = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const { isValid, errors } = validateFields(updatePassword);
+    const { isValid, errors } = validateFieldsforUpdatepassword(updatePassword);
 
     if (isValid) {
       console.log("Password updated successfully:", updatePassword);

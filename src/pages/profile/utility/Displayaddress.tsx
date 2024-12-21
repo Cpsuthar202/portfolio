@@ -1,4 +1,4 @@
-import { Iaddress } from "@/data/profile";
+import { Iaddress } from "@/store/reducers/profile/type";
 import { Box, Typography } from "@mui/material";
 import React, { memo } from "react";
 

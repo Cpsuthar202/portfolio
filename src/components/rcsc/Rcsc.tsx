@@ -1,4 +1,5 @@
-import { Iaddress, IaddressErr } from "@/data/profile";
+// import { Iaddress, IaddressErr } from "@/data/profile";
+import { Iaddress, IaddressErr } from "@/store/reducers/profile/type";
 import { FormControl, InputLabel, Select, MenuItem, Box, SelectChangeEvent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { GetCountries, GetState, GetCity, GetPhonecodes } from "react-country-state-city";

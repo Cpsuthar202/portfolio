@@ -1,10 +1,10 @@
-import { Iaddress, IaddressErr } from "@/data/profile";
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { validateFields } from "./utils";
+import { validateFieldsforManageaddress } from "./utils";
 import { loadingSuccessToast } from "@/components/toastify/Toast";
 import Rcsc from "@/components/rcsc/Rcsc";
+import { Iaddress, IaddressErr } from "@/store/reducers/profile/type";
 
 const Manageaddress = () => {
   const location = useLocation();
@@ -100,7 +100,7 @@ const Manageaddress = () => {
     event.preventDefault();
     console.log("addressAWERT", address);
 
-    const validation = validateFields(address);
+    const validation = validateFieldsforManageaddress(address);
     if (validation.isValid) {
       console.log({ address });
       if (state_action === "Add") {

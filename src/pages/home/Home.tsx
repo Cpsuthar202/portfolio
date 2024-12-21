@@ -1,16 +1,21 @@
 import { Box } from "@mui/material";
 
-import { categoriesData, Icategories } from "@/data/categories";
-import { Iproduct, productData } from "@/data/product";
-import { brands, Ibrands } from "@/data/brands";
+import { categoriesData } from "@/data/categories";
+import { productData } from "@/data/product";
+import { brands } from "@/data/brands";
 // import { title } from "process";
 import { ProductCard } from "@/components/card";
 import CategoryCard from "@/components/card/CategoryCard";
 import { useNavigate } from "react-router-dom";
-import { IstoresData, storesData } from "@/data/stores";
+import { storesData } from "@/data/stores";
 import { Sliderview } from "@/components/container";
+import { Icategories } from "@/store/reducers/category/type";
+import { Ibrands } from "@/store/reducers/brand/type";
+import { IstoresData } from "@/store/reducers/shop/type";
+import { Iproduct } from "@/store/reducers/product/type";
 const Home = () => {
   const navigate = useNavigate();
+
   // const dispatch = useAppDispatch();
 
   // const [titleData, setTitleData] = useState<string>("");

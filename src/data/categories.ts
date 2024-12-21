@@ -1,8 +1,5 @@
-export interface Icategories {
-  id: string;
-  image: string;
-  label: string;
-}
+import { Icategories } from "@/store/reducers/category/type";
+
 export const categoriesData: Icategories[] = [
   {
     id: "c1",

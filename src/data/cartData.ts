@@ -1,4 +1,4 @@
-import { Iaddress } from "./profile";
+import { Iaddress } from "@/store/reducers/profile/type";
 
 interface ICartData {
   payment_details: {

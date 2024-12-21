@@ -1,5 +1,6 @@
 import { loadingSuccessToast } from "@/components/toastify/Toast";
-import { Iaddress, profilDetails } from "@/data/profile";
+import { profilDetails } from "@/data/profile";
+import { Iaddress } from "@/store/reducers/profile/type";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

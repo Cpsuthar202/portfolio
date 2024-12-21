@@ -2,9 +2,12 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
-import { brands, Ibrands } from "@/data/brands";
-import { categoriesData, Icategories } from "@/data/categories";
-import { IstoresData, storesData } from "@/data/stores";
+import { brands } from "@/data/brands";
+import { categoriesData } from "@/data/categories";
+import { storesData } from "@/data/stores";
+import { Icategories } from "@/store/reducers/category/type";
+import { Ibrands } from "@/store/reducers/brand/type";
+import { IstoresData } from "@/store/reducers/shop/type";
 
 type DataItem = Icategories | Ibrands | IstoresData;
 

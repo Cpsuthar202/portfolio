@@ -1,8 +1,5 @@
-export interface Ibrands {
-  id: string;
-  logo: string;
-  label: string;
-}
+import { Ibrands } from "@/store/reducers/brand/type";
+
 export const brands: Ibrands[] = [
   {
     id: "b1",

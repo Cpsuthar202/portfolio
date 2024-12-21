@@ -1,7 +1,6 @@
 import React from "react";
 import { Typography, IconButton, Box, Stack, Chip } from "@mui/material";
 import { FavoriteBorder, Share } from "@mui/icons-material";
-import { Iproduct } from "@/data/product";
 import { trimTextToWordLimit } from "../utils/textUtils";
 import { useNavigate } from "react-router-dom";
 import { DisplayRatings } from "../ratings/Ratings";
@@ -10,6 +9,7 @@ import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
 import { useProduct } from "@/pages/product/Product.hook";
 import { Image } from "../image";
+import { Iproduct } from "@/store/reducers/product/type";
 
 interface IProductCard {
   data: Iproduct;

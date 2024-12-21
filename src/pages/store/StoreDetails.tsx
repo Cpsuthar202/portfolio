@@ -1,12 +1,12 @@
 import { ProductCard } from "@/components/card";
 import { handleShareUrl, Sliderview, WebShare } from "@/components/container";
 import { Image } from "@/components/image";
-import { Iproduct } from "@/data/product";
 import { Email, Facebook, Instagram, Phone, X, Share } from "@mui/icons-material";
 import { Avatar, Box, Container, Divider, IconButton, Stack, Tooltip, Typography } from "@mui/material";
 import { useStoreDetails } from "./StoreDetails.hook";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { DisplayRatings } from "@/components/ratings/Ratings";
+import { Iproduct } from "@/store/reducers/product/type";
 
 const StoreDetails = () => {
   const {

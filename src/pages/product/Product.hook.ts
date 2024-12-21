@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Color, Iproduct, productData } from "@/data/product";
+import { productData } from "@/data/product";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { RatingDistribution } from "./utils";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
 import { successToast } from "@/components/toastify/Toast";
+import { Icolor, Iproduct } from "@/store/reducers/product/type";
 
 const useProduct = () => {
   // Extract route parameters
@@ -34,7 +35,7 @@ const useProduct = () => {
   const [cardProduct, setCardProduct] = useState<{
     product_id: string | undefined;
     size: string | undefined;
-    color: Color | undefined;
+    color: Icolor | undefined;
     quantity: number;
   }>({
     product_id: product?.id,
