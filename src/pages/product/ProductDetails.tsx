@@ -5,7 +5,7 @@ import { useProduct } from "./Product.hook";
 import { DisplayRatings } from "@/components/ratings/Ratings";
 import { WebShare } from "@/components/container";
 import { mColor } from "@color";
-import ZoomImage from "@/components/image/ZoomImage";
+import { ZoomImage } from "@/components/image";
 
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook

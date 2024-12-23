@@ -6,7 +6,7 @@ interface ZoomImageProps {
   src?: string; // Optional string
 }
 
-const ZoomImage: React.FC<ZoomImageProps> = ({ src }) => {
+export const ZoomImage: React.FC<ZoomImageProps> = ({ src }) => {
   const defaultSrc = "https://via.placeholder.com/600"; // Fallback image
 
   // Ensure src is always a string
@@ -43,5 +43,3 @@ const ZoomImage: React.FC<ZoomImageProps> = ({ src }) => {
     </Box>
   );
 };
-
-export default ZoomImage;
