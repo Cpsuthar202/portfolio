@@ -1,23 +1,23 @@
 import { ILoginSchemaErr, IRegistrationSchema } from "@/store/reducers/auth/type";
-import { validateName, validateNumber, validatePassword } from "../validateFields";
+import { validateEmail, validateName, validatePassword } from "../validateFields";
 
 export const validateFields = (data: IRegistrationSchema) => {
   const err: ILoginSchemaErr = {};
   let isValid = true;
 
-  // Validate full_name
+  // Validate name
 
-  const nameValidation = validateName(data.full_name);
+  const nameValidation = validateName(data.name);
   if (!nameValidation.isValid) {
     isValid = false;
-    err.full_name = nameValidation.err.full_name;
+    err.name = nameValidation.err.name;
   }
 
   // Validate phone number
-  const phoneValidation = validateNumber(data.phone_number);
+  const phoneValidation = validateEmail(data.email);
   if (!phoneValidation.isValid) {
     isValid = false;
-    err.phone_number = phoneValidation.err.phone_number;
+    err.email = phoneValidation.err.email;
   }
 
   // Validate password

@@ -1,34 +1,48 @@
+import { IAddress } from "../address/type";
+
 export interface IAuthSliceInitialState {
   isLoading: boolean;
-  data: ILoginResponse | null;
+  data: IauthResponse | null;
   isError: boolean;
   isLoadingUser: boolean;
   loginDetailPreserve: ILoginSchema | null;
   registerDetailPreserve: IRegistrationSchema | null;
 }
+
 export interface ILoginSchema {
   password: string;
-  phone_number: string;
+  email: string;
 }
+
 export interface ILoginSchemaErr {
-  full_name?: string;
-  phone_number?: string;
+  name?: string;
+  email?: string;
   password?: string;
+  otp?: string;
 }
 
 export interface IRegistrationSchema {
-  full_name: string;
-  phone_number: string;
+  name: string;
+  email: string;
   password: string;
+  otp?: string;
 }
 
-export interface ILoginResponse {
-  user?: IUser;
+export interface IauthResponse {
+  user: IUser;
   token: string;
 }
 
 interface IUser {
-  password: string;
-  phone_number: string;
-  full_name?: string;
+  id: string;
+  name: string;
+  email: string;
+  // password: string;
+  bod?: string;
+  gender?: string;
+  phone_number?: string;
+  admin?: boolean;
+  address?: IAddress;
+  created_at: string;
+  updated_at: string;
 }

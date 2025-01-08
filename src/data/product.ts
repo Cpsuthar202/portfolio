@@ -38,12 +38,6 @@ export const productData: Iproduct[] = [
       "https://m.media-amazon.com/images/I/71QZbcvD65L._SX522_.jpg",
       "https://m.media-amazon.com/images/I/61vBE3t4x1L._SX522_.jpg",
       "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
-
-      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
-      "https://m.media-amazon.com/images/I/61F5lcvJHLL._SX522_.jpg",
     ],
     teg: ["bosco", "phone"],
     features: [

@@ -1,15 +1,16 @@
+// import { ILoginRequest, ILoginRequestErr } from "@/store/reducers/auth/type";
 import { ILoginSchema, ILoginSchemaErr } from "@/store/reducers/auth/type";
-import { validateNumber, validatePassword } from "../validateFields";
+import { validateEmail, validatePassword } from "../validateFields";
 
 export const validateFields = (data: ILoginSchema) => {
   const err: ILoginSchemaErr = {};
   let isValid = true;
 
   // Validate phone number
-  const phoneValidation = validateNumber(data.phone_number);
+  const phoneValidation = validateEmail(data.email);
   if (!phoneValidation.isValid) {
     isValid = false;
-    err.phone_number = phoneValidation.err.phone_number;
+    err.email = phoneValidation.err.email;
   }
 
   // Validate password

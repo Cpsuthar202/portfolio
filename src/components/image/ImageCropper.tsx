@@ -15,8 +15,9 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({ handleClose, localsr
   const [croppedArea, setCroppedArea] = useState<Area | null>(null);
   const aspectRatio = 1; // Default aspect ratio
 
-  const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
-    console.error(croppedArea);
+  // const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
+  const onCropComplete = (croppedAreaPixels: Area) => {
+    // console.error(croppedArea);
 
     setCroppedArea(croppedAreaPixels);
   };

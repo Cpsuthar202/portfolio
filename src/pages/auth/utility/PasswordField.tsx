@@ -3,7 +3,7 @@ import { TextField, IconButton, Box } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface PasswordFieldProps {
-  value: string;
+  value: string | undefined;
   name?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error?: boolean;

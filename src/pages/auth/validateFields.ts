@@ -70,12 +70,12 @@ export const validateEmail = (email: string): { isValid: boolean; err: { email?:
   return { isValid, err };
 };
 
-export const validateName = (full_name: string): { isValid: boolean; err: { full_name?: string } } => {
-  const err: { full_name?: string } = {};
+export const validateName = (name: string): { isValid: boolean; err: { name?: string } } => {
+  const err: { name?: string } = {};
 
   let isValid = true;
-  if (!full_name) {
-    err.full_name = "Name is required";
+  if (!name) {
+    err.name = "Name is required";
     isValid = false;
   }
 

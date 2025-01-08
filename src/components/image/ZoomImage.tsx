@@ -26,17 +26,21 @@ export const ZoomImage: React.FC<ZoomImageProps> = ({ src }) => {
     },
     enlargedImageContainerStyle: {
       background: "white",
-      borderRadius: "10px",
+      // borderRadius: "10px",
       overflow: "hidden",
       zIndex: 10,
     },
     enlargedImageStyle: {
       // objectFit: "contain",
     },
+    enlargedImageContainerDimensions: {
+      width: "100%",
+      height: "100%",
+    },
     isHintEnabled: true,
     shouldUsePositiveSpaceLens: true,
+    isEnlargedImagePortalEnabledForTouch: true,
   };
-
   return (
     <Box>
       <ReactImageMagnify {...imageProps} />

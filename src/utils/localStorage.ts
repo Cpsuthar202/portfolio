@@ -1,9 +1,9 @@
-import { ILoginResponse } from "@/store/reducers/auth/type";
+import { IauthResponse } from "@/store/reducers/auth/type";
 import { LOCALSTORAGE_VARIABLE } from "./constants";
 
-export const getLocalAuth = (): ILoginResponse => {
+export const getLocalAuth = (): IauthResponse => {
   const storedAuth = localStorage.getItem(LOCALSTORAGE_VARIABLE);
-  const authLocal: ILoginResponse = storedAuth !== null ? JSON.parse(storedAuth) : null;
+  const authLocal: IauthResponse = storedAuth !== null ? JSON.parse(storedAuth) : null;
   return authLocal;
 };
 
@@ -13,7 +13,7 @@ export const getLocalAuth = (): ILoginResponse => {
 //   return authLocal;
 // };
 
-export const setLocalAuth = (data: ILoginResponse) => {
+export const setLocalAuth = (data: IauthResponse) => {
   localStorage.setItem(LOCALSTORAGE_VARIABLE, JSON.stringify(data));
 };
 // export const clearLocalAuth = () => {
@@ -33,6 +33,6 @@ export const setInitialTheme = (newMode: boolean): void => {
 };
 
 export const checkUserToken = (): boolean => {
-  const userToken: ILoginResponse = getLocalAuth();
+  const userToken: IauthResponse = getLocalAuth();
   return userToken?.token ? true : false;
 };

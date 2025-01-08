@@ -1,2 +1,8 @@
-export const LOCALSTORAGE_VARIABLE = "abc";
+export const LOCALSTORAGE_VARIABLE = "e_com";
 export const APP_HOST = import.meta.env.VITE_APP_HOST_URL || "https://webwork.net.in/";
+
+//api endpoints
+export const SEND_OTP = "auth/send-otp";
+export const LOGIN = "auth/login";
+export const REGISTER = "auth/register";
+export const FORGET_PASSWORD = "auth/forget-password";

@@ -9,9 +9,10 @@ import { ImageCropper } from "@/components/image";
 import SimpleDialog from "@/components/dialog/SimpleDialog";
 
 const UpdateInformation = () => {
-  const location = useLocation();
-  const userData = location.state.profile_information;
+  const userData = useLocation().state.profile_information;
   const [localImage, setLocalImage] = useState<string>("");
+
+  console.log("userData", userData);
 
   const [updateInformation, setUpdateInformation] = useState<Iupdateprofile>({
     profile_url: userData.profile_url || "",
