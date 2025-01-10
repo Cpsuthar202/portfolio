@@ -12,7 +12,6 @@ const Login: React.FC = () => {
     veriabls: { loginDetails, loginDetailsErr, isLoading }, // State variables for login form data and errors
     methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword, handleRegistration }, // Event handlers for various actions
   } = useLogin();
-  console.log(isLoading);
 
   return (
     // Wrapper layout for authentication pages

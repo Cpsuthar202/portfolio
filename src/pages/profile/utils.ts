@@ -1,5 +1,6 @@
 import { Iaddress, IaddressErr, Iupdateprofile, IupdateprofileErr } from "@/store/reducers/profile/type";
 import { validatePassword } from "../auth/validateFields";
+import { IResetpassword, IResetpasswordErr } from "@/store/reducers/auth/type";
 
 type PasswordData = {
   phone_number: string;
@@ -73,8 +74,8 @@ export const validateFieldsforUpdateInformation = (data: Iupdateprofile): { isVa
   return { isValid: Object.keys(errors).length === 0, errors };
 };
 
-export const validateFieldsforUpdatepassword = (data: PasswordData) => {
-  const errors: PasswordErrors = {};
+export const validateFieldsforUpdatepassword = (data: IResetpassword) => {
+  const errors: IResetpasswordErr = {};
   let isValid = true;
 
   // Validate old password

@@ -1,7 +1,7 @@
 import { IAPIResponseSchema } from "@/store/type";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IauthResponse, ILoginSchema, ILoginSchemaErr, IRegistrationSchema, IRegistrationSchemaErr } from "./type";
-import { forgetPasswordAPI, loginAPI, registerAPI, sendOptAPI } from "@/services/authServices";
+import { IauthResponse, ILoginSchema, ILoginSchemaErr, IRegistrationSchema, IRegistrationSchemaErr, IResetpassword } from "./type";
+import { forgetPasswordAPI, loginAPI, registerAPI, resetPasswordAPI, sendOptAPI } from "@/services/authServices";
 
 //  send OTP
 export const postsendOtp = createAsyncThunk<IAPIResponseSchema<undefined>, ILoginSchemaErr>("auth/send_otp", async (payload: ILoginSchemaErr) => {
@@ -27,6 +27,13 @@ export const postregister = createAsyncThunk<IAPIResponseSchema<IauthResponse>, 
 //forget-password
 export const postforgetPassword = createAsyncThunk<IAPIResponseSchema<undefined>, IRegistrationSchemaErr>("auth/forget-password", async (payload: IRegistrationSchemaErr) => {
   const result = await forgetPasswordAPI(payload);
+  if (result.data) return result.data;
+  return result;
+});
+
+//reset-password
+export const postresetPassword = createAsyncThunk<IAPIResponseSchema<undefined>, IResetpassword>("auth/reset-password", async (payload: IResetpassword) => {
+  const result = await resetPasswordAPI(payload);
   if (result.data) return result.data;
   return result;
 });

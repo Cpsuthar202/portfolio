@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { postforgetPassword, postlogin, postregister, postsendOtp } from "./service";
+import { postforgetPassword, postlogin, postregister, postresetPassword, postsendOtp } from "./service";
 import { IauthSliceInitialState } from "./type";
 
 const initialState: IauthSliceInitialState = {
@@ -65,6 +65,17 @@ export const authSlice = createSlice({
         // state.data = action.payload.data;
       })
       .addCase(postforgetPassword.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(postresetPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(postresetPassword.fulfilled, (state) => {
+        state.isLoading = false;
+        // state.data = action.payload.data;
+      })
+      .addCase(postresetPassword.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

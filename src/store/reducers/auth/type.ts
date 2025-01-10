@@ -52,3 +52,10 @@ export interface IUser {
   created_at: string;
   updated_at: string;
 }
+
+export interface IResetpassword {
+  old_password: string;
+  new_password: string;
+}
+
+export type IResetpasswordErr = Partial<Record<keyof IResetpassword, string>>;

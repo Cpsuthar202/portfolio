@@ -1,26 +1,30 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-import { useLocation } from "react-router-dom";
 import PasswordField from "../auth/utility/PasswordField";
 import { validateFieldsforUpdatepassword } from "./utils";
+import { IResetpassword, IResetpasswordErr } from "@/store/reducers/auth/type";
+import { useAppDispatch } from "@/store/store";
+import { postresetPassword } from "@/store/reducers/auth/service";
+import { errorToast, successToast } from "@/components/toastify/Toast";
 
-type PasswordData = {
-  phone_number: string;
-  old_password: string;
-  new_password: string;
-};
+// type PasswordData = {
+//   phone_number: string;
+//   old_password: string;
+//   new_password: string;
+// };
 
-type PasswordErrors = Partial<Record<keyof PasswordData, string>>;
+// type PasswordErrors = Partial<Record<keyof PasswordData, string>>;
 
 const Updatepassword = () => {
-  const location = useLocation();
+  // const location = useLocation();
 
-  const [updatePassword, setUpdatePassword] = useState<PasswordData>({
-    phone_number: location.state.phone_number,
+  const dispatch = useAppDispatch();
+
+  const [updatePassword, setUpdatePassword] = useState<IResetpassword>({
     old_password: "",
     new_password: "",
   });
-  const [updatePasswordErr, setUpdatePasswordErr] = useState<PasswordErrors>({});
+  const [updatePasswordErr, setUpdatePasswordErr] = useState<IResetpasswordErr>({});
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,20 +38,35 @@ const Updatepassword = () => {
     setUpdatePasswordErr((prevErr) => ({ ...prevErr, [name]: "" }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const { isValid, errors } = validateFieldsforUpdatepassword(updatePassword);
 
     if (isValid) {
       console.log("Password updated successfully:", updatePassword);
-      // TODO: Add API call for updating password
-      setUpdatePassword({
-        phone_number: location.state.phone_number,
-        old_password: "",
-        new_password: "",
-      });
-      setUpdatePasswordErr({});
+      try {
+        const payload: IResetpassword = updatePassword;
+        const promise = dispatch(postresetPassword(payload));
+
+        // Await and unwrap the result from the dispatched action
+        const res = await promise.unwrap();
+
+        if (res?.data) {
+          successToast({ message: res.message }); // Show success toast
+          // navigate("/user/profile/information");
+        } else {
+          errorToast({ message: "Unexpected response: Missing data" }); // Handle unexpected responses
+        }
+      } catch (error: any) {
+        // Handle API errors
+        console.warn("Error updating information:", error?.message);
+      }
+      // setUpdatePassword({
+      //   old_password: "",
+      //   new_password: "",
+      // });
+      // setUpdatePasswordErr({});
     } else {
       setUpdatePasswordErr(errors);
     }
