@@ -6,6 +6,7 @@ import categoriesReducer from "./reducers/category/categoriesSlice";
 import brandsReducer from "./reducers/brand/brandsSlice";
 import shopsReducer from "./reducers/shop/shopsSlice";
 import profilesReducer from "./reducers/profile/profilesSlice";
+import addressesReducer from "./reducers/address/addressesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     brands: brandsReducer,
     shops: shopsReducer,
     profiles: profilesReducer,
+    addresses: addressesReducer,
   },
 });
 

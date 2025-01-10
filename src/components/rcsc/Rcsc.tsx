@@ -1,5 +1,5 @@
 // import { Iaddress, IaddressErr } from "@/data/profile";
-import { Iaddress, IaddressErr } from "@/store/reducers/profile/type";
+import { IAddress, IAddressErr } from "@/store/reducers/address/type";
 import { FormControl, InputLabel, Select, MenuItem, Box, SelectChangeEvent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { GetCountries, GetState, GetCity, GetPhonecodes } from "react-country-state-city";
@@ -61,8 +61,8 @@ const menuProps = {
 
 type RcscProps = {
   setAddress: (address: any) => void; // Replace `any` with a specific type if possible
-  address: Iaddress | any; // Replace `any` with a specific type
-  addressErr: IaddressErr | any; // Replace `any` with a specific type
+  address: IAddress | any; // Replace `any` with a specific type
+  addressErr: IAddressErr | any; // Replace `any` with a specific type
   // addressErr: Record<string, any>; // Replace `any` with a specific type
   setAddressErr: (err: Record<string, any>) => void;
 };
@@ -122,16 +122,16 @@ const Rcsc: React.FC<RcscProps> = ({ setAddress, address, addressErr, setAddress
 
   // Update rcscId based on address changes
   useEffect(() => {
-    if (address.country) updateRcscId("country", address.country);
-  }, [address.country, rcscList.country]);
+    if (address?.country) updateRcscId("country", address.country);
+  }, [address?.country, rcscList.country]);
 
   useEffect(() => {
-    if (address.state) updateRcscId("state", address.state);
-  }, [address.state, rcscList.state]);
+    if (address?.state) updateRcscId("state", address.state);
+  }, [address?.state, rcscList.state]);
 
   useEffect(() => {
-    if (address.city) updateRcscId("city", address.city);
-  }, [address.city, rcscList.city]);
+    if (address?.city) updateRcscId("city", address.city);
+  }, [address?.city, rcscList.city]);
 
   // Handle selection change
   const handleChange = (type: "country" | "state" | "city") => (e: SelectChangeEvent<number>) => {
@@ -140,7 +140,7 @@ const Rcsc: React.FC<RcscProps> = ({ setAddress, address, addressErr, setAddress
 
     setAddressErr((prevErr: any) => ({ ...prevErr, [type]: "" }));
     updateRcscId(type, selectedValue);
-    setAddress((prevAddress: Iaddress) => ({
+    setAddress((prevAddress: IAddress) => ({
       ...prevAddress,
       [type]: selectedValue, // Update the address object
       ...(type === "country" && { state: null, city: null }),

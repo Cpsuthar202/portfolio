@@ -1,3 +1,11 @@
+export interface IAddressSliceInitialState {
+  isLoading: boolean;
+  data: null | undefined;
+  addresses: IAddress[] | null | undefined;
+  isError: boolean;
+  isLoadingUser: boolean;
+}
+
 export interface IAddress {
   id?: string;
   name: string;
@@ -12,3 +20,5 @@ export interface IAddress {
   default: boolean;
   userId: string;
 }
+
+export type IAddressErr = Partial<Record<keyof IAddress, string>>;

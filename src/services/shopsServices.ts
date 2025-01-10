@@ -22,6 +22,5 @@ export const shopsAPI = async (data: IShopPayload | null) => {
 // Get Shop By Id
 export const shopsByIdAPI = async (id: string | null) => {
   const url = `${SHOP}/${id}`;
-
   return await baseInstance.get(url);
 };

@@ -63,9 +63,9 @@ const UpdateInformation = () => {
         } else {
           errorToast({ message: "Unexpected response: Missing data" }); // Handle unexpected responses
         }
-      } catch (error: any) {
-        // Handle API errors
-        console.warn("Error updating information:", error?.message);
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
       }
     } else {
       // Handle validation errors

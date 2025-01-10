@@ -15,3 +15,5 @@ export const BRAND = "brand";
 export const SHOP = "shop";
 
 export const PROFILE = "profile";
+
+export const ADDRESS = "address";

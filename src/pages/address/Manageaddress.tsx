@@ -1,72 +1,28 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { validateFieldsforManageaddress } from "./utils";
-import { loadingSuccessToast } from "@/components/toastify/Toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import { successToast } from "@/components/toastify/Toast";
 import Rcsc from "@/components/rcsc/Rcsc";
-import { Iaddress, IaddressErr } from "@/store/reducers/profile/type";
+import { IAddress, IAddressErr } from "@/store/reducers/address/type";
+import { validateFieldsforManageaddress } from "./utils";
+import { useAppDispatch } from "@/store/store";
+import { createaddress, updateaddress } from "@/store/reducers/address/service";
 
 const Manageaddress = () => {
   const location = useLocation();
-
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const state_address = location.state.address;
   const state_action = location.state.action;
   // console.log({ state_address, state_action });
 
   // const [disabled, setDisabled] = useState<boolean>(true);
 
-  const [address, setAddress] = useState<Iaddress>({
-    name: state_address?.name,
-    mobile_no: state_address?.mobile_no,
-    pincode: state_address?.pincode,
-    landmark: state_address?.landmark,
-    city: state_address?.city,
-    state: state_address?.state,
-    country: state_address?.country,
-    area: state_address?.area,
-    apartment: state_address?.apartment,
-    default: false,
-  });
+  const [address, setAddress] = useState<IAddress>(state_address);
 
-  // console.log("address", address);
+  const [addressErr, setAddressErr] = useState<IAddressErr>({});
 
-  // const [address, setAddress] = useState<Iaddress>(
-  //   location.state?.address || {
-  //     name: "",
-  //     mobile_no: "",
-  //     pincode: "",
-  //     landmark: "",
-  //     city: "",
-  //     state: "",
-  //     country: "",
-  //     area: "",
-  //     apartment: "",
-  //     default: false,
-  //   }
-  // );
-  // console.log("add  ress", address);
-
-  const [addressErr, setAddressErr] = useState<IaddressErr>({});
-
-  // const omitId = (details: Iaddress | null): Omit<Iaddress, "id"> => {
-  //   if (!details) {
-  //     return {
-  //       name: "",
-  //       mobile_no: "",
-  //       pincode: "",
-  //       landmark: "",
-  //       city: "",
-  //       state: "",
-  //       country: "",
-  //       area: "",
-  //       apartment: "",
-  //       default: false,
-  //     }; // Provide default values when details is null
-  //   }
-
-  //   const { id, ...rest } = details;
-  //   return rest; // Return the rest of the properties without id
-  // };
+  console.log(addressErr);
 
   // Handle changes in address details
   const handleAddressDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +37,6 @@ const Manageaddress = () => {
     }
 
     setAddress((prevDetails) => ({
-      // ...omitId(prevDetails),
       ...prevDetails,
       [name]: value,
     }));
@@ -96,20 +51,25 @@ const Manageaddress = () => {
     setAddress((prevErr) => ({ ...prevErr, default: e.target.checked }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("addressAWERT", address);
-
     const validation = validateFieldsforManageaddress(address);
-    if (validation.isValid) {
-      console.log({ address });
-      if (state_action === "Add") {
-        loadingSuccessToast({ message: "Add Address successfully" });
-      } else {
-        loadingSuccessToast({ message: "Update Address successfully" });
-      }
-    } else {
+
+    if (!validation.isValid) {
       setAddressErr(validation.err);
+      return;
+    }
+    const actionType = state_action === "Add" ? createaddress : updateaddress;
+    try {
+      const payload: IAddress = address;
+      const promise = dispatch(actionType(payload));
+      const res = await promise.unwrap();
+
+      successToast({ message: res.message });
+      navigate("/user/profile/address");
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 
@@ -137,7 +97,7 @@ const Manageaddress = () => {
             />
             <TextField
               variant="standard"
-              label="pincode"
+              label="Pincode"
               name="pincode"
               type="number"
               value={address?.pincode}
@@ -159,16 +119,8 @@ const Manageaddress = () => {
             {/* <TextField variant="standard" label="City" name="city" value={address?.city} onChange={handleAddressDetailsChange} error={!!addressErr.city} helperText={addressErr.city} /> */}
             {/* <TextField variant="standard" label="State" name="state" value={address?.state} onChange={handleAddressDetailsChange} error={!!addressErr.state} helperText={addressErr.state} /> */}
             {/* <TextField variant="standard" label="Country" name="country" value={address?.country} onChange={handleAddressDetailsChange} error={!!addressErr.country} helperText={addressErr.country} /> */}
-            <TextField variant="standard" label="area" name="area" value={address?.area} onChange={handleAddressDetailsChange} error={!!addressErr.area} helperText={addressErr.area} />
-            <TextField
-              variant="standard"
-              label="apartment"
-              name="apartment"
-              value={address?.apartment}
-              onChange={handleAddressDetailsChange}
-              error={!!addressErr.apartment}
-              helperText={addressErr.apartment}
-            />
+            <TextField variant="standard" label="Line 1" name="line_1" value={address?.line_1} onChange={handleAddressDetailsChange} error={!!addressErr.line_1} helperText={addressErr.line_1} />
+            <TextField variant="standard" label="Line 2" name="line_2" value={address?.line_2} onChange={handleAddressDetailsChange} error={!!addressErr.line_2} helperText={addressErr.line_2} />
             {state_action != "Update" && (
               <FormControlLabel
                 control={<Checkbox sx={{ color: "primary.main" }} checked={isDefaultAddress} onChange={handleCheckboxChange} />}

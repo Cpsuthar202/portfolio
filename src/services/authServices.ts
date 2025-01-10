@@ -4,26 +4,27 @@ import { FORGET_PASSWORD, LOGIN, REGISTER, RESET_PASSWORD, SEND_OTP } from "@/ut
 
 // const SEND_OTP = "/auth/send_otp"; // Replace with your actual endpoint
 
-// APIsend OTP
+// send Opt
 export const sendOptAPI = async (payload: ILoginSchemaErr) => {
   return await baseInstance.post(SEND_OTP, { ...payload });
 };
 
-// API  login
+//   login
 export const loginAPI = async (payload: ILoginSchema) => {
   // const body = { email: payload.email, };
   return await baseInstance.post(LOGIN, { ...payload });
 };
-// API register
+//  register
 export const registerAPI = async (payload: IRegistrationSchema) => {
   return await baseInstance.post(REGISTER, { ...payload });
 };
 
-// API  forget Password
+//  forget Password
 export const forgetPasswordAPI = async (payload: ILoginSchemaErr) => {
   return await baseInstance.post(FORGET_PASSWORD, { ...payload });
 };
-// API reset password
+
+// reset password
 export const resetPasswordAPI = async (payload: IResetpassword) => {
   return await apiInstance.post(RESET_PASSWORD, { ...payload });
 };

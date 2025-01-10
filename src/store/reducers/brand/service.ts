@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IBrandsResponse } from "./type";
 import { brandsAPI } from "@/services/brandsServices";
 
-//  categories
+//  brand
 export const getbrands = createAsyncThunk<IAPIResponseSchema<IBrandsResponse[]>>("get/brands", async () => {
   const result = await brandsAPI();
   // console.log({ result });

@@ -6,20 +6,11 @@ import { IResetpassword, IResetpasswordErr } from "@/store/reducers/auth/type";
 import { useAppDispatch } from "@/store/store";
 import { postresetPassword } from "@/store/reducers/auth/service";
 import { errorToast, successToast } from "@/components/toastify/Toast";
-
-// type PasswordData = {
-//   phone_number: string;
-//   old_password: string;
-//   new_password: string;
-// };
-
-// type PasswordErrors = Partial<Record<keyof PasswordData, string>>;
+import { useNavigate } from "react-router-dom";
 
 const Updatepassword = () => {
-  // const location = useLocation();
-
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const [updatePassword, setUpdatePassword] = useState<IResetpassword>({
     old_password: "",
     new_password: "",
@@ -54,19 +45,14 @@ const Updatepassword = () => {
 
         if (res?.data) {
           successToast({ message: res.message }); // Show success toast
-          // navigate("/user/profile/information");
+          navigate("/user/profile/information");
         } else {
           errorToast({ message: "Unexpected response: Missing data" }); // Handle unexpected responses
         }
-      } catch (error: any) {
-        // Handle API errors
-        console.warn("Error updating information:", error?.message);
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
       }
-      // setUpdatePassword({
-      //   old_password: "",
-      //   new_password: "",
-      // });
-      // setUpdatePasswordErr({});
     } else {
       setUpdatePasswordErr(errors);
     }

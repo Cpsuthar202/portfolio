@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import React, { memo } from "react";
 
 interface DisplayProps {
-  address: IAddress | undefined;
+  address: IAddress | undefined | null;
 }
 
 const Displayaddress: React.FC<DisplayProps> = memo(({ address }) => {

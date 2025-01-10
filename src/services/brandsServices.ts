@@ -1,7 +1,7 @@
 import { baseInstance } from "@/axios/axios.config";
 import { BRAND } from "@/utils/constants";
 
-// API function to login
+// brands
 export const brandsAPI = async () => {
   return await baseInstance.get(BRAND);
 };
