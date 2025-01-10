@@ -1,29 +1,24 @@
-import { loadingSuccessToast } from "@/components/toastify/Toast";
+import { errorToast, successToast } from "@/components/toastify/Toast";
 import { Container, Box, Typography, Button, TextField, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Avatar, IconButton, Badge } from "@mui/material";
 import { ChangeEvent, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Add } from "@mui/icons-material";
 import { validateFieldsforUpdateInformation } from "./utils";
-import { Iupdateprofile, IupdateprofileErr } from "@/store/reducers/profile/type";
-import { ImageCropper } from "@/components/image";
+import { IProfileResponse, IProfileResponseErr } from "@/store/reducers/profile/type";
+import { useAppDispatch } from "@/store/store";
+import { putprofile } from "@/store/reducers/profile/service";
 import SimpleDialog from "@/components/dialog/SimpleDialog";
-
 const UpdateInformation = () => {
-  const userData = useLocation().state.profile_information;
-  const [localImage, setLocalImage] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const profile = useLocation().state.profile_information;
 
-  console.log("userData", userData);
+  const [updateInformation, setUpdateInformation] = useState<IProfileResponse>(profile);
 
-  const [updateInformation, setUpdateInformation] = useState<Iupdateprofile>({
-    profile_url: userData.profile_url || "",
-    name: userData.name || "",
-    email: userData.email || "",
-    phone_number: userData.phone_number || "",
-    gender: userData.gender || "",
-    dob: userData.dob || "",
-  });
+  // console.log("userData", updateInformation);
+  const [updateInformationErr, setUpdateInformationErr] = useState<IProfileResponseErr>({});
 
-  const [updateInformationErr, setUpdateInformationErr] = useState<IupdateprofileErr>({});
+  const [imageUrl, setImageUrl] = useState<boolean>(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -50,29 +45,41 @@ const UpdateInformation = () => {
       setUpdateInformationErr((prevErr) => ({ ...prevErr, [name]: "" }));
     }
   };
-
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const { isValid, errors } = validateFieldsforUpdateInformation(updateInformation);
+
     if (isValid) {
-      console.log("Information updated successfully:", updateInformation);
-      loadingSuccessToast({ message: "Information updated successfully" });
-      // TODO: Call API here
+      try {
+        const payload: IProfileResponse = updateInformation;
+        const promise = dispatch(putprofile(payload));
+
+        // Await and unwrap the result from the dispatched action
+        const res = await promise.unwrap();
+
+        if (res?.data) {
+          successToast({ message: res.message }); // Show success toast
+          navigate("/user/profile/information");
+        } else {
+          errorToast({ message: "Unexpected response: Missing data" }); // Handle unexpected responses
+        }
+      } catch (error: any) {
+        // Handle API errors
+        console.warn("Error updating information:", error?.message);
+      }
     } else {
+      // Handle validation errors
       setUpdateInformationErr(errors);
     }
   };
 
   // image crop
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      // setUpdateInformation((prev) => ({ ...prev, profile_url: imageUrl }));
-      setLocalImage(imageUrl);
-    }
+  const handleImageUpload = () => {
+    setImageUrl(true);
+    console.log("handleImageUpload");
   };
+
   return (
     <>
       <Container sx={{ p: 0 }}>
@@ -91,14 +98,15 @@ const UpdateInformation = () => {
                     <IconButton
                       sx={{ bgcolor: "white" }}
                       component="label" // Allows triggering file input
+                      onClick={handleImageUpload}
                     >
                       <Add />
-                      <input type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} />
+                      {/* <input type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageUpload} /> */}
                     </IconButton>
                   }
                 >
                   <Avatar
-                    src={updateInformation.profile_url}
+                    src={updateInformation.image}
                     alt={updateInformation.name?.split(" ")[0][0] || "?"}
                     variant="rounded"
                     sx={{
@@ -111,7 +119,7 @@ const UpdateInformation = () => {
                       // borderColor: "primary.main",
                     }}
                   >
-                    {!updateInformation.profile_url && (userData.name?.split(" ")[0][0] || "?")}
+                    {!updateInformation.image && (updateInformation.name?.split(" ")[0][0] || "?")}
                   </Avatar>
                 </Badge>
               </Box>
@@ -145,6 +153,9 @@ const UpdateInformation = () => {
                 onChange={handleInputChange}
                 error={!!updateInformationErr.email}
                 helperText={updateInformationErr.email}
+                InputProps={{
+                  readOnly: true, // Makes the field read-only
+                }}
               />
               <FormControl
                 variant="standard"
@@ -239,9 +250,11 @@ const UpdateInformation = () => {
           </form>
         </Box>
       </Container>
-      {localImage && (
-        <SimpleDialog open={!!localImage} handleClose={() => setLocalImage("")}>
-          <ImageCropper handleClose={() => setLocalImage("")} localsrc={localImage} setUrl={(url) => setUpdateInformation((prev) => ({ ...prev, profile_url: url }))} />
+      {imageUrl && (
+        <SimpleDialog open={imageUrl} handleClose={() => setImageUrl(false)}>
+          <Box sx={{ p: 2, bgcolor: "#ffffff" }}>
+            <TextField variant="standard" fullWidth label="URL" name="url" onChange={(e) => setUpdateInformation((prev) => ({ ...prev, image: e.target.value }))} />
+          </Box>
         </SimpleDialog>
       )}
     </>

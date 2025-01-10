@@ -10,9 +10,8 @@ import ProfileWrraper from "./wrapper/ProfileWrraper";
 import Address from "@/pages/profile/Address";
 import Manageaddress from "@/pages/profile/Manageaddress";
 import Updatepassword from "@/pages/profile/Updatepassword";
-import Updateinformation from "@/pages/profile/Updateinformation";
 import Checkout from "@/pages/cart/Checkout";
-// import Updatepassword from "@/pages/profile/updatepassword";
+import UpdateInformation from "@/pages/profile/Updateinformation";
 
 const ProtectedRoutes = () => {
   return (
@@ -24,7 +23,7 @@ const ProtectedRoutes = () => {
         <Route path="/profile" element={<ProfileWrraper />}>
           <Route index element={<Navigate to="/profile/information" replace />} />
           <Route path="information" element={<Profile />} />
-          <Route path="update-information" element={<Updateinformation />} />
+          <Route path="update-information" element={<UpdateInformation />} />
           <Route path="address" element={<Address />} />
           <Route path="manage-address" element={<Manageaddress />} />
 

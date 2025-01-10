@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IAuthSliceInitialState } from "./type";
 
-import { forgetPassword, login, register, sendOtp } from "./service";
+import { postforgetPassword, postlogin, postregister, postsendOtp } from "./service";
+import { IauthSliceInitialState } from "./type";
 
-const initialState: IAuthSliceInitialState = {
+const initialState: IauthSliceInitialState = {
   isLoading: false,
   data: null,
   isError: false,
@@ -25,46 +25,46 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(sendOtp.pending, (state) => {
+      .addCase(postsendOtp.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(sendOtp.fulfilled, (state) => {
+      .addCase(postsendOtp.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(sendOtp.rejected, (state) => {
+      .addCase(postsendOtp.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(login.pending, (state) => {
+      .addCase(postlogin.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(login.fulfilled, (state) => {
+      .addCase(postlogin.fulfilled, (state) => {
         state.isLoading = false;
         // state.data = action.payload.data;
       })
-      .addCase(login.rejected, (state) => {
+      .addCase(postlogin.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(register.pending, (state) => {
+      .addCase(postregister.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(register.fulfilled, (state) => {
+      .addCase(postregister.fulfilled, (state) => {
         state.isLoading = false;
         // state.data = action.payload.data;
       })
-      .addCase(register.rejected, (state) => {
+      .addCase(postregister.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(forgetPassword.pending, (state) => {
+      .addCase(postforgetPassword.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(forgetPassword.fulfilled, (state) => {
+      .addCase(postforgetPassword.fulfilled, (state) => {
         state.isLoading = false;
         // state.data = action.payload.data;
       })
-      .addCase(forgetPassword.rejected, (state) => {
+      .addCase(postforgetPassword.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

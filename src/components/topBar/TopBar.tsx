@@ -35,7 +35,7 @@ const TopBar: React.FC<TopBarProps> = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" sx={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => navigate("/")}>
-              Exclusive
+              User
             </Typography>
           </Grid>
 

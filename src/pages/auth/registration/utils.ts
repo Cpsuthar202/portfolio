@@ -1,8 +1,8 @@
-import { ILoginSchemaErr, IRegistrationSchema } from "@/store/reducers/auth/type";
+import { IRegistrationSchema, IRegistrationSchemaErr } from "@/store/reducers/auth/type";
 import { validateEmail, validateName, validatePassword } from "../validateFields";
 
 export const validateFields = (data: IRegistrationSchema) => {
-  const err: ILoginSchemaErr = {};
+  const err: IRegistrationSchemaErr = {};
   let isValid = true;
 
   // Validate name

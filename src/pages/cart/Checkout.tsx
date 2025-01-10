@@ -1,6 +1,5 @@
 import { Box, Button, Container, Divider, IconButton, Stack, Typography } from "@mui/material";
 import { useCart } from "./Cart.hook";
-import Displayaddress from "../profile/utility/Displayaddress";
 import { Edit, SquareRounded } from "@mui/icons-material";
 import { trimTextToWordLimit } from "@/components/utils/textUtils";
 import { Image } from "@/components/image";
@@ -27,7 +26,7 @@ const Checkout = () => {
           </IconButton>
         </Box>
 
-        <Displayaddress address={cartData.address} />
+        {/* <Displayaddress address={cartData.address} /> */}
       </Box>
 
       {/*      Payment method */}

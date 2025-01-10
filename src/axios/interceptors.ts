@@ -1,9 +1,8 @@
 import { errorToast } from "@/components/toastify/Toast";
-import { checkUserToken } from "@/utils/localStorage";
+import { getLocalAuth } from "@/utils/localStorage";
 
 const requestHandler = (request: any) => {
-  console.log(request);
-  request.headers.Authorization = `Bearer ${checkUserToken()}`;
+  request.headers.Authorization = `Bearer ${getLocalAuth().token}`;
   request.headers["Access-Control-Allow-Origin"] = "*";
   return request;
 };
@@ -15,12 +14,12 @@ const requestErrorHandler = (err: any) => {
 };
 
 const responseHandler = (response: any) => {
-  console.log(response);
+  // console.log(response);
   return Promise.resolve(response);
 };
 
 const responseErrorHandler = (error: any) => {
-  errorToast({ message: error.response.data.message });
+  errorToast({ message: error.response?.data?.message || error.message });
 
   return Promise.reject(error);
 };

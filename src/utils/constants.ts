@@ -6,3 +6,12 @@ export const SEND_OTP = "auth/send-otp";
 export const LOGIN = "auth/login";
 export const REGISTER = "auth/register";
 export const FORGET_PASSWORD = "auth/forget-password";
+export const RESET_PASSWORD = "auth/reset-password";
+
+export const CATEGORY = "category";
+
+export const BRAND = "brand";
+
+export const SHOP = "shop";
+
+export const PROFILE = "profile";

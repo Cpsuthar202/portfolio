@@ -1,6 +1,6 @@
-import { Icategories } from "@/store/reducers/category/type";
+// import { Icategories } from "@/store/reducers/category/type";
 
-export const categoriesData: Icategories[] = [
+export const categoriesData = [
   {
     id: "c1",
     label: "Earbuds",

@@ -1,7 +1,6 @@
 import { trimTextToWordLimit } from "@/components/utils/textUtils";
 import { Box, Button, Container, Divider, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Displayaddress from "../profile/utility/Displayaddress";
 import { GiveRatings } from "@/components/ratings/Ratings";
 import { CustomAccordion } from "@/components/accordion";
 import { textCopy } from "@/components/copys/textCopy";
@@ -155,9 +154,7 @@ const Order = () => {
 
                     {/* Order Address */}
                     <CustomAccordion id={`address-${data.id}`} title="Shipping Address" expanded={expanded === `address-${data.id}`} onChange={handleAccordionChange(`address-${data.id}`)}>
-                      <Box>
-                        <Displayaddress address={data.address} />
-                      </Box>
+                      <Box>{/* <Displayaddress address={data.address} /> */}</Box>
                     </CustomAccordion>
 
                     {/* Order Ratings */}

@@ -1,6 +1,4 @@
-import { Ibrands } from "@/store/reducers/brand/type";
-
-export const brands: Ibrands[] = [
+export const brands: any = [
   {
     id: "b1",
     label: "Boat",

@@ -1,14 +1,14 @@
 export interface IAddress {
-  id: string;
+  id?: string;
   name: string;
   mobile_no: string;
   pincode: string;
-  landmark: string;
+  landmark?: string;
   city: string;
   state: string;
   country: string;
-  line1: string;
-  line2: string;
+  line_1: string;
+  line_2?: string;
   default: boolean;
   userId: string;
 }

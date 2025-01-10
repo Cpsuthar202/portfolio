@@ -1,6 +1,4 @@
-import { IstoresData } from "@/store/reducers/shop/type";
-
-export const storesData: IstoresData[] = [
+export const storesData: any = [
   {
     id: "s1",
     banner_image: "https://rukminim2.flixcart.com/fk-p-flap/1400/232/image/5d2743f3be835a42.jpg?q=60",

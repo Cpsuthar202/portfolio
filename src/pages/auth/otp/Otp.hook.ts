@@ -1,11 +1,11 @@
-import { ILoginSchemaErr } from "@/store/reducers/auth/type";
+import { ILoginSchemaErr, IRegistrationSchema, IRegistrationSchemaErr } from "@/store/reducers/auth/type";
 import { setLocalAuth } from "@/utils/localStorage";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { validateOtp, validatePassword } from "../validateFields";
 import { setLoginDetailPreserve, setRegisterDetailPreserve } from "@/store/reducers/auth/authSlice";
 import { useAppDispatch } from "@/store/store";
-import { forgetPassword, register, sendOtp } from "@/store/reducers/auth/service";
+import { postforgetPassword, postregister, postsendOtp } from "@/store/reducers/auth/service";
 import { successToast } from "@/components/toastify/Toast";
 
 const useOtp = () => {
@@ -58,10 +58,11 @@ const useOtp = () => {
       }
     }
 
-    const payload = actiontype === "forgetpassword" ? { email: userdata.email, password: validationData.password, otp: validationData.otp } : { otp: validationData.otp, ...userdata };
+    const payload: IRegistrationSchemaErr =
+      actiontype === "forgetpassword" ? { email: userdata.email, password: validationData.password, otp: validationData.otp } : { otp: validationData.otp, ...userdata };
 
     try {
-      const promise = actiontype === "forgetpassword" ? dispatch(forgetPassword(payload)) : dispatch(register(payload));
+      const promise = actiontype === "forgetpassword" ? dispatch(postforgetPassword(payload as IRegistrationSchemaErr)) : dispatch(postregister(payload as IRegistrationSchema));
       const res = await promise.unwrap();
 
       if (actiontype !== "forgetpassword" && res?.data) {
@@ -75,7 +76,7 @@ const useOtp = () => {
       dispatch(setLoginDetailPreserve(null));
       dispatch(setRegisterDetailPreserve(null));
     } catch (error: any) {
-      console.error("Error:", error);
+      console.warn(error?.message);
     }
   };
 
@@ -85,13 +86,13 @@ const useOtp = () => {
       const payload: ILoginSchemaErr = {
         email: userdata.email,
       };
-      const promise = dispatch(sendOtp(payload));
+      const promise = dispatch(postsendOtp(payload));
       const res = await promise.unwrap();
       successToast({ message: res.message, duration: 3000 });
       setTimer(otpTime); // Reset timer
       setRunInterval(true); // Start timer countdown
     } catch (error: any) {
-      if (error?.message) console.log("error.messa ge", error.message);
+      if (error?.message) console.warn(error?.message);
     }
   };
 
@@ -102,17 +103,3 @@ const useOtp = () => {
 };
 
 export { useOtp };
-
-// NOTE:  forgetpassword and  register api calling
-// On successful validation, store auth and navigate
-// setLocalAuth(RegistrationToken);
-// navigate("/user", { replace: true });
-
-// try {
-//   // NOTE:  OTP verification api calling
-//   console.log("handleResendOtp");
-//   setTimer(otpTime); // Reset timer
-//   setRunInterval(true); // Start timer countdown
-// } catch (error) {
-//   console.error("error", error);
-// }

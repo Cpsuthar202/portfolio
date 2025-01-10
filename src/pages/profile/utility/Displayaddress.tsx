@@ -1,9 +1,9 @@
-import { Iaddress } from "@/store/reducers/profile/type";
+import { IAddress } from "@/store/reducers/address/type";
 import { Box, Typography } from "@mui/material";
 import React, { memo } from "react";
 
 interface DisplayProps {
-  address: Iaddress | undefined;
+  address: IAddress | undefined;
 }
 
 const Displayaddress: React.FC<DisplayProps> = memo(({ address }) => {
@@ -18,15 +18,16 @@ const Displayaddress: React.FC<DisplayProps> = memo(({ address }) => {
 
   return (
     <Box>
-      {address?.name && renderField("Name", address.name)}
-      {renderField("Landmark", address?.landmark)}
-      {renderField("Apartment", address?.apartment)}
-      {renderField("Area", address?.area)}
+      {renderField("Name", address?.name)}
+      {address?.landmark && renderField("Landmark", address.landmark)}
+
       {renderField("Pincode", address?.pincode)}
+      {renderField("Line 1", address?.line_1)}
+      {address?.line_2 && renderField("Line 2", address.line_2)}
       {renderField("City", address?.city)}
       {renderField("State", address?.state)}
       {renderField("Country", address?.country)}
-      {address?.mobile_no && renderField("Mobile No.", address.mobile_no)}
+      {renderField("Mobile No.", address?.mobile_no)}
     </Box>
   );
 });

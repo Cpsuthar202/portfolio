@@ -1,36 +1,35 @@
-import { ProductCard } from "@/components/card";
-import { handleShareUrl, Sliderview, WebShare } from "@/components/container";
+import { handleShareUrl, WebShare } from "@/components/container";
 import { Image } from "@/components/image";
 import { Email, Facebook, Instagram, Phone, X, Share } from "@mui/icons-material";
 import { Avatar, Box, Container, Divider, IconButton, Stack, Tooltip, Typography } from "@mui/material";
-import { useStoreDetails } from "./StoreDetails.hook";
 import Displayaddress from "../profile/utility/Displayaddress";
-import { DisplayRatings } from "@/components/ratings/Ratings";
-import { Iproduct } from "@/store/reducers/product/type";
+import { useShopDetails } from "./ShopDetails.hook";
 
 const StoreDetails = () => {
   const {
-    variable: { store, products },
-  } = useStoreDetails();
+    variable: { shop },
+  } = useShopDetails();
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
       {/* Store Banner Image */}
-      <Image
-        src={store?.banner_image || "/default-banner.jpg"}
-        alt="Store Banner"
-        style={{
-          width: "100%",
-          borderRadius: "8px",
-          objectFit: "contain",
-        }}
-      />
+      {shop?.banner_image && (
+        <Image
+          src={shop?.banner_image}
+          alt="Store Banner"
+          style={{
+            width: "100%",
+            borderRadius: "8px",
+            objectFit: "contain",
+          }}
+        />
+      )}
 
       {/* Store Details */}
       <Box sx={{ textAlign: "center" }}>
         <Avatar
-          src={store?.logo || undefined}
-          alt={store?.store_name || "Store Logo"}
+          src={shop?.logo || undefined}
+          alt={shop?.shop_name || "Store Logo"}
           variant="rounded"
           sx={{
             width: 70,
@@ -40,13 +39,13 @@ const StoreDetails = () => {
             color: "white",
           }}
         >
-          {!store?.logo && `${store?.store_name?.split(" ")[0][0] || "?"}`}
+          {!shop?.logo && `${shop?.shop_name?.split(" ")[0][0].toUpperCase() || "?"}`}
           {/* {!store?.logo && `${store?.store_name?.split(" ")[0][0] || "?"} ${store?.store_name?.split(" ")[1]?.[0] || ""}`} */}
         </Avatar>
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-          {store?.store_name}1
+          {shop?.shop_name}
         </Typography>
-        <Typography variant="body1">{store?.description || "No description available."}</Typography>
+        {shop?.description && <Typography variant="body1">{shop?.description || "No description available."}</Typography>}
       </Box>
 
       {/* Owner Information */}
@@ -54,15 +53,12 @@ const StoreDetails = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          // justifyContent: "start",
           gap: 2,
-          // p: 2,
-          // border: 1,
         }}
       >
         <Avatar
-          src={store?.owner_photo || undefined}
-          alt={store?.store_name || "Store Logo"}
+          src={shop?.owner_image || undefined}
+          alt={shop?.owner_name || "Store Logo"}
           variant="rounded"
           sx={{
             width: 70,
@@ -72,15 +68,13 @@ const StoreDetails = () => {
             color: "white",
           }}
         >
-          {store?.ownerName?.split(" ")[0][0] || "?"}
+          {shop?.owner_name?.split(" ")[0][0].toUpperCase() || "?"}
         </Avatar>
-        {/* <Avatar src={store?.owner_photo || "/default-owner.jpg"} alt="Owner" variant="rounded" sx={{ width: 50, height: 50 }} /> */}
-        {/* <Box> */}
-        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+
+        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
           Owner
-          <Typography variant="body1">{store?.ownerName || "Not available"}</Typography>
+          <Typography variant="subtitle2">{shop?.owner_name || "Not available"}</Typography>
         </Typography>
-        {/* </Box> */}
       </Box>
 
       <Divider />
@@ -89,21 +83,23 @@ const StoreDetails = () => {
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Contact Information
         </Typography>
-        <Stack direction="row" alignItems="center">
-          <Tooltip title="Email">
-            <IconButton aria-label="Email" sx={{ color: "primary.main" }} onClick={() => store?.contact?.email && (window.location.href = `mailto:${store.contact.email}`)}>
-              <Email />
-            </IconButton>
-          </Tooltip>
-          <Typography variant="body1">{store?.contact?.email || "N/A"}</Typography>
-        </Stack>
+        {shop?.contact?.email && (
+          <Stack direction="row" alignItems="center">
+            <Tooltip title="Email">
+              <IconButton aria-label="Email" sx={{ color: "primary.main" }} onClick={() => shop?.contact?.email && (window.location.href = `mailto:${shop.contact.email}`)}>
+                <Email />
+              </IconButton>
+            </Tooltip>
+            <Typography variant="body1">{shop?.contact?.email || "N/A"}</Typography>
+          </Stack>
+        )}
         <Stack direction="row" alignItems="center">
           <Tooltip title="Phone">
-            <IconButton aria-label="Phone" sx={{ color: "primary.main" }} onClick={() => store?.contact?.phone && (window.location.href = `tel:${store.contact.phone}`)}>
+            <IconButton aria-label="Phone" sx={{ color: "primary.main" }} onClick={() => shop?.contact?.phone_number && (window.location.href = `tel:${shop.contact.phone_number}`)}>
               <Phone />
             </IconButton>
           </Tooltip>
-          <Typography variant="body1">{store?.contact?.phone || "N/A"}</Typography>
+          <Typography variant="body1">{shop?.contact?.phone_number || "N/A"}</Typography>
         </Stack>
       </Box>
 
@@ -113,7 +109,7 @@ const StoreDetails = () => {
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Address
         </Typography>
-        <Displayaddress address={store?.address} />
+        <Displayaddress address={shop?.address} />
       </Box>
 
       <Divider />
@@ -122,23 +118,23 @@ const StoreDetails = () => {
         <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
           Follow Us
         </Typography>
-        {store?.socialMedia?.facebook && (
+        {shop?.socialMedia?.facebook && (
           <Tooltip title="Facebook">
-            <IconButton aria-label="Facebook" sx={{ color: "#3b5998" }} onClick={() => handleShareUrl({ url: store?.socialMedia?.facebook })}>
+            <IconButton aria-label="Facebook" sx={{ color: "#3b5998" }} onClick={() => handleShareUrl({ url: shop?.socialMedia?.facebook })}>
               <Facebook />
             </IconButton>
           </Tooltip>
         )}
-        {store?.socialMedia?.twitter && (
+        {shop?.socialMedia?.twitter && (
           <Tooltip title="Twitter">
-            <IconButton aria-label="Twitter" sx={{ color: "#1DA1F2" }} onClick={() => handleShareUrl({ url: store.socialMedia?.twitter })}>
+            <IconButton aria-label="Twitter" sx={{ color: "#1DA1F2" }} onClick={() => handleShareUrl({ url: shop?.socialMedia?.twitter })}>
               <X />
             </IconButton>
           </Tooltip>
         )}
-        {store?.socialMedia?.instagram && (
+        {shop?.socialMedia?.instagram && (
           <Tooltip title="Instagram">
-            <IconButton aria-label="Instagram" sx={{ color: "#C13584" }} onClick={() => handleShareUrl({ url: store?.socialMedia?.instagram })}>
+            <IconButton aria-label="Instagram" sx={{ color: "#C13584" }} onClick={() => handleShareUrl({ url: shop?.socialMedia?.instagram })}>
               <Instagram />
             </IconButton>
           </Tooltip>
@@ -148,7 +144,7 @@ const StoreDetails = () => {
       {/* Share Button */}
       <Box>
         <Stack direction="row" alignItems="center">
-          <WebShare text={store?.store_name} url={`store_details/${store?.id}`}>
+          <WebShare text={shop?.shop_name} url={`shop_details/${shop?.id}`}>
             <Tooltip title="Share Store">
               <IconButton aria-label="Share" sx={{ color: "primary.main" }}>
                 <Share />
@@ -160,25 +156,16 @@ const StoreDetails = () => {
       </Box>
 
       <Divider />
-      {/* Ratings */}
-      <Box>
-        <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-          Ratings
-        </Typography>
-        <DisplayRatings rat={store?.rating} totalRaters={store?.rating} />
-      </Box>
-
-      <Divider />
       {/* Products */}
-      {products?.length > 0 && (
-        <Sliderview title="Products" scrollnumber={250} navigateTo={`/product/store/${store?.id}`}>
+      {/* {products?.length > 0 && (
+        <Sliderview title="Products" scrollnumber={250} navigateTo={`/product/store/${shops?.id}`}>
           {products.map((product: Iproduct, index: number) => (
             <Box key={index} sx={{ minWidth: "200px", mx: 1 }}>
               <ProductCard data={product} />
             </Box>
           ))}
         </Sliderview>
-      )}
+      )} */}
     </Container>
   );
 };

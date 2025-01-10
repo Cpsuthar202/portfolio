@@ -1,6 +1,3 @@
-import { Ibrands } from "../brand/type";
-import { Icategories } from "../category/type";
-
 export interface Iproduct {
   id: string;
   title: string;
@@ -12,8 +9,8 @@ export interface Iproduct {
   ratings: Rating;
   colors?: Icolor[];
   sizes?: string[];
-  brands: Ibrands;
-  categories: Icategories;
+  brands: any;
+  categories: any;
   store: store;
   images: string[];
   hero_images?: string[];

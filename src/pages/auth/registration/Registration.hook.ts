@@ -1,11 +1,11 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { ILoginSchemaErr, IRegistrationSchema } from "@/store/reducers/auth/type";
+import { ILoginSchemaErr, IRegistrationSchema, IRegistrationSchemaErr } from "@/store/reducers/auth/type";
 import { useNavigate } from "react-router-dom";
 import { validateFields } from "./utils";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setRegisterDetailPreserve } from "@/store/reducers/auth/authSlice";
 import { successToast } from "@/components/toastify/Toast";
-import { sendOtp } from "@/store/reducers/auth/service";
+import { postsendOtp } from "@/store/reducers/auth/service";
 
 // Custom hook for managing registration logic
 const UseRegistration = () => {
@@ -19,7 +19,7 @@ const UseRegistration = () => {
     email: "",
     password: "",
   });
-  const [registrationDetailsErr, setRegistrationDetailsErr] = useState<ILoginSchemaErr>({});
+  const [registrationDetailsErr, setRegistrationDetailsErr] = useState<IRegistrationSchemaErr>({});
 
   // Handle input changes in registration form
   const handleRegistrationDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,6 @@ const UseRegistration = () => {
   // Handle form submission and validate details
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("juygf");
 
     const validation = validateFields(registrationDetails); // Validate form fields
 
@@ -43,12 +42,12 @@ const UseRegistration = () => {
         const payload: ILoginSchemaErr = {
           email: registrationDetails.email,
         };
-        const promise = dispatch(sendOtp(payload));
+        const promise = dispatch(postsendOtp(payload));
         const res = await promise.unwrap();
         successToast({ message: res.message, duration: 3000 });
         navigate("/user/auth/verify_otp", { state: { userdata: registrationDetails, action: "registration" } });
       } catch (error: any) {
-        if (error?.message) console.log("error.messa ge", error.message);
+        if (error?.message) console.warn(error?.message);
       }
     } else {
       setRegistrationDetailsErr(validation.err); // Set validation errors if invalid

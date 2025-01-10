@@ -1,6 +1,6 @@
 import { Box, Button, Container, Divider, Grid, IconButton, Typography } from "@mui/material";
 import { useProfile } from "./Profile.hook";
-import Displayaddress from "./utility/Displayaddress";
+// import Displayaddress from "./utility/Displayaddress";
 import { Add, Close } from "@mui/icons-material";
 import SimpleDialog from "@/components/dialog/SimpleDialog";
 import { mColor } from "@color";
@@ -28,7 +28,7 @@ const Address = () => {
           {userData.address.map((e, index) => (
             <Grid item lg={4} md={6} sm={12} xs={12} sx={{ p: 1 }} key={index}>
               <Box sx={{ borderRadius: 2, overflow: "hidden", boxShadow: 1, height: "100%", p: 2, border: e.default ? 1.5 : 0, borderColor: "primary.main" }}>
-                <Displayaddress address={e} />
+                {/* <Displayaddress address={e} /> */}
                 <Box sx={{ mt: 1 }}>
                   <Button onClick={() => handleUpdateAddress(e)} sx={{ py: 0, pt: "1px" }}>
                     Edit
@@ -59,7 +59,7 @@ const Address = () => {
               </IconButton>
             </Box>
             <Divider sx={{ my: 1 }} />
-            <Displayaddress address={removeAddress} />
+            {/* <Displayaddress address={removeAddress} /> */}
             <Button variant="contained" fullWidth sx={{ mt: 2 }} onClick={() => handleRemoveAddress(removeAddress)}>
               Remove
             </Button>

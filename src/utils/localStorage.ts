@@ -36,3 +36,7 @@ export const checkUserToken = (): boolean => {
   const userToken: IauthResponse = getLocalAuth();
   return userToken?.token ? true : false;
 };
+// export const checkUserToken = (): boolean => {
+//   const userToken: IauthResponse = getLocalAuth();
+//   return userToken?.token ? true : false;
+// };

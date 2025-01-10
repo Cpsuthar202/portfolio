@@ -1,6 +1,8 @@
+// import { IAddress } from "../address/type";
+
 import { IAddress } from "../address/type";
 
-export interface IAuthSliceInitialState {
+export interface IauthSliceInitialState {
   isLoading: boolean;
   data: IauthResponse | null;
   isError: boolean;
@@ -15,10 +17,8 @@ export interface ILoginSchema {
 }
 
 export interface ILoginSchemaErr {
-  name?: string;
   email?: string;
   password?: string;
-  otp?: string;
 }
 
 export interface IRegistrationSchema {
@@ -27,13 +27,19 @@ export interface IRegistrationSchema {
   password: string;
   otp?: string;
 }
+export interface IRegistrationSchemaErr {
+  name?: string;
+  email?: string;
+  password?: string;
+  otp?: string;
+}
 
 export interface IauthResponse {
   user: IUser;
   token: string;
 }
 
-interface IUser {
+export interface IUser {
   id: string;
   name: string;
   email: string;

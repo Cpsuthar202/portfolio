@@ -4,98 +4,93 @@ import { validateFields } from "./utils";
 import { validateEmail } from "../validateFields";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setLoginDetailPreserve } from "@/store/reducers/auth/authSlice";
-import { login, sendOtp } from "@/store/reducers/auth/service";
 import { ILoginSchema, ILoginSchemaErr } from "@/store/reducers/auth/type";
 import { errorToast, successToast } from "@/components/toastify/Toast";
 import { setLocalAuth } from "@/utils/localStorage";
+import { postlogin, postsendOtp } from "@/store/reducers/auth/service";
 
+// Custom hook to manage login functionality
 export const useLogin = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { loginDetailPreserve } = useAppSelector((state) => state.auth);
-
-  // State for login details and errors
+  const navigate = useNavigate(); // Navigation hook
+  const dispatch = useAppDispatch(); // Redux dispatcher
+  const { loginDetailPreserve, isLoading } = useAppSelector((state) => state.auth); // Preserved login details from Redux state
+  // State to store login form data and validation errors
   const [loginDetails, setLoginDetails] = useState<ILoginSchema>({ email: "", password: "" });
   const [loginDetailsErr, setLoginDetailsErr] = useState<ILoginSchemaErr>({});
 
-  // Handle input changes
+  // Handle changes to form inputs
   const handleLoginDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === "phone_number" && value.length > 10) return; // Limit phone number to 10 digits
-    setLoginDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
-    setLoginDetailsErr((prevErr) => ({ ...prevErr, [name]: "" })); // Clear errors for updated field
+    if (name === "phone_number" && value.length > 10) return; // Restrict phone number length
+    setLoginDetails((prevDetails) => ({ ...prevDetails, [name]: value })); // Update field value
+    setLoginDetailsErr((prevErr) => ({ ...prevErr, [name]: "" })); // Clear field-specific error
   };
 
   // Handle form submission for login
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Preserve current state
-    const validation = validateFields(loginDetails);
+    const validation = validateFields(loginDetails); // Validate form data
 
     if (validation.isValid) {
-      dispatch(setLoginDetailPreserve(loginDetails));
+      dispatch(setLoginDetailPreserve(loginDetails)); // Preserve login details in Redux
       try {
-        const payload: ILoginSchemaErr = loginDetails;
+        const payload: ILoginSchema = loginDetails;
 
-        console.log({ payload });
-        const promise = dispatch(login(payload));
-        const res = await promise.unwrap();
-        // Validate res.data
+        const promise = dispatch(postlogin(payload)); // Dispatch login API call
+        const res = await promise.unwrap(); // Unwrap response from the API call
+
         if (res?.data) {
-          await setLocalAuth(res.data);
-          successToast({ message: res.message });
-          console.log(res);
-
-          navigate("/user", { replace: true });
-          dispatch(setLoginDetailPreserve(null));
+          await setLocalAuth(res.data); // Save auth data to local storage
+          successToast({ message: res.message }); // Show success toast
+          navigate("/user", { replace: true }); // Navigate to the user dashboard
+          dispatch(setLoginDetailPreserve(null)); // Clear preserved login details
         } else {
           errorToast({ message: "Unexpected response: Missing data" });
         }
       } catch (error: any) {
-        if (error?.message) console.log("error.messa ge", error.message);
+        if (error?.message) console.warn(error?.message);
       }
     } else {
-      setLoginDetailsErr(validation.err); // Show validation errors
+      setLoginDetailsErr(validation.err); // Update validation errors
     }
   };
 
   // Handle forgot password functionality
   const handleForgotPassword = async () => {
-    dispatch(setLoginDetailPreserve(loginDetails));
-    const validation = validateEmail(loginDetails.email);
+    dispatch(setLoginDetailPreserve(loginDetails)); // Preserve login details in Redux
+    const validation = validateEmail(loginDetails.email); // Validate email
+
     if (validation.isValid) {
       try {
-        const payload: ILoginSchemaErr = {
-          email: loginDetails.email,
-        };
-        const promise = dispatch(sendOtp(payload));
+        const payload: ILoginSchemaErr = { email: loginDetails.email };
+        const promise = dispatch(postsendOtp(payload)); // Dispatch OTP request
         const res = await promise.unwrap();
-        successToast({ message: res.message, duration: 3000 });
+        successToast({ message: res.message, duration: 3000 }); // Show success toast
         navigate("/user/auth/verify_otp", {
           state: { userdata: loginDetails, action: "forgetpassword" },
-        });
+        }); // Navigate to OTP verification page
       } catch (error: any) {
-        if (error?.message) console.log("error.messa ge", error.message);
+        if (error?.message) console.warn(error?.message);
       }
     } else {
-      setLoginDetailsErr(validation.err);
+      setLoginDetailsErr(validation.err); // Update validation errors
     }
   };
 
-  // Handle registration navigation
+  // Navigate to registration page
   const handleRegistration = async () => {
-    dispatch(setLoginDetailPreserve(loginDetails));
-    navigate("/user/auth/registration");
+    dispatch(setLoginDetailPreserve(loginDetails)); // Preserve login details in Redux
+    navigate("/user/auth/registration"); // Redirect to registration page
   };
 
-  // Restore preserved login details on mount
+  // Restore preserved login details when the component mounts
   useEffect(() => {
-    if (loginDetailPreserve) setLoginDetails(loginDetailPreserve);
+    if (loginDetailPreserve) setLoginDetails(loginDetailPreserve); // Set login details from Redux state
   }, [loginDetailPreserve]);
 
-  // Return state and methods
+  // Return state and methods for use in the component
   return {
-    veriabls: { loginDetails, loginDetailsErr },
+    veriabls: { loginDetails, loginDetailsErr, isLoading },
     methods: { handleLoginDetailsChange, handleSubmit, handleForgotPassword, handleRegistration },
   };
 };

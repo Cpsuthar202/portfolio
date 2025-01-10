@@ -2,11 +2,19 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import topReducer from "./reducers/topBar/topBarSlice";
 import authReducer from "./reducers/auth/authSlice";
+import categoriesReducer from "./reducers/category/categoriesSlice";
+import brandsReducer from "./reducers/brand/brandsSlice";
+import shopsReducer from "./reducers/shop/shopsSlice";
+import profilesReducer from "./reducers/profile/profilesSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     topbar: topReducer,
+    categories: categoriesReducer,
+    brands: brandsReducer,
+    shops: shopsReducer,
+    profiles: profilesReducer,
   },
 });
 
