@@ -2,7 +2,7 @@ import React from "react";
 import { Stack, Rating, Typography } from "@mui/material";
 
 interface DisplayRatingsProps {
-  rat: number | undefined;
+  rat: number | undefined | null;
   totalRaters: number | undefined;
 }
 

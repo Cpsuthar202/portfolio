@@ -1,6 +1,4 @@
-import { Iproduct } from "@/store/reducers/product/type";
-
-export const productData: Iproduct[] = [
+export const productData: any[] = [
   {
     id: "p1",
     title: "boAt bosco Airdopes 141 Bluetooth Truly Wireless in Ear Ear Buds w/ 45H Playtime,Low Latency Mode for Gaming, ENx Tech, IWP, IPX4 Water Resistance, Smooth Touch Controls(Bold Black)",

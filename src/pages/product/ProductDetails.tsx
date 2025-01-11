@@ -1,18 +1,17 @@
-import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, LinearProgress, Divider } from "@mui/material";
+import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, Divider, Rating, LinearProgress } from "@mui/material";
 import { Add, Remove, FavoriteBorder, Share } from "@mui/icons-material";
 import { Image } from "@/components/image";
-import { useProduct } from "./Product.hook";
 import { DisplayRatings } from "@/components/ratings/Ratings";
 import { WebShare } from "@/components/container";
 import { mColor } from "@color";
-import { ZoomImage } from "@/components/image";
+import { useProductDetails } from "./productDetails.hook";
 
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
-    variables: { product, selectImage, setSelectImage, quantity, maxQuantity, isSmallScreen, ratingsData, cardProduct, setCardProduct },
-    methods: { handleIncrement, handleDecrement, navigate, handleToCart, handleToBuy, handleToWishlist },
-  } = useProduct();
+    variables: { product, isSmallScreen, selectImage, setSelectImage, navigate, quantity, ratingsData },
+    methods: { handleDecrement, handleIncrement, handleToCart, handleToWishlist, handleToBuy },
+  } = useProductDetails();
 
   return (
     <Box>
@@ -21,8 +20,8 @@ const ProductDetails = () => {
         <Grid item xs={12} md={6} sx={{ display: "grid", placeItems: "center" }}>
           {/* Main Product Image */}
           <Box sx={{ width: isSmallScreen ? "100%" : "70%", display: "grid", placeItems: "center", position: "relative" }}>
-            <ZoomImage src={selectImage} />
-            {/* <Image src={selectImage} alt="image" style={{ width: "100%", borderRadius: 10 }} /> */}
+            {/* <ZoomImage src={selectImage} /> */}
+            <Image src={selectImage} alt="image" style={{ width: "100%", borderRadius: 10 }} />
             {/* Sold Out Labels */}
             {product?.stock === 0 && <Chip label="Sold Out" color="error" size="small" sx={{ borderRadius: "5px ", position: "absolute", top: 0, right: 0 }} />}
 
@@ -44,13 +43,13 @@ const ProductDetails = () => {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {/* Product Title */}
             <Typography variant="subtitle2">{product?.title}</Typography>
-            <Typography variant="body1" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate(`/store_details/${product?.store.id}`)}>
-              view stores {product?.store.store_name}
+            <Typography variant="body1" sx={{ cursor: "pointer", color: "primary.main" }} onClick={() => navigate(`/shop_details/${product?.shop_id}`)}>
+              view stores
             </Typography>
             {/* Best Selling */}
-            {product?.bestSelling && (
+            {product?.best_selling && (
               <Chip
-                label={`#${product?.bestSelling && product?.bestSelling_number} Best Selling`}
+                label={`#${product?.best_selling && product?.best_selling_number} Best Selling`}
                 color="warning"
                 size="small"
                 sx={{ borderRadius: " 5px", width: "fit-content", color: mColor.white }}
@@ -59,74 +58,57 @@ const ProductDetails = () => {
             )}
 
             {/* Ratings Component */}
-            <DisplayRatings rat={product?.ratings.rat} totalRaters={product?.ratings.totalRaters} />
+            <DisplayRatings rat={product?.ratings?.rat ? Number(product.ratings.rat) : 0} totalRaters={product?.ratings?.total_raters} />
 
             {/* Price Section */}
             <Stack direction="row" alignItems="center" spacing={1}>
-              <Typography variant="body1">₹{product?.discountPrice}</Typography>
+              <Typography variant="body1">₹{product?.discount_price}</Typography>
               {/* Show MRP and Discount Percentage if applicable */}
-              {!!product?.discountPercentage && (
+              {!!product?.discount_percentage && (
                 <>
                   <Typography variant="body1" sx={{ textDecoration: "line-through", color: "#888" }}>
-                    ₹{product?.mrp}
+                    ₹{product?.price}
                   </Typography>
                   <Typography variant="body1" color="success.main">
-                    {product?.discountPercentage}% off
+                    {product?.discount_percentage}% off
                   </Typography>
                 </>
               )}
             </Stack>
 
             {/* Available Colors */}
-            <Box>
-              <Typography variant="subtitle2" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                Colors : <Typography variant="body1">{cardProduct?.color?.label}</Typography>
-              </Typography>
-              {product?.colors && (
+            {product?.colors && (
+              <Box>
+                <Typography variant="body1" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  Colors
+                </Typography>
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
-                  {product.colors.map((color, index) => (
-                    <Button
-                      key={index}
-                      sx={{
-                        border: cardProduct?.color?.image === color.image ? 1 : 0,
-                        borderColor: "primary.main",
-                        borderRadius: "10px",
-                        p: 1,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        gap: "9px",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        setSelectImage(color.image);
-                        setCardProduct({ ...cardProduct, color: color });
-                      }}
-                    >
-                      {color.image ? (
-                        <Image src={color.image} alt="image" style={{ height: "50px", borderRadius: 10, border: 1, cursor: "pointer" }} />
-                      ) : (
-                        <Box key={color.code} sx={{ width: "20px", height: "20px", bgcolor: color.code, borderRadius: "10%" }} />
-                      )}
+                  {product?.colors.map((color, index) => (
+                    <Button key={index} variant="text" sx={{ py: 1, px: 3, width: "fit-content" }}>
+                      {/* onClick={() => setCardProduct({ ...cardProduct, size: size })} */}
+                      {color}
                     </Button>
+                    //   <Button key={index} variant={cardProduct.size === size ? "outlined" : "text"} sx={{ px: 3, width: "fit-content" }} onClick={() => setCardProduct({ ...cardProduct, size: size })}>
+                    //   {color}
+                    // </Button>
                   ))}
                 </Stack>
-              )}
-            </Box>
+              </Box>
+            )}
 
             {/* Available Sizes */}
             {product?.sizes && (
-              <>
-                <Typography variant="subtitle2">Size</Typography>
+              <Box>
+                <Typography variant="body1">Size</Typography>
                 <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
-                  {product.sizes.map((size, index) => (
-                    <Button key={index} variant={cardProduct.size === size ? "outlined" : "text"} sx={{ px: 3, width: "fit-content" }} onClick={() => setCardProduct({ ...cardProduct, size: size })}>
+                  {product?.sizes.map((size, index) => (
+                    <Button key={index} variant="text" sx={{ py: 1, px: 3, width: "fit-content" }}>
+                      {/* onClick={() => setCardProduct({ ...cardProduct, size: size })} */}
                       {size}
                     </Button>
                   ))}
                 </Stack>
-              </>
+              </Box>
             )}
 
             {/* Quantity Selector and Buy Button */}
@@ -143,10 +125,11 @@ const ProductDetails = () => {
                       </IconButton>
                       {/* Current Quantity */}
                       <Box sx={{ border: 1, borderColor: "primary.main", p: 1, px: 2, borderRadius: 2 }}>
+                        {" "}
                         <Typography>{quantity}</Typography>
                       </Box>
                       {/* Increment Quantity Button */}
-                      <IconButton onClick={handleIncrement} disabled={quantity >= maxQuantity}>
+                      <IconButton onClick={handleIncrement} disabled={quantity >= product.stock}>
                         <Add />
                       </IconButton>
                     </Stack>
@@ -200,7 +183,7 @@ const ProductDetails = () => {
 
               <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
                 Return Delivery
-                <Typography variant="body1">{product?.replacementPolicy}</Typography>
+                <Typography variant="body1">{product?.replacement}</Typography>
               </Typography>
               <Divider />
               <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
@@ -231,14 +214,14 @@ const ProductDetails = () => {
             Ratings
           </Typography>
           <Box sx={{ display: "flex", alignContent: "center", gap: 1 }}>
-            {/* <Rating value={product?.ratings.rat} precision={0.1} readOnly /> */}
-            <DisplayRatings rat={product?.ratings.rat} totalRaters={product?.ratings.totalRaters} />
-            <Typography variant="body1">{product?.ratings.rat} Ratings out of 5</Typography>
+            <Rating value={product?.ratings?.rat ? Number(product.ratings.rat) : 0} precision={0.1} readOnly />
+            <DisplayRatings rat={product?.ratings?.rat ? Number(product.ratings.rat) : 0} totalRaters={product?.ratings?.total_raters} />
+            <Typography variant="body1">{product?.ratings?.rat ? `${Number(product.ratings.rat)} Ratings out of 5` : "No ratings"}</Typography>
           </Box>
 
           <Stack spacing={1} mt={2}>
             {ratingsData.map(({ rating, count, color }) => {
-              const totalRaters = product?.ratings.totalRaters || 0;
+              const totalRaters = product?.ratings.total_raters || 0;
               const percentage = totalRaters ? (count / totalRaters) * 100 : 0;
 
               return (

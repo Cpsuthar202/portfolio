@@ -24,8 +24,6 @@
 //   default?: boolean; // Indicates if the address is the default
 // }
 
-import { Iprofile } from "@/store/reducers/profile/type";
-
 // export interface Iprofile {
 //   user_id: string;
 //   profile_url?: string;
@@ -38,7 +36,7 @@ import { Iprofile } from "@/store/reducers/profile/type";
 //   address: Iaddress[];
 // }
 
-export const profilDetails: Iprofile = {
+export const profilDetails: any = {
   user_id: "1cps99",
   profile_url: "https://cdn3.pixelcut.app/7/18/profile_photo_maker_hero_100866f715.jpg",
   // profile_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTSKbCFe_QYSVH-4FpaszXvakr2Eti9eAJpQ&s",

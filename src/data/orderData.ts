@@ -1,5 +1,3 @@
-import { Iaddress } from "@/store/reducers/profile/type";
-
 interface OrderItem {
   product_id: string;
   image: string;
@@ -20,7 +18,7 @@ interface OrderItem {
   delivery_charges: number;
   warranty: number; // Warranty period in years
   quantity: number;
-  address: Iaddress;
+  address: any;
   delivered_on?: string;
   order_date?: string;
   tracking_details: {

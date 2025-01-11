@@ -1,19 +1,41 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { productData } from "@/data/product";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { RatingDistribution } from "./utils";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
-import { successToast } from "@/components/toastify/Toast";
-import { Icolor, Iproduct } from "@/store/reducers/product/type";
+import { IproductPayload } from "@/store/reducers/product/type";
+import { getproducts } from "@/store/reducers/product/service";
 
 const useProduct = () => {
-  // Extract route parameters
-  const { product_id, label, id } = useParams<{ product_id: string; label: string; id: string }>();
-  const dispatch = useAppDispatch();
+  // const { product_id, label, id } = useParams<{ product_id: string; label: string; id: string }>();
+
   const navigate = useNavigate();
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const { products } = useAppSelector((state) => state.products);
+
+  const handleGetProducts = async () => {
+    try {
+      const payload: IproductPayload = {
+        limit: 20,
+        page: 1,
+        // brandId: "20241229bran214324197",
+        // categoryId: "20241229cate192337946",
+        // shopId: "20250103shop155142361",
+        // searchTerm: "aaaaaaaaaaaaaaaaaaaaaaaa",
+      };
+      await dispatch(getproducts(payload)).unwrap();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+
+  useEffect(() => {
+    handleGetProducts();
+  }, []);
+
+  // Extract route parameters
 
   // Media query to detect small screens
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -22,60 +44,53 @@ const useProduct = () => {
   const { searchTitle } = useAppSelector((state) => state.topbar);
 
   // State to manage filtered product list
-  const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
+  // const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);
 
   // Fetch the selected product details
-  const product = productData.find((e) => e.id === product_id);
+  // const product = productData.find((e) => e.id === product_id);
 
   // State to manage product quantity
-  const [quantity, setQuantity] = useState<number>(1);
-  const maxQuantity = product?.stock || 0;
+  // const [quantity, setQuantity] = useState<number>(1);
+  // const maxQuantity = product?.stock || 0;
 
   // State to manage selected product details for cart
-  const [cardProduct, setCardProduct] = useState<{
-    product_id: string | undefined;
-    size: string | undefined;
-    color: Icolor | undefined;
-    quantity: number;
-  }>({
-    product_id: product?.id,
-    size: product?.sizes?.[0],
-    color: product?.colors?.[0],
-    quantity,
-  });
+  // const [cardProduct, setCardProduct] = useState<{
+  //   product_id: string | undefined;
+  //   size: string | undefined;
+  //   color: any | undefined;
+  //   quantity: number;
+  // }>({
+  //   product_id: product?.id,
+  //   size: product?.sizes?.[0],
+  //   color: product?.colors?.[0],
+  //   quantity,
+  // });
 
   // State to manage the selected image of the product
-  const [selectImage, setSelectImage] = useState<string | undefined>(product?.images[0]);
+  // const [selectImage, setSelectImage] = useState<string | undefined>(products?.images[0]);
 
   // Rating distribution for the product
-  const ratingsData: RatingDistribution[] = [
-    { rating: "5 Star", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },
-    { rating: "4 Star", count: product?.ratings?.rat_4 || 0, color: "#8BC34A" },
-    { rating: "3 Star", count: product?.ratings?.rat_3 || 0, color: "#CDDC39" },
-    { rating: "2 Star", count: product?.ratings?.rat_2 || 0, color: "#FFC107" },
-    { rating: "1 Star", count: product?.ratings?.rat_1 || 0, color: "#F44336" },
-  ];
 
-  // Effect to filter products based on the route parameters and search title
-  useEffect(() => {
-    let filtered = productData;
+  // // Effect to filter products based on the route parameters and search title
+  // useEffect(() => {
+  //   let filtered = productData;
 
-    // Filter based on label (categorie, brand, store)
-    if (label === "categorie") {
-      filtered = filtered.filter((product) => product.categories.id === id);
-    } else if (label === "brand") {
-      filtered = filtered.filter((product) => product.brands.id === id);
-    } else if (label === "store") {
-      filtered = filtered.filter((product) => product.store.id === id);
-    }
+  //   // Filter based on label (categorie, brand, store)
+  //   if (label === "categorie") {
+  //     filtered = filtered.filter((product) => product.categories.id === id);
+  //   } else if (label === "brand") {
+  //     filtered = filtered.filter((product) => product.brands.id === id);
+  //   } else if (label === "store") {
+  //     filtered = filtered.filter((product) => product.store.id === id);
+  //   }
 
-    // Apply search title filter
-    if (searchTitle) {
-      filtered = filtered.filter((product) => product.teg.some((tag) => tag.toLowerCase().includes(searchTitle.toLowerCase())));
-    }
+  //   // Apply search title filter
+  //   if (searchTitle) {
+  //     filtered = filtered.filter((product) => product.teg.some((tag) => tag.toLowerCase().includes(searchTitle.toLowerCase())));
+  //   }
 
-    setFilteredProducts(filtered);
-  }, [label, id, searchTitle]);
+  //   setFilteredProducts(filtered);
+  // }, [label, id, searchTitle]);
 
   // Effect to reset search title when the component unmounts
   useEffect(() => {
@@ -84,69 +99,14 @@ const useProduct = () => {
     };
   }, [dispatch]);
 
-  // Increment product quantity
-  const handleIncrement = () => {
-    console.log("handleIncrement");
-
-    if (quantity < maxQuantity) {
-      setQuantity((prev) => prev + 1);
-      setCardProduct({ ...cardProduct, quantity: quantity + 1 });
-    }
-  };
-
-  // Decrement product quantity
-  const handleDecrement = () => {
-    console.log("handleDecrement");
-
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-      setCardProduct({ ...cardProduct, quantity: quantity - 1 });
-    }
-  };
-
-  // Handle adding product to cart
-  const handleToCart = () => {
-    console.log("handleToCart");
-
-    successToast({ message: " product add successfully" });
-    console.log("Added to cart", cardProduct);
-  };
-
-  // Handle buying product directly
-  const handleToWishlist = (id: string | undefined) => {
-    console.log("handleToWishlist");
-
-    successToast({ message: "product add to wishlist  successfully" });
-    console.log("handleToWishlist", id);
-  };
-  const handleToBuy = () => {
-    console.log("handleToBuy");
-
-    console.log("Purchased", cardProduct);
-  };
-
   return {
     variables: {
-      product,
-      selectImage,
-      setSelectImage,
-      quantity,
-      maxQuantity,
+      products,
       isSmallScreen,
-      ratingsData,
       searchTitle,
-      filteredProducts,
-      cardProduct,
-      setCardProduct,
-    },
-    methods: {
-      handleIncrement,
-      handleDecrement,
       navigate,
-      handleToBuy,
-      handleToCart,
-      handleToWishlist,
     },
+    methods: {},
   };
 };
 

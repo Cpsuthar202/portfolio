@@ -46,8 +46,9 @@ const UseRegistration = () => {
         const res = await promise.unwrap();
         successToast({ message: res.message, duration: 3000 });
         navigate("/user/auth/verify_otp", { state: { userdata: registrationDetails, action: "registration" } });
-      } catch (error: any) {
-        if (error?.message) console.warn(error?.message);
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
       }
     } else {
       setRegistrationDetailsErr(validation.err); // Set validation errors if invalid

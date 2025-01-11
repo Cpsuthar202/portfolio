@@ -7,9 +7,9 @@ import { DisplayRatings } from "../ratings/Ratings";
 import { WebShare } from "../container";
 import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
-import { useProduct } from "@/pages/product/Product.hook";
 import { Image } from "../image";
 import { Iproduct } from "@/store/reducers/product/type";
+import { useProductDetails } from "@/pages/product/productDetails.hook";
 
 interface IProductCard {
   data: Iproduct;
@@ -21,7 +21,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
   const { isSmScreen } = useResponsiveScreens();
   const {
     methods: { handleToWishlist },
-  } = useProduct();
+  } = useProductDetails();
 
   return (
     <Box
@@ -55,9 +55,9 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
           </WebShare>
         </Box>
         {/* Best Selling and Sold Out Labels */}
-        {data.bestSelling && (
+        {data.best_selling && (
           <Chip
-            label={bastSellingNo ? `# ${data?.bestSelling_number}` : "Best Selling"}
+            label={bastSellingNo ? `# ${data?.best_selling_number}` : "Best Selling"}
             color="warning"
             size="small"
             sx={{ borderRadius: "0 0 5px 0", position: "absolute", top: 0, left: 0, color: mColor.white, fontSize: isSmScreen ? "10px" : "13px" }}
@@ -94,20 +94,20 @@ export const ProductCard: React.FC<IProductCard> = ({ data, bastSellingNo }) => 
         </Typography>
 
         {/* Ratings */}
-        <DisplayRatings rat={data.ratings.rat} totalRaters={data.ratings.totalRaters} />
+        <DisplayRatings rat={data.ratings.rat} totalRaters={data.ratings.total_raters} />
 
         {/* Price Section */}
         <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
           <Typography variant="subtitle2" color="textPrimary">
-            ₹{data.discountPrice}
+            ₹{data.discount_price}
           </Typography>
-          {data.discountPercentage !== 0 && (
+          {data.discount_percentage !== 0 && (
             <>
               <Typography variant="body1" sx={{ textDecoration: "line-through", color: "#888" }}>
-                ₹{data.mrp}
+                ₹{data.price}
               </Typography>
               <Typography variant="body1" color="success.main">
-                {data.discountPercentage}% off
+                {data.discount_percentage}% off
               </Typography>
             </>
           )}

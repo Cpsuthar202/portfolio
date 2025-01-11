@@ -1,48 +1,55 @@
+import { IPagination } from "@/store/type";
+
+export interface IProductsSliceInitialState {
+  isLoading: boolean;
+  data: null | undefined;
+  products: IPagination<Iproduct[]> | null | undefined;
+  product: Iproduct | null | undefined;
+  isError: boolean;
+  isLoadingUser: boolean;
+}
 export interface Iproduct {
   id: string;
+  user_id: string;
+  discount_price: number;
   title: string;
-  price: number;
-  mrp: number;
-  discountPrice: number;
-  discountPercentage: number;
   description: string;
-  ratings: Rating;
-  colors?: Icolor[];
+  price: number;
+  discount_percentage: number;
+  colors?: string[];
   sizes?: string[];
-  brands: any;
-  categories: any;
-  store: store;
+  brand_id: string;
+  category_id: string;
+  shop_id: string;
   images: string[];
-  hero_images?: string[];
   teg: string[];
   features: string[];
-  replacementPolicy: string;
-  bestSelling: boolean;
-  bestSelling_number?: number;
+  hero_images: string[];
+  replacement: string;
   delivery_charges: number;
-  warranty: number;
-  numberOfOrders: number;
-  availability: boolean;
+  warranty?: string;
+  best_selling: boolean;
+  best_selling_number: number;
   stock: number;
+  product_type: string;
+  ratings: Ratings;
 }
 
-export interface Icolor {
-  label: string;
-  code: string;
-  image?: string;
-}
-
-interface store {
-  store_name: string;
-  id: string;
-  logo: string;
-}
-interface Rating {
+export interface Ratings {
   rat: number;
-  totalRaters: number;
+  total_raters: number;
   rat_5: number;
   rat_4: number;
   rat_3: number;
   rat_2: number;
   rat_1: number;
+}
+
+export interface IproductPayload {
+  limit?: number;
+  page?: number;
+  searchTerm?: string;
+  shopId?: string;
+  brandId?: string;
+  categoryId?: string;
 }

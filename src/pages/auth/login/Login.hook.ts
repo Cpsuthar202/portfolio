@@ -47,8 +47,9 @@ export const useLogin = () => {
         } else {
           errorToast({ message: "Unexpected response: Missing data" });
         }
-      } catch (error: any) {
-        if (error?.message) console.warn(error?.message);
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
       }
     } else {
       setLoginDetailsErr(validation.err); // Update validation errors
@@ -69,8 +70,9 @@ export const useLogin = () => {
         navigate("/user/auth/verify_otp", {
           state: { userdata: loginDetails, action: "forgetpassword" },
         }); // Navigate to OTP verification page
-      } catch (error: any) {
-        if (error?.message) console.warn(error?.message);
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
       }
     } else {
       setLoginDetailsErr(validation.err); // Update validation errors

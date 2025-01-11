@@ -1,5 +1,3 @@
-import { Iaddress } from "@/store/reducers/profile/type";
-
 interface ICartData {
   payment_details: {
     price: number;
@@ -10,7 +8,7 @@ interface ICartData {
     items: number;
     quantity: number;
   };
-  address: Iaddress;
+  address: any;
   cartList: CartItem[];
 }
 

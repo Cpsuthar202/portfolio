@@ -19,6 +19,7 @@ const useDisplay = () => {
   const { categories } = useAppSelector((state) => state.categories);
   const { brands } = useAppSelector((state) => state.brands);
   const { shops } = useAppSelector((state) => state.shops);
+  console.log({ shops });
 
   const data: DataItems = label === "categorie" ? categories : label === "brand" ? brands : label === "shop" ? shops : null;
 
@@ -34,24 +35,27 @@ const useDisplay = () => {
   const handleGetCategories = async () => {
     try {
       await dispatch(getcategories()).unwrap();
-    } catch (error: any) {
-      console.warn(error?.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 
   const handleGetBrands = async () => {
     try {
       await dispatch(getbrands()).unwrap();
-    } catch (error: any) {
-      console.warn(error?.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 
   const handleGetShops = async () => {
     try {
       await dispatch(getshops(null)).unwrap();
-    } catch (error: any) {
-      console.warn(error?.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 

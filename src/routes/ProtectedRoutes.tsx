@@ -26,7 +26,6 @@ const ProtectedRoutes = () => {
           <Route path="update-information" element={<UpdateInformation />} />
           <Route path="address" element={<Address />} />
           <Route path="manage-address" element={<Manageaddress />} />
-
           <Route path="update-password" element={<Updatepassword />} />
         </Route>
         {/* <Route path="/profile" element={<Profile />} /> */}

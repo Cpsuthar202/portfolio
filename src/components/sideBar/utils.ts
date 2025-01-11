@@ -27,8 +27,8 @@ const sidebarMenuList: ITextButtonList[] = [
   },
   {
     id: "stores",
-    label: "Stores",
-    link: "/display/store",
+    label: "Shops",
+    link: "/display/shop",
   },
   {
     id: "products",

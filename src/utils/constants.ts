@@ -17,3 +17,5 @@ export const SHOP = "shop";
 export const PROFILE = "profile";
 
 export const ADDRESS = "address";
+
+export const PRODUCT = "product";

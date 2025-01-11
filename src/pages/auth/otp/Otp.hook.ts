@@ -75,8 +75,9 @@ const useOtp = () => {
       successToast({ message: res.message });
       dispatch(setLoginDetailPreserve(null));
       dispatch(setRegisterDetailPreserve(null));
-    } catch (error: any) {
-      console.warn(error?.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 
@@ -91,8 +92,9 @@ const useOtp = () => {
       successToast({ message: res.message, duration: 3000 });
       setTimer(otpTime); // Reset timer
       setRunInterval(true); // Start timer countdown
-    } catch (error: any) {
-      if (error?.message) console.warn(error?.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 

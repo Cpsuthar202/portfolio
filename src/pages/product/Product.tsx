@@ -5,23 +5,20 @@ import { Iproduct } from "@/store/reducers/product/type";
 
 const Product = () => {
   const {
-    variables: { filteredProducts },
+    variables: { products },
   } = useProduct();
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
       <Grid container>
-        {/* Render products if available, otherwise show a 'not found' message */}
-        {filteredProducts.length ? (
-          filteredProducts.map((product: Iproduct, index: number) => (
+        {products?.list?.length === 0 ? (
+          <Typography>jhgfx</Typography>
+        ) : (
+          products?.list?.map((product: Iproduct, index: number) => (
             <Grid item key={index} lg={2} md={4} sm={6} xs={6} sx={{ p: 1 }}>
               <ProductCard data={product} />
             </Grid>
           ))
-        ) : (
-          <Typography variant="h6" sx={{ width: "100%", textAlign: "center" }}>
-            Product Not Found
-          </Typography>
         )}
       </Grid>
     </Box>
