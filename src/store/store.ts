@@ -8,6 +8,8 @@ import shopsReducer from "./reducers/shop/shopsSlice";
 import profilesReducer from "./reducers/profile/profilesSlice";
 import addressesReducer from "./reducers/address/addressesSlice";
 import productsReducer from "./reducers/product/productsSlice";
+import cartsReducer from "./reducers/cart/cartsSlice";
+import ordersReducer from "./reducers/order/ordersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +21,8 @@ export const store = configureStore({
     profiles: profilesReducer,
     addresses: addressesReducer,
     products: productsReducer,
+    carts: cartsReducer,
+    orders: ordersReducer,
   },
 });
 

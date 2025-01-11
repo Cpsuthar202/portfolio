@@ -11,6 +11,8 @@ const Address = () => {
     methods: { handleAddAddress, handleUpdateAddress, handleRemoveAddress, handleRemoveAddressDialog, handlesDefaultAddres },
   } = useAddress();
 
+  console.log({ addresses });
+
   return (
     <>
       <Container sx={{ p: 0 }}>
@@ -25,7 +27,7 @@ const Address = () => {
               </Button>
             </Box>
           </Grid>
-          {addresses &&
+          {Array.isArray(addresses) &&
             addresses.map((e, index) => (
               <Grid item lg={4} md={6} sm={12} xs={12} sx={{ p: 1 }} key={index}>
                 <Box sx={{ borderRadius: 2, overflow: "hidden", boxShadow: 1, height: "100%", p: 2, border: e.default ? 1.5 : 0, borderColor: "primary.main" }}>

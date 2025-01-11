@@ -1,54 +1,75 @@
+import { errorToast, successToast } from "@/components/toastify/Toast";
 import { cartData } from "@/data/cartData";
-import { useState } from "react";
+import { getcart, postcart } from "@/store/reducers/cart/service";
+import { IcartPayload } from "@/store/reducers/cart/type";
+import { postorder } from "@/store/reducers/order/service";
+import { IOrderPayload } from "@/store/reducers/order/type";
+import { getprofile } from "@/store/reducers/profile/service";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// Interfaces for cart items and price details
-// interface CartItem {
-//   product_id: string;
-//   quantity: number;
-//   delivery_charges: number;
-//   discountPrice: number;
-//   price: number;
-// }
-
-// interface PriceDetails {
-//   totalPrice: number;
-//   totalDiscountPrice: number;
-//   totalDeliveryCharges: number;
-//   totalSavings: number;
-//   totalProducts: number;
-//   totalQuantity: number;
-// }
 
 export const useCart = () => {
   const navigate = useNavigate();
-  console.log("cartData", cartData);
   const [paymentMethod, setPaymentMethod] = useState<string>("cash");
 
-  // Initialize cart state with items in stock, setting quantity to 1
-  // const [cartFData, setCartFData] = useState<CartItem[]>(
-  //   cartData
-  //     .filter((item) => item.stock > 0)
-  //     .map((item) => ({
-  //       product_id: item.id,
-  //       quantity: 1,
-  //       delivery_charges: item.delivery_charges,
-  //       discountPrice: item.discountPrice,
-  //       price: item.price,
-  //     }))
-  // );
+  const dispatch = useAppDispatch();
+  const { carts } = useAppSelector((state) => state.carts);
+  const { profile } = useAppSelector((state) => state.profiles);
+  console.log(profile);
+  const handleGetProfiles = async () => {
+    try {
+      await dispatch(getprofile()).unwrap();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+  const handleGetCart = async () => {
+    try {
+      await dispatch(getcart()).unwrap();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+
+  const handlePostCart = async (data: IcartPayload) => {
+    try {
+      const res = await dispatch(postcart(data)).unwrap();
+      successToast({ message: res.message });
+      handleGetCart();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+
+  useEffect(() => {
+    handleGetCart();
+    handleGetProfiles();
+  }, []);
 
   // Increase item quantity if below maxQuantity
-  const handleIncrement = (product_id: string) => {
-    console.log("handleIncrement", product_id);
-
-    // setCartFData((prevCart) => prevCart.map((item) => (item.product_id === product_id && item.quantity < maxQuantity ? { ...item, quantity: item.quantity + 1 } : item)));
+  const handleIncrement = (data: IcartPayload) => {
+    const datas = {
+      product_id: data?.product?.id,
+      quantity: +1,
+      ...(data.color && { color: data.color }),
+      ...(data.size && { size: data.size }),
+    };
+    handlePostCart(datas as IcartPayload);
   };
 
   // Decrease item quantity if above 1
-  const handleDecrement = (product_id: string) => {
-    console.log("handleIhandleDecrementncrement", product_id);
-    // setCartFData((prevCart) => prevCart.map((item) => (item.product_id === product_id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item)));
+  const handleDecrement = (data: IcartPayload) => {
+    const datas = {
+      product_id: data?.product?.id,
+      quantity: -1,
+      ...(data.color && { color: data.color }),
+      ...(data.size && { size: data.size }),
+    };
+    handlePostCart(datas as IcartPayload);
   };
 
   // Placeholder methods for checkout, wishlist, and cart removal actions
@@ -65,32 +86,27 @@ export const useCart = () => {
     setPaymentMethod(type);
   };
 
-  // Calculate total prices, savings, quantities, and delivery charges
-  // const calculatePriceDetails = (): PriceDetails =>
-  //   cartFData.reduce(
-  //     (acc, item) => {
-  //       acc.totalPrice += item.price * item.quantity;
-  //       acc.totalDiscountPrice += item.discountPrice * item.quantity;
-  //       acc.totalDeliveryCharges += item.delivery_charges * item.quantity;
-  //       acc.totalSavings = acc.totalPrice - acc.totalDiscountPrice;
-  //       acc.totalProducts = cartFData.length;
-  //       acc.totalQuantity += item.quantity;
-  //       return acc;
-  //     },
-  //     {
-  //       totalPrice: 0,
-  //       totalDiscountPrice: 0,
-  //       totalDeliveryCharges: 0,
-  //       totalSavings: 0,
-  //       totalProducts: 0,
-  //       totalQuantity: 0,
-  //     }
-  //   );
+  const handleOrder = async () => {
+    if (!profile?.address?.id) {
+      return errorToast({ message: "Add Address" });
+    }
+    const data: IOrderPayload = {
+      address_id: profile?.address?.id,
+      payment_method: paymentMethod,
+    };
 
-  // const priceDetails = calculatePriceDetails();
+    try {
+      const res = await dispatch(postorder(data)).unwrap();
+      successToast({ message: res.message });
+      navigate("/user/order");
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
 
   return {
-    variable: { cartData, paymentMethod },
-    methods: { navigate, handleIncrement, handleDecrement, healdWishlistCart, healdRemoveCart, handleCheckOut, handleAddress, handlePaymentMethod },
+    variable: { carts, cartData, paymentMethod, profile },
+    methods: { navigate, handleIncrement, handleDecrement, healdWishlistCart, healdRemoveCart, handleCheckOut, handleAddress, handlePaymentMethod, handleOrder },
   };
 };

@@ -4,6 +4,9 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { RatingDistribution } from "./utils";
+import { postcart } from "@/store/reducers/cart/service";
+import { IcartPayload } from "@/store/reducers/cart/type";
+import { successToast } from "@/components/toastify/Toast";
 
 export const useProductDetails = () => {
   const theme = useTheme();
@@ -74,9 +77,28 @@ export const useProductDetails = () => {
   };
 
   // Handle adding product to cart
-  const handleToCart = () => {
+  const handleToCart = async () => {
     console.log("handleToCart");
+    // postcart
+    // try {
+    //   await dispatch(getproductbyid(product_id as string)).unwrap();
+    // } catch (error: unknown) {
+    //   const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+    //   console.warn(errorMessage);
+    // }
 
+    try {
+      const payload: IcartPayload = cartProduct;
+      const promise = dispatch(postcart(payload)); // Dispatch OTP request
+      const res = await promise.unwrap();
+      successToast({ message: res.message, duration: 3000 }); // Show success toast
+      // navigate("/user/auth/verify_otp", {
+      //   state: { userdata: loginDetails, action: "forgetpassword" },
+      // }); // Navigate to OTP verification page
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
     // successToast({ message: " product add successfully" });
     console.log("Added to cart");
   };

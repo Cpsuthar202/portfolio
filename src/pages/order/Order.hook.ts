@@ -1,16 +1,35 @@
 import { errorToast, successToast } from "@/components/toastify/Toast";
 import { orderData } from "@/data/orderData";
-import { useState } from "react";
+import { getorder, postratorder } from "@/store/reducers/order/service";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useOrder = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { orders } = useAppSelector((state) => state.orders);
+  console.log({ orders });
+
+  const handleGetOrder = async () => {
+    try {
+      await dispatch(getorder()).unwrap();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+
+  useEffect(() => {
+    handleGetOrder();
+  }, []);
+
   const orderItemData = orderData;
   const [expanded, setExpanded] = useState<string | false>(false);
-  const [productRating, setProductRating] = useState<{ product_id: string; rat: number | null | undefined }>({ product_id: "", rat: 0 });
+  const [productRating, setProductRating] = useState<{ id: string; rating: number | null | undefined }>({ id: "", rating: 0 });
 
-  console.log("productRating", productRating);
-
-  const handleProductRatingChange = (id: string, newRating: number | undefined | null) => {
-    setProductRating({ product_id: id, rat: newRating }); // Update productRating with the new rating
+  const handleProductRatingChange = (id: string, newRating: number | null | undefined) => {
+    setProductRating({ id: id, rating: newRating }); // Update productRating with the new rating
   };
 
   const handleAccordionChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -19,10 +38,19 @@ export const useOrder = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  const handleRatingSubmit = (id: string) => {
+  const handleRatingSubmit = async (id: string) => {
+    console.log({ productRating });
+
     // Logic to handle the submit action, like sending the rating to an API or updating state
-    if (productRating.product_id === id && productRating.rat) {
-      successToast({ message: "Thank you for your rating!" });
+    if (productRating.id === id && productRating.rating) {
+      try {
+        const res = await dispatch(postratorder(productRating)).unwrap();
+        successToast({ message: res.message });
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
+      }
+      // successToast({ message: "Thank you for your rating!" });
     } else {
       errorToast({ message: "Please provide a rating before submitting" });
     }
@@ -31,7 +59,7 @@ export const useOrder = () => {
   console.log("orderItemData", orderItemData);
 
   return {
-    variable: { orderItemData, expanded, productRating },
+    variable: { orders, navigate, orderItemData, expanded, productRating },
     methods: { handleAccordionChange, handleRatingSubmit, handleProductRatingChange },
   };
 };

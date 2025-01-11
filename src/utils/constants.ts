@@ -19,3 +19,7 @@ export const PROFILE = "profile";
 export const ADDRESS = "address";
 
 export const PRODUCT = "product";
+
+export const CART = "cart";
+
+export const ORDER = "order";
