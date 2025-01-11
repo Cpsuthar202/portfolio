@@ -29,7 +29,7 @@ export interface Iproduct {
   delivery_charges: number;
   warranty?: string;
   best_selling: boolean;
-  best_selling_number: number;
+  best_selling_number?: number;
   stock: number;
   product_type: string;
   ratings: Ratings;

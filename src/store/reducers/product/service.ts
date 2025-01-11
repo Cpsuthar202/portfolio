@@ -6,6 +6,8 @@ import { Iproduct, IproductPayload } from "./type";
 // get product
 export const getproducts = createAsyncThunk<IAPIResponseSchema<IPagination<Iproduct[]>>, IproductPayload>("get/product", async (data: IproductPayload) => {
   const result = await productAPI(data);
+  console.log(result.data);
+
   if (result.data) return result.data;
   return result;
 });

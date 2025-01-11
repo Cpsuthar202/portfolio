@@ -9,7 +9,7 @@ import { useProductDetails } from "./productDetails.hook";
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook
   const {
-    variables: { product, isSmallScreen, selectImage, setSelectImage, navigate, quantity, ratingsData },
+    variables: { product, isSmallScreen, selectImage, setSelectImage, navigate, cartProduct, setCardProduct, ratingsData },
     methods: { handleDecrement, handleIncrement, handleToCart, handleToWishlist, handleToBuy },
   } = useProductDetails();
 
@@ -79,18 +79,24 @@ const ProductDetails = () => {
             {/* Available Colors */}
             {product?.colors && (
               <Box>
-                <Typography variant="body1" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Typography variant="body1" sx={{ mb: 1 }}>
                   Colors
                 </Typography>
-                <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
+                <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto" }}>
                   {product?.colors.map((color, index) => (
-                    <Button key={index} variant="text" sx={{ py: 1, px: 3, width: "fit-content" }}>
-                      {/* onClick={() => setCardProduct({ ...cardProduct, size: size })} */}
+                    <Button
+                      key={index}
+                      variant={cartProduct.color === color ? "outlined" : "text"}
+                      sx={{ py: 0, px: 1, width: "fit-content" }}
+                      onClick={() =>
+                        setCardProduct((prevCardProduct) => ({
+                          ...prevCardProduct,
+                          color: color,
+                        }))
+                      }
+                    >
                       {color}
                     </Button>
-                    //   <Button key={index} variant={cardProduct.size === size ? "outlined" : "text"} sx={{ px: 3, width: "fit-content" }} onClick={() => setCardProduct({ ...cardProduct, size: size })}>
-                    //   {color}
-                    // </Button>
                   ))}
                 </Stack>
               </Box>
@@ -99,10 +105,22 @@ const ProductDetails = () => {
             {/* Available Sizes */}
             {product?.sizes && (
               <Box>
-                <Typography variant="body1">Size</Typography>
-                <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto", pb: 1 }}>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  Size
+                </Typography>
+                <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto" }}>
                   {product?.sizes.map((size, index) => (
-                    <Button key={index} variant="text" sx={{ py: 1, px: 3, width: "fit-content" }}>
+                    <Button
+                      key={index}
+                      variant={cartProduct.size === size ? "outlined" : "text"}
+                      sx={{ py: 0, px: 1, width: "fit-content" }}
+                      onClick={() =>
+                        setCardProduct((prevCardProduct) => ({
+                          ...prevCardProduct,
+                          size: size,
+                        }))
+                      }
+                    >
                       {/* onClick={() => setCardProduct({ ...cardProduct, size: size })} */}
                       {size}
                     </Button>
@@ -120,16 +138,16 @@ const ProductDetails = () => {
                   <Grid item xs={6} sm={6} md={6} lg={3} order={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                     <Stack direction="row" alignItems="center" spacing={1} sx={{ justifyContent: "space-between" }}>
                       {/* Decrement Quantity Button */}
-                      <IconButton onClick={handleDecrement} disabled={quantity <= 1}>
+                      <IconButton onClick={handleDecrement} disabled={cartProduct.quantity <= 1}>
                         <Remove />
                       </IconButton>
                       {/* Current Quantity */}
                       <Box sx={{ border: 1, borderColor: "primary.main", p: 1, px: 2, borderRadius: 2 }}>
                         {" "}
-                        <Typography>{quantity}</Typography>
+                        <Typography>{cartProduct.quantity}</Typography>
                       </Box>
                       {/* Increment Quantity Button */}
-                      <IconButton onClick={handleIncrement} disabled={quantity >= product.stock}>
+                      <IconButton onClick={handleIncrement} disabled={cartProduct.quantity >= product.stock}>
                         <Add />
                       </IconButton>
                     </Stack>

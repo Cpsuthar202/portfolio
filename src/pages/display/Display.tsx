@@ -21,22 +21,31 @@ const Display: React.FC = () => {
 
       {/* Render items in a responsive grid */}
       <Grid container>
-        {data &&
-          data.map((item, index) => {
-            if (!item) return null; // Skip if item is null or undefined
-
-            return (
-              <Grid item key={index} xl={1} lg={2} md={2} sm={4} xs={6}>
-                <Box sx={{ display: "grid", placeItems: "center" }}>
-                  {label === "shop" ? (
-                    <CategoryCard src={(item as IShopsResponse).shop_image} label={(item as IShopsResponse).shop_name} onClick={() => handleNavigation(item)} />
-                  ) : (
-                    <CategoryCard src={(item as DataItem).image} label={(item as DataItem).name} onClick={() => handleNavigation(item)} />
-                  )}
-                </Box>
-              </Grid>
-            );
-          })}
+        {data?.length === 0 ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center", // Centers horizontally
+              alignItems: "center", // Centers vertically
+              width: "100%", // Ensures the Box takes full width
+              minHeight: "200px", // Adjust the height to fit your needs
+            }}
+          >
+            <Typography> {label && label.charAt(0).toUpperCase() + label.slice(1)} not found</Typography>
+          </Box>
+        ) : (
+          data?.map((item, index) => (
+            <Grid item key={index} xl={1} lg={2} md={2} sm={4} xs={6}>
+              <Box sx={{ display: "grid", placeItems: "center" }}>
+                {label === "shop" ? (
+                  <CategoryCard src={(item as IShopsResponse).shop_image} label={(item as IShopsResponse).shop_name} onClick={() => handleNavigation(item)} />
+                ) : (
+                  <CategoryCard src={(item as DataItem).image} label={(item as DataItem).name} onClick={() => handleNavigation(item)} />
+                )}
+              </Box>
+            </Grid>
+          ))
+        )}
       </Grid>
     </Box>
   );

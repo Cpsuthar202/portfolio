@@ -1,10 +1,10 @@
 import { IAPIResponseSchema } from "@/store/type";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IShopPayload, IShopsResponse } from "./type";
+import { IShopsResponse } from "./type";
 import { shopsAPI, shopsByIdAPI } from "@/services/shopsServices";
 
 //  getShops
-export const getshops = createAsyncThunk<IAPIResponseSchema<IShopsResponse[]>, IShopPayload | null>("get/shops", async (data: IShopPayload | null) => {
+export const getshops = createAsyncThunk<IAPIResponseSchema<IShopsResponse[]>, { search: string }>("get/shops", async (data: { search: string }) => {
   const result = await shopsAPI(data);
   if (result.data) return result.data;
   return result;

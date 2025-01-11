@@ -35,6 +35,3 @@ export interface ISocialMedia {
   twitter: string;
   instagram: string;
 }
-export interface IShopPayload {
-  id?: string;
-}

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
@@ -7,22 +7,24 @@ import { IproductPayload } from "@/store/reducers/product/type";
 import { getproducts } from "@/store/reducers/product/service";
 
 const useProduct = () => {
-  // const { product_id, label, id } = useParams<{ product_id: string; label: string; id: string }>();
+  const { label, id } = useParams<{ product_id: string; label: string; id: string }>();
+  console.log(label, id);
 
   const navigate = useNavigate();
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.products);
+  const { searchTitle } = useAppSelector((state) => state.topbar);
 
   const handleGetProducts = async () => {
     try {
       const payload: IproductPayload = {
         limit: 20,
         page: 1,
-        // brandId: "20241229bran214324197",
-        // categoryId: "20241229cate192337946",
-        // shopId: "20250103shop155142361",
-        // searchTerm: "aaaaaaaaaaaaaaaaaaaaaaaa",
+        ...(label === "categorie" && { categoryId: id }), // Conditionally add categoryId
+        ...(label === "brand" && { brandId: id }), // Conditionally add brandId
+        ...(label === "shop" && { shopId: id }), // Conditionally add shopId
+        ...(searchTitle && { searchTerm: searchTitle }), // Conditionally add   search
       };
       await dispatch(getproducts(payload)).unwrap();
     } catch (error: unknown) {
@@ -30,10 +32,13 @@ const useProduct = () => {
       console.warn(errorMessage);
     }
   };
-
   useEffect(() => {
     handleGetProducts();
-  }, []);
+  }, [searchTitle]);
+  // brandId: "20241229bran214324197",
+  // categoryId: "20241229cate192337946",
+  // shopId: "20250103shop155142361",
+  // searchTerm: "aaaaaaaaaaaaaaaaaaaaaaaa",
 
   // Extract route parameters
 
@@ -41,7 +46,6 @@ const useProduct = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Redux selector for the search title from the top bar
-  const { searchTitle } = useAppSelector((state) => state.topbar);
 
   // State to manage filtered product list
   // const [filteredProducts, setFilteredProducts] = useState<Iproduct[]>([]);

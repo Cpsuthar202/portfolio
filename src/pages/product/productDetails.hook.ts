@@ -9,12 +9,31 @@ export const useProductDetails = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { product_id, label, id } = useParams<{ product_id: string; label: string; id: string }>();
-  console.log({ product_id, label, id });
+  const { product_id } = useParams<{ product_id: string; label: string; id: string }>();
 
   const dispatch = useAppDispatch();
   const { product } = useAppSelector((state) => state.products);
-  console.log(product);
+  const [selectImage, setSelectImage] = useState<string | undefined>(product?.images[0]);
+  const [cartProduct, setCardProduct] = useState<{ product_id: string; quantity: number; color?: string; size?: string }>({
+    product_id: "",
+    quantity: 1,
+  });
+  console.log({ cartProduct });
+
+  useEffect(() => {
+    if (product?.images) {
+      setSelectImage(product.images[0]);
+    }
+    if (product) {
+      setCardProduct((prevCardProduct) => ({
+        ...prevCardProduct,
+        product_id: product.id,
+        ...(product.colors && { color: product.colors[0] }), // Conditionally set color
+        ...(product.sizes && { size: product.sizes[0] }), // Conditionally set size
+      }));
+    }
+  }, [product]);
+
   const handleGetProductById = async () => {
     try {
       await dispatch(getproductbyid(product_id as string)).unwrap();
@@ -28,15 +47,16 @@ export const useProductDetails = () => {
     if (product_id) handleGetProductById();
   }, [product_id]);
 
-  const [selectImage, setSelectImage] = useState<string | undefined>(product?.images[0]);
-  const [quantity, setQuantity] = useState<number>(1);
+  // const [quantity, setQuantity] = useState<number>(1);
   // Increment product quantity
   const handleIncrement = () => {
     console.log("handleIncrement");
 
-    if (quantity < (product?.stock ?? 0)) {
-      setQuantity((prev) => prev + 1);
-      // setCardProduct({ ...cardProduct, quantity: quantity + 1 });
+    if (cartProduct?.quantity < (product?.stock ?? 0)) {
+      setCardProduct((prevCardProduct) => ({
+        ...prevCardProduct,
+        quantity: prevCardProduct.quantity + 1,
+      }));
     }
   };
 
@@ -44,9 +64,12 @@ export const useProductDetails = () => {
   const handleDecrement = () => {
     console.log("handleDecrement");
 
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-      // setCardProduct({ ...cardProduct, quantity: quantity - 1 });
+    if (cartProduct?.quantity > 1) {
+      // Prevent decrementing below 1
+      setCardProduct((prevCardProduct) => ({
+        ...prevCardProduct,
+        quantity: prevCardProduct.quantity - 1,
+      }));
     }
   };
 
@@ -80,7 +103,7 @@ export const useProductDetails = () => {
   ];
 
   return {
-    variables: { product, isSmallScreen, selectImage, setSelectImage, navigate, quantity, setQuantity, ratingsData },
+    variables: { product, isSmallScreen, selectImage, setSelectImage, navigate, cartProduct, setCardProduct, ratingsData },
     methods: { handleDecrement, handleIncrement, handleToCart, handleToWishlist, handleToBuy },
   };
 };

@@ -66,7 +66,7 @@ const TopBar: React.FC<TopBarProps> = () => {
               <IconButton onClick={() => navigate("/user/cart")}>
                 <ShoppingCart />
               </IconButton>
-              <Button onClick={handleAuth}>{isLoggedIn ? "LogOut" : "LogIn"}</Button>
+              <Button onClick={handleAuth}>{isLoggedIn ? "Logout" : "LogIn"}</Button>
             </Box>
           </Grid>
         </Grid>
