@@ -11,8 +11,6 @@ const Address = () => {
     methods: { handleAddAddress, handleUpdateAddress, handleRemoveAddress, handleRemoveAddressDialog, handlesDefaultAddres },
   } = useAddress();
 
-  console.log({ addresses });
-
   return (
     <>
       <Container sx={{ p: 0 }}>

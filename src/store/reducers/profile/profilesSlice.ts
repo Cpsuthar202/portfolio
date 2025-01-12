@@ -30,10 +30,8 @@ export const profilesSlice = createSlice({
       .addCase(putprofile.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(putprofile.fulfilled, (state, action) => {
+      .addCase(putprofile.fulfilled, (state) => {
         state.isLoading = false;
-
-        state.profile = action.payload.data;
       })
       .addCase(putprofile.rejected, (state) => {
         state.isLoading = false;

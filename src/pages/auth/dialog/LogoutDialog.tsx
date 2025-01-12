@@ -15,7 +15,6 @@ const LogoutDialog: React.FC<LogoutDialogProps> = ({ handleClose }) => {
     localStorage.clear(); // Clear user data from localStorage
     handleClose(); // Close the dialog
     navigate("/user/auth/login", { replace: true }); // Redirect to login page
-    console.log("handleLogOut");
   };
 
   return (

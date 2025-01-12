@@ -11,3 +11,8 @@ export const postcartAPI = async (data: IcartPayload) => {
 export const cartAPI = async () => {
   return await apiInstance.get(CART);
 };
+
+export const postremovecartAPI = async (id: string) => {
+  const url = `${CART}/remove/${id}`;
+  return await apiInstance.post(url);
+};

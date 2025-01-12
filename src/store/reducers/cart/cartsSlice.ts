@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ICartsSliceInitialState } from "./type";
-import { getcart, postcart } from "./service";
+import { getcart, postcart, postremovecart } from "./service";
 
 const initialState: ICartsSliceInitialState = {
   isLoading: false,
@@ -34,6 +34,16 @@ export const cartsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(postcart.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(postremovecart.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(postremovecart.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(postremovecart.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

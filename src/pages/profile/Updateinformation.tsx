@@ -15,7 +15,6 @@ const UpdateInformation = () => {
 
   const [updateInformation, setUpdateInformation] = useState<IProfileResponse>(profile);
 
-  // console.log("userData", updateInformation);
   const [updateInformationErr, setUpdateInformationErr] = useState<IProfileResponseErr>({});
 
   const [imageUrl, setImageUrl] = useState<boolean>(false);
@@ -35,7 +34,6 @@ const UpdateInformation = () => {
 
   const handleSelectChange = (event: SelectChangeEvent) => {
     const { name, value } = event.target;
-    console.log("name, value ", name, value);
 
     if (name) {
       setUpdateInformation((prevDetails) => ({
@@ -77,7 +75,6 @@ const UpdateInformation = () => {
 
   const handleImageUpload = () => {
     setImageUrl(true);
-    console.log("handleImageUpload");
   };
 
   return (

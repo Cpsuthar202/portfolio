@@ -123,6 +123,13 @@ const Order = () => {
                               <Typography variant="body1">{data.id}</Typography>
                             </Stack>
                             <Divider />
+                            <Stack direction="row" alignItems="center" justifyContent="space-between">
+                              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                                Payment Method
+                              </Typography>
+                              <Typography variant="body1">{data.payment_method}</Typography>
+                            </Stack>
+                            <Divider />
 
                             <Stack direction="row" alignItems="center" justifyContent="space-between">
                               <Typography variant="body1" sx={{ fontWeight: "bold" }}>

@@ -7,7 +7,7 @@ export const textCopy = (text: string) => {
       successToast({ message: "Copied successfully!", id: text });
     })
     .catch((error) => {
-      console.log("error", error);
+      console.error("error", error);
 
       errorToast({ message: "Failed to copy  Please try again.", id: text });
     });

@@ -84,7 +84,6 @@ export const validateName = (name: string): { isValid: boolean; err: { name?: st
 
 export const validatetext = (text: string): { isValid: boolean; err: { text?: string } } => {
   const err: { text?: string } = {};
-  console.log("text", text);
 
   let isValid = true;
   if (!text) {

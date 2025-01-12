@@ -10,8 +10,6 @@ export const useAddress = () => {
   const dispatch = useAppDispatch();
   const { addresses } = useAppSelector((state) => state.addresses);
 
-  console.log({ addresses });
-
   const handleGetAddresses = async () => {
     try {
       await dispatch(getaddresses()).unwrap();
@@ -29,8 +27,6 @@ export const useAddress = () => {
     navigate("/user/profile/manage-address", { state: { action: "Add" } });
   };
   const handleUpdateAddress = (e: IAddress) => {
-    console.log("address handleUpdateAddress", e);
-
     navigate("/user/profile/manage-address", {
       state: { address: e, action: "Update" },
     });

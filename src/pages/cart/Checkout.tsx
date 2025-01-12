@@ -10,7 +10,6 @@ const Checkout = () => {
     variable: { carts, paymentMethod, profile },
     methods: { navigate, handleAddress, handlePaymentMethod, handleOrder },
   } = useCart();
-  // console.log(profile?.address);
   if (!carts?.list?.length) {
     return (
       <Box

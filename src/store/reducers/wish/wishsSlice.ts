@@ -30,9 +30,8 @@ export const wiahsSlice = createSlice({
       .addCase(posttogglewish.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(posttogglewish.fulfilled, (state, action) => {
+      .addCase(posttogglewish.fulfilled, (state) => {
         state.isLoading = false;
-        state.wishs = action.payload.data;
       })
       .addCase(posttogglewish.rejected, (state) => {
         state.isLoading = false;

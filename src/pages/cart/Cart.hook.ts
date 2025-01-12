@@ -1,6 +1,6 @@
 import { errorToast, successToast } from "@/components/toastify/Toast";
 import { cartData } from "@/data/cartData";
-import { getcart, postcart } from "@/store/reducers/cart/service";
+import { getcart, postcart, postremovecart } from "@/store/reducers/cart/service";
 import { IcartPayload } from "@/store/reducers/cart/type";
 import { postorder } from "@/store/reducers/order/service";
 import { IOrderPayload } from "@/store/reducers/order/type";
@@ -27,8 +27,6 @@ export const useCart = () => {
     }
   };
   const handleGetCart = async () => {
-    console.log("handleGetCart");
-
     try {
       await dispatch(getcart()).unwrap();
     } catch (error: unknown) {
@@ -95,7 +93,16 @@ export const useCart = () => {
       console.warn(errorMessage);
     }
   };
-  const healdRemoveCart = (id: string) => console.log({ id });
+  const healdRemoveCart = async (id: string) => {
+    try {
+      const res = await dispatch(postremovecart(id as string)).unwrap();
+      successToast({ message: res.message });
+      handleGetCart();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
   const handleCheckOut = () => {
     navigate("/user/check-out");
   };

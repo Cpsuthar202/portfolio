@@ -9,7 +9,6 @@ export const wishAPI = async () => {
 // ADD wish
 export const posttogglewishAPI = async (id: string) => {
   const url = `${WISH}/toggle?product_id=${id}`;
-  console.log(url);
 
   return await apiInstance.post(url);
 };

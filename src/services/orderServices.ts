@@ -10,7 +10,6 @@ export const postorderAPI = async (data: IOrderPayload) => {
 
 export const postratorderAPI = async (data: { id: string; rating: number | null | undefined }) => {
   const url = `${ORDER}/rate`;
-  console.log({ data });
 
   return await apiInstance.post(url, { ...data });
 };

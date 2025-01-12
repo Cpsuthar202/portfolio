@@ -8,7 +8,6 @@ import { getproducts } from "@/store/reducers/product/service";
 
 const useProduct = () => {
   const { label, id } = useParams<{ product_id: string; label: string; id: string }>();
-  console.log(label, id);
 
   const navigate = useNavigate();
   const theme = useTheme();

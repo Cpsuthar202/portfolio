@@ -7,8 +7,6 @@ interface DisplayProps {
 }
 
 const Displayaddress: React.FC<DisplayProps> = memo(({ address }) => {
-  // console.log("Displayaddress");
-
   // Utility function to render each field
   const renderField = (label: string, value: string | undefined) => (
     <Typography variant="body1" sx={{ my: 0.5 }}>

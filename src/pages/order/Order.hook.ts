@@ -9,7 +9,6 @@ export const useOrder = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { orders } = useAppSelector((state) => state.orders);
-  console.log({ orders });
 
   const handleGetOrder = async () => {
     try {
@@ -33,14 +32,10 @@ export const useOrder = () => {
   };
 
   const handleAccordionChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-    console.log(event);
-
     setExpanded(isExpanded ? panel : false);
   };
 
   const handleRatingSubmit = async (id: string) => {
-    console.log({ productRating });
-
     // Logic to handle the submit action, like sending the rating to an API or updating state
     if (productRating.id === id && productRating.rating) {
       try {
@@ -55,8 +50,6 @@ export const useOrder = () => {
       errorToast({ message: "Please provide a rating before submitting" });
     }
   };
-
-  console.log("orderItemData", orderItemData);
 
   return {
     variable: { orders, navigate, orderItemData, expanded, productRating },

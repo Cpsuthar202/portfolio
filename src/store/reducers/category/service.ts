@@ -6,7 +6,6 @@ import { ICategoriesResponse } from "./type";
 //  categories
 export const getcategories = createAsyncThunk<IAPIResponseSchema<ICategoriesResponse[]>, { search: string }>("get/categories", async (data: { search: string }) => {
   const result = await categoriesAPI(data);
-  // console.log({ result });
 
   if (result.data) return result.data;
   return result;

@@ -136,7 +136,6 @@ const Rcsc: React.FC<RcscProps> = ({ setAddress, address, addressErr, setAddress
   // Handle selection change
   const handleChange = (type: "country" | "state" | "city") => (e: SelectChangeEvent<number>) => {
     const selectedValue = e.target.value as unknown as string;
-    console.log("selectedValue", selectedValue);
 
     setAddressErr((prevErr: any) => ({ ...prevErr, [type]: "" }));
     updateRcscId(type, selectedValue);

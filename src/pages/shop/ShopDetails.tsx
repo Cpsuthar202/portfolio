@@ -12,8 +12,6 @@ const StoreDetails = () => {
     variable: { shop, products },
   } = useShopDetails();
 
-  console.log(products);
-
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
       {/* Store Banner Image */}

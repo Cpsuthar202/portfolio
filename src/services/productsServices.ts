@@ -33,16 +33,12 @@ export const productAPI = async (data: IproductPayload) => {
     url += `?${params.join("&")}`;
   }
 
-  console.log(url);
-
   return await baseInstance.get(url);
 };
 
 // get product
 export const productByIdAPI = async (id: string) => {
   const url = `${PRODUCT}/${id}`;
-
-  console.log(url);
 
   return await baseInstance.get(url);
 };

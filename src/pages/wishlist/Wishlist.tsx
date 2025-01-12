@@ -7,7 +7,6 @@ import { getwish } from "@/store/reducers/wish/service";
 const Wishlist = () => {
   const dispatch = useAppDispatch();
   const { wishs } = useAppSelector((state) => state.wishs);
-  console.log({ wishs });
 
   const handleGetWish = async () => {
     try {

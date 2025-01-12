@@ -35,7 +35,6 @@ const Updatepassword = () => {
     const { isValid, errors } = validateFieldsforUpdatepassword(updatePassword);
 
     if (isValid) {
-      console.log("Password updated successfully:", updatePassword);
       try {
         const payload: IResetpassword = updatePassword;
         const promise = dispatch(postresetPassword(payload));

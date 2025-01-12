@@ -14,15 +14,10 @@ const Manageaddress = () => {
   const dispatch = useAppDispatch();
   const state_address = location.state.address;
   const state_action = location.state.action;
-  // console.log({ state_address, state_action });
-
-  // const [disabled, setDisabled] = useState<boolean>(true);
 
   const [address, setAddress] = useState<IAddress>(state_address);
 
   const [addressErr, setAddressErr] = useState<IAddressErr>({});
-
-  console.log(addressErr);
 
   // Handle changes in address details
   const handleAddressDetailsChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -63,7 +63,6 @@ const UseRegistration = () => {
 
   // Navigate to Terms and Conditions page
   const handleTermsAndConditions = () => {
-    console.log("terms-and-conditions");
     // navigate("/terms-and-conditions");
   };
 
@@ -72,7 +71,7 @@ const UseRegistration = () => {
     if (registerDetailPreserve) {
       setRegistrationDetails(registerDetailPreserve); // Restore saved registration details
     } else {
-      console.log("No preserved login.");
+      console.error("No preserved login.");
     }
   }, [registerDetailPreserve]);
 

@@ -23,7 +23,6 @@ export const useProductDetails = () => {
     product_id: "",
     quantity: 1,
   });
-  console.log({ cartProduct });
 
   useEffect(() => {
     if (product?.images) {
@@ -55,8 +54,6 @@ export const useProductDetails = () => {
   // const [quantity, setQuantity] = useState<number>(1);
   // Increment product quantity
   const handleIncrement = () => {
-    console.log("handleIncrement");
-
     if (cartProduct?.quantity < (product?.stock ?? 0)) {
       setCardProduct((prevCardProduct) => ({
         ...prevCardProduct,
@@ -67,8 +64,6 @@ export const useProductDetails = () => {
 
   // Decrement product quantity
   const handleDecrement = () => {
-    console.log("handleDecrement");
-
     if (cartProduct?.quantity > 1) {
       // Prevent decrementing below 1
       setCardProduct((prevCardProduct) => ({
@@ -80,17 +75,9 @@ export const useProductDetails = () => {
 
   // Handle adding product to cart
   const handleToCart = async () => {
-    console.log("handleToCart");
-    // postcart
-    // try {
-    //   await dispatch(getproductbyid(product_id as string)).unwrap();
-    // } catch (error: unknown) {
-    //   const errorMessage = error instanceof Error ? error.message : "Something went wrong";
-    //   console.warn(errorMessage);
-    // }
-
     try {
       const payload: IcartPayload = cartProduct;
+
       const promise = dispatch(postcart(payload)); // Dispatch OTP request
       const res = await promise.unwrap();
       successToast({ message: res.message, duration: 3000 }); // Show success toast
@@ -98,8 +85,6 @@ export const useProductDetails = () => {
       const errorMessage = error instanceof Error ? error.message : "Something went wrong";
       console.warn(errorMessage);
     }
-    // successToast({ message: " product add successfully" });
-    console.log("Added to cart");
   };
 
   // Handle buying product directly

@@ -20,7 +20,6 @@ const useDisplay = () => {
   const { brands } = useAppSelector((state) => state.brands);
   const { shops } = useAppSelector((state) => state.shops);
   const { searchTitle } = useAppSelector((state) => state.topbar);
-  console.log({ searchTitle });
 
   const data: DataItems = label === "categorie" ? categories : label === "brand" ? brands : label === "shop" ? shops : null;
 

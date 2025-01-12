@@ -14,7 +14,6 @@ const requestErrorHandler = (err: any) => {
 };
 
 const responseHandler = (response: any) => {
-  // console.log(response);
   return Promise.resolve(response);
 };
 

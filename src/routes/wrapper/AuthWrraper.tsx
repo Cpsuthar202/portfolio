@@ -9,7 +9,6 @@ const AuthWrapper = () => {
 
   useEffect(() => {
     if (checkUserToken()) {
-      console.log("checkUserToken");
       setIsLoggedIn(true);
       navigate("/user", { replace: true });
     } else {

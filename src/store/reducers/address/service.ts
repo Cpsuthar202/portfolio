@@ -20,17 +20,15 @@ export const setdefaultaddress = createAsyncThunk<IAPIResponseSchema<undefined>,
   return result;
 });
 
-export const createaddress = createAsyncThunk<IAPIResponseSchema<IAddress>, IAddress>("create/address", async (data: IAddress) => {
+export const createaddress = createAsyncThunk<IAPIResponseSchema<undefined>, IAddress>("create/address", async (data: IAddress) => {
   const result = await createaddressAPI(data);
-  console.log({ result, data });
 
   if (result.data) return result.data;
   return result;
 });
 
-export const updateaddress = createAsyncThunk<IAPIResponseSchema<IAddress>, IAddress>("update/address", async (data: IAddress) => {
+export const updateaddress = createAsyncThunk<IAPIResponseSchema<undefined>, IAddress>("update/address", async (data: IAddress) => {
   const result = await updateaddressAPI(data);
-  console.log({ result, data });
 
   if (result.data) return result.data;
   return result;
