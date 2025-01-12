@@ -13,9 +13,17 @@ const Checkout = () => {
   // console.log(profile?.address);
   if (!carts?.list?.length) {
     return (
-      <Typography variant="h6" sx={{ textAlign: "center", width: "100%" }}>
-        Cart not found
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center", // Centers horizontally
+          alignItems: "center", // Centers vertically
+          width: "100%", // Ensures the Box takes full width
+          minHeight: "200px", // Adjust the height to fit your needs
+        }}
+      >
+        <Typography> Cart not found</Typography>
+      </Box>
     );
   }
   return (
@@ -104,7 +112,7 @@ const Checkout = () => {
               <Image src={data?.product?.image} alt={"N/O"} sx={{ height: 60, cursor: "pointer", mr: 2 }} onClick={() => navigate(`/product_details/${data.id}`)} />
               <Box sx={{ flex: 1 }}>
                 <Typography variant="body1" sx={{ width: "100%" }}>
-                  {data.id} {trimTextToWordLimit(data?.product?.title || "unkon", 100)}
+                  {trimTextToWordLimit(data?.product?.title || "unkon", 100)}
                 </Typography>
               </Box>
             </Box>

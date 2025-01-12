@@ -19,6 +19,8 @@ export interface IAddress {
   line_2?: string;
   default: boolean;
   userId: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export type IAddressErr = Partial<Record<keyof IAddress, string>>;

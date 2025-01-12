@@ -25,6 +25,8 @@ export interface IOrdersResponse {
   tracking_link?: string;
   track_id: string;
   rating?: number;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Product {

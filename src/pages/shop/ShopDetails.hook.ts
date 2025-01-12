@@ -1,3 +1,5 @@
+import { getproducts } from "@/store/reducers/product/service";
+import { IproductPayload } from "@/store/reducers/product/type";
 import { getshopsbyid } from "@/store/reducers/shop/service";
 
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -9,11 +11,13 @@ export const useShopDetails = () => {
 
   const dispatch = useAppDispatch();
   const { shop } = useAppSelector((state) => state.shops);
+  const { products } = useAppSelector((state) => state.products);
   const handleGetShops = async () => {
     try {
       await dispatch(getshopsbyid(id as string)).unwrap();
-    } catch (error: any) {
-      console.warn(error?.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
     }
   };
 
@@ -21,8 +25,26 @@ export const useShopDetails = () => {
     handleGetShops();
   }, []);
 
+  const handleGetProducts = async () => {
+    try {
+      const payload: IproductPayload = {
+        limit: 20,
+        page: 1,
+        shopId: id,
+      };
+      await dispatch(getproducts(payload)).unwrap();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+
+  useEffect(() => {
+    handleGetProducts();
+  }, []);
+
   return {
-    variable: { shop },
+    variable: { shop, products },
     methods: {},
   };
 };

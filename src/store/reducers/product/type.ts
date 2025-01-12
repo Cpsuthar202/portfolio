@@ -29,10 +29,11 @@ export interface Iproduct {
   delivery_charges: number;
   warranty?: string;
   best_selling: boolean;
-  best_selling_number?: number;
   stock: number;
   product_type: string;
   ratings: Ratings;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Ratings {
@@ -52,4 +53,5 @@ export interface IproductPayload {
   shopId?: string;
   brandId?: string;
   categoryId?: string;
+  best_selling?: boolean;
 }

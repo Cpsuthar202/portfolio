@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider } from "@mui/material";
+import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider, CircularProgress } from "@mui/material";
 import { Image } from "@/components/image";
 import { Add, Remove } from "@mui/icons-material";
 import { useCart } from "./Cart.hook";
@@ -8,14 +8,23 @@ import { IcartPayload } from "@/store/reducers/cart/type";
 
 const Cart: React.FC = () => {
   const {
-    variable: { carts },
-    methods: { navigate, handleIncrement, handleDecrement, healdWishlistCart, healdRemoveCart, handleCheckOut },
+    variable: { carts, wishs, isLoading },
+    methods: { navigate, handleIncrement, handleDecrement, healdToggleWishlistCart, healdRemoveCart, handleCheckOut },
   } = useCart();
+
   if (!carts?.list?.length) {
     return (
-      <Typography variant="h6" sx={{ textAlign: "center", width: "100%" }}>
-        Cart not found
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center", // Centers horizontally
+          alignItems: "center", // Centers vertically
+          width: "100%", // Ensures the Box takes full width
+          minHeight: "200px", // Adjust the height to fit your needs
+        }}
+      >
+        <Typography> Cart not found</Typography>
+      </Box>
     );
   }
 
@@ -72,6 +81,7 @@ const Cart: React.FC = () => {
             const deliveryCharges = data?.product?.delivery_charges ?? 0; // Default to 0 if undefined
             const discountPrice = data?.product?.discount_price ?? 0;
             const price = data?.product?.price ?? 0;
+            const isInWishlist = Array.isArray(wishs) && wishs?.some((w) => w.product_id === data?.product?.id);
 
             return (
               <Grid item md={6} sm={6} xs={12} sx={{ p: 1 }} key={data.id}>
@@ -132,7 +142,7 @@ const Cart: React.FC = () => {
                             <Remove />
                           </IconButton>
                           <Box sx={{ border: 1, borderColor: "primary.main", borderRadius: 2, p: 0.5, px: 1.5 }}>
-                            <Typography>{data.quantity}</Typography>
+                            {isLoading ? <CircularProgress size="10px" sx={{ p: 0, m: 0 }} /> : <Typography>{data.quantity}</Typography>}
                           </Box>
                           <IconButton onClick={() => handleIncrement(data as IcartPayload)} disabled={data.quantity === stock}>
                             <Add />
@@ -145,7 +155,7 @@ const Cart: React.FC = () => {
                       </Typography>
                     )}
                     <Stack direction="row" alignItems="center" spacing={1}>
-                      <Button onClick={() => healdWishlistCart(data.id)}>Add to Wishlist</Button>
+                      <Button onClick={() => healdToggleWishlistCart(data?.product?.id)}>{isInWishlist ? "Remove to wishlist" : "Add to Wishlist"}</Button>
                       <Button onClick={() => healdRemoveCart(data.id)}>Remove from Cart</Button>
                     </Stack>
                   </Box>

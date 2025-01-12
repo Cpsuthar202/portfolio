@@ -48,7 +48,7 @@ const Order = () => {
                       <Image src={data?.product?.image} alt={"N/O"} sx={{ height: 50, cursor: "pointer", mr: 2 }} onClick={() => navigate(`/product_details/${data?.product?.id}`)} />
                       <Box sx={{ flex: 1 }}>
                         <Typography variant="body1" sx={{ width: "100%" }}>
-                          {data.id} {trimTextToWordLimit(data?.product?.title || "unkon", 100)}
+                          {trimTextToWordLimit(data?.product?.title || "unkon", 100)}
                         </Typography>
                       </Box>
                     </Box>

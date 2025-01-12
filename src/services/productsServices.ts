@@ -25,6 +25,9 @@ export const productAPI = async (data: IproductPayload) => {
   if (data?.searchTerm) {
     params.push(`search_term=${data?.searchTerm}`);
   }
+  if (data?.best_selling) {
+    params.push(`best_selling=${data?.best_selling}`);
+  }
 
   if (params.length > 0) {
     url += `?${params.join("&")}`;

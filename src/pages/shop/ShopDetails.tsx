@@ -1,14 +1,18 @@
-import { handleShareUrl, WebShare } from "@/components/container";
+import { handleShareUrl, Sliderview, WebShare } from "@/components/container";
 import { Image } from "@/components/image";
 import { Email, Facebook, Instagram, Phone, X, Share } from "@mui/icons-material";
 import { Avatar, Box, Container, Divider, IconButton, Stack, Tooltip, Typography } from "@mui/material";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { useShopDetails } from "./ShopDetails.hook";
+import { Iproduct } from "@/store/reducers/product/type";
+import { ProductCard } from "@/components/card";
 
 const StoreDetails = () => {
   const {
-    variable: { shop },
+    variable: { shop, products },
   } = useShopDetails();
+
+  console.log(products);
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
@@ -157,15 +161,15 @@ const StoreDetails = () => {
 
       <Divider />
       {/* Products */}
-      {/* {products?.length > 0 && (
-        <Sliderview title="Products" scrollnumber={250} navigateTo={`/product/store/${shops?.id}`}>
-          {products.map((product: Iproduct, index: number) => (
+      {products && products.list?.length > 0 && (
+        <Sliderview title="Products" scrollnumber={250} navigateTo={`/product/store/${shop?.id}`}>
+          {products?.list?.map((product: Iproduct, index: number) => (
             <Box key={index} sx={{ minWidth: "200px", mx: 1 }}>
               <ProductCard data={product} />
             </Box>
           ))}
         </Sliderview>
-      )} */}
+      )}
     </Container>
   );
 };

@@ -7,13 +7,15 @@ import { RatingDistribution } from "./utils";
 import { postcart } from "@/store/reducers/cart/service";
 import { IcartPayload } from "@/store/reducers/cart/type";
 import { successToast } from "@/components/toastify/Toast";
+import { getwish, posttogglewish } from "@/store/reducers/wish/service";
 
 export const useProductDetails = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const { wishs } = useAppSelector((state) => state.wishs);
   const { product_id } = useParams<{ product_id: string; label: string; id: string }>();
-
+  const isInWishlist = Array.isArray(wishs) && wishs?.some((w) => w?.product_id === product_id);
   const dispatch = useAppDispatch();
   const { product } = useAppSelector((state) => state.products);
   const [selectImage, setSelectImage] = useState<string | undefined>(product?.images[0]);
@@ -92,9 +94,6 @@ export const useProductDetails = () => {
       const promise = dispatch(postcart(payload)); // Dispatch OTP request
       const res = await promise.unwrap();
       successToast({ message: res.message, duration: 3000 }); // Show success toast
-      // navigate("/user/auth/verify_otp", {
-      //   state: { userdata: loginDetails, action: "forgetpassword" },
-      // }); // Navigate to OTP verification page
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : "Something went wrong";
       console.warn(errorMessage);
@@ -104,17 +103,22 @@ export const useProductDetails = () => {
   };
 
   // Handle buying product directly
-  const handleToWishlist = (id: string | undefined) => {
-    console.log("handleToWishlist");
-
-    // successToast({ message: "product add to wishlist  successfully" });
-    console.log("handleToWishlist", id);
+  const handleToggleWishList = async (id: string | undefined) => {
+    try {
+      const res = await dispatch(posttogglewish(id as string)).unwrap();
+      successToast({ message: res.message });
+      try {
+        await dispatch(getwish()).unwrap();
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
+      }
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
   };
-  const handleToBuy = () => {
-    console.log("handleToBuy");
-
-    console.log("Purchased");
-  };
+  const handleToBuy = () => {};
 
   const ratingsData: RatingDistribution[] = [
     { rating: "5 Star", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },
@@ -125,7 +129,7 @@ export const useProductDetails = () => {
   ];
 
   return {
-    variables: { product, isSmallScreen, selectImage, setSelectImage, navigate, cartProduct, setCardProduct, ratingsData },
-    methods: { handleDecrement, handleIncrement, handleToCart, handleToWishlist, handleToBuy },
+    variables: { product, wishs, isInWishlist, isSmallScreen, selectImage, setSelectImage, navigate, cartProduct, setCardProduct, ratingsData },
+    methods: { handleDecrement, handleIncrement, handleToCart, handleToggleWishList, handleToBuy },
   };
 };

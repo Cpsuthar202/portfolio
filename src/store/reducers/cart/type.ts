@@ -20,6 +20,7 @@ export interface Icart {
   user_id: string;
   shop_id: string;
   product?: ICartProduct;
+  created_at: string;
 }
 
 export interface Ipayment_details {

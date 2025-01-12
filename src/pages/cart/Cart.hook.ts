@@ -5,6 +5,7 @@ import { IcartPayload } from "@/store/reducers/cart/type";
 import { postorder } from "@/store/reducers/order/service";
 import { IOrderPayload } from "@/store/reducers/order/type";
 import { getprofile } from "@/store/reducers/profile/service";
+import { getwish, posttogglewish } from "@/store/reducers/wish/service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +15,9 @@ export const useCart = () => {
   const [paymentMethod, setPaymentMethod] = useState<string>("cash");
 
   const dispatch = useAppDispatch();
-  const { carts } = useAppSelector((state) => state.carts);
+  const { carts, isLoading } = useAppSelector((state) => state.carts);
+  const { wishs } = useAppSelector((state) => state.wishs);
   const { profile } = useAppSelector((state) => state.profiles);
-  console.log(profile);
   const handleGetProfiles = async () => {
     try {
       await dispatch(getprofile()).unwrap();
@@ -26,6 +27,8 @@ export const useCart = () => {
     }
   };
   const handleGetCart = async () => {
+    console.log("handleGetCart");
+
     try {
       await dispatch(getcart()).unwrap();
     } catch (error: unknown) {
@@ -45,9 +48,19 @@ export const useCart = () => {
     }
   };
 
+  const handleGetWish = async () => {
+    try {
+      await dispatch(getwish()).unwrap();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
+
   useEffect(() => {
     handleGetCart();
     handleGetProfiles();
+    handleGetWish();
   }, []);
 
   // Increase item quantity if below maxQuantity
@@ -72,8 +85,16 @@ export const useCart = () => {
     handlePostCart(datas as IcartPayload);
   };
 
-  // Placeholder methods for checkout, wishlist, and cart removal actions
-  const healdWishlistCart = (id: string) => console.log({ id });
+  const healdToggleWishlistCart = async (id: string | undefined) => {
+    try {
+      const res = await dispatch(posttogglewish(id as string)).unwrap();
+      successToast({ message: res.message });
+      handleGetWish();
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+      console.warn(errorMessage);
+    }
+  };
   const healdRemoveCart = (id: string) => console.log({ id });
   const handleCheckOut = () => {
     navigate("/user/check-out");
@@ -106,7 +127,7 @@ export const useCart = () => {
   };
 
   return {
-    variable: { carts, cartData, paymentMethod, profile },
-    methods: { navigate, handleIncrement, handleDecrement, healdWishlistCart, healdRemoveCart, handleCheckOut, handleAddress, handlePaymentMethod, handleOrder },
+    variable: { carts, wishs, cartData, paymentMethod, profile, isLoading },
+    methods: { navigate, handleIncrement, handleDecrement, healdToggleWishlistCart, healdRemoveCart, handleCheckOut, handleAddress, handlePaymentMethod, handleOrder },
   };
 };

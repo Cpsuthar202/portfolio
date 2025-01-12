@@ -6,7 +6,7 @@ import { Iproduct } from "@/store/reducers/product/type";
 
 const BestSelling: React.FC = () => {
   const {
-    variable: { prodect },
+    variable: { products },
   } = useBestSelling();
 
   return (
@@ -15,10 +15,10 @@ const BestSelling: React.FC = () => {
         Best Selling
       </Typography>
       <Grid container>
-        {prodect.length != 0 ? (
-          prodect.map((p: Iproduct, index: number) => (
+        {products?.list?.length != 0 ? (
+          products?.list?.map((p: Iproduct, index: number) => (
             <Grid item key={index} lg={2} md={4} sm={6} xs={6} sx={{ p: 1 }}>
-              <ProductCard data={p} bastSellingNo={true} />
+              <ProductCard data={p} />
             </Grid>
           ))
         ) : (
