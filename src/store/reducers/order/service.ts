@@ -1,11 +1,17 @@
 import { IAPIResponseSchema } from "@/store/type";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IOrderPayload, IOrdersResponse } from "./type";
-import { orderAPI, postorderAPI, postratorderAPI } from "@/services/orderServices";
+import { IbuyPayload, IOrderPayload, IOrdersResponse } from "./type";
+import { orderAPI, postbuyorderAPI, postorderAPI, postratorderAPI } from "@/services/orderServices";
 
 //  order
 export const postorder = createAsyncThunk<IAPIResponseSchema<undefined>, IOrderPayload>("post/order", async (data: IOrderPayload) => {
   const result = await postorderAPI(data);
+
+  if (result.data) return result.data;
+  return result;
+});
+export const postbuyorder = createAsyncThunk<IAPIResponseSchema<undefined>, IbuyPayload>("post/buy", async (data: IbuyPayload) => {
+  const result = await postbuyorderAPI(data);
 
   if (result.data) return result.data;
   return result;

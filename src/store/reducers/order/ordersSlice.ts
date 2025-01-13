@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IOrderSliceInitialState } from "./type";
-import { getorder, postorder, postratorder } from "./service";
+import { getorder, postbuyorder, postorder, postratorder } from "./service";
 
 const initialState: IOrderSliceInitialState = {
   isLoading: false,
@@ -34,6 +34,16 @@ export const ordersSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(postorder.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(postbuyorder.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(postbuyorder.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(postbuyorder.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })

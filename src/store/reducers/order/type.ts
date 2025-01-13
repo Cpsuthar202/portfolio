@@ -38,3 +38,12 @@ export interface IOrderPayload {
   address_id: string;
   payment_method: string;
 }
+export interface IbuyPayload {
+  address_id: string;
+  payment_method: string;
+  product_id: string;
+  quantity: string;
+  color?: string;
+  size?: string;
+  shop_id: string;
+}

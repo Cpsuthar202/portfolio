@@ -2,16 +2,20 @@ import { errorToast, successToast } from "@/components/toastify/Toast";
 import { cartData } from "@/data/cartData";
 import { getcart, postcart, postremovecart } from "@/store/reducers/cart/service";
 import { IcartPayload } from "@/store/reducers/cart/type";
-import { postorder } from "@/store/reducers/order/service";
-import { IOrderPayload } from "@/store/reducers/order/type";
+import { postbuyorder, postorder } from "@/store/reducers/order/service";
+import { IbuyPayload, IOrderPayload } from "@/store/reducers/order/type";
 import { getprofile } from "@/store/reducers/profile/service";
 import { getwish, posttogglewish } from "@/store/reducers/wish/service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useCart = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const buydata = location?.state?.data; // User data from location state
+  const actiontype = location?.state?.action;
   const [paymentMethod, setPaymentMethod] = useState<string>("cash");
 
   const dispatch = useAppDispatch();
@@ -118,23 +122,44 @@ export const useCart = () => {
     if (!profile?.address?.id) {
       return errorToast({ message: "Add Address" });
     }
-    const data: IOrderPayload = {
-      address_id: profile?.address?.id,
-      payment_method: paymentMethod,
-    };
 
-    try {
-      const res = await dispatch(postorder(data)).unwrap();
-      successToast({ message: res.message });
-      navigate("/user/order");
-    } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
-      console.warn(errorMessage);
+    if (actiontype === "buy") {
+      const data: IbuyPayload = {
+        address_id: profile?.address?.id,
+        payment_method: paymentMethod,
+        product_id: buydata?.product?.id,
+        quantity: buydata.quantity,
+        color: buydata.color,
+        size: buydata.size,
+        shop_id: buydata?.product?.shop_id,
+      };
+
+      try {
+        const res = await dispatch(postbuyorder(data)).unwrap();
+        successToast({ message: res.message });
+        navigate("/user/order");
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
+      }
+    } else {
+      const data: IOrderPayload = {
+        address_id: profile?.address?.id,
+        payment_method: paymentMethod,
+      };
+      try {
+        const res = await dispatch(postorder(data)).unwrap();
+        successToast({ message: res.message });
+        navigate("/user/order");
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+        console.warn(errorMessage);
+      }
     }
   };
 
   return {
-    variable: { carts, wishs, cartData, paymentMethod, profile, isLoading },
+    variable: { carts, wishs, cartData, paymentMethod, profile, isLoading, actiontype, buydata },
     methods: { navigate, handleIncrement, handleDecrement, healdToggleWishlistCart, healdRemoveCart, handleCheckOut, handleAddress, handlePaymentMethod, handleOrder },
   };
 };

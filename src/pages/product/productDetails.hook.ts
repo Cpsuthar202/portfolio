@@ -103,7 +103,15 @@ export const useProductDetails = () => {
       console.warn(errorMessage);
     }
   };
-  const handleToBuy = () => {};
+  const handleToBuy = () => {
+    const data = {
+      product: product,
+      quantity: cartProduct.quantity,
+      ...(cartProduct?.color && { color: cartProduct.color }),
+      ...(cartProduct.size && { size: cartProduct.size }),
+    };
+    navigate("/user/check-out", { state: { data: data, action: "buy" } });
+  };
 
   const ratingsData: RatingDistribution[] = [
     { rating: "5 Star", count: product?.ratings?.rat_5 || 0, color: "#4CAF50" },

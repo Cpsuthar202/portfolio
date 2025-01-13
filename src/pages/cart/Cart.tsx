@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider, CircularProgress } from "@mui/material";
+import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider } from "@mui/material";
 import { Image } from "@/components/image";
 import { Add, Remove } from "@mui/icons-material";
 import { useCart } from "./Cart.hook";
@@ -96,7 +96,7 @@ const Cart: React.FC = () => {
                   }}
                 >
                   <Box sx={{ display: "flex", borderRadius: 1, mt: 1 }}>
-                    <Image src={data?.product?.image || ""} alt="N/O" sx={{ height: 60, cursor: "pointer", mr: 2 }} onClick={() => navigate(`/product_details/${data.id}`)} />
+                    <Image src={data?.product?.image || ""} alt="N/O" sx={{ height: 60, cursor: "pointer", mr: 2 }} onClick={() => navigate(`/product_details/${data?.product?.id}`)} />
                     <Box sx={{ flex: 1 }}>
                       <Typography variant="body1" sx={{ width: "100%" }}>
                         {trimTextToWordLimit(data?.product?.title || "Untitled", 100)}
@@ -138,13 +138,13 @@ const Cart: React.FC = () => {
                           <Typography variant="body1">₹{(discountPrice + deliveryCharges) * data.quantity}</Typography>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={1}>
-                          <IconButton onClick={() => handleDecrement(data as IcartPayload)} disabled={data.quantity <= 1}>
+                          <IconButton onClick={() => handleDecrement(data as IcartPayload)} disabled={isLoading || data.quantity <= 1}>
                             <Remove />
                           </IconButton>
                           <Box sx={{ border: 1, borderColor: "primary.main", borderRadius: 2, p: 0.5, px: 1.5 }}>
-                            {isLoading ? <CircularProgress size="10px" sx={{ p: 0, m: 0 }} /> : <Typography>{data.quantity}</Typography>}
+                            <Typography>{data.quantity}</Typography>
                           </Box>
-                          <IconButton onClick={() => handleIncrement(data as IcartPayload)} disabled={data.quantity === stock}>
+                          <IconButton onClick={() => handleIncrement(data as IcartPayload)} disabled={isLoading || data.quantity === stock}>
                             <Add />
                           </IconButton>
                         </Stack>
