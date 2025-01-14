@@ -8,6 +8,7 @@ import { IProfileResponse, IProfileResponseErr } from "@/store/reducers/profile/
 import { useAppDispatch } from "@/store/store";
 import { putprofile } from "@/store/reducers/profile/service";
 import SimpleDialog from "@/components/dialog/SimpleDialog";
+
 const UpdateInformation = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

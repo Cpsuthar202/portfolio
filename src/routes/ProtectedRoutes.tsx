@@ -10,7 +10,8 @@ import ProfileWrraper from "./wrapper/ProfileWrraper";
 import Address from "@/pages/address/Address";
 import Updatepassword from "@/pages/profile/Updatepassword";
 import Checkout from "@/pages/cart/Checkout";
-import UpdateInformation from "@/pages/profile/UpdateInformation";
+import UpdateInformation from "../pages/profile/UpdateInformation";
+// import UpdateInformation from "@/pages/profile/UpdateInformation";
 import Manageaddress from "@/pages/address/Manageaddress";
 
 const ProtectedRoutes = () => {
