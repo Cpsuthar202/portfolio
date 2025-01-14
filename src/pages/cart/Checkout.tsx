@@ -2,9 +2,10 @@ import { Box, Button, Container, Divider, IconButton, Stack, Typography } from "
 import { useCart } from "./Cart.hook";
 import { Edit } from "@mui/icons-material";
 import { trimTextToWordLimit } from "@/components/utils/textUtils";
-import { Image } from "@/components/image";
+import { Image } from "@/components/image/index";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { useEffect, useState } from "react";
+import { Icart } from "@/store/reducers/cart/type";
 
 const Checkout = () => {
   const {
@@ -36,7 +37,7 @@ const Checkout = () => {
     );
   }
 
-  const renderProductDetails = (data: any) => {
+  const renderProductDetails = (data: Icart) => {
     const deliveryCharges = data?.product?.delivery_charges ?? 0;
     const discountPrice = data?.product?.discount_price ?? 0;
     const price = data?.product?.price ?? 0;

@@ -1,11 +1,11 @@
 import { trimTextToWordLimit } from "@/components/utils/textUtils";
 import { Box, Button, Container, Divider, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { GiveRatings } from "@/components/ratings/Ratings";
-import { CustomAccordion } from "@/components/accordion";
+import { CustomAccordion } from "@/components/accordion/index";
 import { textCopy } from "@/components/copys/textCopy";
 import { ContentCopy } from "@mui/icons-material";
 import { useOrder } from "./Order.hook";
-import { Image } from "@/components/image";
+import { Image } from "@/components/image/index";
 import Displayaddress from "../profile/utility/Displayaddress";
 import moment from "moment";
 

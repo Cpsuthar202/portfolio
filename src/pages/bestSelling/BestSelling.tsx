@@ -1,4 +1,4 @@
-import { ProductCard } from "@/components/card";
+import { ProductCard } from "@/components/card/index";
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useBestSelling } from "./BestSelling.hook";

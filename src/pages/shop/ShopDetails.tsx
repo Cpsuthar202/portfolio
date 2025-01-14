@@ -1,11 +1,11 @@
-import { handleShareUrl, Sliderview, WebShare } from "@/components/container";
-import { Image } from "@/components/image";
+import { handleShareUrl, Sliderview, WebShare } from "@/components/container/index";
+import { Image } from "@/components/image/index";
 import { Email, Facebook, Instagram, Phone, X, Share } from "@mui/icons-material";
 import { Avatar, Box, Container, Divider, IconButton, Stack, Tooltip, Typography } from "@mui/material";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { useShopDetails } from "./ShopDetails.hook";
 import { Iproduct } from "@/store/reducers/product/type";
-import { ProductCard } from "@/components/card";
+import { ProductCard } from "@/components/card/index";
 
 const StoreDetails = () => {
   const {

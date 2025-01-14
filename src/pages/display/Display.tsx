@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import useDisplay from "./Display.hook";
-import { CategoryCard } from "@/components/card";
+import { CategoryCard } from "@/components/card/index";
 import { IShopsResponse } from "@/store/reducers/shop/type";
 import { ICategoriesResponse } from "@/store/reducers/category/type";
 import { IBrandsResponse } from "@/store/reducers/brand/type";

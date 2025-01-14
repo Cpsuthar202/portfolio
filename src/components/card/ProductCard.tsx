@@ -7,7 +7,7 @@ import { DisplayRatings } from "../ratings/Ratings";
 import { WebShare } from "../container/index";
 import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
-import { Image } from "../image";
+import { Image } from "../image/index";
 import { Iproduct } from "@/store/reducers/product/type";
 import { useProductDetails } from "@/pages/product/productDetails.hook";
 
