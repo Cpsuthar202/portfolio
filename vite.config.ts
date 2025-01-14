@@ -32,5 +32,6 @@ export default defineConfig({
       "@color": path.resolve(__dirname, "src/theme/utils/color"),
       "@components": path.resolve(__dirname, "src/components"),
     },
+    extensions: [".ts", ".tsx", ".js", ".jsx"], // Add other extensions if needed
   },
 });
