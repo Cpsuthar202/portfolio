@@ -2,7 +2,7 @@ import { baseInstance } from "@/axios/axios.config";
 import { SHOP } from "@/utils/constants";
 
 // Get Shops List
-export const shopsAPI = async (data: { search: string }) => {
+export const shopsAPI = async (data: { search?: string } | null) => {
   let url = `${SHOP}`;
 
   const params = [];

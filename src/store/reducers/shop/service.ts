@@ -4,7 +4,7 @@ import { IShopsResponse } from "./type";
 import { shopsAPI, shopsByIdAPI } from "@/services/shopsServices";
 
 //  getShops
-export const getshops = createAsyncThunk<IAPIResponseSchema<IShopsResponse[]>, { search: string }>("get/shops", async (data: { search: string }) => {
+export const getshops = createAsyncThunk<IAPIResponseSchema<IShopsResponse[]>, { search?: string } | null>("get/shops", async (data: { search?: string } | null) => {
   const result = await shopsAPI(data);
   if (result.data) return result.data;
   return result;

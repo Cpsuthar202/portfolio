@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
 import { checkUserToken } from "@/utils/localStorage";
-import { heroLine } from "@/data/heroLine";
 
 export const useTopBar = () => {
   const location = useLocation();
@@ -20,7 +19,7 @@ export const useTopBar = () => {
   const [openConfDialog, setOpenConfDialog] = useState<boolean>(false);
 
   // Gets the specific line to display in the top bar
-  const tegLine = heroLine.find((e) => e.slug == "top-bar");
+  // const tegLine = heroLine.find((e) => e.slug == "top-bar");
 
   // Checks for user token on component load to set initial login status
   useEffect(() => {
@@ -55,7 +54,6 @@ export const useTopBar = () => {
     variable: {
       isLoggedIn,
       open,
-      tegLine,
       searchTitle,
       openConfDialog,
       setOpenConfDialog,

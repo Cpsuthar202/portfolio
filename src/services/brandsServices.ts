@@ -2,7 +2,7 @@ import { baseInstance } from "@/axios/axios.config";
 import { BRAND } from "@/utils/constants";
 
 // brands
-export const brandsAPI = async (data: { search: string }) => {
+export const brandsAPI = async (data: { search?: string } | null) => {
   let url = `${BRAND}`;
 
   const params = [];

@@ -11,7 +11,7 @@ import moment from "moment";
 
 const Order = () => {
   const {
-    variable: { orders, navigate, orderItemData, expanded, productRating },
+    variable: { orders, navigate, expanded, productRating },
     methods: { handleAccordionChange, handleRatingSubmit, handleProductRatingChange },
   } = useOrder();
 
@@ -21,7 +21,7 @@ const Order = () => {
         <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
           Your Order
         </Typography>
-        {orderItemData.length === 0 ? (
+        {orders?.length === 0 ? (
           <Typography variant="body1" sx={{ textAlign: "center", mt: 2 }}>
             No items in your Order.
           </Typography>

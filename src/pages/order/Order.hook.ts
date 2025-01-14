@@ -1,5 +1,4 @@
 import { errorToast, successToast } from "@/components/toastify/Toast";
-import { orderData } from "@/data/orderData";
 import { getorder, postratorder } from "@/store/reducers/order/service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
@@ -23,7 +22,6 @@ export const useOrder = () => {
     handleGetOrder();
   }, []);
 
-  const orderItemData = orderData;
   const [expanded, setExpanded] = useState<string | false>(false);
   const [productRating, setProductRating] = useState<{ id: string; rating: number | null | undefined }>({ id: "", rating: 0 });
 
@@ -52,7 +50,7 @@ export const useOrder = () => {
   };
 
   return {
-    variable: { orders, navigate, orderItemData, expanded, productRating },
+    variable: { orders, navigate, expanded, productRating },
     methods: { handleAccordionChange, handleRatingSubmit, handleProductRatingChange },
   };
 };

@@ -1,5 +1,4 @@
 import { errorToast, successToast } from "@/components/toastify/Toast";
-import { cartData } from "@/data/cartData";
 import { getcart, postcart, postremovecart } from "@/store/reducers/cart/service";
 import { IcartPayload } from "@/store/reducers/cart/type";
 import { postbuyorder, postorder } from "@/store/reducers/order/service";
@@ -159,7 +158,7 @@ export const useCart = () => {
   };
 
   return {
-    variable: { carts, wishs, cartData, paymentMethod, profile, isLoading, actiontype, buydata },
+    variable: { carts, wishs, paymentMethod, profile, isLoading, actiontype, buydata },
     methods: { navigate, handleIncrement, handleDecrement, healdToggleWishlistCart, healdRemoveCart, handleCheckOut, handleAddress, handlePaymentMethod, handleOrder },
   };
 };
