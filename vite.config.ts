@@ -9,6 +9,7 @@ console.log("Port from env:", FRONTEND_PORT);
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/",
   optimizeDeps: {
     exclude: ["chunk-EWS7HTKY.js"],
   },
