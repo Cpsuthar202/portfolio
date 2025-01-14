@@ -1,5 +1,5 @@
 export const LOCALSTORAGE_VARIABLE = "e_com";
-export const APP_HOST = import.meta.env.VITE_APP_HOST_URL || "https://webwork.net.in/";
+export const APP_HOST = import.meta.env.VITE_APP_HOST_URL || "http://localhost:3002/";
 
 //api endpoints
 export const SEND_OTP = "auth/send-otp";
