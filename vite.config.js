@@ -1,5 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+// import tsconfigPaths from "vite-tsconfig-paths";
+
 import * as path from "path";
 var FRONTEND_HOST = process.env.VITE_APP_HOST;
 var FRONTEND_PORT = process.env.VITE_APP_PORT;
@@ -7,7 +9,7 @@ console.log("Port from env:", FRONTEND_PORT);
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/E-Commerce-user/",
+  base: "/",
   optimizeDeps: {
     exclude: ["chunk-EWS7HTKY.js"],
   },

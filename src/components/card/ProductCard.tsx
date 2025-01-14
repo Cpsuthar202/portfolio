@@ -103,15 +103,16 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
           <Typography variant="subtitle2" color="textPrimary">
             ₹{data?.discount_price}
           </Typography>
-          {data?.discount_percentage !== 0 && (
-            <>
+          {data?.discount_percentage != 0 && (
+            <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
               <Typography variant="body1" sx={{ textDecoration: "line-through", color: "#888" }}>
                 ₹{data?.price}
               </Typography>
+
               <Typography variant="body1" color="success.main">
                 {data?.discount_percentage}% off
               </Typography>
-            </>
+            </Box>
           )}
         </Stack>
         {/* <Button variant="outlined" color="primary" fullWidth>
