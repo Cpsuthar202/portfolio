@@ -29,6 +29,7 @@ export default defineConfig({
       "@image": path.resolve(__dirname, "src/assets/image/index"),
       "@svg": path.resolve(__dirname, "src/assets/svg/index"),
       "@color": path.resolve(__dirname, "src/theme/utils/color"),
+      "@components": path.resolve(__dirname, "src/components"),
     },
   },
 });
