@@ -11,7 +11,7 @@ import Address from "@/pages/address/Address";
 import Updatepassword from "@/pages/profile/Updatepassword";
 import Checkout from "@/pages/cart/Checkout";
 // import UpdateInformation from "../pages/profile/UpdateInformation";
-import UpdateInformation from "@/pages/profile/UpdateInformation";
+import Updateinformation from "@/pages/profile/UpdateInformation";
 
 // import UpdateInformation from "@/pages/profile/UpdateInformation";
 import Manageaddress from "@/pages/address/Manageaddress";
@@ -26,7 +26,7 @@ const ProtectedRoutes = () => {
         <Route path="/profile" element={<ProfileWrraper />}>
           <Route index element={<Navigate to="/profile/information" replace />} />
           <Route path="information" element={<Profile />} />
-          <Route path="update-information" element={<UpdateInformation />} />
+          <Route path="update-information" element={<Updateinformation />} />
           <Route path="address" element={<Address />} />
           <Route path="manage-address" element={<Manageaddress />} />
           <Route path="update-password" element={<Updatepassword />} />

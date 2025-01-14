@@ -9,7 +9,7 @@ import { useAppDispatch } from "@/store/store";
 import { putprofile } from "@/store/reducers/profile/service";
 import SimpleDialog from "@/components/dialog/SimpleDialog";
 
-const UpdateInformation = () => {
+const Updateinformation = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const profile = useLocation().state.profile_information;
@@ -259,4 +259,4 @@ const UpdateInformation = () => {
   );
 };
 
-export default UpdateInformation;
+export default Updateinformation;
