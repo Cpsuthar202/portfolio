@@ -11,7 +11,7 @@ import Address from "@/pages/address/Address";
 import Updatepassword from "@/pages/profile/Updatepassword";
 import Checkout from "@/pages/cart/Checkout";
 // import UpdateInformation from "../pages/profile/UpdateInformation";
-import Updateinformation from "@/pages/profile/UpdateInformation";
+import Updateinformation from "@/pages/profile/Updateinformation";
 
 // import UpdateInformation from "@/pages/profile/UpdateInformation";
 import Manageaddress from "@/pages/address/Manageaddress";
