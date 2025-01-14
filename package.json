@@ -1,5 +1,5 @@
 {
-  "name": "bp",
+  "name": "e-com-use",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -46,5 +46,11 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.0",
     "vite": "^5.4.0"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "vite": {
+    "base": "/"
   }
 }
