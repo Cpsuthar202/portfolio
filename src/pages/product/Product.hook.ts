@@ -6,7 +6,7 @@ import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
 import { IproductPayload } from "@/store/reducers/product/type";
 import { getproducts } from "@/store/reducers/product/service";
 
-const useProduct = () => {
+export const useProduct = () => {
   const { label, id } = useParams<{ product_id: string; label: string; id: string }>();
 
   const navigate = useNavigate();
@@ -53,5 +53,3 @@ const useProduct = () => {
     methods: {},
   };
 };
-
-export { useProduct };

@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useProfile = () => {
+export const useProfile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { profile } = useAppSelector((state) => state.profiles);
@@ -40,6 +40,3 @@ const useProfile = () => {
     methods: { handleAddress, handleUpdatePassword, handleUpdateInformation },
   };
 };
-
-export { useProfile };
-// /user/profile/information
