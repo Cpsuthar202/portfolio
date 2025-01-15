@@ -1,12 +1,6 @@
 
-.env file
+# .env file
 VITE_APP_API_ENDPOINT = https://e-commerce-api-2zu0.onrender.com/api
-
-
-
-
-
-
 
 
 # React + TypeScript + Vite
