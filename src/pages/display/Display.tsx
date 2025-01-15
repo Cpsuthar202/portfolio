@@ -4,7 +4,7 @@ import { CategoryCard } from "@/components/card/index";
 import { IShopsResponse } from "@/store/reducers/shop/type";
 import { ICategoriesResponse } from "@/store/reducers/category/type";
 import { IBrandsResponse } from "@/store/reducers/brand/type";
-import { useDisplay } from "./Display.hook";
+import { useDisplay } from "./display.hook";
 
 const Display: React.FC = () => {
   const {
