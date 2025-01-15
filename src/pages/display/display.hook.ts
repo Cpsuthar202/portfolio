@@ -12,7 +12,7 @@ import { IShopsResponse } from "@/store/reducers/shop/type";
 export type DataItem = ICategoriesResponse | IBrandsResponse | IShopsResponse | null;
 export type DataItems = (ICategoriesResponse | IBrandsResponse | IShopsResponse)[] | null | undefined;
 
-export const useDisplay = () => {
+const useDisplay = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { label } = useParams<{ label: string }>();
@@ -79,3 +79,5 @@ export const useDisplay = () => {
     methods: { handleNavigation },
   };
 };
+
+export { useDisplay };
