@@ -2,7 +2,7 @@ import { baseInstance } from "@/axios/axios.config";
 import { CATEGORY } from "@/utils/constants";
 
 // categories
-export const categoriesAPI = async (data: { search?: string } | null) => {
+export const categoriesAPI = async (data: { search?: string | null } | null) => {
   let url = `${CATEGORY}`;
 
   const params = [];

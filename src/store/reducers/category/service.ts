@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ICategoriesResponse } from "./type";
 
 //  categories
-export const getcategories = createAsyncThunk<IAPIResponseSchema<ICategoriesResponse[]>, { search?: string } | null>("get/categories", async (data: { search?: string } | null) => {
+export const getcategories = createAsyncThunk<IAPIResponseSchema<ICategoriesResponse[]>, { search?: string | null } | null>("get/categories", async (data: { search?: string | null } | null) => {
   const result = await categoriesAPI(data);
 
   if (result.data) return result.data;

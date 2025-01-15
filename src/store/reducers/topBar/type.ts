@@ -1,6 +1,6 @@
 export interface ItopBar {
   title: string;
-  searchTitle: string;
+  searchTitle: string | null;
   isLoading: boolean;
   isError: boolean;
 }

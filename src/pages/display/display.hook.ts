@@ -32,7 +32,7 @@ const useDisplay = () => {
     };
   }, [dispatch]);
 
-  const payload: { search: string } = { search: searchTitle };
+  const payload: { search: string | null } = { search: searchTitle };
 
   const handleGetCategories = async () => {
     try {

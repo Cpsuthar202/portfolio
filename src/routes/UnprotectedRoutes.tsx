@@ -1,11 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import UnprotectedWrapper from "./wrapper/UnprotectedWrapper";
 import Home from "@/pages/home/Home";
-import Display from "@/pages/display/Display";
 import Product from "@/pages/product/Product";
 import ProductDetails from "@/pages/product/ProductDetails";
 import ShopDetails from "@/pages/shop/ShopDetails";
 import BestSelling from "@/pages/bestSelling/BestSelling";
+import Display from "@/pages/display/Display";
 
 const UnprotectedRoutes = () => {
   return (
