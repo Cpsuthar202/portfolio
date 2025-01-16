@@ -8,6 +8,8 @@ export const REGISTER = "auth/register";
 export const FORGET_PASSWORD = "auth/forget-password";
 export const RESET_PASSWORD = "auth/reset-password";
 
+export const DASHBOARD = "dashboard";
+
 export const CATEGORY = "category";
 
 export const BRAND = "brand";

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setSearchTitle } from "@/store/reducers/topBar/topBarSlice";
 import { IproductPayload } from "@/store/reducers/product/type";
 import { getproducts } from "@/store/reducers/product/service";
+import { clearProductsList } from "@/store/reducers/product/productsSlice";
 
 export const useProduct = () => {
   const { label, id } = useParams<{ product_id: string; label: string; id: string }>();
@@ -14,6 +15,8 @@ export const useProduct = () => {
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.products);
   const { searchTitle } = useAppSelector((state) => state.topbar);
+
+  console.log(!products);
 
   const handleGetProducts = async () => {
     try {
@@ -40,6 +43,7 @@ export const useProduct = () => {
   useEffect(() => {
     return () => {
       dispatch(setSearchTitle(""));
+      dispatch(clearProductsList());
     };
   }, [dispatch]);
 

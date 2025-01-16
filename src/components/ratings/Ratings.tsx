@@ -13,9 +13,9 @@ interface GiveRatingsProps {
 
 export const DisplayRatings: React.FC<DisplayRatingsProps> = ({ rat, totalRaters }) => (
   <Stack direction="row" spacing={0.5} alignItems="center">
-    <Rating name="half-rating" value={rat} precision={0.5} readOnly size="small" />
+    <Rating name="half-rating" value={rat ? Number(rat) : 0} precision={0.5} readOnly size="small" />
     <Typography variant="body1" sx={{ ml: 1, color: "#555" }}>
-      ({totalRaters})
+      ({totalRaters ?? 0})
     </Typography>
   </Stack>
 );

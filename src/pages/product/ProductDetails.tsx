@@ -1,4 +1,4 @@
-import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, Divider, Rating, LinearProgress } from "@mui/material";
+import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, Divider, Rating, LinearProgress, CircularProgress } from "@mui/material";
 import { Add, Remove, Favorite, FavoriteBorder, Share } from "@mui/icons-material";
 import { Image } from "@/components/image/index";
 import { DisplayRatings } from "@/components/ratings/Ratings";
@@ -12,6 +12,22 @@ const ProductDetails = () => {
     variables: { product, isInWishlist, isSmallScreen, selectImage, setSelectImage, navigate, cartProduct, setCardProduct, ratingsData },
     methods: { handleDecrement, handleIncrement, handleToCart, handleToggleWishList, handleToBuy },
   } = useProductDetails();
+
+  if (!product) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center", // Centers horizontally
+          alignItems: "center", // Centers vertically
+          width: "100%", // Ensures the Box takes full width
+          minHeight: "200px", // Adjust the height to fit your needs
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Box>
@@ -80,8 +96,9 @@ const ProductDetails = () => {
                   {product?.colors.map((color, index) => (
                     <Button
                       key={index}
-                      variant={cartProduct.color === color ? "outlined" : "text"}
-                      sx={{ py: 0, px: 1, width: "fit-content" }}
+                      variant={"outlined"}
+                      // variant={cartProduct.color === color ? "outlined" : "text"}
+                      sx={{ py: 0, px: 3 }}
                       onClick={() =>
                         setCardProduct((prevCardProduct) => ({
                           ...prevCardProduct,

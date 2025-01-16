@@ -21,7 +21,8 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
             textAlign: "center",
             px: 2,
             mb: 1,
-            whiteSpace: "nowrap", // Prevent text wrapping
+            // width: "fit-content",
+            // whiteSpace: "nowrap", // Prevent text wrapping
             overflow: "hidden", // Hide overflow
             // textOverflow: "ellipsis", // Show ellipsis if the text is too long
           }}
@@ -31,7 +32,7 @@ export const CategoryCard: React.FC<ICategoryCard> = ({ src, label, onClick }) =
 
         <Box
           sx={{
-            height: "100px",
+            height: "50px",
             width: "fit-content",
             m: "auto",
             display: "flex",

@@ -11,6 +11,7 @@ import productsReducer from "./reducers/product/productsSlice";
 import cartsReducer from "./reducers/cart/cartsSlice";
 import ordersReducer from "./reducers/order/ordersSlice";
 import wishsReducer from "./reducers/wish/wishsSlice";
+import dashboardsReducer from "./reducers/dashboard/dashboardsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     carts: cartsReducer,
     orders: ordersReducer,
     wishs: wishsReducer,
+    dashboards: dashboardsReducer,
   },
 });
 

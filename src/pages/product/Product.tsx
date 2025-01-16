@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/card/index";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useProduct } from "./Product.hook";
 import { Iproduct } from "@/store/reducers/product/type";
 
@@ -7,6 +7,22 @@ const Product = () => {
   const {
     variables: { products },
   } = useProduct();
+
+  if (!products) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center", // Centers horizontally
+          alignItems: "center", // Centers vertically
+          width: "100%", // Ensures the Box takes full width
+          minHeight: "200px", // Adjust the height to fit your needs
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
