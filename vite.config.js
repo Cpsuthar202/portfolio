@@ -18,8 +18,7 @@ export default defineConfig({
     host: FRONTEND_HOST || "localhost",
   },
   build: {
-    outDir: "build",
-    target: "esnext",
+    outDir: "dist",
   },
   preview: {
     port: 3001,

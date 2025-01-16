@@ -18,7 +18,7 @@ export default defineConfig({
     host: FRONTEND_HOST || "localhost",
   },
   build: {
-    outDir: "build",
+    outDir: "dist",
   },
   preview: {
     port: 3001,
