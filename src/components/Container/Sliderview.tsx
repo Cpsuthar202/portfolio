@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { Box, Typography, Button } from "@mui/material";
 // import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-// import CategoryCard from "@/components/Container/CategoryCard";
+// import CategoryCard from "@components/Container/CategoryCard";
 
 interface ViewSliderview {
   children: ReactNode; // Define the type for children

@@ -1,8 +1,8 @@
 import { Box, Button, Checkbox, Container, FormControlLabel, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { successToast } from "@/components/toastify/Toast";
-import Rcsc from "@/components/rcsc/Rcsc";
+import { successToast } from "@components/toastify/Toast";
+import Rcsc from "@components/rcsc/Rcsc";
 import { IAddress, IAddressErr } from "@/store/reducers/address/type";
 import { validateFieldsforManageaddress } from "./utils";
 import { useAppDispatch } from "@/store/store";

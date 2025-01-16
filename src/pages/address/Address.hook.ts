@@ -1,4 +1,4 @@
-import { successToast } from "@/components/toastify/Toast";
+import { successToast } from "@components/toastify/Toast";
 import { deleteaddress, getaddresses, setdefaultaddress } from "@/store/reducers/address/service";
 import { IAddress } from "@/store/reducers/address/type";
 import { useAppDispatch, useAppSelector } from "@/store/store";

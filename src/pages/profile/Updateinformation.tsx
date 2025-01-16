@@ -1,4 +1,4 @@
-import { errorToast, successToast } from "@/components/toastify/Toast";
+import { errorToast, successToast } from "@components/toastify/Toast";
 import { Container, Box, Typography, Button, TextField, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Avatar, IconButton, Badge } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { validateFieldsforUpdateInformation } from "./utils";
 import { IProfileResponse, IProfileResponseErr } from "@/store/reducers/profile/type";
 import { useAppDispatch } from "@/store/store";
 import { putprofile } from "@/store/reducers/profile/service";
-import SimpleDialog from "@/components/dialog/SimpleDialog";
+import SimpleDialog from "@components/dialog/SimpleDialog";
 
 const Updateinformation = () => {
   const dispatch = useAppDispatch();

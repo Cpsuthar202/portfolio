@@ -1,8 +1,8 @@
 import { Grid, Typography, Button, IconButton, Box, Stack, Chip, Container, Divider, Rating, LinearProgress, CircularProgress } from "@mui/material";
 import { Add, Remove, Favorite, FavoriteBorder, Share } from "@mui/icons-material";
-import { Image } from "@/components/image/index";
-import { DisplayRatings } from "@/components/ratings/Ratings";
-import { WebShare } from "@/components/container";
+import { Image } from "@components/image/index";
+import { DisplayRatings } from "@components/ratings/Ratings";
+import { WebShare } from "@components/Container/index";
 import { mColor } from "@color";
 import { useProductDetails } from "./productDetails.hook";
 

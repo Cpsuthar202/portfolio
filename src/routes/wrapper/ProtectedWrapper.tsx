@@ -1,4 +1,4 @@
-// import SideBar from "@/components/sideBar/SideBar";
+// import SideBar from "@components/sideBar/SideBar";
 import { checkUserToken } from "@/utils/localStorage";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";

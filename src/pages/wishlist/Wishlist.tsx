@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { ProductCard } from "@/components/card/index";
+import { ProductCard } from "@components/card/index";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect } from "react";
 import { getwish } from "@/store/reducers/wish/service";

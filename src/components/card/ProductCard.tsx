@@ -4,7 +4,7 @@ import { FavoriteBorder, Favorite, Share } from "@mui/icons-material";
 import { trimTextToWordLimit } from "../utils/textUtils";
 import { useNavigate } from "react-router-dom";
 import { DisplayRatings } from "../ratings/Ratings";
-import { WebShare } from "../container/index";
+import { WebShare } from "../Container/index";
 import { mColor } from "@color";
 import { useResponsiveScreens } from "../mediaQuery/useResponsiveScreens";
 import { Image } from "../image/index";

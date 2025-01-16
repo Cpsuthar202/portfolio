@@ -5,7 +5,7 @@ import { validateFieldsforUpdatepassword } from "./utils";
 import { IResetpassword, IResetpasswordErr } from "@/store/reducers/auth/type";
 import { useAppDispatch } from "@/store/store";
 import { postresetPassword } from "@/store/reducers/auth/service";
-import { errorToast, successToast } from "@/components/toastify/Toast";
+import { errorToast, successToast } from "@components/toastify/Toast";
 import { useNavigate } from "react-router-dom";
 
 const Updatepassword = () => {

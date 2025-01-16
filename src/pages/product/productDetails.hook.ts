@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { RatingDistribution } from "./utils";
 import { postcart } from "@/store/reducers/cart/service";
 import { IcartPayload } from "@/store/reducers/cart/type";
-import { successToast } from "@/components/toastify/Toast";
+import { successToast } from "@components/toastify/Toast";
 import { getwish, posttogglewish } from "@/store/reducers/wish/service";
 
 export const useProductDetails = () => {

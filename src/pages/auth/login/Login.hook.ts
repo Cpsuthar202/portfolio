@@ -5,7 +5,7 @@ import { validateEmail } from "../validateFields";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setLoginDetailPreserve } from "@/store/reducers/auth/authSlice";
 import { ILoginSchema, ILoginSchemaErr } from "@/store/reducers/auth/type";
-import { errorToast, successToast } from "@/components/toastify/Toast";
+import { errorToast, successToast } from "@components/toastify/Toast";
 import { setLocalAuth } from "@/utils/localStorage";
 import { postlogin, postsendOtp } from "@/store/reducers/auth/service";
 

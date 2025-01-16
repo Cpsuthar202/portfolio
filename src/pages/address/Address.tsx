@@ -1,6 +1,6 @@
 import { Box, Button, Container, Divider, Grid, IconButton, Typography } from "@mui/material";
 import { Add, Close } from "@mui/icons-material";
-import SimpleDialog from "@/components/dialog/SimpleDialog";
+import SimpleDialog from "@components/dialog/SimpleDialog";
 import { mColor } from "@color";
 import { useAddress } from "./Address.hook";
 import Displayaddress from "../profile/utility/Displayaddress";

@@ -1,9 +1,9 @@
 import React from "react";
 import { Typography, Box, Stack, IconButton, Button, Grid, Container, Divider } from "@mui/material";
-import { Image } from "@/components/image/index";
+import { Image } from "@components/image/index";
 import { Add, Remove } from "@mui/icons-material";
 import { useCart } from "./Cart.hook";
-import { trimTextToWordLimit } from "@/components/utils/textUtils";
+import { trimTextToWordLimit } from "@components/utils/textUtils";
 import { IcartPayload } from "@/store/reducers/cart/type";
 
 const Cart: React.FC = () => {

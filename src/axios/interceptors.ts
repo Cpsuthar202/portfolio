@@ -1,4 +1,4 @@
-import { errorToast } from "@/components/toastify/Toast";
+import { errorToast } from "@components/toastify/Toast";
 import { getLocalAuth } from "@/utils/localStorage";
 
 const requestHandler = (request: any) => {

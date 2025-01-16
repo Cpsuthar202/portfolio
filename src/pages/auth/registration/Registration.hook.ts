@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { validateFields } from "./utils";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { setRegisterDetailPreserve } from "@/store/reducers/auth/authSlice";
-import { successToast } from "@/components/toastify/Toast";
+import { successToast } from "@components/toastify/Toast";
 import { postsendOtp } from "@/store/reducers/auth/service";
 
 // Custom hook for managing registration logic

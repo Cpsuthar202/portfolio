@@ -1,8 +1,8 @@
 import { Box, Button, Container, Divider, IconButton, Stack, Typography } from "@mui/material";
 import { useCart } from "./Cart.hook";
 import { Edit } from "@mui/icons-material";
-import { trimTextToWordLimit } from "@/components/utils/textUtils";
-import { Image } from "@/components/image/index";
+import { trimTextToWordLimit } from "@components/utils/textUtils";
+import { Image } from "@components/image/index";
 import Displayaddress from "../profile/utility/Displayaddress";
 import { useEffect, useState } from "react";
 import { Icart } from "@/store/reducers/cart/type";

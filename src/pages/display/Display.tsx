@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
-import { CategoryCard } from "@/components/card/index";
+import { CategoryCard } from "@components/card/index";
 import { IShopsResponse } from "@/store/reducers/shop/type";
 import { ICategoriesResponse } from "@/store/reducers/category/type";
 import { IBrandsResponse } from "@/store/reducers/brand/type";

@@ -1,4 +1,4 @@
-import { errorToast, successToast } from "@/components/toastify/Toast";
+import { errorToast, successToast } from "@components/toastify/Toast";
 import { getcart, postcart, postremovecart } from "@/store/reducers/cart/service";
 import { IcartPayload } from "@/store/reducers/cart/type";
 import { postbuyorder, postorder } from "@/store/reducers/order/service";

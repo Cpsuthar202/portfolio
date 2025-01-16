@@ -6,7 +6,7 @@ import { validateOtp, validatePassword } from "../validateFields";
 import { setLoginDetailPreserve, setRegisterDetailPreserve } from "@/store/reducers/auth/authSlice";
 import { useAppDispatch } from "@/store/store";
 import { postforgetPassword, postregister, postsendOtp } from "@/store/reducers/auth/service";
-import { successToast } from "@/components/toastify/Toast";
+import { successToast } from "@components/toastify/Toast";
 
 const useOtp = () => {
   const navigate = useNavigate();

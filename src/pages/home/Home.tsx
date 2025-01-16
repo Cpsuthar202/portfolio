@@ -2,7 +2,7 @@ import { Box, CircularProgress } from "@mui/material";
 
 // import { title } from "process";
 import { CategoryCard, ProductCard } from "@components/card/index";
-import { Sliderview } from "@components/container/index";
+import { Sliderview } from "@components/Container/index";
 import { Iproduct } from "@/store/reducers/product/type";
 import { useHome } from "./Home.hook";
 import { IBrandsResponse } from "@/store/reducers/brand/type";

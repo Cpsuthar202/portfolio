@@ -1,4 +1,4 @@
-import { errorToast, successToast } from "@/components/toastify/Toast";
+import { errorToast, successToast } from "@components/toastify/Toast";
 import { getorder, postratorder } from "@/store/reducers/order/service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
