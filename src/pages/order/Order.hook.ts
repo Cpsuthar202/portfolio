@@ -3,6 +3,7 @@ import { getorder, postratorder } from "@/store/reducers/order/service";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getLocalAuth } from "@/utils/localStorage";
 
 export const useOrder = () => {
   const navigate = useNavigate();
@@ -11,7 +12,8 @@ export const useOrder = () => {
 
   const handleGetOrder = async () => {
     try {
-      await dispatch(getorder()).unwrap();
+      const payload: { user_id: string } = { user_id: getLocalAuth().user.id };
+      await dispatch(getorder(payload)).unwrap();
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : "Something went wrong";
       console.warn(errorMessage);

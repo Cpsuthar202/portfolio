@@ -3,6 +3,7 @@ import { ProductCard } from "@components/card/index";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect } from "react";
 import { getwish } from "@/store/reducers/wish/service";
+import { Circular } from "@components/loader/index";
 
 const Wishlist = () => {
   const dispatch = useAppDispatch();
@@ -21,15 +22,21 @@ const Wishlist = () => {
     handleGetWish();
   }, []);
 
+  if (!wishs) {
+    return <Circular />;
+  }
+
   return (
     <Box>
       <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
-        Your Wishlistd
+        Your Wish list
       </Typography>
 
       <Grid container>
-        {wishs?.length == 0 ? (
-          <Typography>dfghj</Typography>
+        {wishs.length === 0 ? (
+          <Typography variant="body1" sx={{ width: "100%", textAlign: "center", mt: 2 }}>
+            No Wish list available at this time.
+          </Typography>
         ) : (
           wishs?.map((p, index: number) => (
             // <Typography>{p?.product?.title}</Typography>

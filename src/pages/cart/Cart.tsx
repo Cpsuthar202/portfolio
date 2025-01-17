@@ -5,6 +5,7 @@ import { Add, Remove } from "@mui/icons-material";
 import { useCart } from "./Cart.hook";
 import { trimTextToWordLimit } from "@components/utils/textUtils";
 import { IcartPayload } from "@/store/reducers/cart/type";
+import { Circular } from "@components/loader/index";
 
 const Cart: React.FC = () => {
   const {
@@ -12,20 +13,8 @@ const Cart: React.FC = () => {
     methods: { navigate, handleIncrement, handleDecrement, healdToggleWishlistCart, healdRemoveCart, handleCheckOut },
   } = useCart();
 
-  if (!carts?.list?.length) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center", // Centers horizontally
-          alignItems: "center", // Centers vertically
-          width: "100%", // Ensures the Box takes full width
-          minHeight: "200px", // Adjust the height to fit your needs
-        }}
-      >
-        <Typography> Cart not found</Typography>
-      </Box>
-    );
+  if (!carts) {
+    return <Circular />;
   }
 
   return (

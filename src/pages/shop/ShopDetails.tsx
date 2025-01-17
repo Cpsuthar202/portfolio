@@ -6,11 +6,16 @@ import Displayaddress from "../profile/utility/Displayaddress";
 import { useShopDetails } from "./ShopDetails.hook";
 import { Iproduct } from "@/store/reducers/product/type";
 import { ProductCard } from "@components/card/index";
+import { Circular } from "@components/loader/index";
 
 const StoreDetails = () => {
   const {
     variable: { shop, products },
   } = useShopDetails();
+
+  if (!shop) {
+    return <Circular />;
+  }
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>

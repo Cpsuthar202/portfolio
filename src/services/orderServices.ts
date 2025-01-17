@@ -18,6 +18,17 @@ export const postratorderAPI = async (data: { id: string; rating: number | null 
   return await apiInstance.post(url, { ...data });
 };
 
-export const orderAPI = async () => {
-  return await apiInstance.get(ORDER);
+export const orderAPI = async (data: { user_id: string }) => {
+  let url = `${ORDER}`;
+
+  const params = [];
+  if (data?.user_id) {
+    params.push(`user_id=${data?.user_id}`);
+  }
+
+  if (params.length > 0) {
+    url += `?${params.join("&")}`;
+  }
+
+  return await apiInstance.get(url);
 };

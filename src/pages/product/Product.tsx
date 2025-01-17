@@ -1,7 +1,8 @@
 import { ProductCard } from "@components/card/index";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useProduct } from "./Product.hook";
 import { Iproduct } from "@/store/reducers/product/type";
+import { Circular } from "@components/loader/index";
 
 const Product = () => {
   const {
@@ -9,19 +10,7 @@ const Product = () => {
   } = useProduct();
 
   if (!products) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center", // Centers horizontally
-          alignItems: "center", // Centers vertically
-          width: "100%", // Ensures the Box takes full width
-          minHeight: "200px", // Adjust the height to fit your needs
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <Circular />;
   }
 
   return (
@@ -37,7 +26,7 @@ const Product = () => {
               minHeight: "200px", // Adjust the height to fit your needs
             }}
           >
-            <Typography>Product not found</Typography>
+            <Typography> No Product available.</Typography>
           </Box>
         ) : (
           products?.list?.map((product: Iproduct) => (

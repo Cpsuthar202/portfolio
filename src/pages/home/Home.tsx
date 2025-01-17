@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 
 // import { title } from "process";
 import { CategoryCard, ProductCard } from "@components/card/index";
@@ -8,25 +8,14 @@ import { useHome } from "./Home.hook";
 import { IBrandsResponse } from "@/store/reducers/brand/type";
 import { IShopsResponse } from "@/store/reducers/shop/type";
 import { ICategoriesResponse } from "@/store/reducers/category/type";
+import { Circular } from "@components/loader/index";
 const Home = () => {
   const {
     variable: { dashboards, navigate },
   } = useHome();
 
   if (!dashboards) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center", // Centers horizontally
-          alignItems: "center", // Centers vertically
-          width: "100%", // Ensures the Box takes full width
-          minHeight: "200px", // Adjust the height to fit your needs
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <Circular />;
   }
   return (
     <Box>

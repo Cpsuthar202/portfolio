@@ -3,6 +3,7 @@ import { Avatar, Box, Divider, Container, Typography, IconButton } from "@mui/ma
 import { Edit } from "@mui/icons-material";
 import { useProfile } from "./Profile.hook"; // Custom hook for profile logic
 import Displayaddress from "./utility/Displayaddress"; // Component to display address
+import { Circular } from "@components/loader/index";
 
 const Profile: React.FC = () => {
   // Extract variables and methods from the useProfile hook
@@ -10,6 +11,10 @@ const Profile: React.FC = () => {
     variables: { profile },
     methods: { handleAddress, handleUpdatePassword, handleUpdateInformation },
   } = useProfile();
+
+  if (!profile) {
+    return <Circular />;
+  }
 
   return (
     <Container>

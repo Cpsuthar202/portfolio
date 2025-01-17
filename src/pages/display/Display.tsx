@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { CategoryCard } from "@components/card/index";
 import { IShopsResponse } from "@/store/reducers/shop/type";
 import { ICategoriesResponse } from "@/store/reducers/category/type";
 import { IBrandsResponse } from "@/store/reducers/brand/type";
 import { useDisplay } from "./display.hook";
+import { Circular } from "@components/loader/index";
 
 const Display: React.FC = () => {
   const {
@@ -15,19 +16,7 @@ const Display: React.FC = () => {
   type DataItem = ICategoriesResponse | IBrandsResponse;
 
   if (!data) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center", // Centers horizontally
-          alignItems: "center", // Centers vertically
-          width: "100%", // Ensures the Box takes full width
-          minHeight: "200px", // Adjust the height to fit your needs
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+    return <Circular />;
   }
   return (
     <Box>

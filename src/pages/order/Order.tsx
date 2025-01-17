@@ -8,12 +8,18 @@ import { useOrder } from "./Order.hook";
 import { Image } from "@components/image/index";
 import Displayaddress from "../profile/utility/Displayaddress";
 import moment from "moment";
+import { Circular } from "@components/loader/index";
 
 const Order = () => {
   const {
     variable: { orders, navigate, expanded, productRating },
     methods: { handleAccordionChange, handleRatingSubmit, handleProductRatingChange },
   } = useOrder();
+  console.log(orders);
+
+  if (!orders) {
+    return <Circular />;
+  }
 
   return (
     <>
@@ -21,9 +27,9 @@ const Order = () => {
         <Typography variant="subtitle1" sx={{ fontWeight: "bold", color: "primary.main" }}>
           Your Order
         </Typography>
-        {orders?.length === 0 ? (
+        {orders.length === 0 ? (
           <Typography variant="body1" sx={{ textAlign: "center", mt: 2 }}>
-            No items in your Order.
+            No orders available at this time.
           </Typography>
         ) : (
           <Grid container>

@@ -24,8 +24,8 @@ export const postratorder = createAsyncThunk<IAPIResponseSchema<undefined>, { id
     return result;
   }
 );
-export const getorder = createAsyncThunk<IAPIResponseSchema<IOrdersResponse[]>>("get/order", async () => {
-  const result = await orderAPI();
+export const getorder = createAsyncThunk<IAPIResponseSchema<IOrdersResponse[]>, { user_id: string }>("get/order", async (data: { user_id: string }) => {
+  const result = await orderAPI(data);
   if (result.data) return result.data;
   return result;
 });
