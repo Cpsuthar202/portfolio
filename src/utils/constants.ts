@@ -1,5 +1,6 @@
 export const LOCALSTORAGE_VARIABLE = "e_com";
-export const APP_HOST = import.meta.env.VITE_APP_HOST_URL || "http://localhost:3002/";
+// export const APP_HOST = import.meta.env.VITE_APP_HOST_URL;
+export const APP_HOST = import.meta.env.VITE_APP_HOST_URL;
 
 //api endpoints
 export const SEND_OTP = "auth/send-otp";

@@ -1,29 +1,70 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Collapse } from "@mui/material";
 import { sidebarMenuList } from "./utils";
 import { useSideBar } from "./SideBar.hook";
+import { useState } from "react";
 
 const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
   const {
-    variable: { currentPathId },
+    // variable: { },
     methods: { handleNavigate },
   } = useSideBar();
 
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const toggleDropdown = (id: string) => {
+    setOpenDropdown(openDropdown === id ? null : id);
+  };
+
   return (
     <Box sx={{ p: 3 }}>
-      {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 100, height: 100, m: "auto" }} variant="rounded" /> */}
-      {/* <Typography variant="subtitle2">Remy Sharp </Typography> */}
       <Box display={"flex"} flexDirection={"column"}>
         {sidebarMenuList.map((menu) => (
-          <Button
-            key={menu.id}
-            sx={{ justifyContent: "flex-start", px: 3, my: "2px", border: currentPathId === menu.id ? 1 : "none" }}
-            onClick={() => {
-              handleNavigate(menu.link);
-              if (onClickMenu) onClickMenu(); // Closes the drawer
-            }}
-          >
-            {menu.label}
-          </Button>
+          <Box key={menu.id}>
+            <Button
+              fullWidth
+              sx={{
+                // justifyContent: "flex-start",
+                px: 3,
+                my: "2px",
+
+                // border: currentPathId === menu.id ? 1 : "none",
+              }}
+              onClick={() => {
+                if (menu.subMenu) {
+                  toggleDropdown(menu.id); // Toggles dropdown for this menu item
+                } else {
+                  handleNavigate(menu.link);
+                  if (onClickMenu) onClickMenu(); // Closes the drawer
+                }
+              }}
+            >
+              {menu.label}
+            </Button>
+            {menu.subMenu && (
+              <Collapse in={openDropdown === menu.id} timeout="auto" unmountOnExit>
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  {menu.subMenu.map((subMenu) => (
+                    <Button
+                      key={subMenu.id}
+                      fullWidth
+                      sx={
+                        {
+                          // justifyContent: "flex-start",
+                          // border: currentPathId === subMenu.id ? 1 : "none",
+                        }
+                      }
+                      onClick={() => {
+                        handleNavigate(subMenu.link);
+                        if (onClickMenu) onClickMenu(); // Closes the drawer
+                      }}
+                    >
+                      {subMenu.label}
+                    </Button>
+                  ))}
+                </Box>
+              </Collapse>
+            )}
+          </Box>
         ))}
       </Box>
     </Box>

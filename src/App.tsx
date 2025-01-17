@@ -5,8 +5,8 @@ import React, { Suspense, lazy } from "react";
 import { Toaster, ToastBar } from "react-hot-toast";
 import { useResponsiveScreens } from "./components/mediaQuery/useResponsiveScreens";
 
-const AuthRoutes = lazy(() => import("./routes/AuthRoutes"));
-const ProtectedRoutes = lazy(() => import("./routes/ProtectedRoutes"));
+// const AuthRoutes = lazy(() => import("./routes/AuthRoutes"));
+// const ProtectedRoutes = lazy(() => import("./routes/ProtectedRoutes"));
 const UnprotectedRoutes = lazy(() => import("./routes/UnprotectedRoutes"));
 
 interface AppProps {
@@ -38,10 +38,10 @@ const App: React.FC<AppProps> = ({ toggleTheme }) => {
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route path="/*" element={<UnprotectedRoutes />} />
-              <Route path="/user/*">
+              {/* <Route path="/user/*">
                 <Route path="auth/*" element={<AuthRoutes />} />
                 <Route path="*" element={<ProtectedRoutes />} />
-              </Route>
+              </Route> */}
             </Routes>
           </Suspense>
         </Box>

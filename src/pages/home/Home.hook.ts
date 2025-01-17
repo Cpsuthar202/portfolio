@@ -1,28 +1,10 @@
-import { getdashboards } from "@/store/reducers/dashboard/service";
-import { useAppDispatch, useAppSelector } from "@/store/store";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
+import Product from "@/data/products.json";
 export const useHome = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { dashboards } = useAppSelector((state) => state.dashboards);
-  console.log(dashboards);
+  const productslist = Product;
+  console.log(productslist);
 
-  const handleGetDashboard = async () => {
-    try {
-      await dispatch(getdashboards()).unwrap();
-    } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "Something went wrong";
-      console.warn(errorMessage);
-    }
-  };
-
-  useEffect(() => {
-    handleGetDashboard();
-  }, []);
   return {
-    variable: { navigate, dashboards },
+    variable: { productslist },
     methods: {},
   };
 };

@@ -2,59 +2,43 @@ interface ITextButtonList {
   id: string;
   label: string;
   link: string;
+  subMenu?: ITextButtonList[]; // Optional submenu for dropdown
 }
+
+import product from "@/data/products.json";
+
+const model_name = product.map((product) => product.model_name); // Extract model names
+
+// Generate subMenu dynamically based on model_name
+const modelNameSubMenu: ITextButtonList[] = model_name.map((m) => ({
+  id: m.toLowerCase().replace(/\s+/g, "-"), // Generate a unique ID for each model name
+  label: m,
+  link: `/product_details?model_name=${encodeURIComponent(m)}`,
+}));
+
+console.log(modelNameSubMenu);
 
 const sidebarMenuList: ITextButtonList[] = [
   {
-    id: "profile",
-    label: "Profile",
-    link: "/user/profile/information",
-  },
-  {
-    id: "dashboard",
-    label: "Dashboard",
+    id: "home",
+    label: "Home",
     link: "/",
   },
   {
-    id: "categories",
-    label: "Categories",
-    link: "/display/categorie",
+    id: "model_name",
+    label: "Model Name",
+    link: "#",
+    subMenu: modelNameSubMenu, // Assign the dynamically generated subMenu
   },
   {
-    id: "brands",
-    label: "Brands",
-    link: "/display/brand",
+    id: "table",
+    label: "Table",
+    link: "/table",
   },
   {
-    id: "stores",
-    label: "Shops",
-    link: "/display/shop",
-  },
-  {
-    id: "products",
-    label: "Products",
-    link: "/product",
-  },
-  {
-    id: "best_selling",
-    label: "Bast Selling",
-    link: "/best_selling",
-  },
-  {
-    id: "your_wishlist",
-    label: "Your Wishlist",
-    link: "/user/wishlist",
-  },
-
-  {
-    id: "your_order",
-    label: "Your Order",
-    link: "/user/order",
-  },
-  {
-    id: "cart",
-    label: "Your Cart",
-    link: "/user/cart",
+    id: "about",
+    label: "About",
+    link: "/about",
   },
 ];
 

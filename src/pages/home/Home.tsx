@@ -1,56 +1,33 @@
-import { Box } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
-// import { title } from "process";
-import { CategoryCard, ProductCard } from "@components/card/index";
-import { Sliderview } from "@components/Container/index";
-import { Iproduct } from "@/store/reducers/product/type";
+import { ProductCard } from "@components/card";
+import { Image } from "@components/image/index";
 import { useHome } from "./Home.hook";
-import { IBrandsResponse } from "@/store/reducers/brand/type";
-import { IShopsResponse } from "@/store/reducers/shop/type";
-import { ICategoriesResponse } from "@/store/reducers/category/type";
 import { Circular } from "@components/loader/index";
 const Home = () => {
   const {
-    variable: { dashboards, navigate },
+    variable: { productslist },
+    // methods: {},
   } = useHome();
 
-  if (!dashboards) {
+  console.log(productslist);
+
+  if (!productslist) {
     return <Circular />;
   }
+
   return (
-    <Box>
-      <Sliderview title="Categories" scrollnumber={200} navigateTo="/display/categorie">
-        {dashboards.categories.map((item: ICategoriesResponse, index) => (
-          <Box key={index} height={"auto"}>
-            <CategoryCard src={item.image} label={item.name} onClick={() => navigate(`/product/categorie/${item.id}`)} />
-          </Box>
-        ))}
-      </Sliderview>
-
-      <Sliderview title="Brands" scrollnumber={200} navigateTo="/display/brand">
-        {dashboards?.brands?.map((item: IBrandsResponse, index: number) => (
-          <Box key={index}>
-            <CategoryCard src={item.image} label={item.name} onClick={() => navigate(`/product/brand/${item.id}`)} />
-          </Box>
-        ))}
-      </Sliderview>
-
-      <Sliderview title="Shops" scrollnumber={200} navigateTo="/display/shop">
-        {dashboards?.shops?.map((item: IShopsResponse, index: number) => (
-          <Box key={index}>
-            <CategoryCard src={item.logo ? item.logo : item.shop_image} label={item.shop_name} onClick={() => navigate(`/shop_details/${item.id}`)} />
-          </Box>
-        ))}
-      </Sliderview>
-
-      <Sliderview title="Products" scrollnumber={250} navigateTo={"/product"}>
-        {dashboards?.products.map((p: Iproduct, index: number) => (
-          <Box key={index} sx={{ minWidth: "200px", mx: 1 }}>
-            <ProductCard data={p} />
-          </Box>
-        ))}
-      </Sliderview>
-    </Box>
+    <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
+      <Image src="https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png" alt="hero" />
+      <Grid container>
+        {productslist &&
+          productslist?.map((p, index) => (
+            <Grid item key={index} lg={3} md={4} sm={6} xs={6} sx={{ p: 1 }}>
+              <ProductCard data={p} />
+            </Grid>
+          ))}
+      </Grid>
+    </Container>
   );
 };
 
