@@ -3,7 +3,7 @@ import { Instagram, Download } from "@mui/icons-material";
 import pdf from "@/data/Catalogue.pdf";
 import abort from "@/data/about.json";
 
-import { handleShareUrl } from "@components/container/index";
+import { handleShareUrl } from "@components/Container/index";
 const About = () => {
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2 }}>
