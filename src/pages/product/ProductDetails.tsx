@@ -2,7 +2,7 @@ import { Grid, Typography, IconButton, Box, Stack, Container, Divider } from "@m
 import { Share, SquareRounded } from "@mui/icons-material";
 import { Image } from "@components/image/index";
 import { useProductDetails } from "./productDetails.hook";
-import { WebShare } from "@components/container";
+import { WebShare } from "@components/container/index";
 import { Circular } from "@components/loader/index";
 const ProductDetails = () => {
   // Destructure variables and methods from the useProduct hook

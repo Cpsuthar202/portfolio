@@ -6,7 +6,7 @@ import { Share } from "@mui/icons-material";
 // import { WebShare } from "../Container/index";
 import { Image } from "../image/index";
 import { IProduct } from "@/localdatatype/product";
-import { WebShare } from "@components/container";
+import { WebShare } from "@components/container/index";
 // import { Iproduct } from "@/store/reducers/product/type";
 // import { useProductDetails } from "@/pages/product/productDetails.hook";
 

@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 
-import { ProductCard } from "@components/card";
+import { ProductCard } from "@components/card/index";
 import { Image } from "@components/image/index";
 import { useHome } from "./Home.hook";
 import { Circular } from "@components/loader/index";
