@@ -13,7 +13,7 @@ export const WebShare: React.FC<IWebShare> = ({ url, text, children }) => {
       data={{
         text: text,
         url: `${APP_HOST}${url}`,
-        title: "E-Commerce",
+        title: "Gold Wing Cooler",
       }}
       onClick={() => console.log("shared successfully!")}
     >
