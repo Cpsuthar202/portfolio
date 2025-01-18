@@ -2,6 +2,7 @@ import { Box, Button, Collapse } from "@mui/material";
 import { sidebarMenuList } from "./utils";
 import { useSideBar } from "./SideBar.hook";
 import { useState } from "react";
+import { WebShare } from "@components/Container/index";
 
 const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
   const {
@@ -66,6 +67,17 @@ const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
             )}
           </Box>
         ))}
+        <WebShare text="Gold Wing Cooler" url="/">
+          <Button
+            fullWidth
+            sx={{
+              px: 3,
+              my: "2px",
+            }}
+          >
+            Shared
+          </Button>
+        </WebShare>
       </Box>
     </Box>
   );

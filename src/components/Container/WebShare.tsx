@@ -4,7 +4,7 @@ import { RWebShare } from "react-web-share";
 
 interface IWebShare {
   children: ReactNode; // Define the type for children
-  text: string | undefined;
+  text: string;
   url: string;
 }
 export const WebShare: React.FC<IWebShare> = ({ url, text, children }) => {
