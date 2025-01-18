@@ -34,7 +34,7 @@ const ProductDetails = () => {
 
       {/* Product Title */}
       <Box sx={{ position: "relative" }}>
-        <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
           {productdata?.title}
         </Typography>
         <Box sx={{ position: "absolute", display: "flex", flexDirection: "column", top: -2, right: 10 }}>
@@ -50,7 +50,7 @@ const ProductDetails = () => {
         {/* Colors Section */}
         <Grid item xs={12} sm={6}>
           <Box>
-            <Typography variant="subtitle2" sx={{ textTransform: "capitalize", fontWeight: "bold" }}>
+            <Typography variant="subtitle2" sx={{ textTransform: "capitalize", fontWeight: 500 }}>
               Colors
             </Typography>
             <Stack direction="row" spacing={1} sx={{ width: "100%", overflowX: "auto" }}>
@@ -69,7 +69,7 @@ const ProductDetails = () => {
             value && (
               <Grid item xs={12} sm={6} key={key}>
                 <Box>
-                  <Typography variant="subtitle2" sx={{ textTransform: "capitalize", fontWeight: "bold" }}>
+                  <Typography variant="subtitle2" sx={{ textTransform: "capitalize", fontWeight: 500 }}>
                     {key.replace(/_/g, " ")}
                   </Typography>
                   <Typography variant="body1">{value}</Typography>
@@ -83,7 +83,7 @@ const ProductDetails = () => {
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         {productdata?.description && (
           <>
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
               Description
               <Typography variant="body1">{productdata?.description}</Typography>
             </Typography>
@@ -96,7 +96,7 @@ const ProductDetails = () => {
       {productdata?.key_features && (
         <>
           <Box>
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
               Key Features
             </Typography>
             {productdata?.key_features.map((f, index) => (
@@ -111,7 +111,7 @@ const ProductDetails = () => {
       {productdata?.safety_features && (
         <>
           <Box>
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
               Safety Features
             </Typography>
             {productdata?.safety_features.map((f, index) => (
@@ -126,7 +126,7 @@ const ProductDetails = () => {
       {productdata?.user_friendly_features && (
         <>
           <Box>
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
               User Friendly Features
             </Typography>
             {productdata?.user_friendly_features.map((f, index) => (
@@ -141,7 +141,7 @@ const ProductDetails = () => {
       {productdata?.suitable_for && (
         <>
           <Box>
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
               Suitable For
             </Typography>
             {productdata?.suitable_for.map((f, index) => (

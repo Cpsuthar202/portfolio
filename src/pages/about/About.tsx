@@ -7,16 +7,16 @@ import { handleShareUrl } from "@components/Container/index";
 const About = () => {
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
-      <Typography variant="h6" sx={{ fontWeight: 600 }}>
+      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
         Welcome to Gold Wing Cooler
       </Typography>
       {Object.entries(abort.function).map(([sectionTitle, sectionContent]) => (
         <Box key={sectionTitle}>
-          <Typography variant="subtitle1" sx={{ mt: 1 }}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
             {sectionTitle}
           </Typography>
           {sectionContent.map((text, index) => (
-            <Typography variant="subtitle2" key={index} sx={{ mx: 2, my: 1 }}>
+            <Typography variant="body1" key={index} sx={{ mx: 2, my: 1, fontWeight: 300 }}>
               - {text}
             </Typography>
           ))}
@@ -25,10 +25,12 @@ const About = () => {
       <Divider />
       {(abort.contact.email || abort.contact.phone_1 || abort?.contact?.phone_2 || abort.contact.address) && (
         <Box>
-          <Typography variant="subtitle1">Contact Us</Typography>
+          <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
+            Contact Us
+          </Typography>
           <Box sx={{ mx: 2 }}>
             {abort.contact.email && (
-              <Typography variant="subtitle2" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography variant="body1" sx={{ display: "flex", alignItems: "center", gap: 1, my: 1, fontWeight: 500 }}>
                 Email -
                 <Typography variant="body1" sx={{ cursor: "pointer" }} onClick={() => abort.contact.email && (window.location.href = `mailto:${abort.contact.email}`)}>
                   {abort.contact.email}
@@ -36,7 +38,7 @@ const About = () => {
               </Typography>
             )}
             {(abort.contact.phone_1 || abort?.contact?.phone_2) && (
-              <Typography variant="subtitle2" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography variant="body1" sx={{ display: "flex", alignItems: "center", gap: 1, my: 1, fontWeight: 500 }}>
                 Phone -
                 {abort?.contact?.phone_1 && (
                   <Typography variant="body1" onClick={() => abort.contact.phone_1 && (window.location.href = `tel:${abort.contact.phone_1}`)} sx={{ cursor: "pointer" }}>
@@ -52,8 +54,8 @@ const About = () => {
             )}
 
             {abort.contact.address && (
-              <Typography variant="subtitle2" sx={{}}>
-                Address - <Typography variant="body1">{abort.contact.address}</Typography>
+              <Typography variant="body1" sx={{ my: 1, fontWeight: 500 }}>
+                Address <Typography variant="body1">{abort.contact.address}</Typography>
               </Typography>
             )}
           </Box>
