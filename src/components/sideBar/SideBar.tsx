@@ -24,10 +24,10 @@ const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
             <Button
               fullWidth
               sx={{
-                // justifyContent: "flex-start",
+                justifyContent: "flex-start",
                 px: 3,
                 my: "2px",
-
+                // border: 1,
                 // border: currentPathId === menu.id ? 1 : "none",
               }}
               onClick={() => {
@@ -48,12 +48,13 @@ const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
                     <Button
                       key={subMenu.id}
                       fullWidth
-                      sx={
-                        {
-                          // justifyContent: "flex-start",
-                          // border: currentPathId === subMenu.id ? 1 : "none",
-                        }
-                      }
+                      sx={{
+                        justifyContent: "flex-start",
+                        // border: 1,
+                        px: 3,
+                        my: "2px",
+                        // border: currentPathId === subMenu.id ? 1 : "none",
+                      }}
                       onClick={() => {
                         handleNavigate(subMenu.link);
                         if (onClickMenu) onClickMenu(); // Closes the drawer
@@ -73,9 +74,10 @@ const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
             sx={{
               px: 3,
               my: "2px",
+              justifyContent: "flex-start",
             }}
           >
-            Shared
+            Share
           </Button>
         </WebShare>
       </Box>

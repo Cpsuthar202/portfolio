@@ -28,8 +28,8 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
         borderRadius: 2,
         overflow: "hidden",
         // boxShadow: 1,
-        border: 1,
-        borderColor: "secondary.main",
+        // border: 1,
+        // borderColor: "secondary.main",
         height: "100%",
         width: "100%",
       }}
@@ -46,7 +46,7 @@ export const ProductCard: React.FC<IProductCard> = ({ data }) => {
           </WebShare>
         </Box>
         {/* Product Details */}
-        <Box sx={{ p: 2, bgcolor: "secondary.main", height: "100%", cursor: "pointer" }} onClick={() => navigate(`/product_details?model_name=${data?.model_name}`)}>
+        <Box sx={{ px: 2, py: 1, bgcolor: "secondary.main", height: "100%", cursor: "pointer", borderRadius: 1 }} onClick={() => navigate(`/product_details?model_name=${data?.model_name}`)}>
           {/* Title */}
           <Typography variant="subtitle2" sx={{ fontWeight: 500, textAlign: "center" }}>
             {trimTextToWordLimit(data?.title, 40)}

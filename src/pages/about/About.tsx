@@ -17,7 +17,7 @@ const About = () => {
           </Typography>
           {sectionContent.map((text, index) => (
             <Typography variant="subtitle2" key={index} sx={{ mx: 2, my: 1 }}>
-              {text}
+              - {text}
             </Typography>
           ))}
         </Box>

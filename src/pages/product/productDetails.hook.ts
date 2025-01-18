@@ -30,6 +30,7 @@ export const useProductDetails = () => {
     air_throw_distance: productdata?.air_throw_distance,
     airflow_capacity: productdata?.airflow_capacity,
     warranty: productdata?.warranty,
+    inverter_compatible: productdata?.inverter_compatible ? "true" : "false",
   };
 
   return {

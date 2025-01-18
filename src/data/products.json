@@ -15,8 +15,8 @@
       "Easy-to-clean water tank and filters for hassle-free maintenance"
     ],
     "images": [
-      "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW10L.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW10F.png",
+      "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW10L.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW10R.png"
     ],
     "hero_images": ["https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png"],
@@ -36,14 +36,14 @@
     "safety_features": ["Overload protection for motor", "Shockproof body for safe handling", "Auto shut-off feature for low water levels"],
     "user_friendly_features": ["Water overflow outlet to avoid spillage", "Ice chamber for extra cooling", "Cord winder for easy storage", "Compact design for space-saving storage"],
     "suitable_for": ["Living rooms", "Bedrooms", "Small offices", "Outdoor patios"],
-    "available_colors": ["ivory", "Grey"],
-    "inverter_compatible": false
+    "available_colors": ["Ivory", "Grey"],
+    "inverter_compatible": true
   },
   {
     "title": "GW 12 Air Cooler",
     "images": [
-      "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW12L.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW12F.png",
+      "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW12L.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW12R.png"
     ],
     "hero_images": ["https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png"],
@@ -57,14 +57,14 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "10 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
     "title": "GW 14 Air Cooler",
     "images": [
-      "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW14L.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW14F.png",
+      "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW14L.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/GW14R.png"
     ],
     "hero_images": ["https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png"],
@@ -78,7 +78,7 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "20 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
@@ -99,7 +99,7 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "30 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
@@ -120,7 +120,7 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "35 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
@@ -141,7 +141,7 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "35 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
@@ -162,7 +162,7 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "35 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
@@ -183,7 +183,7 @@
     "cooling_pad": "High-density eco-friendly Woodwool",
     "air_throw_distance": "40 feet",
     "warranty": "1 Year Manufacturer Warranty",
-    "available_colors": ["ivory", "Grey"],
+    "available_colors": ["Ivory", "Grey"],
     "inverter_compatible": false
   },
   {
@@ -193,7 +193,7 @@
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/TentL.png",
       "https://cpsuthar202.github.io/Gold_Wing_Cooler/image/TentR.png"
     ],
-    "hero_images": ["https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png"],
+    "hero_images": ["https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png", "/images/poster.png"],
     "model_name": "Tent",
     "dimension": "30 x 24 x 56",
     "motor": "C.G. Motor",
