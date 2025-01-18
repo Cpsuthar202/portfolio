@@ -17,14 +17,13 @@ const TopBar: React.FC<TopBarProps> = () => {
   } = useTopBar();
   return (
     <>
-      <Box sx={{ bgcolor: "primary.main", width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <Box sx={{ bgcolor: "primary.main", width: "100%", display: "flex", alignItems: "center" }}>
         <IconButton onClick={toggleDrawer(true)}>
           <MenuIcon sx={{ color: "white" }} />
         </IconButton>
         <Typography variant="h6" sx={{ fontWeight: 800, cursor: "pointer", color: "white" }} onClick={() => navigate("/")}>
           GOLD WING COOLER
         </Typography>
-        <Typography />
       </Box>
 
       {/* Sidebar Drawer component */}

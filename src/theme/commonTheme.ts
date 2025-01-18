@@ -48,7 +48,7 @@ export const commonTheme: ThemeOptions = {
     },
   },
   typography: {
-    fontFamily: "Nunito",
+    fontFamily: "revert-layer",
     h1: {
       fontSize: "55px",
       // fontWeight: 300,
