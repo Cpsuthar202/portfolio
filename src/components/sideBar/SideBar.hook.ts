@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import product from "@/data/products.json";
+// import product from "@/data/products.json";
 
 const useSideBar = () => {
   const navigate = useNavigate();
-  console.log(product);
 
   // Extract all model_name values
-  const model_name = product.map((product) => product.model_name);
-
-  console.log(model_name); // Output: ["GW 10", "GW 20"]
+  // const model_name = product.map((product) => product.model_name);
 
   // const [currentPathId, setCurrentPathId] = useState<string | null>(null);
 

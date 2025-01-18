@@ -9,10 +9,8 @@ export const useProductDetails = () => {
 
   const model_name = searchParams.get("model_name");
   const { isSmScreen } = useResponsiveScreens();
-  console.log("model_name", model_name);
   const productdata = Product.find((p) => p.model_name === model_name);
   const [selectImage, setSelectImage] = useState<string | undefined>(productdata?.images[0]);
-  console.log(productdata);
 
   useEffect(() => {
     setSelectImage(productdata?.images[0]);

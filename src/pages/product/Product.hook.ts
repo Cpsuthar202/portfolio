@@ -16,8 +16,6 @@ export const useProduct = () => {
   const { products } = useAppSelector((state) => state.products);
   const { searchTitle } = useAppSelector((state) => state.topbar);
 
-  console.log(!products);
-
   const handleGetProducts = async () => {
     try {
       const payload: IproductPayload = {

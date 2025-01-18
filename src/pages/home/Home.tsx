@@ -10,8 +10,6 @@ const Home = () => {
     // methods: {},
   } = useHome();
 
-  console.log(productslist);
-
   if (!productslist) {
     return <Circular />;
   }
