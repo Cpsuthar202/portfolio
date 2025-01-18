@@ -18,7 +18,6 @@ const Home = () => {
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
-      image
       <Image src="https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png" alt="hero" />
       <Grid container>
         {productslist &&
