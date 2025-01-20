@@ -1,6 +1,6 @@
 import { Box, Button, Container, Divider, Typography } from "@mui/material";
 import { Instagram, Download } from "@mui/icons-material";
-import pdf from "@/data/Catalogue.pdf";
+import pdf from "@/data/GWCCatalogue.pdf";
 import abort from "@/data/about.json";
 
 import { handleShareUrl } from "@components/Container/index";
