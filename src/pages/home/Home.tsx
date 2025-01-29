@@ -4,6 +4,7 @@ import { ProductCard } from "@components/card/index";
 import { Image } from "@components/image/index";
 import { useHome } from "./Home.hook";
 import { Circular } from "@components/loader/index";
+import hone_poster from "../../../public/images/home_poster.png";
 const Home = () => {
   const {
     variable: { productslist },
@@ -16,7 +17,7 @@ const Home = () => {
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 2, px: 0 }}>
-      <Image src="https://cpsuthar202.github.io/Gold_Wing_Cooler/image/poster.png" alt="hero" />
+      <Image src={hone_poster} alt="hero" sx={{ borderRadius: 2 }} />
       <Grid container>
         {productslist &&
           productslist?.map((p, index) => (

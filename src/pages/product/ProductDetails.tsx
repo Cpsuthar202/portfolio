@@ -1,4 +1,4 @@
-import { Grid, Typography, IconButton, Box, Stack, Container, Divider } from "@mui/material";
+import { Grid, Typography, IconButton, Box, Stack, Container } from "@mui/material";
 import { Share, SquareRounded } from "@mui/icons-material";
 import { Image } from "@components/image/index";
 import { useProductDetails } from "./productDetails.hook";
@@ -24,7 +24,7 @@ const ProductDetails = () => {
         {productdata?.images && productdata.images.length >= 2 && (
           // <Box sx={{ width: "100%", overflowX: "auto" }}>
           <Box sx={{ display: "flex", width: "fit-content", m: "auto", mt: 2 }}>
-            {productdata.images.map((image, index) => (
+            {productdata?.images?.map((image, index) => (
               <Image key={index} src={image} alt="image" style={{ height: isSmScreen ? 100 : 150, margin: 5, borderRadius: 5 }} onClick={() => setSelectImage(image)} />
             ))}
           </Box>
@@ -80,7 +80,7 @@ const ProductDetails = () => {
       </Grid>
 
       {/* Product Description */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+      {/* <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
         {productdata?.description && (
           <>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -90,10 +90,10 @@ const ProductDetails = () => {
             <Divider />
           </>
         )}
-      </Box>
+      </Box> */}
 
       {/* features */}
-      {productdata?.key_features && (
+      {/* {productdata?.key_features && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -107,8 +107,8 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )}
-      {productdata?.safety_features && (
+      )} */}
+      {/* {productdata?.safety_features && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -122,8 +122,8 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )}
-      {productdata?.user_friendly_features && (
+      )} */}
+      {/* {productdata?.user_friendly_features && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -137,8 +137,8 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )}
-      {productdata?.suitable_for && (
+      )} */}
+      {/* {productdata?.suitable_for && (
         <>
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
@@ -152,7 +152,7 @@ const ProductDetails = () => {
           </Box>
           <Divider />
         </>
-      )}
+      )} */}
 
       <Box sx={{ display: "flex", flexDirection: "column" }}>{productdata?.hero_images && productdata?.hero_images.map((i) => <Image key={i} src={i} alt="image" style={{}} />)}</Box>
     </Container>

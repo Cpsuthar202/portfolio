@@ -31,11 +31,11 @@ const TableData = () => {
             <TableCell sx={headstyle}>Speed Control</TableCell>
             <TableCell sx={headstyle}>Oscillating Louvers</TableCell>
             <TableCell sx={headstyle}>Cooling Pad</TableCell>
-            <TableCell sx={headstyle}>Noise Level</TableCell>
-            <TableCell sx={headstyle}>Power Consumption</TableCell>
+            {/* <TableCell sx={headstyle}>Noise Level</TableCell> */}
+            {/* <TableCell sx={headstyle}>Power Consumption</TableCell> */}
             <TableCell sx={headstyle}>Air Throw Distance</TableCell>
-            <TableCell sx={headstyle}>Airflow Capacity</TableCell>
-            <TableCell sx={headstyle}>Inverter Compatible</TableCell>
+            {/* <TableCell sx={headstyle}>Airflow Capacity</TableCell> */}
+            {/* <TableCell sx={headstyle}>Inverter Compatible</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,11 +49,11 @@ const TableData = () => {
               <TableCell sx={bodystyle}>{item.speed_control || "---"}</TableCell>
               <TableCell sx={bodystyle}>{item.oscillating_louvers || "---"}</TableCell>
               <TableCell sx={bodystyle}>{item.cooling_pad || "---"}</TableCell>
-              <TableCell sx={bodystyle}>{item.noise_level || "---"}</TableCell>
-              <TableCell sx={bodystyle}>{item.power_consumption || "---"}</TableCell>
+              {/* <TableCell sx={bodystyle}>{item.noise_level || "---"}</TableCell> */}
+              {/* <TableCell sx={bodystyle}>{item.power_consumption || "---"}</TableCell> */}
               <TableCell sx={bodystyle}>{item.air_throw_distance || "---"}</TableCell>
-              <TableCell sx={bodystyle}>{item.airflow_capacity || "---"}</TableCell>
-              <TableCell sx={bodystyle}>{item.inverter_compatible ? "true" : "false"}</TableCell>
+              {/* <TableCell sx={bodystyle}>{item.airflow_capacity || "---"}</TableCell> */}
+              {/* <TableCell sx={bodystyle}>{item.inverter_compatible ? "true" : "false"}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
