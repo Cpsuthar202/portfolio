@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import UnprotectedWrapper from "./wrapper/UnprotectedWrapper";
 import Home from "@/pages/home/Home";
 import ProductDetails from "@/pages/product/ProductDetails";
-import About from "@/pages/about/About";
+// import About from "@/pages/about/About";
 import Table from "@/pages/table/TableData";
 
 const UnprotectedRoutes = () => {
@@ -11,7 +11,7 @@ const UnprotectedRoutes = () => {
       <Route path="/" element={<UnprotectedWrapper />}>
         <Route path="/" element={<Home />} />
         <Route path="/product_details" element={<ProductDetails />} />
-        <Route path="/about" element={<About />} />
+        {/* <Route path="/about" element={<About />} /> */}
         <Route path="/table" element={<Table />} />
         {/* <Route path="/display/:label" element={<Display />} />
         <Route path="/product/:label/:id" element={<Product />} />

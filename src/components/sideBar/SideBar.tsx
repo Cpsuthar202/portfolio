@@ -2,8 +2,9 @@ import { Box, Button, Collapse } from "@mui/material";
 import { sidebarMenuList } from "./utils";
 import { useSideBar } from "./SideBar.hook";
 import { useState } from "react";
-import { WebShare } from "@components/Container/index";
+import { handleShareUrl, WebShare } from "@components/Container/index";
 
+import pdf from "@/data/GWCCatalogue.pdf";
 const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
   const {
     // variable: { },
@@ -68,6 +69,29 @@ const SideBar = ({ onClickMenu }: { onClickMenu?: () => void }) => {
             )}
           </Box>
         ))}
+        <Button
+          fullWidth
+          sx={{
+            px: 3,
+            my: "2px",
+            justifyContent: "flex-start",
+          }}
+          onClick={() => handleShareUrl({ url: "https://www.instagram.com/goldwing_cooler/" })}
+        >
+          Instagram
+        </Button>
+        <Button
+          fullWidth
+          sx={{
+            px: 3,
+            my: "2px",
+            justifyContent: "flex-start",
+          }}
+          href={pdf}
+          download
+        >
+          Catalogue
+        </Button>
         <WebShare text="Gold Wing Cooler" url="/">
           <Button
             fullWidth
