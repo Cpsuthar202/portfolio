@@ -35,11 +35,11 @@ const sidebarMenuList: ITextButtonList[] = [
     label: "Table",
     link: "/table",
   },
-  {
-    id: "about",
-    label: "About",
-    link: "/about",
-  },
+  // {
+  //   id: "about",
+  //   label: "About",
+  //   link: "/about",
+  // },
 ];
 
 export { sidebarMenuList };
