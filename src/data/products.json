@@ -20,7 +20,7 @@
     "images": ["/images/gw12/gw12_l.png", "/images/gw12/gw12_f.png", "/images/gw12/gw12_r.png"],
     "hero_images": ["/images/gw12/gw12_hero_image.png"],
     "model_name": "GW 12",
-    "dimension": "18 x 19 x 35 inches",
+    "dimension": "18 x 18 x 35 inches",
     "motor": "Heavy-duty motor",
     "water_tank": "35 Liters ",
     "fan": "12' Three Leaf Fan",
