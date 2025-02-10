@@ -1,0 +1,40 @@
+{
+  "skills": [
+    {
+      "logo": "https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png",
+      "title": "React js"
+    },
+    {
+      "logo": "https://svgmix.com/uploads/5b99f5-material-ui.svg",
+      "title": "Material-UI"
+    },
+    {
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png",
+      "title": "Bootstrap "
+    },
+    {
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png",
+      "title": "JavaScript"
+    },
+    {
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png",
+      "title": "TypeScript"
+    },
+    {
+      "logo": "https://static-00.iconduck.com/assets.00/redux-icon-2048x1945-ahvhunxp.png",
+      "title": "Redux"
+    },
+    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0WxsHiJ67Myud_p_XIdNI35NDec7psLLa5Q&s",
+      "title": "GitHub"
+    },
+    {
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png",
+      "title": "VS Code"
+    },
+    {
+      "logo": "https://cdn.iconscout.com/icon/free/png-256/free-postman-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-company-brand-vol-5-pack-logos-icons-2945092.png?f=webp&w=256",
+      "title": "Postman"
+    }
+  ]
+}

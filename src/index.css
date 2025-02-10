@@ -44,10 +44,10 @@ input::-webkit-inner-spin-button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #003f88;
+  background: #030712;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #003f88;
+  background: #030712;
 }

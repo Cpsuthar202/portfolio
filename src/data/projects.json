@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "title": "Gold Wing Cooler Web",
+      "sub_title": "Gold wing cooler ",
+      "link": "https://gold-wing-cooler.netlify.app/",
+      "description": ["Display product details", "Technologies : React.js, Material-UI, TypeScript", "Designed an intuitive and responsive UI using Material-UI"]
+    },
+    {
+      "title": "Mark My Image – Admin Panel",
+      "sub_title": "Internship Project at MarwadTech",
+      "description": [
+        "Technologies: React.js, Material-UI, Redux, REST APIs, TypeScript.",
+        "Developed an admin panel to monitor and manage all admin-level activities for the Mark My Image app, including user management, content moderation, and app analytics.",
+        "Integrated REST APIs for real-time data updates.",
+        "Designed an intuitive and responsive UI using Material-UI and managed state across the app with Redux for seamless monitoring of all admin functionalities."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "education": [
+    {
+      "degree": "Bachelor of Technology (B.Tech) in Computer Science",
+      "institution": "CLG Institute of Engineering and Technology",
+      "location": "Rajasthan, India",
+      "year": "2018 – 2023",
+      "percentage": "CGPA: 8.15"
+    },
+    {
+      "degree": "Senior Secondary",
+      "institution": "Noble Sr. Secondary School, Falna Raj.",
+      "location": "Rajasthan, India",
+      "year": "2018",
+      "percentage": "48.20%"
+    },
+    {
+      "degree": " Secondary",
+      "institution": "Adarsh Vidya Mandir Secondary School, Takhatgarh Raj.",
+      "location": "Rajasthan, India",
+      "year": "2016",
+      "percentage": "55.33%"
+    }
+  ]
+}

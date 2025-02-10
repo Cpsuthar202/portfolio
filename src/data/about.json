@@ -1,36 +1,4 @@
 {
-  "function": {
-    "About": [
-      "Welcome to Gold Wing Cooler, your trusted partner in eco-friendly cooling solutions since 2018. We specialize in high-quality fiber air coolers that blend innovation, durability, and energy efficiency.",
-      "Our mission is to redefine cooling with advanced, sustainable technology that ensures comfort without compromising the environment.",
-      "Based in Sumerpur, Rajasthan, Gold Wing Cooler is a recognized leader in the fiber air cooler industry, trusted by thousands for top-notch quality and service.",
-      "Our products are featured in Trade India's verified seller list, known for exceptional performance and reliability."
-    ],
-    "Why Choose Fiber Coolers?": [
-      "Eco-Friendly Design: Crafted with recyclable and biodegradable materials, minimizing environmental impact.",
-      "Energy Efficiency: Operates on significantly lower power consumption compared to traditional air conditioners.",
-      "Durability: Made from high-quality fiber for resistance to rust, corrosion, and extreme weather conditions.",
-      "Superior Cooling: Delivers fast, powerful cooling performance, ideal for homes, offices, and large spaces.",
-      "Low Maintenance: Designed for hassle-free cleaning and long-lasting use."
-    ],
-    "Our Products": [
-      "Portable Fiber Coolers: Compact and efficient, perfect for personal or office use.",
-      "Industrial Fiber Coolers: Engineered for cooling large areas such as factories, warehouses, and event spaces.",
-      "Custom Cooling Solutions: Tailored systems designed to meet your unique cooling requirements."
-    ],
-    "Our Commitment to Quality": ["We follow stringent quality checks at every stage of production, ensuring each product meets the highest standards of durability, performance, and reliability."],
-    "Sustainability at Heart": [
-      "Gold Wing Cooler is committed to environmental responsibility. Our fiber coolers are manufactured using sustainable processes and materials to reduce our carbon footprint."
-    ],
-    "Our Vision": ["To lead the industry in eco-friendly cooling solutions by consistently innovating and delivering exceptional value to our customers worldwide."]
-  },
-  "contact": {
-    "email": "support@goldwingcooler.com",
-    "phone_1": "1234567890",
-    "phone_2": "0987654321",
-    "address": "Gold Wing Cooler, Sumerpur, Rajasthan, India",
-    "map_address": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28891.863918620013!2d73.06236341590551!3d25.15316437159337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3942ecb539703b3f%3A0x2dae06e0f7ff7f6e!2sSumerpur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1737192047069!5m2!1sen!2sin"
-  },
-  "board": "GOLD WING",
-  "instagram": "https://www.instagram.com/goldwing_cooler/"
+  "title": "React js & Frontend developer",
+  "description": " Web Developer with experience specializing in React.js, JavaScript, and TypeScript. Skilled in creating responsive web applications and collaborating with cross-functional teams to deliver high-quality solutions that enhance user experience. Passionate about leveraging my skills in a dynamic environment and eager to contribute to your team’s success."
 }

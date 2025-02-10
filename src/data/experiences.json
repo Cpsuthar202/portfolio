@@ -1,0 +1,16 @@
+{
+  "experience": [
+    {
+      "title": "Web Developer Intern",
+      "company": "MarwadTech",
+      "location": "Sumerpur, Rajasthan (306902)",
+      "date": "September 2023 – August 2024",
+      "description": [
+        "Developed feature-rich web applications using JavaScript, TypeScript, React.js, and Material-UI. Improved app performance by optimizing frontend integrations with Redux and REST APIs.",
+        "Collaborated with designers, backend engineers, and QA teams to align UI/UX design and application functionality with business needs, enhancing user experience and UI responsiveness.",
+        "Delivered code and updates via Git and GitHub, and utilized Postman for API testing, ensuring smooth integration of RESTful APIs.",
+        "Focused on clean architecture, ensuring separation of concerns and reducing app complexity through the effective use of modern tools and technologies like Visual Studio Code."
+      ]
+    }
+  ]
+}
